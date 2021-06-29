@@ -1,0 +1,51 @@
+﻿<div class="container-fluid">
+    <section class="card">
+        <div class="card-block">
+            <h5 class="with-border m-t-0">Goal Status Report</h5>
+            <div class="text-right" style="padding-bottom:5px" id="divDeligation">
+             </div>
+            <div class="row form-body" id="reportFilter">
+                <div class="form-group col-md-4">
+                    <label class="control-label">Appraisal Cycle<span class="spnError">*</span></label>
+                    <div>
+                        <p class="form-control-static">
+                            <select id="financialYear" class="form-control select2 validation-required" aria-hidden="true"></select>
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <label class="control-label">Status<span class="spnError">*</span></label>
+                    <div>
+                        <p class="form-control-static">
+                            <select id="status" class="form-control select2 validation-required" aria-hidden="true"></select>
+                        </p>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+               </div>
+            <div class="row" id="divTable">
+                <div class="col-md-12 clearfix table-responsive">
+                    <table id="tblGoalReportList" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div id="mypopupShowDetailsModal" class="modal fade" role="dialog" aria-labelledby="mypopupShowDetailsModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">Show Details</h4>
+            </div>
+            <div class="modal-body" id="popupDataShow">
+
+            </div>
+            <div class="modal-footer">
+                <button id="btnClosePopUp" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/app/Reports/goalsreport.js"></script>

@@ -1,0 +1,862 @@
+﻿<div class="container-fluid">
+    <section class="card">
+        <div class="card-block">
+            <h5 class="with-border m-t-0">Update Data</h5>
+            <div class="text-right" style="padding-bottom:5px" id="divDeligation">
+            </div>
+            <div class="row" id="divLeave">
+                <div class="col-xl-12 col-lg-12">
+                    <section class="tabs-section">
+                        <div class="tabs-section-nav tabs-section-nav-left">
+                            <ul class="nav" role="tablist">
+                                @*<li class="nav-item">
+                                        <a class="nav-link active" href="#tabUpdateAttendance" role="tab" data-toggle="tab">
+                                            <span class="nav-link-in text-green">Update Attendance</span>
+                                        </a>
+                                    </li>*@
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#tabUpdateLeave" role="tab" data-toggle="tab" @*onclick="onUpdateLeaveTabClicked();"*@>
+                                        <span class="nav-link-in text-green">Update Leave</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div><!--.tabs-section-nav-->
+                        <div class="tab-content no-styled profile-tabs">
+                            <div role="tabpanel" class="tab-pane" id="tabUpdateAttendance">
+                                <section class="box-typical box-typical-padding">
+                                    <div class="row">
+                                        <div class="form-group col-md-4">
+                                            <label class="col-md-12 control-label">Date<span class="spnError">*</span></label>
+                                            <div class="col-md-12">
+                                                <div class="inputGroupContainer date date-picker" id="selectDate">
+                                                    <div class="input-group">
+                                                        <input class="form-control validation-required" type="text" readonly="" placeholder="Date" />
+                                                        <span class=" input-group-btn">
+                                                            <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label class="col-md-12 control-label">Employee Name<span class="spnError">*</span></label>
+                                            <div class="col-md-12">
+                                                <select class="form-control select2 validation-required" id="employeeName">
+                                                    <option value="0">Select</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label class="col-md-12 control-label">System In Time<span class="spnError">*</span></label>
+                                            <div class="col-md-12">
+                                                <input id="inTime" class="formddl generalinput required form-control validation-required" type="text" disabled="disabled" placeholder="00:00" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-4">
+                                            <label class="col-md-12 control-label">System Out Time<span class="spnError">*</span></label>
+                                            <div class="col-md-12">
+                                                <input id="outTime" class="formddl generalinput required form-control validation-required" type="text" disabled="disabled" placeholder="00:00" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label class="col-md-12 control-label">In Time<span class="spnError">*</span></label>
+                                            <div class="col-md-12">
+                                                <input id="userGivenInTime" class="formddl generalinput required form-control validation-required" onkeypress="return isNumber(event)" type="text" placeholder="00:00" value="00:00" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label class="col-md-12 control-label">Out Time<span class="spnError">*</span></label>
+                                            <div class="col-md-12">
+                                                <input id="userGivenOutTime" class="formddl generalinput required form-control validation-required" onkeypress="return isNumber(event)" type="text" placeholder="00:00" value="00:00" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-4">
+                                            <label class="col-md-12 control-label">System Status</label>
+                                            <div class="col-md-12">
+                                                <input id="previousStatus" class="formddl generalinput required form-control" type="text" disabled="disabled" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label class="col-md-12 control-label">System Remarks</label>
+                                            <div class="col-md-12">
+                                                <input id="previousRemarks" class="formddl generalinput required form-control" type="text" disabled="disabled" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label class="col-md-12 control-label">New Status<span class="spnError">*</span></label>
+                                            <div class="col-md-12">
+                                                <select class="form-control formddl generalinput required select-validate validation-required" placeholder="Leave type" id="newStatus">
+                                                    <option value="0">Select</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-4">
+                                            <label class="col-md-12 control-label">New Remarks<span class="spnError">*</span></label>
+                                            <div class="col-md-12">
+                                                <input id="newRemarks" class="formddl generalinput required form-control validation-required" type="text" maxlength="10" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row text-center">
+                                        <div class="form-group col-md-12">
+                                            <input id="btnUpdateAttendance" class="btn btn-success" onclick="submitUpdateAttendance();" type="submit" value="Submit" />
+                                        </div>
+                                    </div>
+                                </section>
+                            </div><!--.tab-pane-->
+                            <div role="tabpanel" class="tab-pane active" id="tabUpdateLeave">
+                                <section class="box-typical box-typical-padding">
+                                    <input type="hidden" id="hiddenEmployeeAbrhs" style="display: none" />
+                                    <div class="row" id="updateLeaveGrid">
+                                        <div class="form-group col-md-3">
+                                            <label class="control-label">Financial Year<span class="spnError"></span></label>
+                                            <select id="year" class="form-control select2"></select>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label class="control-label">Employee Status<span class="spnError">*</span></label>
+                                            <select class="form-control select2 validation-required" placeholder="Leave type" id="ddlUserStatus">
+                                                <option value="0">Select</option>
+                                                <option value="1" selected>Active</option>
+                                                <option value="2">InActive</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label class="control-label">Employee Name<span class="spnError">*</span></label>
+                                            <select class="form-control select2 validation-required" placeholder="Leave type" id="leaveEmployeeName">
+                                                <option value="0">Select</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="control-label"><span class="spnError"></span></label>
+                                            <input id="btnApplyLeaveOnUserBehalf" class="btn btn-success" onclick="applyLeaveOnUserBehalf();" type="submit" value="Apply new leave" style="display: none" />
+                                        </div>
+                                    </div>
+                                    <div id="divUserLeaveList" style="display:none;">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <table id="tblLeavebalanceGrid" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                            <div class="panel panel-default active">
+                                                <div class="panel-heading" role="tab" id="headingOne">
+                                                    <h4 class="panel-title">
+                                                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#divPendingandApproved" aria-expanded="true" aria-controls="divOffshoreUser">
+                                                            Pending/Approved
+                                                        </a>
+                                                    </h4>
+                                                </div>
+                                                <div id="divPendingandApproved" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                                    <div class="panel-body">
+                                                        <table id="leaveGrid" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading" role="tab" id="headingTwo">
+                                                    <h4 class="panel-title">
+                                                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#divRejectedandCancelled" aria-expanded="false" aria-controls="divOnshoreUser">
+                                                            Rejected/Cancelled
+                                                        </a>
+                                                    </h4>
+                                                </div>
+                                                <div id="divRejectedandCancelled" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingTwo">
+                                                    <div class="panel-body">
+                                                        <table id="rejectedLeaveGrid" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div><!--.tab-pane-->
+                        </div><!--.tab-content-->
+                    </section><!--.tabs-section-->
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<div id="modalApplyLeaveOnUserBehalf" class="modal fade" role="dialog" aria-labelledby="myLogNewTaskModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title"></h4>
+            </div>
+            <div class="modal-body" style="padding: 0 !important">
+                <div class="form-group row" id='divLogTaskTemplate'>
+                    <div class="col-xl-12 col-lg-12">
+                        <section class="tabs-section" style="margin: 0 !important">
+                            <div class="tabs-section-nav tabs-section-nav-left">
+                                <ul class="nav" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="#tabApplyLeave" role="tab" data-toggle="tab">
+                                            <span class="nav-link-in text-green">Leave</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#tabApplyWFH" role="tab" data-toggle="tab" onclick="onWFHTabClick();">
+                                            <span class="nav-link-in text-green">Work From Home</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#tabApplyOuting" role="tab" data-toggle="tab">
+                                            <span class="nav-link-in text-green"> Out Duty/Tour</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#tabApplyLnsa" role="tab" data-toggle="tab">
+                                            <span class="nav-link-in text-green">LNSA</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#tabMapWeekOff" role="tab" data-toggle="tab">
+                                            <span class="nav-link-in text-green">Weekly Roster</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#tabAdvanceLeave" role="tab" data-toggle="tab">
+                                            <span class="nav-link-in text-green">Advance Leave</span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </div><!--.tabs-section-nav-->
+                            @*<div class="col-md-12">
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <div id="showOnCancelLeaveByHR" style="display: none;">
+                                                <div>
+                                                    <label class="control-label">Reason of cancellation<span class="spnError">*</span></label>
+                                                    <textarea rows="4" id="cancelLeaveReason" maxlength="1500" class="form-control" placeholder="Enter reason for cancelling the leave"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>*@
+                            <div class="tab-content no-styled profile-tabs">
+                                <div role="tabpanel" class="tab-pane active" id="tabApplyLeave">
+                                    <section class="box-typical box-typical-padding" style="margin: 0 !important">
+                                        <div class="row form-body">
+                                            <div class="col-md-12 clearfix">
+                                                <div class="col-md-12">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label">From<span class="spnError">*</span></label>
+                                                            <div class="inputGroupContainer date date-picker" id="leaveFromDate">
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control validation-required" readonly="" name="leaveFromDate" placeholder="Leave From">
+                                                                    <span class="input-group-btn">
+                                                                        <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Till<span class="spnError">*</span></label>
+                                                            <div class="inputGroupContainer date date-picker" id="leaveTillDate">
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control validation-required" readonly="" name="leaveTillDate" placeholder="Leave Till">
+                                                                    <span class="input-group-btn">
+                                                                        <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="toggleDiv">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="control-label">Total days <span class="label label-success" id="leaveTotalDays">0</span></label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="control-label">Total working days <span class="label label-info" id="leaveWorkingDays">0</span></label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div id="singleHalfShow">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label class="control-label">
+                                                                    Leave period includes a half day leave
+                                                                    <input type="checkbox" id="isLeaveHalfDay" />
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div id="halfDayPreferenceShow" style="display:none;">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="control-label">
+                                                                    <input type="radio" name="halfDayLeave" id="isFirstHalfLeave" />
+                                                                    First half leave
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="control-label">
+                                                                    <input type="radio" name="halfDayLeave" id="isSecondHalfLeave" />
+                                                                    Second half leave
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div id="bothHalfShow">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="control-label">
+                                                                    First day of leave period is a half day leave
+                                                                    <input type="checkbox" id="isLeaveFirstHalfDay" />
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="control-label">
+                                                                    Last day of leave period is a half day leave
+                                                                    <input type="checkbox" id="isLeaveLastHalfDay" />
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 toggleDiv">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Type of leave<span class="spnError">*</span></label>
+                                                            <div class="inputGroupContainer">
+                                                                <div class="input-group">
+                                                                    <select class="form-control formddl generalinput required select-validate validation-required" placeholder="Leave type" id="leaveType">
+                                                                        <option value="0">Select</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Reason<span class="spnError">*</span></label>
+                                                            <textarea rows="4" id="leaveReason" maxlength="500" placeholder="Enter reason for availing the leave" class="form-control validation-required"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Primary contact number<span class="spnError">*</span></label>
+                                                            <div class="inputGroupContainer">
+                                                                <div class="input-group">
+                                                                    <input type="text" id="leaveContactNumber" maxlength="10" class="form-control validation-required" placeholder="Contact Number" onkeypress="return isNumber(event)" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Other contact number</label>
+                                                            <div class="inputGroupContainer">
+                                                                <div class="input-group">
+                                                                    <input type="text" id="leaveAltContactNumber" maxlength="10" class="form-control" placeholder="Contact Number" onkeypress="return isNumber(event)" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Availability on<span class="spnError">*</span></label>
+                                                            <div class="inputGroupContainer">
+                                                                <div class="input-group">
+                                                                    Mobile
+                                                                    <input type="checkbox" id="avilableOnMobile" name="leaveAvailablityOnMobile" />&nbsp;&nbsp;&nbsp;
+                                                                    Official email
+                                                                    <input type="checkbox" id="avilableOnEmail" name="leaveAvailablityOnEmail" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                @*<div class="row">*@
+                                                <div class="col-md-12">
+                                                    <div class="col-md-6 pull-right">
+                                                        <input id="btnSubmitLeave" class="btn btn-success pull-right" onclick="finalApplyLeaveOnUserBehalf();" type="submit" value="Submit" />
+                                                        <input id="btnSubmitleaveByHR" class="btn btn-success" onclick="finalCancelAndApplyLeaveOnUserBehalf();" type="submit" value="Submit" style="display: none" />
+                                                    </div>
+                                                </div>
+                                                @*</div>*@
+                                            </div>
+
+                                        </div>
+                                    </section>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="tabApplyWFH">
+                                    <section class="box-typical box-typical-padding" style="margin: 0 !important">
+                                        <div class="row form-body">
+                                            <div class="col-md-12 clearfix">
+                                                <div class="displayDiv">
+                                                    <div class="form-group col-md-12">
+                                                        <div class="col-md-4 inputGroupContainer date date-picker" id="WorkFromHomeDate">
+                                                            <label class="control-label" style="font-weight:500; font-size:medium;">Date<span class="spnError">*</span></label>
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control validation-required" readonly="" name="WorkFromHomeDate">
+                                                                <span class="input-group-btn">
+                                                                    <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    @*<div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label class="col-md-12 control-label">
+                                                                    <input type="checkbox" id="isWFHHalfDay" />
+                                                                    Is WFH for half day
+                                                                </label>
+                                                            </div>
+                                                        </div>*@
+
+                                                    @*<div class="col-md-12" id="halfDayPreferenceWfhShow" style="display:none;">
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">
+                                                                        <input type="radio" name="halfDayWfh" id="isFirstHalfWfh" />
+                                                                        First half WFH
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">
+                                                                        <input type="radio" name="halfDayWfh" id="isSecondHalfWfh" />
+                                                                        Second half WFH
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>*@
+
+                                                    <div class="form-group col-md-12">
+                                                        <label class="col-md-12 control-label">Reason<span class="spnError">*</span></label>
+                                                        <div class="col-md-4">
+                                                            <textarea rows="4" cols="2000" id="WFHReason" maxlength="500" placeholder="Enter reason for WFH" class="form-control validation-required"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-md-12">
+                                                        <label class="col-md-12 control-label">Mobile No.<span class="spnError">*</span></label>
+                                                        <div class="col-md-4">
+                                                            <input id="wfmMobileNo" class="formddl generalinput required form-control validation-required" type="text" onkeypress="return isNumber(event)" maxlength="10" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group col-md-12">
+                                                            <input id="btnSubmitWFH" class="btn btn-success  pull-right" onclick="submitWFH();" type="submit" value="Submit" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div><!--.tab-pane-->
+                                <div role="tabpanel" class="tab-pane" id="tabApplyOuting">
+                                    <section class="box-typical box-typical-padding" style="margin: 0 !important">
+                                        <div class="form-body">
+                                            <div class="clearfix">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label class="control-label">From<span class="spnError">*</span></label>
+                                                            <div class="inputGroupContainer date date-picker" id="outingFromDatePicker">
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control validation-required" readonly="" id="outingFromDate" onchange="OutingFromDateChange()" placeholder="Outing From">
+                                                                    <span class=" input-group-btn">
+                                                                        <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Till<span class="spnError">*</span></label>
+                                                            <div class="inputGroupContainer date date-picker" id="outingTillDatePicker">
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control validation-required" readonly="" id="outingTillDate" placeholder="Outing Till">
+                                                                    <span class=" input-group-btn">
+                                                                        <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Type <span class="spnError">*</span></label>
+                                                            <div class="inputGroupContainer">
+                                                                <div class="input-group">
+                                                                    <select class="form-control formddl generalinput required select-validate validation-required" placeholder=" type" id="outingType">
+                                                                        <option selected="selected" value="0">Select</option>
+                                                                        @*<option value="1"> Out Duty </option>
+                                                                            <option value="2"> Tour </option>*@
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Reason<span class="spnError">*</span></label>
+                                                            <div class="inputGroupContainer">
+                                                                <div class="input-group">
+                                                                    <textarea rows="4" class="form-control validation-required" style="width:100%" id="outingReason" maxlength="500" placeholder="Enter reason "></textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Primary contact number<span class="spnError">*</span></label>
+                                                            <div class="inputGroupContainer">
+                                                                <div class="input-group">
+                                                                    <input type="text" id="outingContactNumber" maxlength="10" class="form-control validation-required" placeholder="Contact Number" onkeypress="return isNumber(event)" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Other contact number</label>
+                                                            <div class="inputGroupContainer">
+                                                                <div class="input-group">
+                                                                    <input type="text" id="outingAltContactNumber" maxlength="10" class="form-control" placeholder="Contact Number" onkeypress="return isNumber(event)" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <input class="btn btn-success pull-right" onclick="submitOutingDetails();" type="submit" value="Submit">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="tabApplyLnsa">
+                                    <div class="tab-content no-styled profile-tabs">
+                                        <div id="tabLsnaShift" class="tab-pane active">
+                                            <div class="header">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <span class="lnsa-headings pull-left">
+                                                            <input type="button" class="btn" value="<<" id="btnPreviousMonth" />
+                                                            <span id="startDate"></span> to
+                                                            <span id="endDate"></span>
+                                                            <input type="button" disabled class="btn" value=">>" id="btnNextMonth" />
+                                                        </span>
+                                                    </div>
+                                                    <div class="col-md-6 legends text-right m-t-22">
+                                                        <div class="legend"><span class="box selected"></span><span>Selected</span></div>
+                                                        <div class="legend"><span class="box applied"></span><span>Applied</span></div>
+                                                        <div class="legend"><span class="box approved"></span><span>Approved</span></div>
+                                                    </div>
+                                                </div>
+                                                <input type="hidden" id="hdnStartDate" />
+                                                <input type="hidden" id="hdnEndDate">
+                                            </div>
+                                            <div class="row" id="lnsaShiftDiv">
+                                                <div class="col-md-12">
+                                                    <div id="lnsaDetails">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row button-row">
+                                                <div class="col-md-12 text-left margin-top-10">
+                                                    <button class="btn btn-success pull-right" id="btnReasonPop">Submit</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="tabMapWeekOff">
+                                    <div class="tab-content no-styled profile-tabs">
+                                        <div class="tab-pane-active" id="tabWeekOffInfo">
+                                            <section class="box-typical box-typical-padding">
+                                                <div class="form-body">
+                                                    <div class="header">
+                                                        <!--<span class="lnsa-headings">LNSA Shift Calendar</span> -->
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <span class="error" id="note"></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <span class="lnsa-headings pull-left">
+                                                                    <input type="button" class="btn" value="<<" id="btnWeekOffPreviousMonth" />
+                                                                    <span id="currentMonthYear" data-attr-monthNumber="" data-attr-year=""></span>
+                                                                    <input type="button" class="btn" value=">>" id="btnWeekOffNextMonth" />
+                                                                </span>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <a class="roaster-info" rel="popover" data-toggle="popover" href="#">
+                                                                    <i class="fa fa-question-circle fa-2x" id="infoIcon" style="float:right;margin-right:10px"></i>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <input type="hidden" id="hdnWeekOffStartDate" />
+                                                        <input type="hidden" id="hdnWeekOffEndDate">
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="divTable"><div class="divRow" id="teamRoaster"></div></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="tabAdvanceLeave" class="tab-pane">
+                                    <section class="box-typical box-typical-padding" style="margin: 0 !important">
+                                        <div class="row form-body">
+                                            <div class="col-md-12 clearfix">
+                                                <div class="displayDiv">
+                                                    <div class="form-group col-md-12">
+                                                        <div class="col-md-4 inputGroupContainer date date-picker" id="advanceLeaveFromDate">
+                                                            <label class="control-label" style="font-weight:500; font-size:medium;">From Date<span class="spnError">*</span></label>
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control validation-required" placeholder="Leave From" readonly="" name="advanceLeaveFromDate">
+                                                                <span class="input-group-btn">
+                                                                    <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 inputGroupContainer date date-picker" id="advanceLeaveTillDate">
+                                                            <label class="control-label" style="font-weight:500; font-size:medium;">Till Date<span class="spnError">*</span></label>
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control validation-required" placeholder="Leave Till" readonly="" name="advanceLeaveTillDate">
+                                                                <span class="input-group-btn">
+                                                                    <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-md-12">
+                                                        <label class="col-md-12 control-label">Reason<span class="spnError">*</span></label>
+                                                        <div class="col-md-8">
+                                                            <textarea rows="4" cols="3000" id="advanceLeaveReason" maxlength="500" placeholder="Enter reason for advance leave" class="form-control validation-required"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group col-md-12">
+                                                            <input id="btnSubmitAdvanceLeave" class="btn btn-success  pull-right" type="submit" value="Submit" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="mypopupviewLnsaReason" class="modal fade" role="dialog" aria-labelledby="mypopupviewLnsaReason" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Reason</h4>
+            </div>
+            <div class="container margin-top-10" id="">
+                <div class="form-group col-md-12" id="divLnsaReason">
+                    <textarea rows="4" cols="2000" id="txtLnsaReason" maxlength="500" class="form-control validation-required"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="submitRequest" class="btn btn-success">&nbsp;Submit </button>
+                <button data-dismiss="modal" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modalCancelLeave" class="modal fade" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalCancelLeaveTitle" class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group row" id='divLogTaskTemplate'>
+                    <input type="hidden" id="hiddenLeaveApplicationId" />
+                    <input type="hidden" id="hiddenForLeaveType" />
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label><b>Period: </b><span id="txtPeriod"></span></label>
+                            <label><b>Leave Type: </b><span id="txtLeaveType"></span></label>
+                            <br />
+                            <label class="control-label">Reason of cancellation<span class="spnError">*</span></label>
+                            <textarea rows="4" id="cancelLeaveReason" maxlength="1500" class="form-control validation-required" placeholder="Enter reason for cancelling the leave"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input id="btnCancelLeave" class="btn btn-success" onclick="cancelLeave();" type="submit" value="Submit" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="mypopupCancelAdvanceLeave" class="modal fade" role="dialog" aria-labelledby="mypopupCancelAdvanceLeave" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">View Advance Leave</h4>
+            </div>
+
+            <div class="modal-body" id="">
+                <div>
+                    <section class="box-typical box-typical-padding">
+                        <div class="form-body">
+                            <div id='divInCompleteReviewFormsGridView' class='gridViewBody gridViewContainerBorder'>
+                                <table id="tblAdvanceLeaveDataToCancel" class="table table-collapse table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+                            </div>
+                        </div>
+                    </section>
+                    <input type="hidden" id="hiddenShiftId" value="" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btnClose" type="button" data-dismiss="modal" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="mypopupviewAdvanceLeaveRemark" class="modal fade" role="dialog" aria-labelledby="mypopupviewAdvanceLeaveRemark" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Remarks</h4>
+            </div>
+            <div class="container margin-top-10" id="">
+                <div class="form-group col-md-12">
+                    <textarea rows="4" cols="2000" id="advanceLeaveRemark" maxlength="500" class="form-control validation-required"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btnCancelAdvanceLeave" type="button" class="btn btn-danger"><i class="fa fa-times"></i>&nbsp;Cancel</button>
+                <button data-dismiss="modal" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="mypopupReviewLeaveRemark" class="modal fade" role="dialog" aria-labelledby="mypopupReviewLeaveRemark" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitleMyPopupReviewLeaveRemark" class="modal-title">Remarks</h4>
+            </div>
+            <div class="container margin-top-10" id="CopyTaskDiv">
+                <div class="form-group col-md-12">
+                    <textarea rows="6" cols="2000" id="reviewLeaveRemark" maxlength="500" placeholder="Please enter remarks here" class="form-control validation-required"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="submitReviewLeaveRemark" type="button" class="btn btn-success"><i class="fa fa-"></i>&nbsp;Submit </button>
+                <button id="btnClose" type="button" data-dismiss="modal" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="myModalAddWeekOff" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" id="btnClose1" data-dismiss="modal">
+                    &times;
+                </button>
+                <h4 class="modal-title">Add WeekOff Users</h4>
+            </div>
+            <div class="modal-body" id="weekOffModal">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label> Select User<span class="spnError">*</span></label>
+                        <select id="ddlUsers" multiple="multiple" class="form-control validation-required" required></select>
+                    </div>
+                    <div class="col-md-4">
+                        <label> Select Date<span class="spnError">*</span></label>
+                        <select id="ddlDates" multiple="multiple" class="form-control validation-required" required></select>
+                    </div>
+                    <div class="col-md-4">
+                        <label><span class="spnError"></span></label>
+                        <button type="button" id="saveWeekOffData" class="btn btn-success"><i class="fa fa-check"></i>&nbsp;Save</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <table id="tblMarkedEmployeesInfo" data-filter-control="true" data-toolbar="#toolbar" class="table table-hover"></table>
+
+                        <div class="text-center margin-top-25" id="divBulkRemoveWeekOff">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                @*<button type="button" id="saveWeekOffData" class="btn btn-success">
+                        <i class="fa fa-check"></i>&nbsp;Save
+                    </button>*@
+                <button type="button" id="btnClose" class="btn btn-default" data-dismiss="modal">
+                    <i class="fa fa-times"></i>&nbsp;Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<link href="~/Content/lib/accordion.css" rel="stylesheet" />
+<script src="~/Scripts/lib/accordion.js"></script>
+<link href="~/Content/lib/lnsaShiftCalendar.css?v=4.1" rel="stylesheet" />
+@*<script src="~/Scripts/app/LeaveManagement/updateAttendance.js?v=2.5"></script>*@
+<script src="~/Scripts/app/LeaveManagement/updateLeave.js?v= 5.3"></script>

@@ -1,0 +1,128 @@
+﻿<div class="container-fluid">
+    <section class="card">
+        <div class="card-block">
+            <h5 class="with-border m-t-0">Update TT Tournament Score</h5>
+            <div class="row" id="divTournamentDiv">
+                <div class="col-xl-12 col-lg-12">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="control-label">Tournament</label>
+                            <div class="inputGroupContainer">
+                                <div class="input-group">
+                                    <select class="form-control select-validate validation-required" id="ddlTournament"></select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="control-label">Tournament Category</label>
+                            <div class="inputGroupContainer">
+                                <div class="input-group">
+                                    <select class="form-control select-validate validation-required" id="ddlTournamentCategory"></select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="control-label">Match Date<span class="spnError">*</span></label>
+                            <div class="inputGroupContainer date date-picker" id="MatchDate">
+                                <div class="input-group">
+                                    <input type="text" class="form-control validation-required" readonly="" name="MatchDate" placeholder="Match Date">
+                                    <span class=" input-group-btn">
+                                        <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="control-label">Round</label>
+                            <div class="inputGroupContainer">
+                                <div class="input-group">
+                                    <select class="form-control select-validate validation-required" id="ddlRound" onchange="bindTournamentTeamsDropDown();">
+                                        <option value="0">Select</option>
+                                        <option value="1">Round-1</option>
+                                        <option value="2">Round-2</option>
+                                        <option value="3">Round-3</option>
+                                        <option value="4">Round-4</option>
+                                        <option value="5">Round-5</option>
+                                        <option value="6">Round-6</option>
+                                        <option value="7">Round-7</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Teams</label>
+                            <div class="inputGroupContainer">
+                                <div class="input-group">
+                                    <select class="form-control select-validate validation-required" id="ddlTeam" onchange="resetControls();"></select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 text-left" style="margin-top:23px">
+                        <button type="button" class="btn btn-success" onclick="GetTournamentTeamDetails()">Search</button>
+                        <button type="button" class="btn btn-primary" onclick="UpdateMatchStatus(0)">No Match Live Now ?</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-md-12">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="control-label">Tournament Category</label>
+                            <div class="inputGroupContainer">
+                                <div class="input-group">
+                                    <select class="form-control select-validate validation-required" id="ddlGameId" onchange="GetTournamentTeamScore()">
+                                        <option value="1">Game-1</option>
+                                        <option value="2">Game-2</option>
+                                        <option value="3">Game-3</option>
+                                        <option value="4">Game-4</option>
+                                        <option value="5">Game-5</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-12">
+                        <table class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Match Up</th>
+                                    <th class="text-center">Score</th>
+                                    <th class="text-center">Action</th>
+                                    <th class="text-center">IsLive</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1 <input type="hidden" value="0" id="hdnteam1" /> </td>
+                                    <td id="team1"></td>
+                                    <td id="team1Score" class="text-center"></td>
+                                    <td id="scoreupdatebuttom1" class="text-center"></td>
+                                    <td id="isLivebuttom2" class="text-center" rowspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td>2<input type="hidden" value="0" id="hdnteam2" /></td>
+                                    <td id="team2"></td>
+                                    <td id="team2Score" class="text-center"></td>
+                                    <td id="scoreupdatebuttom2" class="text-center"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script src="~/Scripts/app/Sports/Sports.js"></script>

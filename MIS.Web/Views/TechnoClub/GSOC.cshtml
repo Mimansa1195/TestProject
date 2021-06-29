@@ -1,0 +1,97 @@
+﻿<div class="container-fluid">
+    <section class="card">
+        <div class="card-block">
+            <h5 class="with-border m-t-0">Gemini Summer Of Code</h5>
+            <div class="row margin-bottom-10">
+                <div class="col-md-12">
+                    <label class="control-label">
+                        Please select the project from dropdown and go through the details.<br />
+                        A selected project needs to be completed in 2 months.<br />
+                        An applicant needs to have the pre-requisite skills to apply for a certain project.<br />
+                        If you don't find any project matching your skillset/interest area, select "Others" and feel free to suggest your own project idea and deliverable.
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label"><b>Project</b></label>
+                        <div class="inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-list"></i></span>
+                                <select class="form-control select2 validation-required" id="project"></select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <button type="button" class="btn btn-success m-t-22" onclick="subscribeUsers();" id="btnPropose">Subscribe</button>
+                </div>
+            </div>
+            <div class="row">
+                <div id="pdfContainer" class="col-md-12 hidden" style="height: 1000px;margin-bottom: 20px;">
+                </div>
+            </div>
+            <div class="clearfix"><br /></div>
+            <div>
+                <table id="tblSubscribersInfo" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+            </div>
+        </div>
+    </section>
+</div>
+<div id="mypopupSubscribe" class="modal fade" role="dialog" aria-labelledby="mypopupSubscribe" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" id="buttonClose" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">Subscribe</h4>
+            </div>
+            <div class="modal-body container">
+                <div class="row">
+                    <div class="col-md-12 form-group">
+                        <label>Project Title<span class="spnError">*</span></label>
+                        <input maxlength="100" type="text" class="form-control validation-required" placeholder="Enter title" id="title" />
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label>Upload File<span class="spnError">*</span></label>
+                        <input type="file" class="form-control validation-required" onchange="checkFileIsValid(this);" name="file" id="fuForm">
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <span class="spnError">Selected file format should be .xls, .xlsx, .doc, .docx or .pdf</span>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <a style="text-decoration:underline;color:blue" onclick="downloadSampleFile('pdf')"><span>Download Sample File (.pdf)</span></a>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <a style="text-decoration:underline;color:blue" onclick="downloadSampleFile('docx')"><span>Download Sample File (.docx)</span></a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btnSubscribe" type="button" class="btn btn-success"><i class="fa fa-save"></i>&nbsp;Save</button>
+                <button id="btnClose" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="viewDocumentModal" class="modal fade" role="dialog" aria-labelledby="viewDocumentModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="header1" class="modal-title"></h4>
+            </div>
+            <div class="container margin-top-10">
+                <div id="popupWindowViewDocument">
+                    <object id="objViewPdf" type="application/pdf" data="" width="100%" height="500" internalinstanceid="65">No Support</object>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/app/TechnoClub/GSOC.js?v=1.4"></script>
+
+
+

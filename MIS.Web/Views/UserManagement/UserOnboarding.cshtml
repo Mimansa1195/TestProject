@@ -1,0 +1,201 @@
+﻿@{
+    ViewBag.Title = "UserOnboarding";
+}
+<style>
+    .m-t-10{
+        margin-top:10px;
+    }
+    </style>
+<div class="container-fluid">
+    <section class="card">
+        <div class="card-block">
+            <div class="row border-bottom-1" style="padding: 0">
+                <div class="col-md-6">
+                    <h5 class="margin-bottom-0 l-h-38">User Onboarding</h5>
+                </div>
+            </div>
+            <div class="row margin-top-10" id="divNewUserRegLink">
+                <section class="col-xl-12 col-lg-12">
+                    <section class="tabs-section">
+                        <div class="tab-content no-styled profile-tabs">
+                            <div role="tabpanel" class="tab-pane active" id="tabs-1-tab-1">
+                                <div class="form-body">
+                                    <div role="tabpanel" class="tab-pane" id="tabs-1-tab-1">
+                                        <section class="box-typical box-typical-padding">
+                                            <div class="form-group row">
+                                                <div class="col-md-12">
+                                                    <div class="col-md-2">
+                                                        <label class="control-label m-t-10">Email Id<span class="spnError">*</span></label>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-6" style="padding: 0px;">
+                                                        <input class="form-control validation-required" maxlength="200" id="userName" placeholder="Enter user name for the employee" type="text" style="text-align: right" onkeyup="return removeAtTheRate(this)" onkeydown="return removeAtTheRate(this)" />
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-6" style="padding: 0px;">
+                                                        <label class="control-label" style="text-align: left">
+                                                            <select class="form-control select-validate validation-required" id="domain" style="height:38px;">
+                                                                <option value="geminisolutions.in">@@geminisolutions.in</option>
+                                                                <option value="geminisolutions.us">@@geminisolutions.us</option>
+                                                                <option value="survey2connect.com">@@survey2connect.com</option>
+                                                                <option value="seekhley.com">@@usa-Immigrationlaw.com</option>
+                                                                <option value="seekhley.com">@@seekhley.com</option>
+
+                                                            </select>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="col-md-2">
+                                                        <label class="control-label m-t-10">AD User Name<span class="spnError">*</span></label>
+                                                    </div>
+                                                    <div class="col-md-4" style="padding: 0px;">
+                                                        <input class="form-control validation-required" maxlength="200" id="txtADUsernameForReg" placeholder="Enter AD user name" type="text" style="text-align: right" onkeyup="return removeAtTheRate(this)" onkeydown="return removeAtTheRate(this)" />
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <button type="button" class="btn" onclick="generateNewUserLink()">Generate and send link</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <div class="row">
+                                                <div class="col-md-12 m-t-2">
+                                                    <table id="tblUserRegData" data-filter-control="true" data-toolbar="#toolbar" class="table table-hover"></table>
+                                                </div>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div><!--.tab-content-->
+                            </div>
+                        </div>
+                    </section>
+                </section>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script>
+    $(document).ready(function () {
+        getAllUserRegistrations();
+    });
+
+    function removeAtTheRate(e) {
+        $("#" + e.id).val($("#" + e.id).val().replace('@@', ''));
+    }
+
+    function loadUserRegistrationDetailContainer(registrationId) {
+        loadUrlToId(misAppUrl.verifyUserDetail, 'divNewUserRegPartialContainer');
+
+        $('#userManagement').addHiddenInputData({
+            "hdnRegistrationId": registrationId,
+            "requestType": 3,
+        });
+    }
+
+    function getAllUserRegistrations() {
+        calltoAjax(misApiUrl.getAllUserRegistrations, "POST", '',
+            function (result) {
+                //console.log(result);
+                var resultData = $.parseJSON(JSON.stringify(result));
+                $("#tblUserRegData").dataTable({
+                    "responsive": true,
+                    "autoWidth": false,
+                    "paging": true,
+                    "bDestroy": true,
+                    "searching": true,
+                    "ordering": true,
+                    "info": true,
+                    "deferRender": true,
+                    "aaData": resultData,
+                    "aoColumns": [
+                        {
+                            "mData": "EmailId",
+                            "sTitle": "Email Id",
+                        },
+                        {
+                            "mData": null,
+                            "sTitle": "Status",
+                            'bSortable': false,
+                            "sClass": "text-left",
+                            mRender: function (data, type, row) {
+
+                                var html = '<div>';
+                                switch (row.Status)//Status = 1: link expired and user has not submitted, 2: pending for submission with user, 3: pending for verificatiob with HR
+                                {
+                                    case 1:
+                                        html += 'Link expired</div>';
+                                        break;
+                                    case 2:
+                                        html += 'Pending with user</div>';
+                                        break;
+                                    case 3:
+                                        html += 'Pending for verification</div>';
+                                        break;
+                                }
+                                return html;
+                            },
+                        },
+                        {
+                            "mData": "ADUserName",
+                            "sTitle": "AD User Name"
+                        },
+                        {
+                            "mData": "CreatedOn",
+                            "sTitle": "Created On"
+                        },
+                        {
+                            "mData": "CreatedBy",
+                            "sTitle": "Created By"
+                        },
+                    ]
+                });
+            });
+    }
+
+    function generateNewUserLink() {
+        if (!validateControls('divNewUserRegLink'))
+            return false;
+
+        var uName = $("#userName").val();
+        var dName = $("#domain").val();
+        var adUserName = $("#txtADUsernameForReg").val();
+
+        var jsonObject = {
+            userName: uName,
+            adUserName: adUserName,
+            domain: dName,
+            redirectionLink: misAppUrl.newUserRegistration
+        };
+
+        calltoAjax(misApiUrl.generateLinkForUserRegistration, "POST", jsonObject,
+            function (result) {
+                var resultData = $.parseJSON(JSON.stringify(result));
+                switch (resultData) {
+                    case 1:
+                        misAlert("Request processed successfully", "Success", "success");
+                        getAllUserRegistrations();
+                        $("#userName").val("");
+                        $("#txtADUsernameForReg").val("");
+                        break;
+                    case 2:
+                        misAlert("An employee with this user name already exists. Please try another user name.", "Warning", "warning");
+                        break;
+                    case 0:
+                        misAlert("An employee with this AD user name already exists. Please try another AD user name.", "Warning", "warning");
+                        break;
+                    case 3:
+                        misAlert("Link for registration to the employee having this user name has already been sent. Please modify status of the same", "Warning", "warning");
+                        break;
+                    case 4:
+                        misAlert("Link for registration to the employee having this AD user name has already been sent. Please modify status of the same", "Warning", "warning");
+                        break;
+                    case 5:
+                        misAlert("Unable to process request. Try again", "Error", "error");
+                        break;
+                }
+            });
+    }
+
+</script>
+

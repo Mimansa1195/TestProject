@@ -1,0 +1,47 @@
+﻿<div class="container-fluid">
+    <section class="card">
+        <div class="card-block">
+            <h5 class="with-border m-t-0">Timesheet DashBoard</h5>
+            <div class="text-right" style="padding-bottom:5px" id="divDeligation">
+
+            </div>
+            <div class="clearBoth">
+            </div>
+            <div id="dvWeekNavigator" style="text-align: center">
+                <input type="button" class="btn generalButton" value="<<" id="btnPreviousWeek" style="font-size: 20px; height: 45px; width: 50px;" />
+                <label id="lblSelectedWeek" style="font-size: 13px; height: 45px;display:inline"></label> 
+                <input type="button" class="btn generalButton" value=">>" id="btnNextWeek" style="font-size: 20px; height: 45px; width: 50px;" />
+            </div>
+            <br />
+            <div id="divCompleteReviewFormsGridHeader" class="gridViewHeader">
+                <div class="profile-statistic tbl greencustomheader">
+                    <div class="tbl-row">
+                        <div class="tbl-cell">
+                            Completed Time Sheets
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id='divCompleteReviewFormsGridView' class='gridViewBody gridViewContainerBorder'>
+                <table id="tbldivCompleteReviewReviewList" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+            </div>
+            <br />
+            <div id="divInCompleteReviewFormsGridHeader" class="gridViewHeader">
+                <div class="profile-statistic tbl redcustomheader">
+                    <div class="tbl-row">
+                        <div class="tbl-cell">
+                            Pending Time Sheets
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id='divInCompleteReviewFormsGridView' class='gridViewBody gridViewContainerBorder'>
+                <table id="tbldivInCompleteReviewList" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script src="~/Scripts/app/timesheet/Dashboard.js?v=3.9"></script>
+
+

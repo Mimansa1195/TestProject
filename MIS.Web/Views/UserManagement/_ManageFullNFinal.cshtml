@@ -1,0 +1,157 @@
+﻿<link href="~/Content/lib/fullNFinal.css" rel="stylesheet" />
+<div class="">
+    <div class="row" id="divSearch">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label class="control-label">From Doj<span class="spnError">*</span></label>
+                <div class="inputGroupContainer date date-picker" id="fromDate">
+                    <div class="input-group">
+                        <input type="text" class="form-control validation-required" readonly="" name="fromDate" placeholder="From Date">
+                        <span class=" input-group-btn">
+                            <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label class="control-label">Till Current<span class="spnError">*</span></label>
+                <div class="inputGroupContainer date date-picker" id="tillDate">
+                    <div class="input-group">
+                        <input type="text" class="form-control validation-required" readonly="" name="tillDate" placeholder="Till Date">
+                        <span class=" input-group-btn">
+                            <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1 m-t-2">
+            @*<button  style="background-color:#00a8ff;" class="btn pull-xl-right pull-lg-right pull-md-right pull-sm-right pull-xs-right">*@<i class="fa fa-search" style="font-size:30px; color:#136d9c; cursor: pointer !important;" id="btnGetUserDetailData"></i>@*</button>*@
+        </div>
+        <div class="col-md-2 m-t-2" style="float:right;">
+            <button id="btnBackToActiveUserList" class="btn btn-success pull-xl-right pull-lg-right pull-md-right pull-sm-right pull-xs-right"><i class="fa fa-angle-double-left"></i> Back to list</button>
+        </div>
+    </div>
+    <div class="row" style="margin: 10px -15px; display:none;" id="divProfile">
+        <div class="col-md-3 text-center">
+            <img class="emp-image" id="empImg" />
+        </div>
+        <div class="col-md-9">
+            <ul class="list-group emp-details-section">
+                <li class="list-group-item"><strong>Employee Name: </strong><span id="empName"></span> [<span id="empCode"></span>]</li>
+                <li class="list-group-item"><strong>Designation: </strong><span id="empDesignation"></span></li>
+                <li class="list-group-item"><strong>Department </strong><span id="empDepartment"></span></li>
+                <li class="list-group-item"><strong>Date of Joining: </strong><span id="empJoiningDate"></span></li>
+                <li class="list-group-item"><strong>Reporting Manager: </strong><span id="empReportingManagerName"></span></li>
+                <li class="list-group-item"><strong>Is Intern: </strong><span id="intern"></span></li>
+            </ul>
+        </div>
+    </div>
+    <!--Leave Count-->
+    <div class="row" id="leaveCard">
+    </div>
+    <!--Financial year Leave Details-->
+    <div class="row" style="display:none;" id="divFilterFY">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header filter-heading">
+                    Filter Leaves
+                </div>
+                <div class="card-body">
+                    <div class="fixed-header" data-spy="affix">
+                        <div class="row">
+                            <div class="col-md-12 financial-years">
+                                <label>Financial Year</label>
+                                <ul class="list-group nav nav-pills nav-fill" id="financialYears"></ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div id="leavetype" class="col-md-12">
+                                <label>Type of Leave</label>
+                                <ul class="list-group list-group-flush"></ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="leavesdeatil" class="col-md-12">
+                            <div class="row" id="boxes">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 m-t-2" style="float:right;">
+                        <button id="btnDeactiveUser" style="margin-right: -15px; margin-top: -20px;" class="btn btn-danger pull-xl-right pull-lg-right pull-md-right pull-sm-right pull-xs-right"><i class="fa fa-cross"></i>Full &amp; Final</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div id="InActivateEmployeeModal" class="modal fade in" role="dialog" aria-labelledby="InActivateEmployeeModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 id="modalTitle" class="modal-title"> De-activate Employee</h4>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" name="hdnEmployeeId" id="hdnEmployeeId" value="" />
+                <div class="row">
+                    @*<div class="col-md-6">
+            <div class="form-group">
+                <label class="control-label">Employee Name</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="txtEmpName" disabled="disabled" placeholder="Employee Name">
+                </div>
+            </div>
+        </div>*@
+                    @*</div>
+        <div class="row">*@
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Date of Leaving<span class="spnError">*</span></label>
+                            <div class="inputGroupContainer date date-picker" id='datetimepicker1'>
+                                <div class="input-group">
+                                    <input type="text" class="form-control validation-required" id="txtDate" readonly="">
+                                    <span class=" input-group-btn">
+                                        <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 clearfix" style="margin-top: -10px; margin-bottom:10px;">
+                        <div class="input-group">
+                            <table id="tblUserLeaveSummary" data-filter-control="true" data-toolbar="#toolbar" class="table table-hover"></table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="divUserAssets">
+                    
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-md-12 clearfix">
+                        <div class="input-group">
+                            <table id="tblReportees" data-filter-control="true" data-toolbar="#toolbar" class="table table-hover"></table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-12 text-right">
+                            <div class="form-group">
+                                <button id="btnInActivate" type="button" class="btn btn-success" style="display:none;" onclick="changeUserStatus()">@*<i class="fa fa-save"></i>&nbsp;*@Full & Final </button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> &nbsp; Close </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/app/UserManagement/fullNFinal.js?v=1.5"></script>

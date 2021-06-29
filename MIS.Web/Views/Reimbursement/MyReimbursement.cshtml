@@ -1,0 +1,37 @@
+﻿<div class="container-fluid" id="reimbursementDiv">
+    <section class="card">
+        <div class="card-block">
+            <h5 class="with-border m-t-0 text-right" style="width: 100%; float: left">
+                <span id="lblReimbursementRequest" class="pull-left">
+                    Reimbursement Request
+                </span>
+                <span>
+                    <a style="text-decoration:underline; font-size:medium; display:none;" id="btnBackToReimbursementList" class="pull-right text-info "><i class="fa fa-angle-double-left"></i> Back</a>
+                </span>
+                <button style="display: inline-block" class="btn btn-success" id="btnRequestReimbursement"><i class="glyphicon glyphicon-plus"></i> New Request</button>
+            </h5>
+
+            <div id="partialReimbursementContainer">
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+    $(function () {
+
+        loadUrlToId(misAppUrl.viewReimbursementList, 'partialReimbursementContainer');
+
+        $("#btnBackToReimbursementList").on('click', function () {
+            loadUrlToId(misAppUrl.viewReimbursementList, 'partialReimbursementContainer');
+        });
+
+        $("#btnRequestReimbursement").click(function () {
+            $('#reimbursementDiv').addHiddenInputData({
+                "hiddenReimursementRequestAbrhs": "",
+                "hiddenAction": "Add"
+            });
+            loadUrlToId(misAppUrl.manageReimbursementRequest, 'partialReimbursementContainer');
+        });
+    });
+</script>
+

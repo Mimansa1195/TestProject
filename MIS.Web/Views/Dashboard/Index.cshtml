@@ -1,0 +1,789 @@
+﻿<link href="~/Content/lib/profile-2.min.css" rel="stylesheet" />
+<link href="~/Content/app/mis.newsticker.css?v1" rel="stylesheet" />
+<link href="~/Content/lib/fullcalendar/fullcalendar.css?v=1.5" rel="stylesheet" />
+<link media="print" href="~/Content/lib/fullcalendar/fullcalendar_print.css?v=1.2" rel="stylesheet" />
+<style>
+    /*.select2-container--default .select2-selection--single .select2-selection__rendered {
+        padding: .1rem 25px .2rem 1rem !important;
+        min-height: 30px !important;
+    }*/
+
+    /*new code added*/
+    .box-typical-header .select2-container--default .select2-selection--single .select2-selection__rendered {
+        padding: .1rem 25px .2rem 1rem !important;
+        min-height: 30px !important;
+    }
+
+    .modal-body {
+        max-height: calc(100vh - 210px);
+        overflow-y: auto;
+    }
+
+    .nightShift {
+        border: 1px solid #ccc;
+        width: 10px;
+        height: 16px;
+        margin: 3px;
+        padding: 2px 8px;
+        background-color: #ffdcdc;
+    }
+
+    .approved {
+        border: 1px solid #ccc;
+        width: 10px;
+        height: 16px;
+        margin: 3px;
+        padding: 2px 8px;
+        background-color: #03a817;
+    }
+
+    .pending {
+        border: 1px solid #ccc;
+        width: 10px;
+        height: 16px;
+        margin: 3px;
+        padding: 2px 8px;
+        background-color: #ff9800;
+    }
+
+    .CA td {
+        background-color: #d5d8da !important;
+    }
+
+    .RJ td {
+        background-color: #f79898fa !important;
+    }
+
+    .FD td {
+        background-color: #fbd8fb !important;
+    }
+
+    .AP td {
+        background-color: #b4f9b4 !important;
+    }
+
+    .PA td {
+        background-color: #ffffff !important;
+    }
+
+
+    .toggle-on.btn-sm, .toggle-off.btn-sm {
+        padding-right: 20px;
+        padding-top: 8px;
+    }
+
+    .toggle.btn.btn-info.btn-sm, .toggle.btn.btn-sm.btn-success {
+        height: 38px !important;
+    }
+
+    #divCabRequest{
+        padding:10px 10px 0px 10px
+    }
+   
+
+    /*.weekoff-row td {
+        background-color: #fbd8fb !important;
+        border-top: 1px solid #f7c3f7;
+    }*/
+
+</style>
+<script src="~/Scripts/common/mis.newsticker.js?v1"></script>
+
+<header class="page-content-header widgets-header" id="newsContainer" style="display:none">
+    <div class="container-fluid">
+        <div class="TickerNews default_theme" id="newsHeader">
+            <div class="ti_wrapper">
+                <div class="ti_slide">
+                    <div class="ti_content">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class=" container-fluid dashboard">
+    <div class="row" id="divPanel">
+        <div id="profileContainer" class="col-lg-6 col-xl-4">
+            <section class="widget-user">
+                <div class="widget-user-bg">
+                </div><div class="widget-user-photo"><img alt="" src='' id="imagepath"></div>
+                <div class="widget-user-name"><span id="userName"></span><button class="edit-field edit-field-button" id="btnUpdateProfile"><span class="ally-text"></span><i class="fa fa-pencil"></i></button></div>
+                <div id="designation"></div>
+                <div id="emailId"></div>
+                <div class="widget-user-stat">
+                    @*<div class="item"><div class="number">Role</div></div>*@
+                    @*<div class="item"><div class="number">Mobile</div><div class="caption" id="mobileNumber"></div></div>*@
+                    <div class="item"><div class="number">Joining Date</div><div class="caption" id="displayJoiningDate"></div></div>
+                    <div class="item"><div class="number">Location</div><div class="caption" id="userLocation"></div></div>
+                </div>
+            </section>
+        </div>
+        <div class="md-spacing"></div>
+        <div class="col-lg-6 col-xl-4">
+            <div class="row">
+                <div class="col-sm-6">
+                    <article class="statistic-box green">
+                        <div>
+                            <div class="number" id="inTime"></div>
+                            <div class="caption"><div>In-Time</div></div>
+                        </div>
+                    </article>
+                </div><!--.col-->
+                <div class="col-sm-6">
+                    <article class="statistic-box red">
+                        <div>
+                            <div class="number" id="outTime"></div>
+                            <div class="caption"><div>Out-Time</div></div>
+                        </div>
+                    </article>
+                </div><!--.col-->
+                <div class="col-sm-6">
+                    <article class="statistic-box yellow">
+                        <div>
+                            <div class="number" id="workingHours"></div>
+                            <div class="caption"><div>Working Hours</div></div>
+                        </div>
+                    </article>
+                </div><!--.col-->
+                <div class="col-sm-6">
+                    <article class="statistic-box purple">
+                        <div>
+                            <div class="number" id="yWorkingHours"></div>
+                            <div class="caption"><div>Yesterday Working Hours</div></div>
+                        </div>
+                    </article>
+                </div><!--.col-->
+            </div><!--.row-->
+        </div>
+
+        <div class="col-lg-12 col-xl-4">
+            <div id='employeeCalendar'></div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="md-spacing"></div>
+    </div>
+</div>
+<div id="mypopupBirthdayWish" class="modal fade" role="dialog" aria-labelledby="mypopupBirthdayWish" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title"><span id="spnWishesHeader"> </span></h4>
+            </div>
+            <div class="modal-body" id="divUpdateMenu">
+                <div class="form-group">
+                    <div class="inputGroupContainer">
+                        <div class="input-group">
+                            <textarea class="form-control validation-required" id="txtMailBody" maxlength="5000" rows="8"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" onclick="SendMail();"><i class="fa fa-save"></i>&nbsp;Send Email</button>
+                <button id="btnCloseMail" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="mypopupFoodFeedBack" class="modal fade" role="dialog" aria-labelledby="mypopupFoodFeedBack" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">Feedback (Meal Of The Day)</h4>
+            </div>
+            <div class="modal-body" id="divUpdateMenu">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <div class="inputGroupContainer">
+                                <div class="input-group">
+                                    <textarea class="form-control validation-required" id="txtFeedBack"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" onclick="SendFeedBack();"><i class="fa fa-save"></i>&nbsp;Send Feedback</button>
+                <button id="btnCloseFeedBack" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="mypopupCabRequest" class="modal fade" role="dialog" aria-labelledby="mypopupCabRequest">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">Cab Request</h4>
+                <input type="hidden" id="hdnEmpContactNo" />
+            </div>
+            <div class="modal-body" id="divCabRequest">
+                <h6>
+                    <p class="text-danger">Note:- The cut off time for cab booking is 6 PM(Mon to Fri). No request would be entertained post that.
+                    <br />For availing the cab facility on Sat, Sun and Mon, the cab needs to be booked latest by Friday 6 PM.</p>
+                </h6>
+                <div class="tabs-section-nav tabs-section-nav-left">
+                    <ul class="nav" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#tabPickup" role="tab" data-toggle="tab">
+                                <span class="nav-link-in">Pick Up</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#tabDrop" role="tab" data-toggle="tab">
+                                <span class="nav-link-in">Drop</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div><!--.tabs-section-nav-->
+
+                <div class="tab-content no-styled profile-tabs">
+                    <div role="tabpanel" class="tab-pane active" id="tabPickup">
+                        <section class="box-typical box-typical-padding">
+                            <div class="container-fluid">
+                                <div class="container">
+                                    <div class="row">
+                                        <input type="hidden" id="hdnPickServiceTypeId" />
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Company Location<span class="spnError">*</span></label>
+                                                <div class="inputGroupContainer">
+                                                    <div class="input-group">
+                                                        <select class="form-control formddl generalinput required  validation-required select2" id="ddlCompanyLocation">
+                                                            <option value="0">Select</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Date<span class="spnError">*</span></label>
+                                                <div class="inputGroupContainer">
+                                                    <div class="input-group">
+                                                        <select class="form-control formddl generalinput required  validation-required select2" id="ddlPickUpDate">
+                                                            <option value="0">Select</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Cab Timing<span class="spnError">*</span></label>
+                                                <div class="inputGroupContainer">
+                                                    <div class="input-group">
+                                                        <select class="form-control formddl generalinput required validation-required select2" id="ddlPickUPShift">
+                                                            <option value="0">Select</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Routes<span class="spnError">*</span></label>
+                                                <div class="inputGroupContainer">
+                                                    <div class="input-group">
+                                                        <select class="form-control select-validate required validation-required" id="ddlPickUPRoute">
+                                                            <option value="0">Select</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">PickUp Location<span class="spnError">*</span></label>
+                                                <div class="inputGroupContainer">
+                                                    <div class="input-group">
+                                                        <select class="form-control formddl generalinput required validation-required select2" id="ddlPickUPLocation">
+                                                            <option value="0" selected>Select</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 m-t-22">
+                                            <div class="form-group">
+                                                <input type="checkbox" id="contactType" name="contactType" data-toggle="toggle" data-on="Change Mobile No." data-off="Use Default Mobile No." data-onstyle="success" data-offstyle="info" data-size="small" data-width="170">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 m-t-22">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control required validation-required" disabled="disabled" id="pickUPEmpContactNo" maxlength="10" onkeypress="return isNumber(event)" placeholder="Enter contact no." />
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Location Detail</label>
+                                                <div class="inputGroupContainer">
+                                                    <div class="input-group">
+                                                        <textarea rows="4" class="form-control " style="width:100%" id="pickUPLocationDetail" maxlength="500" placeholder="Enter drop location detail"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                       
+
+                                        <input type="hidden" id="hiddenPickUPRequestId" />
+                                    </div>
+                                        </div>
+
+                                    </div>
+                        </section>
+                    </div><!--.tab-pane-->
+                    <div role="tabpanel" class="tab-pane " id="tabDrop">
+                        <section class="box-typical box-typical-padding">
+                            <div class="container-fluid">
+                                <div class="container">
+                                    <div class="row">
+                                        <input type="hidden" id="hdnDropServiceTypeId" />
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Company Location<span class="spnError">*</span></label>
+                                                <div class="inputGroupContainer">
+                                                    <div class="input-group">
+                                                        <select class="form-control formddl generalinput required validation-required select2" id="ddlCompanyLocationForDrop">
+                                                            <option value="0">Select</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Date<span class="spnError">*</span></label>
+                                                <div class="inputGroupContainer">
+                                                    <div class="input-group">
+                                                        <select class="form-control formddl generalinput required validation-required select2" id="ddlDropDate">
+                                                            <option value="0">Select</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Cab Timing<span class="spnError">*</span></label>
+                                                <div class="inputGroupContainer">
+                                                    <div class="input-group">
+                                                        <select class="form-control formddl generalinput required validation-required select2" id="ddlDropShift">
+                                                            <option value="0">Select</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Routes<span class="spnError">*</span></label>
+                                                <div class="inputGroupContainer">
+                                                    <div class="input-group">
+                                                        <select class="form-control select-validate required validation-required" id="ddlDropRoute">
+                                                            <option value="0">Select</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Drop Location<span class="spnError">*</span></label>
+                                                <div class="inputGroupContainer">
+                                                    <div class="input-group">
+                                                        <select class="form-control formddl generalinput required validation-required select2" id="ddlDropLocation">
+                                                            <option value="0" selected>Select</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3 m-t-22">
+                                            <div class="form-group">
+                                                <input type="checkbox" id="contactTypeDrop" name="contactType" data-toggle="toggle" data-on="Change Mobile No." data-off="Use Default Mobile No." data-onstyle="success" data-offstyle="info" data-size="small" data-width="170">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 m-t-22">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control required validation-required" disabled="disabled" id="dropEmpContactNo" maxlength="10" onkeypress="return isNumber(event)" placeholder="Enter contact no." />
+                                            </div>
+                                        </div>
+
+                                        <div class="clearfix"></div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Location Detail</label>
+                                                <div class="inputGroupContainer">
+                                                    <div class="input-group">
+                                                        <textarea rows="4" class="form-control " style="width:100%" id="dropLocationDetail" maxlength="500" placeholder="Enter drop location detail"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        @*<div class="col-md-6">
+
+        </div>*@
+
+                                        <input type="hidden" id="hiddenDropRequestId" />
+                                    </div>
+                                </div>
+
+                            </div>
+                        </section>
+                    </div><!--.tab-pane-->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnBookOrUpdateForPickUp" style="display:none" class="btn btn-success">Book</button>
+                <button type="button" id="btnBookOrUpdateForDrop" style="display:none" class="btn btn-success">Book</button>
+                <button id="btnCloseCabRequest" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div id="mypopupCabRequestRemark" class="modal fade" role="dialog" aria-labelledby="mypopupCabRequestRemark" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Remarks</h4>
+            </div>
+            <div class="container margin-top-10">
+                <div class="form-group col-md-12">
+                    <textarea rows="6" cols="2000" id="cabRequestRemark" maxlength="500" placeholder="Enter reason for WFH" class="form-control validation-required"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<div id="mypopupViewCabRequestDetails" class="modal fade" role="dialog" aria-labelledby="mypopupViewCabRequestDetails">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 id="modalTitle" class="modal-title">Cab Request Detail</h4>
+                </div>
+                <div class="modal-body" id="viewCabRequest">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Date</label>
+                                    <div class="input-group">
+                                        <input type="hidden" class="form-control" id="viewDate">
+
+                                        <input type="text" disabled class="form-control" id="showDate">
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" id="hiddenCabRequestId" />
+                            <input type="hidden" id="hiddenviewCabName" />
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Shift<span class="spnError">*</span></label>
+                                    <div class="inputGroupContainer">
+                                        <select class="form-control formddl generalinput required select-validate validation-required" onchange="getCabDetailsToEdit(1);" id="viewShift">
+                                            <option value="0">Select</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Cab Name<span class="spnError">*</span></label>
+                                    <div class="inputGroupContainer">
+                                        <select class="form-control formddl generalinput required select-validate validation-required" onchange="getAvailabeCabToEdit();" id="viewCabName">
+                                            <option value="0">Select</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12" id="divAvailableCabToEdit">
+                                    <table id="tblViewAvailableCabs" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="updateRequest" type="button" class="btn btn-success" onclick="editCabRequest();"><i class="fa fa-save"></i>&nbsp;Update</button>
+                    <button id="btnCloseViewCabRequest" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close</button>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+<div id="myLeavePopup" class="modal fade" role="dialog" aria-labelledby="myLeavePopup" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">Leaves History</h4>
+            </div>
+            <div class="modal-body" id="divLeave">
+                <div class="form-group">
+                    <div class="inputGroupContainer">
+                        <div class="input-group">
+                            <table id="tblLeaveGrid" data-filter-control="true" data-toolbar="#toolbar" class="table table-hover"></table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+                <button id="btnClose" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="myMLPopUp" class="modal fade" role="dialog" aria-labelledby="myMLPopUp" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">ML</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <div class="inputGroupContainer">
+                        <div class="input-group">
+                            <table id="tblMLGrid" data-filter-control="true" data-toolbar="#toolbar" class="table table-hover"></table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button data-dismiss="modal" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="myPLMPopUp" class="modal fade" role="dialog" aria-labelledby="myMLPopUp" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">PL(M)</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <div class="inputGroupContainer">
+                        <div class="input-group">
+                            <table id="tblPLMGrid" data-filter-control="true" data-toolbar="#toolbar" class="table table-hover"></table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button data-dismiss="modal" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="myELPopup" class="modal fade" role="dialog" aria-labelledby="myELPopup" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">EL</h4>
+            </div>
+            <div class="modal-body" id="divLWP">
+                <div class="form-group">
+                    <div class="inputGroupContainer">
+                        <div class="input-group">
+                            <table id="tblELGrid" data-filter-control="true" data-toolbar="#toolbar" class="table table-hover"></table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+                <button data-dismiss="modal" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="myLWPPopup" class="modal fade" role="dialog" aria-labelledby="myLWPPopup" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">LWP</h4>
+            </div>
+            <div class="modal-body" id="divLWP">
+                <div class="form-group">
+                    <div class="inputGroupContainer">
+                        <div class="input-group">
+                            <table id="tblLWPGrid" data-filter-control="true" data-toolbar="#toolbar" class="table table-hover"></table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+                <button id="btnLWPClose" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="myCompPopup" class="modal fade col-md-12 col-lg-12" role="dialog" aria-labelledby="myCompPopup" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">CompOff History</h4>
+            </div>
+            <div class="modal-body" id="divCompOff">
+                <div class="row form-body">
+                    <div class="form-group col-md-6">
+                        <h4 id="modalTitle" class="modal-title">Available CompOff</h4>
+                        <div class="inputGroupContainer">
+                            <div class="input-group">
+                                <table id="tblRequestGrid" data-filter-control="true" data-toolbar="#toolbar" class="table table-hover"></table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <h4 id="modalTitle" class="modal-title">Availed As Leaves</h4>
+                        <div class="inputGroupContainer">
+                            <div class="input-group">
+
+                                <table id="tblCompGrid" data-filter-control="true" data-toolbar="#toolbar" class="table table-hover"></table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btnCompOffClose" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="modalRefer" class="modal fade" role="dialog" aria-labelledby="modalRefer" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" id="buttonClose" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">Refer</h4>
+            </div>
+            <div class="container margin-top-10">
+                <div class="form-group row">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Referee Name<span class="spnError">*</span></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input maxlength="200" type="text" class="form-control validation-required" placeholder="Name of person you want to refer" id="refereeName" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="form-group">
+                        <div class="col-md-5">
+                            <label>How do you know him/her?<span class="spnError">*</span></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <textarea rows="2" class="form-control validation-required" style="width:100%" id="relation" maxlength="500"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Resume<span class="spnError">*</span></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="file" class="form-control validation-required" onchange="checkValidFile(this);" name="file" id="resume">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <span class="spnError">Note: Selected file format should be .doc, .docx or .pdf</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btnAddReferral" type="button" class="btn btn-success"><i class="fa fa-save"></i>&nbsp;Save</button>
+                &nbsp;<button id="btnCloseReferral" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="modalViewTraining" class="modal fade" role="dialog" aria-labelledby="modalViewTraining" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="header1" class="modal-title"></h4>
+            </div>
+            <div class="container margin-top-10">
+                <div class="col-md-12">
+                    <div class="form-group row">
+                        <div class="form-group">
+
+                            <table id="tblUserAppliedTraining" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btnRequestClose" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="viewTrainingDocumentModal" class="modal fade" role="dialog" aria-labelledby="viewTrainingDocumentModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="header1"></h4>
+            </div>
+            <div class="container margin-top-10">
+                <div id="popupWindowViewDocument">
+                    <object id="myObjViewPdf" type="application/pdf" data="" width="100%" height="500" internalinstanceid="65">No Support</object>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/app/Dashboard/dashboard.js?v=5.5"></script>
+<script src="~/Scripts/common/mis.common.min.js?v=4.6"></script>
+<script src="~/Scripts/lib/moment.min.js"></script>
+<script src="~/Scripts/lib/fullcalendar/fullcalendar.js?v=1.4"></script>

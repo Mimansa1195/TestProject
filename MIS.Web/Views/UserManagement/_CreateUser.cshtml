@@ -1,0 +1,266 @@
+﻿
+<div class="portlet box teal">
+    <div class="portlet-title">
+        <div class="caption">
+            User Registration
+        </div>
+    </div>
+    <div class="portlet-body form" id="userRegistrationContainer" style="display: block;">
+        <form role="form" class="custom-form form-body" id="contact_form">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">First Name<span class="spnError">*</span></label>
+                        <div class="inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input name="first_name" id="fName" placeholder="First Name" class="form-control validation-required" type="text" onchange="PopulateUserName();">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">Middle Name</label>
+                        <div class="inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input name="middle_name" id="mName" placeholder="Middle Name" class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">Last Name</label>
+                        <div class="inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input name="last_name" id="lName" placeholder="Last Name" class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">Date Of Birth<span class="spnError">*</span></label>
+                        <div class="inputGroupContainer date date-picker">
+                            <div class="input-group">
+                                <span class=" input-group-btn">
+                                    <button class="btn default" type="button"><i class="fa fa-calendar" id="aaaa"></i></button>
+                                </span>
+                                <input type="text" class="form-control validation-required" readonly="" name="dob" placeholder="D.O.B" id="dob" onchange="PopulateUserName();">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">User Name<span class="spnError">*</span></label>
+                        <div class="inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input name="user_name" id="userName" placeholder="User Name" class="form-control validation-required" type="text">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">Gender</label>
+                        <div class="inputGroupContainer">
+                            <div class="radio-inline">
+                                <label>
+                                    <input type="radio" name="gender" value="1" selected /> Male
+                                </label>
+                            </div>
+                            <div class="radio-inline">
+                                <label>
+                                    <input type="radio" name="gender" value="2" /> Female
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">Role<span class="spnError">*</span></label>
+                        <div class="inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                                <select class="form-control select-validate validation-required" placeholder="Role" id="role" onchange="onRoleChange();">
+                                    <option value="0">Select</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">Center<span class="spnError">*</span></label>
+                        <div class="inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                                <select class="form-control select-validate validation-required" placeholder="Center" id="center" onchange="bindCourseUser();">
+                                    <option value="0">Select</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">E-Mail</label>
+                        <div class="inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                <input name="email" id="email" placeholder="E-Mail Address" class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row conditional">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">Session<span class="spnError">*</span></label>
+                        <div class="inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                                <select class="form-control select-validate validation-required" placeholder="Session" id="ddlSession" onchange="bindCourseUser();">
+                                    <option value="0">Select</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">Class<span class="spnError">*</span></label>
+                        <div class="inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                                <select class="form-control select-validate validation-required" placeholder="Course" id="course" onchange="bindBatch();">
+                                    <option value="0">Select</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">Section<span class="spnError">*</span></label>
+                        <div class="inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                                <select class="form-control select-validate validation-required" placeholder="Batch" id="batch">
+                                    <option value="0">Select</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">Mobile</label>
+                        <div class="inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                                <input name="phone" id="mobile" placeholder="Mobile" class="form-control" type="text" maxlength="10" onkeypress="return isNumber(event);">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">Father Name</label>
+                        <div class="inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input name="father_name" id="fatherName" placeholder="Father Name" class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">Parent Mobile<span class="spnError conditional">*</span></label>
+                        <div class="inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                                <input name="phone" id="parentMobile" placeholder="Parent Mobile" class="form-control validation-required" type="text" maxlength="10" onkeypress="return isNumber(event);">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">Country<span class="spnError">*</span></label>
+                        <div class="inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                                <select class="form-control select-validate validation-required" id="country" placeholder="Country" onchange="CountryChange();">
+                                    <option value="0">Select</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">State<span class="spnError">*</span></label>
+                        <div class="inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                                <select class="form-control select-validate validation-required" id="state" placeholder="State" onchange="StateChange();">
+                                    <option value="0">Select</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">City<span class="spnError">*</span></label>
+                        <div class="inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                                <select class="form-control select-validate validation-required" placeholder="City" id="city">
+                                    <option value="0">Select</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">Address</label>
+                        <div class="inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                <input name="address" id="address" placeholder="Address" class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 clearfix">
+                    <div class="form-actions text-center  form-white">
+                        <button id="btnSaveNewUser" type="button" class="btn green" onclick="SaveNewUser()"><i class="fa fa-save"></i>&nbsp;Save</button>
+                        <button id="btnReset" type="button" class="btn default" onclick="ResetControls()"><i class="fa fa-refresh"></i>&nbsp;Reset</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

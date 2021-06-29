@@ -1,0 +1,231 @@
+﻿<div class="container-fluid">
+    <section class="card">
+        <div class="card-block">
+            <h5 class="with-border m-t-0">Create TimeSheet</h5>
+            <div id='CreateTimeSheetsUC'>
+                <div class="clearBoth">
+                </div>
+                <div id="dvWeekNavigator">
+                    <div class="col-md-4 col-sm-12 col-xs-12 margin-bottom-10 text-center-small no-padding">
+                        <input type="button" class="btn" value="<<" id="btnPreviousWeek" />
+                        <label id="lblSelectedWeek" style="font-size: 13px; height: 45px;display:inline"></label>
+                        <input type="button" class="btn" value=">>" id="btnNextWeek" />
+                    </div>
+
+                    <div class="col-md-4 col-sm-12 col-xs-12 margin-bottom-10 text-center" id="dvTimeSheetStatus">
+                        <strong>Total time logged (in Hrs.) : </strong><span id="lblLoggedTime"></span>
+                        <br />
+                        <strong>Status : </strong><span id="lblStatus"></span>
+                    </div>
+
+                    <div class="col-md-4 col-sm-12 col-xs-12 margin-bottom-10 text-right text-center-small no-padding">
+                        <input type="button" class="btn btn-success" value="Copy From Week" id="btnCopyFromWeek">
+                    </div>
+                </div>
+                <div class="clearfix">
+                </div>
+                 
+                <div id="dvTimeSheetInfo">
+                    <div id="dvTimeSheetControl">
+                        <div id="dvTimeTable" class="main-container" style="max-height: 480px; overflow: auto;">
+                            <table id="tblTimeTableq" style="table-layout: fixed;" class="table table-bordered table-striped table-hover">
+                                <thead id="dvHeader">
+
+                                </thead>
+                                <tbody id="tblTimeTable"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row" id='divTimeSheetRemarks'>
+                        <div id="tdRemarks" class="col-md-4">
+                            <div class="form-group">
+                                    <label>My Comments :</label>
+                                    <textarea type="text" class="form-control" placeholder="My Comments" id="txtRemarks"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div id="tdApproverRemarks" class="form-group">
+                                <label>Approver Comments :</label>
+                                <textarea type="text" class="form-control" placeholder="Approver Comments" id="txtApproverRemarks"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-right margin-top-25" id="divBtnLogTimeSheet">
+                           
+                        </div>
+                    </div>
+                </div>
+                <div class="clearBoth">
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div id="myLogNewTaskModal" class="modal fade" role="dialog" aria-labelledby="myLogNewTaskModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title"><span id="txtLogTaskProject"></span> - <span id="txtLogTaskDay"></span> , <span id="txtLogTaskDate"></span></h4>
+            </div>
+            <div class="modal-body" id="addTaskTemplateDiv">
+                <div class="row" id='divLogTaskTemplate'>
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Template Name</label>
+                        </div>
+                        <div class="col-md-8">
+                            <select class="form-control" id="ddlLogTaskTaskTemplates">
+                                <option value="0">Select</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id='divLogTaskDescription'>
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Description <span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <textarea type="text" class="form-control form-filter validation-required" placeholder="Description" id="txtLogTaskDescription"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="divLogTaskTeamInfo">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Team Name<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <select class="form-control select-validate validation-required" id="ddlLogTaskTeamName">
+                                <option value="0">Select</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group" id="divLogTaskTypeInfo">
+                        <div class="col-md-4">
+                            <label>Task Type<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <select class="form-control select-validate validation-required" id="ddlLogTaskTaskType">
+                                <option value="0">Select</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id='divLogTaskSubDetail1Info'>
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Sub Detail 1<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <select class="form-control select-validate validation-required" id="ddlLogTaskTaskSubDetail1"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id='divLogTaskSubDetail2Info'>
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Sub Detail 2<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <select class="form-control select-validate validation-required" id="ddlLogTaskTaskSubDetail2"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="divLogTaskTimeSpent">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Time Spent (In Hrs.)<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <select class="form-control select-validate validation-required" id="ddlLogTaskTime">
+                                <option value="0">Select</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="divCopyDate">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Copy till Date</label>
+                        </div>
+                        <div class="col-md-8">
+                            <select class="form-control select-validate validation-required" id="ddlCopyTillDate">
+                                <option value="0">Select</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row text-right">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <button id="btnLogTask" type="button" class="btn btn-success" value="Add"><i class="fa fa-save">&nbsp;Save</i></button>
+                            <button id="btnLogTaskClose" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+                            <input type="hidden" id="txtLogTaskTimeSheetId" />
+                            <input type="hidden" id="txtLogTaskProjectId" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <div id="divLoggedTasksHeader" class="gridViewHeader text-left">
+                    <span>Logged Tasks</span>
+                </div>
+                <div id='divLoggedTasksGridView' class='gridViewBody gridViewContainerBorder'>
+                    <table id="tblLoggedTaskList" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+                </div>
+                <div id='divLoggedTasksGridFooter' class="CustomizeGridFooter">
+                </div>
+                <div style='clear: both'>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="mypopupCopyFromWeekModal" class="modal fade" role="dialog" aria-labelledby="mypopupCopyFromWeekModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">Copy timesheet from week</h4>
+            </div>
+            <div class="modal-body" id="CopyTaskDiv">
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Year<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <select class="form-control select-validate validation-required" id="yearCopyFrom"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id='divLogTaskTemplate'>
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Week<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <select class="form-control select-validate validation-required" id="weekCopyFrom">
+                                <option value="0">Select</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button id="btnCopy" type="button" class="btn btn-success"><i class="fa fa-copy"></i>&nbsp;Copy</button>
+                <button id="btnCopyClose" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/app/timesheet/CreateTimeSheet.js?v=3.5"></script>

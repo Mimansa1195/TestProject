@@ -1,0 +1,97 @@
+﻿<div class="container-fluid">
+    <section class="card">
+        <div class="card-block">
+            <h5 class="with-border m-t-0">Appraisal Settings</h5>
+            <div id="appraisalsettingsDiv">
+                <div class="white-light-bg">
+                    <div>
+                        <a id="btnAddAppraisalSettings" data-toggle="modal" class="btn btn-success">Add Settings</a>
+                    </div>
+                    <div class="row margin-top-10">
+                        <div id="divAppraisalSettingFilter">
+                            <div class="form-group full-width col-sm-6 col-md-4 col-lg-3">
+                                <label>Appraisal Cycle<span class="spnError">*</span></label>
+                                <select style="width: 100%;" id="ddlAppraisalCycleMaster" class="form-control select2 select2-hidden-accessible validation-required" tabindex="101" aria-hidden="true"></select>
+                            </div>
+                            <div class="form-group full-width col-sm-6 col-md-4 col-lg-3">
+                                <label>Location<span class="spnError">*</span></label>
+                                <select style="width: 100%;" id="ddlCountryMaster" class="form-control select2 select2-hidden-accessible validation-required" tabindex="1" aria-hidden="true"></select>
+                            </div>
+
+                            <div class="form-group full-width col-sm-6 col-md-4 col-lg-3">
+                                <label>Vertical<span class="spnError">*</span></label>
+                                <select style="width: 100%;" id="ddlVerticalMaster" class="form-control select2 select2-hidden-accessible validation-required" tabindex="2" aria-hidden="true"></select>
+                            </div>
+                            <div class="form-group full-width col-sm-6 col-md-4 col-lg-3">
+                                <label>Division<span class="spnError">*</span></label>
+                                <select style="width: 100%;" id="ddlDivisionMaster" class="form-control validation-required" tabindex="2" aria-hidden="true" multiple="multiple"></select>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="form-group full-width col-sm-6 col-md-4 col-lg-3">
+                                <label>Department<span class="spnError">*</span></label>
+                                <select style="width: 100%;" id="ddlDepartmentMaster" class="form-control validation-required" tabindex="2" aria-hidden="true" multiple="multiple"></select>
+                            </div>
+
+                            <div class="form-group full-width col-sm-6 col-md-4 col-lg-3">
+                                <label>Team<span class="spnError">*</span></label>
+                                <select style="width: 100%;" id="ddlPopTeamMaster" multiple="multiple" class="form-control validation-required" tabindex="3" aria-hidden="true"></select>
+                            </div>
+
+                            <div class="form-group full-width col-sm-6 col-md-4 col-lg-3">
+                                <label>Designation<span class="spnError">*</span></label>
+                                <select style="width: 100%;" id="ddlPopDesignationMaster" multiple="multiple" class="form-control validation-required" tabindex="4" aria-hidden="true"></select>
+                            </div>
+                            <div class="form-group pull-right full-width col-sm-6 col-md-4 col-lg-3" style="margin-top:23px">
+                                <button id="btnFilterSearch" class="btn btn-primary" type="button"><i class="fa fa-search"></i>&nbsp; Search</button>
+                                <button id="btnFilterReset" class="btn btn-primary" type="button"><i class="fa fa-refresh"></i>&nbsp; Reset</button>
+                            </div>
+                        </div>
+                        <div id="divAppraisalSettingList">
+                            <div class="col-md-12">
+                                <table id="tblAppraisalSetting" data-filter-control="true" data-toolbar="#toolbar" class="table table-hover"></table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- modal placeholder-->
+<div id="addAppraisalSettings" class="modal fade" role="dialog" aria-labelledby="addAppraisalSettings" aria-hidden="true">
+    <div class="modal-full modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">Create Appraisal Setings</h4>
+            </div>
+            <div class="modal-body modal-scrollable" id="addAppraisalSettingsContainer">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="editAppraisalSettings" class="modal fade" role="dialog" aria-labelledby="editAppraisalSettings" aria-hidden="true">
+    <div class="modal-full modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">Update Appraisal Setings</h4>
+                <input type="hidden" value="0" id="hdnEditAppraisalCycleId" />
+                <input type="hidden" value="0" id="hdnEditAppraisalSettingId" />
+                <input type="hidden" value="0" id="hdnEditLocationId" />
+                <input type="hidden" value="0" id="hdnEditVerticalId" />
+                <input type="hidden" value="0" id="hdnEditDivisionId" />
+                <input type="hidden" value="0" id="hdnEditDepartmentId" />
+                <input type="hidden" value="0" id="hdnEditTeamId" />
+            </div>
+            <div class="modal-body modal-scrollable" id="UpdateAppraisalSettingsContainer">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/app/AppraisalManagement/filter.js"></script>
+<script src="~/Scripts/app/AppraisalManagement/appraisalsettings.js?v=11"></script>

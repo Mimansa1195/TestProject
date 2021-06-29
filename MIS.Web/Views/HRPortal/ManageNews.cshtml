@@ -1,0 +1,225 @@
+﻿<div class="container-fluid">
+    <section class="card">
+        <div class="card-block">
+            <h5 class="with-border m-t-0">Manage News</h5>
+            <div>
+                <button type="button" class="btn btn-success" onclick="addNews()">Add News</button>
+            </div>
+            <div role="tabpanel" class="tab-pane margin-top-10">
+                <section>
+                    <div class="row form-body">
+                        <div class="col-md-12 clearfix">
+                            <table id="tblNewsList" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div id="modaladdNews" class="modal fade" role="dialog" aria-labelledby="modaladdNews" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">Add News</h4>
+            </div>
+            <div class="container margin-top-10">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>News Title<span class="spnError">*</span></label>
+                            <input type="text" class="form-control validation-required" id="newsTitle" />
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label">From<span class="spnError">*</span></label>
+                            <div class="inputGroupContainer date date-picker" id="fromDate">
+                                <div class="input-group">
+                                    <input type="text" class="form-control validation-required" readonly="" name="FromDate" placeholder="From">
+                                    <span class=" input-group-btn">
+                                        <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label">Till<span class="spnError">*</span></label>
+                            <div class="inputGroupContainer date date-picker" id="tillDate">
+                                <div class="input-group">
+                                    <input type="text" class="form-control validation-required" readonly="" name="TillDate" placeholder="Till">
+                                    <span class=" input-group-btn">
+                                        <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label">News Description<span class="spnError">*</span></label>
+                            <div class="inputGroupContainer">
+                                <div class="input-group">
+                                    <textarea rows="4" class="form-control" style="width:100%" id="newsDescription" maxlength="1000"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        @*<div class="col-md-2">*@
+                        <div class="form-group">
+                            <label>Is Internal<span class="spnError"></span></label>
+                            <input type="checkbox" id="isInternal"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12" id="divActionController">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Controller</label>
+                                    <div class="inputGroupContainer">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-list"></i></span>
+                                            <select class="form-control select2" id="controller" onchange="bindActions();"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Action</label>
+                                    <div class="inputGroupContainer">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-list"></i></span>
+                                            <select class="form-control select2 " id="action" onchange="createLink();"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Link@*<span class="spnError">*</span>*@</label>
+                            <input type="text" class="form-control" id="newsLink" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="btnSaveNews"><i class="fa fa-save"></i>&nbsp;Add</button>
+                <button id="btnClose" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="modalEditNews" class="modal fade" role="dialog" aria-labelledby="modalEditNews" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">Update News</h4>
+            </div>
+            <div class="container margin-top-10">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>News Title<span class="spnError">*</span></label>
+                            <input type="text" class="form-control validation-required" id="newsTitleEdit" />
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label">From<span class="spnError">*</span></label>
+                            <div class="inputGroupContainer date date-picker" id="fromDateEdit">
+                                <div class="input-group">
+                                    <input type="text" class="form-control validation-required" readonly="" name="FromDate" placeholder="From">
+                                    <span class=" input-group-btn">
+                                        <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label">Till<span class="spnError">*</span></label>
+                            <div class="inputGroupContainer date date-picker" id="tillDateEdit">
+                                <div class="input-group">
+                                    <input type="text" class="form-control validation-required" readonly="" name="TillDate" placeholder="Till">
+                                    <span class=" input-group-btn">
+                                        <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label">News Description<span class="spnError">*</span></label>
+                            <div class="inputGroupContainer">
+                                <div class="input-group">
+                                    <textarea rows="4" class="form-control" style="width:100%" id="newsDescriptionEdit" maxlength="1000"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        @*<div class="col-md-2">*@
+                        <div class="form-group">
+                            <label>Is Internal<span class="spnError"></span></label>
+                            <input type="checkbox" id="isEditInternal" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12" id="divEditActionController">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Controller</label>
+                                    <div class="inputGroupContainer">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-list"></i></span>
+                                            <select class="form-control select2" id="editController" onchange="bindEditActions();"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Action</label>
+                                    <div class="inputGroupContainer">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-list"></i></span>
+                                            <select class="form-control select2" id="editAction" onchange="createEditLink();"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Link</label>
+                            <input type="text" class="form-control" id="newsEditLink" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="btnUpdateNews"><i class="fa fa-save"></i>&nbsp;Update</button>
+                <button id="btnEditClose" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Scripts/app/HRPortal/manageNews.js?v=1.9"></script>

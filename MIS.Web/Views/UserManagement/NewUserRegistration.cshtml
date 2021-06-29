@@ -1,0 +1,774 @@
+﻿@{
+    Layout = null;
+}
+
+<link href="~/Content/lib/sweetalert.css" rel="stylesheet" />
+<link href="~/Content/lib/sweet-alert-animations.min.css" rel="stylesheet" />
+<link href="~/Content/lib/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/lib/font-awesome.min.css" rel="stylesheet" />
+<link href="~/Content/lib/main.css?v=1.4" rel="stylesheet" />
+<link href="~/Content/lib/datepicker.css" rel="stylesheet" />
+<link href="~/Content/app/mis.common.css?v=2.9" rel="stylesheet" />
+<link href="~/Content/lib/datepicker.css" rel="stylesheet" />
+<link href="~/Content/lib/sweetalert.css" rel="stylesheet" />
+<link href="~/Content/lib/fileinput.css?v=1.1" rel="stylesheet" />
+
+<script src="~/Scripts/lib/jquery.min.js" type="text/javascript"></script>
+<script src="~/Scripts/lib/jquery.blockUI.min.js" type="text/javascript"></script>
+<script src="~/Scripts/lib/bootstrap.js"></script>
+<script src="~/Scripts/lib/sweetalert.min.js"></script>
+<script src="~/Scripts/lib/bootstrap-datepicker.min.js"></script>
+<script src="~/Scripts/lib/bootstrap-toggle.min.js"></script>
+<script src="~/Scripts/lib/bootstrap-datepicker.min.js"></script>
+<script src="~/Scripts/lib/sweetalert.min.js"></script>
+<style>
+    .forExperienced {
+        display: none;
+    }
+</style>
+
+<body style="background-color:#eee">
+    <div id="userRegContainer" style="display:none">
+        <div class="header page-header-fixed" style="background-color:#542144; text-align:center">
+            <a class="site-logo" href="javascript:void(0);"><img src="~/img/GeminiLogo-Small-White.png" /></a>
+        </div>
+        <div class="container" style="max-width: 95% !important;height:100% !important; background-color:#fff">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 vertical-tab-container">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 vertical-tab-menu">
+                        <div class="list-group">
+                            <a href="#" class="list-group-item active text-center">
+                                <h4 class="fa fa-user"></h4><br />Personal Detail
+                            </a>
+                            <a href="#" class="list-group-item text-center">
+                                <h4 class="fa fa-home"></h4><br />Address Detail
+                            </a>
+                            @*<a href="#" class="list-group-item text-center">
+                                    <h4 class="fa fa-user"></h4><br />Family Detail
+                                </a>*@
+
+                            <a href="#" class="list-group-item text-center">
+                                <h4 class="fa fa-graduation-cap"></h4><br />Career Detail
+                            </a>
+
+                            <a href="#" class="list-group-item text-center">
+                                <h4 class="fa fa-file-text"></h4><br />ID Proof
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 vertical-tab" id="userRegDetails">
+                        <div class="vertical-tab-content active" id="personalInfo">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">User Name</label>
+                                            <div class="inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                    <input disabled="" id="userName" placeholder="Username" class="form-control validation-required" type="text">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">Official emailId</label>
+                                            <div class="inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                                    <input disabled="" id="officialEmail" class="form-control validation-required" type="text">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">Personal emailId<span class="spnError">*</span></label>
+                                            <div class="inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                                    <input id="personalEmail" class="form-control validation-required" type="text" placeholder="Personal emailId" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">First Name<span class="spnError">*</span></label>
+                                            <div class="inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                    <input id="firstName" placeholder="First Name" class="form-control validation-required" type="text" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">Middle Name</label>
+                                            <div class="inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                    <input id="middleName" placeholder="Middle Name" class="form-control" type="text">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">Last Name<span class="spnError">*</span></label>
+                                            <div class="inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                    <input id="lastName" placeholder="Last Name" class="form-control validation-required" type="text">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">Mobile number<span class="spnError">*</span></label>
+                                            <div class="inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
+                                                    <input id="mobileNo" placeholder="Mobile number" class="form-control validation-required" type="text" maxlength="10" onkeypress="return isNumber(event);">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">Emergency contact number<span class="spnError">*</span></label>
+                                            <div class="inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
+                                                    <input id="emergencyNo" placeholder="Emergency number" class="form-control validation-required" type="text" maxlength="10" onkeypress="return isNumber(event);">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">Date Of Birth<span class="spnError">*</span></label>
+                                            <div class="inputGroupContainer date date-picker" id="txtDobFromPicker">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control validation-required" readonly="" placeholder="D.O.B" id="dob" />
+                                                    <span class=" input-group-btn">
+                                                        <button class="btn default padding-10" type="button"><i class="fa fa-calendar"></i></button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">Blood group<span class="spnError">*</span></label>
+                                            <div class="inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-list"></i></span>
+                                                    <select readonly="" class="form-control select2 select-validate validation-required" placeholder="Blood group" id="bloodGroup">
+                                                        <option value="0" selected>Select</option>
+                                                        <option value="A positive">A positive</option>
+                                                        <option value="A negative">A negative</option>
+                                                        <option value="B positive">B positive</option>
+                                                        <option value="B negative">B negative</option>
+                                                        <option value="O positive">O positive</option>
+                                                        <option value="O negative">O negative</option>
+                                                        <option value="AB positive">AB positive</option>
+                                                        <option value="AB negative">AB negative</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">Gender<span class="spnError">*</span></label>
+                                            <div class="inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-list"></i></span>
+                                                    <select readonly="" class="form-control select2 select-validate validation-required" placeholder="Gender" id="gender">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">Marital status<span class="spnError">*</span></label>
+                                            <div class="inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-list"></i></span>
+                                                    <select readonly="" class="form-control select2 select-validate  validation-required" placeholder="Marital status" id="maritalStatus">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">Upload Photo<span class="spnError">(.jpg/.jpeg/.png)</span></label>
+                                            <input type="file" class="form-control fileinput" onchange="checkFileIsValid(this);" name="file" id="photoFileName">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div align="center">
+                                    <button class="btn default" type="button" onclick="saveAndContinue(1);">Save and continue</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="vertical-tab-content" id="addressInfo">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h6><strong>Correspondence Address</strong></h6>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="control-label">Country<span class="spnError">*</span></label>
+                                            <div class="inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-flag"></i></span>
+                                                    <select readonly="" class="form-control select2 select-validate validation-required" id="presentCountry" placeholder="Country" onchange="presentCountryChange();">
+                                                        <option value="0">Select</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="control-label">State<span class="spnError">*</span></label>
+                                            <div class="inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-id-card-o"></i></span>
+                                                    <select readonly="" class="form-control select2 select-validate validation-required" id="presentState" placeholder="State" onchange="presentStateChange();">
+                                                        <option value="0">Select</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="control-label">City<span class="spnError">*</span></label>
+                                            <div class="inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-id-card-o"></i></span>
+                                                    <select readonly="" class="form-control select2 select-validate validation-required" placeholder="City" id="presentCity">
+                                                        <option value="0">Select</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="control-label">Pin code<span class="spnError">*</span></label>
+                                            <div class="inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-home"></i></span>
+                                                    <input id="presentPincode" placeholder="Pincode" class="form-control validation-required" type="text" maxlength="6" onkeypress="return isNumber(event);">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="control-label">Address<span class="spnError">*</span></label>
+                                            <div class="inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-home"></i></span>
+                                                    <textarea id="presentAddress" cols="5" rows="5" class="form-control validation-required"></textarea>
+                                                    @*<input id="presentAddress" placeholder="Present address" class="form-control validation-required" type="text">*@
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label class="margin-bottom-10 margin-top-10"> <input id="ifSameAdd" type="checkbox" /> Copy From Correspondence</label>
+                                        <h6><strong>Permanent Address</strong></h6>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="control-label">Country<span class="spnError">*</span></label>
+                                            <div class="inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-flag"></i></span>
+                                                    <select readonly="" class="form-control select2 select-validate validation-required" id="permanentCountry" placeholder="Country" onchange="permanentCountryChange();">
+                                                        <option value="0">Select</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="control-label">State<span class="spnError">*</span></label>
+                                            <div class="inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-id-card-o"></i></span>
+                                                    <select readonly="" class="form-control select2 select-validate validation-required" id="permanentState" placeholder="State" onchange="permanentStateChange();">
+                                                        <option value="0">Select</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="control-label">City<span class="spnError">*</span></label>
+                                            <div class="inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-id-card-o"></i></span>
+                                                    <select readonly="" class="form-control select2 select-validate validation-required" placeholder="City" id="permanentCity">
+                                                        <option value="0">Select</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="control-label">Pin code<span class="spnError">*</span></label>
+                                            <div class="inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-home"></i></span>
+                                                    <input id="permanentPincode" placeholder="Pincode" class="form-control validation-required" type="text" maxlength="6" onkeypress="return isNumber(event);" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="control-label">Address<span class="spnError">*</span></label>
+                                            <div class="inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-home"></i></span>
+                                                    <textarea id="permanentAddress" cols="5" rows="5" class="form-control validation-required"></textarea>
+                                                    @*<input id="permanentAddress" placeholder="Permanent address" class="form-control validation-required" type="text">*@
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div align="center">
+                                    <button class="btn default" type="button" onclick="saveAndContinue(2);">Save and continue</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        @*<div class="vertical-tab-content" id="familyInfo">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Father Name</label>
+                                                <div class="inputGroupContainer">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                        <input id="fatherName" placeholder="Father Name" class="form-control validation-required" type="text">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Father DOB<span class="spnError">*</span></label>
+                                                <div class="inputGroupContainer date date-picker">
+                                                    <div class="input-group">
+                                                        <span class=" input-group-btn">
+                                                            <button class="btn default" type="button"><i class="fa fa-calendar" id="aaaa"></i></button>
+                                                        </span>
+                                                        <input type="text" class="form-control validation-required" readonly="" name="fatherDob" placeholder="D.O.B" id="dob" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Mother Name<span class="spnError">*</span></label>
+                                                <div class="inputGroupContainer">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                        <input id="motherName" placeholder="Mother Name" class="form-control validation-required" type="text">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Mother DOB<span class="spnError">*</span></label>
+                                                <div class="inputGroupContainer date date-picker">
+                                                    <div class="input-group">
+                                                        <span class=" input-group-btn">
+                                                            <button class="btn default" type="button"><i class="fa fa-calendar" id="aaaa"></i></button>
+                                                        </span>
+                                                        <input type="text" class="form-control validation-required" readonly="" name="motherDob" placeholder="D.O.B" id="dob" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Insurance amount</label>
+                                                <div class="inputGroupContainer">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                        <input id="insuranceAmount" placeholder="Insurance amount" class="form-control validation-required" type="text">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row forMarriedUser">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Spouse name</label>
+                                                <div class="inputGroupContainer">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                        <input id="spouseName" placeholder="Spouse Name" class="form-control" type="text" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Spouse DOB<span class="spnError">*</span></label>
+                                                <div class="inputGroupContainer date date-picker">
+                                                    <div class="input-group">
+                                                        <span class=" input-group-btn">
+                                                            <button class="btn default" type="button"><i class="fa fa-calendar" id="aaaa"></i></button>
+                                                        </span>
+                                                        <input type="text" id="spouseDob" class="form-control" readonly="" placeholder="spouse DOB" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Spouse occupation<span class="spnError">*</span></label>
+                                                <div class="inputGroupContainer">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                        <input id="spouseOccupation" placeholder="Spouse occupation" class="form-control" type="text" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row forMarriedUser">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Spouse company</label>
+                                                <div class="inputGroupContainer">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                        <input id="spouseCompany" placeholder="Spouse company" class="form-control" type="text" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Spouse designation</label>
+                                                <div class="inputGroupContainer">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                        <input id="spouseDesignation" placeholder="Spouse designation" class="form-control" type="text" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Kids</label>
+                                                <div class="inputGroupContainer">
+                                                    <div class="radio-inline">
+                                                        <label>
+                                                            <input type="radio" name="kids" value="1" selected /> Yes
+                                                            <input type="radio" name="kids" value="2" /> No
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row forParents">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Child 1 Name</label>
+                                                <div class="inputGroupContainer">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                        <input id="child1Name" placeholder="Child 1 Name" class="form-control" type="text" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Child 1 DOB<span class="spnError">*</span></label>
+                                                <div class="inputGroupContainer date date-picker">
+                                                    <div class="input-group">
+                                                        <span class=" input-group-btn">
+                                                            <button class="btn default" type="button"><i class="fa fa-calendar" id="aaaa"></i></button>
+                                                        </span>
+                                                        <input type="text" class="form-control" readonly="" placeholder="Child 1 DOB" id="child1Dob" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Child 1 Gender</label>
+                                                <div class="inputGroupContainer">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                        <input id="child1Gender" placeholder="Child 1 Gender" class="form-control" type="text" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row forParents">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Child 2 Name</label>
+                                                <div class="inputGroupContainer">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                        <input id="child2Name" placeholder="Child 2 Name" class="form-control" type="text" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Child 2 DOB<span class="spnError">*</span></label>
+                                                <div class="inputGroupContainer date date-picker">
+                                                    <div class="input-group">
+                                                        <span class=" input-group-btn">
+                                                            <button class="btn default" type="button"><i class="fa fa-calendar" id="aaaa"></i></button>
+                                                        </span>
+                                                        <input type="text" class="form-control" readonly="" name="child2Dob" placeholder="Child 2 DOB" id="child2Dob" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Child 2 Gender</label>
+                                                <div class="inputGroupContainer">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                        <input id="child2Gender" placeholder="Child 2 gender" class="form-control" type="text" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div align="center">
+                                        <button class="btn default" type="button" onclick="saveAndContinue(3);">Save and continue</button>
+                                    </div>
+
+                                </div>
+                            </div>*@
+
+                        <div class="vertical-tab-content" id="careerInfo">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">Job experience<span class="spnError">*</span></label>
+                                            <div class="inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                    <select readonly="" class="form-control select-validate validation-required" id="jobExperience" placeholder="Job experience" onchange="onJobExperienceChange();">
+                                                        <option value="0">Select</option>
+                                                        <option value="1">Fresher</option>
+                                                        <option value="2">Experienced</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row forExperienced">
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="control-label">Last employer name<span class="spnError">*</span></label>
+                                            <div class="inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                    <input id="lastEmployerName" placeholder="Last employer name" class="form-control" type="text">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="control-label">Last job designation<span class="spnError">*</span></label>
+                                            <div class="inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-briefcase"></i></span>
+                                                    <input id="lastJobDesignation" placeholder="Last job designation" class="form-control" type="text">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="control-label">Last employer location<span class="spnError">*</span></label>
+                                            <div class="inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-location-arrow"></i></span>
+                                                    <input id="lastEmployerLocation" placeholder="Last employer location" class="form-control" type="text">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="control-label">Last job tenure(months)<span class="spnError">*</span></label>
+                                            <div class="inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                                    <input id="lastJobTenure" placeholder="eg: 24" class="form-control" type="text">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="control-label">Reason for leaving job<span class="spnError">*</span></label>
+                                            <div class="inputGroupContainer">
+                                                <div class="input-group">
+                                                    @*<span class="input-group-addon"><i class="fa fa-motorcycle"></i></span>*@
+                                                    <textarea cols="5" rows="5" id="jobLeavingReason" class="form-control"></textarea>
+                                                    @*<input id="jobLeavingReason" placeholder="Reason for leaving job" class="form-control" type="text">*@
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="control-label">Last job UAN<span class="spnError">*</span></label>
+                                            <div class="inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-id-badge"></i></span>
+                                                    <input id="lastJobUan" placeholder="Last job UAN" class="form-control" type="text">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div align="center">
+                                    <button class="btn default" type="button" onclick="saveAndContinue(3);">Save and continue</button>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="vertical-tab-content" id="bankInfo">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="control-label">PAN number<span class="spnError">*</span></label>
+                                            <div class="inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-address-card"></i></span>
+                                                    <input id="panNo" placeholder="PAN" class="form-control validation-required" type="text" maxlength="10" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="control-label">Aadhaar number<span class="spnError">*</span></label>
+                                            <div class="inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-drivers-license"></i></span>
+                                                    <input id="aadhaarNo" placeholder="Aadhaar number" class="form-control validation-required" type="text" maxlength="12" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="control-label">Passport Number</label>
+                                            <div class="inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-drivers-license"></i></span>
+                                                    <input id="passportNo" placeholder="Passport number" class="form-control" type="text" maxlength="15" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="control-label">Driving License number</label>
+                                            <div class="inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-drivers-license"></i></span>
+                                                    <input id="dLNo" placeholder="Driving License number" class="form-control" type="text" maxlength="15" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="control-label">VoterId number</label>
+                                            <div class="inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-drivers-license"></i></span>
+                                                    <input id="voterIdNo" placeholder="Voter Id number" class="form-control" type="text" maxlength="15" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div align="center">
+                                    <button class="btn default" type="button" onclick="saveAndContinue(4);">Submit</button>@*// onclick="submitUserRegDetails();"*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="~/Scripts/common/mis.common.min.js?v=4.6"></script>
+<script src="~/Scripts/common/mis.basepath.js?v=6.1"></script>
+<script src="~/Scripts/app/UserManagement/newUserRegistration.js?v=3.17"></script>
+<script src="~/Scripts/app/UserManagement/fileinput.js"></script>

@@ -1,0 +1,317 @@
+﻿<link href="~/Content/lib/lnsaShiftCalendar.css?v=4.1" rel="stylesheet" />
+<link href="~/Content/lib/bootstrap-multiselect.css" rel="stylesheet" />
+<div class="container-fluid">
+    <section class="card">
+        <div class="card-block">
+            <h5 class="with-border m-t-0">Review LNSA</h5>
+            @*<div class="tabs-section-nav tabs-section-nav-left">
+                <ul class="nav" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#tabPendingLnsaRequest" role="tab" data-toggle="tab">
+                            <span class="nav-link-in">LNSA Request</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>*@
+            <div class="tab-content no-styled profile-tabs">
+                <div role="tabpanel" class="tab-pane active" id="tabPendingLnsaRequest">
+                    <section class="box-typical box-typical-padding">
+                        <div class="form-body">
+                            <div id="divInCompleteReviewFormsGridHeader" class="gridViewHeader">
+                                <div class="profile-statistic tbl redcustomheader">
+                                    <div class="tbl-row">
+                                        <div class="tbl-cell">
+                                            Pending
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id='divCompleteReviewFormsGridView' class='gridViewBody gridViewContainerBorder'>
+                                <table id="tblPendingLnsaGrid" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+                                <div class="text-center" id="divBulkLeaveApprove">
+                                </div>
+                            </div>
+                            <br />
+                            <div id="divCompleteReviewFormsGridHeader" class="gridViewHeader">
+                                <div class="profile-statistic tbl greencustomheader">
+                                    <div class="tbl-row">
+                                        <div class="tbl-cell">
+                                            Approved/Rejected
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" id="filterdiv">
+                                <div class="form-group col-md-3">
+                                    <label class="control-label">From Date<span class="spnError">*</span></label>
+                                    <div>
+                                        <div class="inputGroupContainer date date-picker" id="fromDate">
+                                            <div class="input-group margin-top-8">
+                                                <input readonly="" class="form-control validation-required" placeholder="From Date" type="text" onchange="onFromDateChange();" />
+                                                <span class=" input-group-btn">
+                                                    <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label class="control-label">Till Date<span class="spnError">*</span></label>
+                                    <div>
+                                        <div class="inputGroupContainer date date-picker" id="tillDate">
+                                            <div class="input-group margin-top-8">
+                                                <input readonly="" class="form-control validation-required" placeholder="Till Date" type="text" onchange="onTillDateChange();" />
+                                                <span class=" input-group-btn">
+                                                    <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <table id="tblApprovedLnsaGrid" data-filter-control="true" data-toolbar="#toolbar" class="table table-hover"></table>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div><!--.tab-pane-->
+            </div>
+        </div>
+    </section>
+</div>
+
+<div id="mypopupBulkApproveRemark" class="modal fade" role="dialog" aria-labelledby="mypopupBulkApproveRemark" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">Remarks <span id="popupfor"></span></h4>
+            </div>
+            <div class="modal-body" id="CopyTaskDiv">
+                <div class="row">
+
+                    <div class="form-group col-md-12">
+                        <div class="col-md-4">
+                            <label>Selected Employees</label>
+                        </div>
+                        <div class="col-md-8" id="employeesNames">
+
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12" id="remarkdiv">
+                        <div class="col-md-4">
+                            <label>Remarks<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <textarea rows="4" cols="2000" id="reviewBulkRemark" maxlength="500" placeholder="Please enter remarks here" class="form-control validation-required"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="submitReviewLnsaRemarkBulk" type="button" class="btn btn-success"><i class="fa fa-"></i>&nbsp;Submit </button>
+                <button  type="button" data-dismiss="modal" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal-lnsa" class="modal fade" role="dialog" aria-labelledby="myDocumentsDetails" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">Remarks</h4>
+            </div>
+            <div class="container margin-top-10" id="reasondivb">
+                <div class="form-group row">
+                    <div class="form-group">
+                        <input type="hidden" name="name" value=" " id="hdnRequestId" />
+                        <div class="col-md-12">
+                            <textarea class="form-control validation-required" placeholder="Enter remarks here" id="rejectLnsaRemark"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" id="btnRejectLnsaRequest">&nbsp;Reject</button>
+                <button type="button" class="btn btn-success" id="btnApproveLnsaRequest">&nbsp;Approve</button>
+                <button id="btnClose" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Lnsa Shift request html-->
+<div id="mypopupReviewLnsaRemarkReject" class="modal fade" role="dialog" aria-labelledby="mypopupReviewLnsaRemarkReject" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Reject LNSA Request</h4>
+            </div>
+
+            <div class="modal-body" id="">
+                <div id="divReviewToReject">
+                    <section class="box-typical box-typical-padding">
+                        <div class="form-body">
+                            <div id='divInCompleteReviewFormsGridView' class='gridViewBody gridViewContainerBorder'>
+                                <table id="tblLnsaDataToReject" class="table table-collapse table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+                            </div>
+                        </div>
+                    </section>
+                    <input type="hidden" id="hiddenShiftId" value="" />
+                </div>
+                <h4 id="txtRemarksToReject">Remarks</h4>
+                <textarea rows="4" cols="2000" id="reviewLnsaRemarkToReject" maxlength="500" placeholder="Please enter remarks here" class="form-control validation-required"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button id="submitLnsaRemarkToReject" type="button" class="btn btn-danger" onclick="rejectAllLnsaRequest();"><i class="fa fa-"></i>&nbsp;Reject</button>
+                <button id="btnLnsaRejectClose" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Lnsa Shift request html-->
+<div id="mypopupReviewLnsaRemarkApprove" class="modal fade" role="dialog" aria-labelledby="mypopupReviewLnsaRemarkApprove" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitlemypopupReviewLnsaRemark" class="modal-title">Approve LNSA Request</h4>
+            </div>
+            <div class="modal-body" id="">
+                <div id="divReviewToApprove">
+                    <section class="box-typical box-typical-padding">
+                        <div class="form-body">
+                            <div id='divInCompleteReviewFormsGridView' class='gridViewBody gridViewContainerBorder'>
+                                <table id="tblLnsaDataToApprove" class="table table-collapse table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+                            </div>
+                        </div>
+                    </section>
+                    <input type="hidden" id="hiddenTempShiftId" value="" />
+                </div>
+                <h4 id="txtRemarksToApprove">Remarks</h4>
+                <textarea rows="4" cols="2000" id="reviewLnsaRemarkToApprove" maxlength="500" placeholder="Please enter remarks here" class="form-control validation-required"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button id="submitLnsaRemarkToApprove" type="button" class="btn btn-success" onclick="approveLnsaShiftRequest();"><i class="fa fa-"></i>&nbsp;Approve</button>
+                <button id="btnLnsaApproveClose" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Lnsa Shift request html-->
+<div id="mypopupReviewApprovedLnsaRemark" class="modal fade" role="dialog" aria-labelledby="mypopupReviewApprovedLnsaRemark" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="txtHeading">Reject LNSA Request</h4>
+            </div>
+            <div class="modal-body" id="">
+                <div id="divReviewApprovedLnsa">
+                    <section class="box-typical box-typical-padding">
+                        <div class="form-body">
+                            <div id='divInCompleteReviewFormsGridView' class='gridViewBody gridViewContainerBorder'>
+                                <table id="tblApprovedLnsa" class="table table-collapse table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+                            </div>
+                        </div>
+                    </section>
+                    <input type="hidden" id="hiddenTempApprovedShiftId" value="" />
+                </div>
+                <div class="modal-footer">
+                    <button id="btnLnsaApprovedClose" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Lnsa Shift request html-->
+<div id="mypopupReviewLnsaRemark" class="modal fade" role="dialog" aria-labelledby="mypopupReviewLnsaRemark" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitlemypopupReviewLnsaRemark" class="modal-title">Remarks</h4>
+            </div>
+
+            <div class="container margin-top-10" id="">
+                <div class="form-group col-md-12">
+                    <textarea rows="4" disabled cols="2000" id="reviewLnsaRemark" maxlength="500" class="form-control validation-required"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btnLnsa" onclick="rejectLnsaRequest();" type="button" class="btn btn-danger">&nbsp;Reject </button>
+                <button id="btnApprovedLnsa" onclick="rejectApprovedLnsaRequest();" type="button" class="btn btn-danger">&nbsp;Reject </button>
+                <button id="btnLnsaClose" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@*---LNSA Request*@
+<div id="mypopupviewLnsaStatusRemark" class="modal fade" role="dialog" aria-labelledby="mypopupviewLnsaStatusRemark" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitlemypopupviewLnsaStatusRemark" class="modal-title">Remarks</h4>
+            </div>
+            <div class="container margin-top-10" id="">
+                <div class="form-group col-md-12">
+                    <textarea rows="4" cols="2000" id="viewLnsaStatusRemark" maxlength="500" class="form-control validation-required"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button data-dismiss="modal" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+@*<div id="mypopupBulkApproveRemark" class="modal fade" role="dialog" aria-labelledby="mypopupBulkApproveRemark" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 id="modalTitle" class="modal-title">Remarks <span id="popupfor"></span></h4>
+                </div>
+                <div class="modal-body" id="CopyTaskDiv">
+                    <div class="row">
+
+                        <div class="form-group col-md-12">
+                            <div class="col-md-4">
+                                <label>Selected Employees</label>
+                            </div>
+                            <div class="col-md-8" id="employeesNames">
+
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12" id="remarkdiv">
+                            <div class="col-md-4">
+                                <label>Remarks<span class="spnError">*</span></label>
+                            </div>
+                            <div class="col-md-8">
+                                <textarea rows="4" cols="2000" id="reviewBulkRemark" maxlength="500" placeholder="Please enter remarks here" class="form-control validation-required"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="submitReviewLeaveRemarkBulk" type="button" class="btn btn-success"><i class="fa fa-"></i>&nbsp;Submit </button>
+                    <button id="btnCloseBulkApprove" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+<link href="~/Content/lib/lnsaShiftCalendar.css?v=4.1" rel="stylesheet" />
+<script src="~/Scripts/lib/bootstrap-multiselect.js"></script>
+<script src="~/Scripts/app/Lnsa/review.js?v=2.8"></script>
+
+

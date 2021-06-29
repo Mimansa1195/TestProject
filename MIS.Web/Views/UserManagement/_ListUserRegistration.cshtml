@@ -1,0 +1,121 @@
+﻿@*<div class="form-group row">
+        <div class="col-md-8" id="tabNewUserRegLink">
+            <div class="col-md-8 col-sm-6" style="padding: 0px;">
+                <input class="form-control validation-required" maxlength="200" id="userName" placeholder="Enter user name for the employee" type="text" style="text-align: right" onkeyup="return removeAtTheRate(this)" onkeydown="return removeAtTheRate(this)" />
+            </div>
+            <div class="col-md-4 col-sm-6" style="padding: 0px;">
+                <label class="control-label" style="text-align: left">
+                    <select class="form-control select-validate validation-required" id="domain" style="height:38px;">
+                        <option value="geminisolutions.in">@@geminisolutions.in</option>
+                        <option value="geminisolutions.us">@@geminisolutions.us</option>
+                        <option value="survey2connect.com">@@survey2connect.com</option>
+                        <option value="seekhley.com">@@usa-Immigrationlaw.com</option>
+                        <option value="seekhley.com">@@seekhley.com</option>
+                    </select>
+                </label>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <button type="button" class="btn" onclick="generateNewUserLink()">Generate and send link</button>
+        </div>
+    </div>
+    <div class="clearfix"></div>*@
+<table id="tblUserRegData" data-filter-control="true" data-toolbar="#toolbar" class="table table-hover"></table>
+
+<script>
+    $(document).ready(function () {
+        getAllUserRegistrations();
+    });
+
+    function removeAtTheRate(e) {
+        $("#" + e.id).val($("#" + e.id).val().replace('@@', ''));
+    }
+
+    function loadUserRegistrationDetailContainer(registrationId) {
+        loadUrlToId(misAppUrl.verifyUserDetail, 'divNewUserRegPartialContainer');
+
+        $('#userManagement').addHiddenInputData({
+            "hdnRegistrationId": registrationId,
+            "requestType": 3,
+        });
+    }
+
+    function getAllUserRegistrations() {
+        calltoAjax(misApiUrl.getAllUserRegistrations, "POST", '',
+            function (result) {
+                //console.log(result);
+                var resultData = $.parseJSON(JSON.stringify(result));
+                $("#tblUserRegData").dataTable({
+                    "responsive": true,
+                    "autoWidth": false,
+                    "paging": true,
+                    "bDestroy": true,
+                    "searching": true,
+                    "ordering": true,
+                    "info": true,
+                    "deferRender": true,
+                    "aaData": resultData,
+                    "aoColumns": [
+                        {
+                            "mData": "EmailId",
+                            "sTitle": "Email Id",
+                        },
+                        {
+                            "mData": null,
+                            "sTitle": "Status",
+                            'bSortable': false,
+                            "sClass": "text-left",
+                            mRender: function (data, type, row) {
+
+                                var html = '<div>';
+                                switch (row.Status)//Status = 1: link expired and user has not submitted, 2: pending for submission with user, 3: pending for verificatiob with HR
+                                {
+                                    case 1:
+                                        html += 'Link expired</div>';
+                                        break;
+                                    case 2:
+                                        html += 'Pending with user</div>';
+                                        break;
+                                    case 3:
+                                        html += 'Pending for verification</div>';
+                                        break;
+                                }
+                                return html;
+                            },
+                        },
+                        {
+                            "mData": "CreatedOn",
+                            "sTitle": "Created On"
+                        },
+                        {
+                            "mData": "CreatedBy",
+                            "sTitle": "Created By"
+                        },
+                        {
+                            "mData": null,
+                            "sTitle": "Action",
+                            'bSortable': false,
+                            "sClass": "text-left",
+                            mRender: function (data, type, row) {
+
+                                var html = '';
+                                switch (row.Status)//Status = 1: link expired and user has not submitted, 2: pending for submission with user, 3: pending for verificatiob with HR
+                                {
+                                    case 1:
+                                        html += '<button  type="button" class="btn btn-sm btn-warning"' + 'onclick="changeRegLinkStatus(' + row.RegistrationId + ', 1)" /*data-toggle="tooltip"*/ title="Regenerate link"><i class="fa fa-check"> </i> </button>&nbsp;';
+                                        break;
+                                    case 2:
+                                        html += '<button type="button" /*data-toggle="tooltip"*/ title="Deactivate link"  class="btn btn-sm btn-danger"' + 'onclick="changeRegLinkStatus(' + row.RegistrationId + ',2' + ')"><i class="fa fa-trash" aria-hidden="true"></i></button>';
+                                        break;
+                                    case 3:
+                                        html += '<button type="button" class="btn btn-sm btn-success"' + 'onclick="loadUserRegistrationDetailContainer(' + row.RegistrationId + ')" /*data-toggle="tooltip"*/ title="View registration details"><i class="fa fa-eye"> </i> </button>&nbsp;';
+                                        break;
+                                }
+                                return html;
+                            }
+                        }
+                    ]
+                });
+            });
+    }
+</script>

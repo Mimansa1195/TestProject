@@ -1,0 +1,414 @@
+﻿<style>
+    .modal-lg {
+        max-width: 1200px !important;
+    }
+
+    .ddl-ellipsis {
+        display: inline-block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 160px;
+        white-space: nowrap;
+    }
+
+    .modal-lg .container {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+</style>
+<div class="container-fluid">
+    <section class="card">
+        <div class="card-block">
+            <h5 class="with-border m-t-0">Review Reportees Goal/Team Goal</h5>
+            <div class="tabs-section-nav tabs-section-nav-left">
+                <ul class="nav" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#tabReporteesGoal" role="tab" data-toggle="tab">
+                            <span class="nav-link-in">Reportees Goal</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#tabTeamGoal" role="tab" data-toggle="tab">
+                            <span class="nav-link-in">Team Goal</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-content no-styled profile-tabs">
+                <div role="tabpanel" class="tab-pane active" id="tabReporteesGoal">
+                    <section class="box-typical box-typical-padding">
+                        <div class="row form-body">
+                            <div class="col-md-12 clearfix">
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-12 form-group">
+                                        <label class="control-label">Employees</label>
+                                        <select id="ddlEmployee" class="form-control validation-required" multiple="multiple" aria-hidden="true"></select>
+                                    </div>
+                                    <div class="col-md-3 col-sm-12 form-group">
+                                        <label class="control-label">Financial year</label>
+                                        <select id="financialYearForTeam" style="text-align:center" class="form-control select2"></select>
+                                    </div>
+                                    <button type="button" style="margin-top:23px;" class="btn btn-success" onclick="openPopupManageGoal()">Add Goal</button>
+
+                                </div>
+                                <section>
+                                    <div class="form-body">
+                                        <div class="gridViewHeader">
+                                            <div class="profile-statistic tbl redcustomheader">
+                                                <div class="tbl-row">
+                                                    <div class="tbl-cell">
+                                                        Pending
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class='gridViewBody gridViewContainerBorder'>
+                                            <table id="tblPendingReporteesGoalList" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+                                            <div class="text-center" id="divBulkApproveReporteesGoal">
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div  class="gridViewHeader">
+                                            <div class="profile-statistic tbl greencustomheader">
+                                                <div class="tbl-row">
+                                                    <div class="tbl-cell">
+                                                        Approved/Rejected
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class='gridViewBody gridViewContainerBorder'>
+                                            <table id="tblApprovedNRejectedReporteesGoalList" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </section>
+                </div><!--.tab-pane-->
+                <div role="tabpanel" class="tab-pane" id="tabTeamGoal">
+                    <section class="box-typical box-typical-padding">
+                        <div class="row form-body">
+                            <div class="col-md-12 clearfix">
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-12 form-group">
+                                        <label class="control-label">Team</label>
+                                        <select id="ddlTeam" class="form-control validation-required" multiple="multiple" aria-hidden="true"></select>
+                                    </div>
+                                    <div class="col-md-3 col-sm-12 form-group">
+                                        <label class="control-label">Financial year</label>
+                                        <select id="financialYearForTeamGoal" style="text-align:center" class="form-control select2"></select>
+                                    </div>
+                                </div>
+                                <section>
+                                    <div class="form-body">
+                                        <div id="divInCompleteReviewFormsGridHeader" class="gridViewHeader">
+                                            <div class="profile-statistic tbl redcustomheader">
+                                                <div class="tbl-row">
+                                                    <div class="tbl-cell">
+                                                        Pending
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id='divCompleteReviewFormsGridView' class='gridViewBody gridViewContainerBorder'>
+                                            <table id="tblTeamGoalList" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+                                            <div class="text-center" id="divBulkApproveTeamGoal">
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div id="divCompleteReviewFormsGridHeader" class="gridViewHeader">
+                                            <div class="profile-statistic tbl greencustomheader">
+                                                <div class="tbl-row">
+                                                    <div class="tbl-cell">
+                                                        Approved/Rejected
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id='divInCompleteReviewFormsGridView' class='gridViewBody gridViewContainerBorder'>
+                                            <table id="tblApprovedNRejectedTeamGoalList" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </section>
+                </div><!--.tab-pane-->
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<!--Team Goal-->
+<div id="modalDeleteTeamGoal" class="modal fade" role="dialog" aria-labelledby="modaladdAppraisalCycle" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Remarks<span class="spnError">*</span></h4>
+            </div>
+            <div class="container margin-top-25 margin-bottom-15  ">
+                <input type="hidden" id="hdnTeamGoalId" />
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <textarea rows="4" cols="6" class="form-control validation-required" placeholder="Enter remarks" id="remarksForTeamGoal" maxlength="4000" data-mask="" data-attr-name="r2"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" onclick="deleteTeamGoal()"><i class="fa fa-save"></i>&nbsp;Submit</button>
+                <button type="button" data-dismiss="modal" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modalEditTeamGoal" class="modal fade" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Edit Goal</h4>
+            </div>
+            <input type="hidden" id="hdnEditTeamGoalId" />
+            <div class="container margin-top-25 margin-bottom-15">
+                <div class="row col-md-12" id="editTeamGoalDiv">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>Goal start date<span class="spnError">*</span></label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+                                    <input disable="" type="text" class="form-control validation-required" placeholder="Start date" tabindex="6" id="teamGoalStartDate" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>Goal end date<span class="spnError">*</span></label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+                                    <input disable="" type="text" class="form-control validation-required" placeholder="End date" tabindex="6" id="teamGoalEndDate" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>Goal type<span class="spnError">*</span></label>
+                                <div class="input-group ddl-ellipsis">
+                                    <select class="form-control select2 validation-required" id="ddlTeamGoalCategory"></select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Goal description<span class="spnError">*</span></label>
+                                <textarea rows="2" cols="6" class="form-control validation-required" placeholder="Goal description" id="teamGoalDesc" maxlength="4000"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" onclick="editTeamGoal()"><i class="fa fa-save"></i>&nbsp;Save</button>
+                <button type="button" data-dismiss="modal" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="mypopupSendBulkMail" class="modal fade" role="dialog" aria-labelledby="mypopupSendBulkMail" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">View Employees<span id="popupfor"></span></h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <div class="col-md-4">
+                            <label>Selected Employee(s)</label>
+                        </div>
+                        <div class="col-md-8" id="employeesNames">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <div class="col-md-4">
+                            <label>Fill By Date<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-6 inputGroupContainer date date-picker" id="txtFillByDate">
+                            <div class="input-group">
+                                <input type="text" class="form-control validation-required" name="txtFillByDate" readonly="" placeholder="Fill By Date">
+                                <span class=" input-group-btn">
+                                    <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="btnSendBulkMail" type="button" class="btn btn-success"><i class="fa fa-send"></i>&nbsp;Send </button>
+                    <button type="button" data-dismiss="modal" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Reportees Goal-->
+
+<div id="modalDeleteGoal" class="modal fade" role="dialog" aria-labelledby="modaladdAppraisalCycle" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">Remarks<span class="spnError">*</span></h4>
+            </div>
+            <div class="container margin-top-25 margin-bottom-15  ">
+                <input type="hidden" id="hdnGoalId" />
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <textarea rows="4" cols="6" class="form-control validation-required" placeholder="Enter remarks" id="remarks" maxlength="4000" data-mask="" data-attr-name="r2"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" onclick="deleteGoal()"><i class="fa fa-save"></i>&nbsp;Submit</button>
+                <button type="button" class="btn btn-default btnClose"><i class="fa fa-times"></i>&nbsp;Close </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modalManageGoal" class="modal fade" role="dialog" aria-labelledby="modaladdAppraisalCycle" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">Add goal</h4>
+            </div>
+            <div class="container margin-top-25 margin-bottom-15  ">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label style="display:inline-block;">Financial Year: </label>
+                            <input style="display:inline-block;text-align:center;width:120px;margin: 0 10px;" type="text" disabled style="text-align:center;" id="showAppraisalYear" class="form-control" />
+                            <label style="display:inline-block;"> 1<sup>st</sup> April <span id="cntYear"></span> to 31<sup>st</sup> March <span id="nxtYear"></span></label>
+                            <input type="hidden" id="txtHiddenGoalCycleIdForTeam" />
+                        </div>
+                    </div>
+                </div>
+                <label style="margin-left:auto">Employees<span class="spnError">*</span></label>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <select style="width: 100%;" id="ddlEmployeeAddGoal" placeholder="Select employee to add goal" onchange="showAddGoalArea();" class="form-control select2 select2-hidden-accessible validation-required" aria-hidden="true">
+                                <option value="0">Select</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+                <div id="showOnEmployeeChangeDiv" style="display: none;">
+                    <a id="btnAddNew" data-toggle="modal" class="btn btn-primary pull-left"><i class="fa fa-plus"></i></a>
+                    &nbsp;<span class="spnError">Click here to add goals.</span>
+                    <div id="dynamicAddGoal">
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btnSaveGoals" type="button" class="btn btn-success" onclick="addGoal()"><i class="fa fa-save"></i>&nbsp;Submit</button>
+                <button type="button" class="btn btn-default btnClose"><i class="fa fa-times"></i>&nbsp;Close </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modalEditGoal" class="modal fade" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">Edit Goal</h4>
+            </div>
+            <input type="hidden" id="hdnEditGoalId" />
+            <div class="container margin-top-25 margin-bottom-15">
+                <div class="row col-md-12" id="editGoalDiv">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>Goal start date<span class="spnError">*</span></label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+                                    <input disable="" type="text" class="form-control validation-required" placeholder="Start date" tabindex="6" id="goalStartDate" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>Goal end date<span class="spnError">*</span></label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+                                    <input disable="" type="text" class="form-control validation-required" placeholder="End date" tabindex="6" id="goalEndDate" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>Goal type<span class="spnError">*</span></label>
+                                <div class="input-group ddl-ellipsis ">
+                                    <select class="form-control select2 validation-required" id="ddlGoalCategory"></select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Goal description<span class="spnError">*</span></label>
+                                <textarea rows="2" cols="6" class="form-control validation-required" placeholder="Goal description" id="goalDesc" maxlength="4000"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" onclick="editGoal()"><i class="fa fa-save"></i>&nbsp;Save</button>
+                <button type="button" class="btn btn-default btnClose"><i class="fa fa-times"></i>&nbsp;Close </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modalGoalHistory" class="modal fade" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">Goal History</h4>
+            </div>
+            <div class="container margin-top-15 margin-bottom-15">
+                <div class="row">
+                    <label id="lblGoal" style="margin-bottom:15px"></label>
+                </div>
+                <div class="row">
+                    <table id="goalHistTable" class="table table-bordered table-hover display table-striped" role="grid"></table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btnClose"><i class="fa fa-times"></i>&nbsp;Close </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/app/AppraisalManagement/manageGoal.js?v=4.3"></script>

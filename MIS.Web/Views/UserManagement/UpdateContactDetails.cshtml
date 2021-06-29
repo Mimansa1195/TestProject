@@ -1,0 +1,150 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<script src="~/Scripts/common/mis.basepath.js?v=6.1"></script>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>UpdateContactDetails</title>
+    <style>
+        .btnReject {
+            background-color: #9b2f9b;
+            border: none;
+            color: white;
+            padding: 8px 21px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+    </style>
+
+</head>
+<body>
+    <div>
+        <div width="100" style="text-align: center; padding-top: 50px">
+            <img src="~/img/GeminiLogo-Small-Black.png">
+        </div><br /><br /><br />
+        <div id="apprDiv" style="display: none">
+            <table width="100%" style="text-align: center">
+                <tr>
+                    <td>MIS - Approve request for updating contact details.</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style="font-size: large"><strong>Thank you for you response.</strong></td>
+                </tr>
+            </table>
+        </div>
+        <div id="RejectDiv" style="display: none;">
+            <table width="100%" style="text-align: center">
+                <tr>
+                    <td colspan="2">MIS (Reject Request) - Please write here reason for rejecting contact details updation.</td>
+                </tr>
+                <tr>
+                    <td colspan="2">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style="text-align: right;">Reason :</td>
+                    <td style="text-align: left;">
+                        <textarea id="txtResion" type="" name="name" placeholder="Reason for rejection" style="height: 50px; width: 250px;"></textarea>
+                        <span id="error" style="color: Red; display: none">* Enter reason</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">&nbsp; </td>
+                </tr>
+                <tr>
+                    <td width="42%"></td>
+                    <td style="text-align: left;">
+                        <input type="button" name="name" value="Reject" id="btnReject" class="btnReject" style="cursor: pointer;" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="apprDiv2" style="display: none">
+            <table width="100%" style="text-align: center">
+                <tr>
+                    <td><span id="errorsucc1" style="color: green; width: 100%; text-align: center">Request has been saved successfully!</span></td>
+                </tr>
+                <tr>
+                    <td><span id="errorsucc2" style="width: 100%; text-align: center">Thank you for you response.</span></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
+<script src="~/Scripts/lib/jquery.min.js" type="text/javascript"></script>
+<script>
+
+    $(document).ready(function () {
+        var lblPagefor = getParameterByName("for"); 
+        var lblActionData = getParameterByName("encodedData");
+        if (lblPagefor == "appr") {
+            document.getElementById('apprDiv').style.display = 'block';
+            var jsonObject = {
+                'Reason': '',
+                'ActionData' : lblActionData
+            };
+            AprroveRequest(jsonObject)
+        }
+        else {
+            document.getElementById('RejectDiv').style.display = 'block';
+        }
+
+        $("body").delegate("#btnReject", 'click', function (result) {
+            var reason = $("#txtResion").val();
+            if (reason != "" && reason != null) {
+                document.getElementById("error").style.display = "none";
+                var jsonObject = {
+                    'Reason': reason,
+                    'ActionData': lblActionData
+                };
+                saveReason(jsonObject);
+            }
+            else {
+                document.getElementById("error").style.display = "inline";
+            }
+
+        });
+    });
+
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1]);
+    }
+
+    function saveReason(data) {
+        $.ajax({
+            url: misApiBaseUrl + "Anonymous/RejectChangeContactDetailRequest",
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(data),
+            success: function (result) {
+                document.getElementById('RejectDiv').style.display = 'none';
+                document.getElementById('apprDiv2').style.display = 'block';
+            }
+        });
+    }
+    function AprroveRequest(data) {
+        $.ajax({
+            url: misApiBaseUrl + "Anonymous/ApproveChangeContactDetailRequest",
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(data),
+            success: function (result) {
+                console.log(result);
+            }
+        });
+    }
+
+</script>
+

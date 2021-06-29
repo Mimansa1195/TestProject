@@ -1,0 +1,77 @@
+﻿<table id="tblInactiveUser" data-filter-control="true" data-toolbar="#toolbar" class="table table-hover"></table>
+<script>
+    $(function () {
+        getInactiveEmployees();
+    });
+
+    function getInactiveEmployees() {
+        var jsonObject = {
+            status: 2,
+        };
+        calltoAjax(misApiUrl.getAllEmployeesByStatus, "POST", jsonObject,
+            function (result) {
+                var resultData = $.parseJSON(JSON.stringify(result));
+                $("#tblInactiveUser").dataTable({
+                    "dom": 'lBfrtip',
+                    "buttons": [
+                        {
+                            filename: 'All Employees List',
+                            extend: 'collection',
+                            text: 'Export',
+                            buttons: [{ extend: 'copy' },
+                            { extend: 'excel', filename: 'All Employees List' },
+                            { extend: 'pdf', filename: 'All Employees List' }, //, orientation: 'landscape', pageSize: 'LEGAL',
+                            { extend: 'print', filename: 'All Employees List' },
+                            ]
+                        }
+                    ],
+
+                    "responsive": true,
+                    "autoWidth": false,
+                    "paging": true,
+                    "bDestroy": true,
+                    "searching": true,
+                    "ordering": true,
+                    "info": true,
+                    "deferRender": true,
+                    "aaData": resultData,
+                    "aoColumns": [
+                        {
+                            "mData": "Name",
+                            "sTitle": "Name",
+                        },
+                        {
+                            "mData": "EmployeeId",
+                            "sTitle": "Employee Id",
+                        },
+                        {
+                            "mData": "EmailId",
+                            "sTitle": "Email Id",
+                        },
+                        {
+                            "mData": null,
+                            "sTitle": "Action",
+                            'bSortable': false,
+                            "sClass": "text-left",
+                            mRender: function (data, type, row) {
+
+                                var html = '';
+                                html += '<button type="button" class="btn btn-sm teal" data-toggle"model" data-target="#myModal"' + 'onclick="loadInactiveUserDetailContainer(\'' + row.EmployeeAbrhs + '\')" /*data-toggle="tooltip"*/ title="view details"><i class="fa fa-eye"> </i></button>';
+                                //html += '<button type="button" class="btn btn-sm teal" data-toggle"model" data-target="#myModal"' + 'onclick="loadInactiveUserDetailContainer(\'' + row.EmployeeAbrhs + '\')" data-toggle="tooltip" title="Edit user details"><i class="fa fa-edit"> </i></button>';
+                                //html += '&nbsp;<button type="button" class="btn btn-sm btn-success"' + 'onclick="changeEmployeeStatus(\'' + row.EmployeeAbrhs + '\',1)" data-toggle="tooltip" title="Activate employee"><i class="fa fa-check"> </i> </button>';
+                                return html;
+                            }
+                        },
+                    ]
+                });
+            });
+    }
+
+    function loadInactiveUserDetailContainer(employeeAbrhs) {
+        $('#userManagement').addHiddenInputData({
+            "hdnEmployeeAbrhs": employeeAbrhs,
+            "requestType": 2,
+        });
+        loadUrlToId(misAppUrl.viewInactiveUserDetail, 'divInactiveUserPartialContainer');
+    }
+</script>

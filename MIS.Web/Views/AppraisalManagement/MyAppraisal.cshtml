@@ -1,0 +1,85 @@
+﻿<div class="container-fluid">
+    <section class="card">
+        <div class="card-block">
+            <h5 class="with-border m-t-0">My Appraisal</h5>
+            <input type="hidden" name="name" value="" id="hdnCompetencyFormId" />
+            <input type="hidden" name="name" value="" id="hdnLocationId" />
+            <input type="hidden" name="name" value="" id="hdnVerticalId" />
+            <input type="hidden" name="name" value="" id="hdnDivisionId" />
+            <input type="hidden" name="name" value="" id="hdnDepartmentId" />
+            <input type="hidden" name="name" value="" id="hdnDesignationId" />
+            <div>
+                <div id="divAddTechnicalParamBtn">
+                </div>
+            </div>
+            <div id="teamAppraisalDiv">
+                <table id="tblMyAppraisal" data-filter-control="true" data-toolbar="#toolbar" class="table table-hover"></table>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div id="popupAppraisalHirtory" class="modal fade" role="dialog" aria-labelledby="mypopup" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="popupMealPeriodTitle" class="modal-title">Appraisal History</h4>
+            </div>
+            <div class="modal-body" id="modalMealPeriod">
+                <table class="table table-bordered table-hover" style="width:100%" id="grdappraisalHirtory" role="grid" aria-describedby="example1_info"></table>
+            </div>
+            <div class="modal-footer">
+                <button id="btnClose" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal-fullscreen" id="selfAppraisalFormPopup" tabindex="-1" role="dialog" aria-labelledby="appraisalFormPopup" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <input type="hidden" id="hdnEmpAppraisalSettingId" />
+            <input type="hidden" id="hdnDigestKey" />
+            <div class="modal-body" id="modalBodyAppraisalForm" style="padding:0px !important">
+            </div>
+            <div class="modal-footer">
+                <button id="btnSaveAsDraft" type="button" class="btn btn-gemini nextTab"></button>
+                <button id="btnCloseAppraisalForm" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="popupAddParameter" class="modal fade" role="dialog" aria-labelledby="mypopup" aria-hidden="true" style="z-index: 1112;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="popupMealPeriodTitle" class="modal-title">Add Parameter</h4>
+                <input type="hidden" value="1" id="isFinalize" />
+            </div>
+            <div class="modal-body" id="modalAddParameter">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="addCompetencyForm" class="modal fade" role="dialog" aria-labelledby="addCompetencyForm" aria-hidden="true" style="z-index: 1111;">
+    <div class="modal-full modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">Add/Update Technical Parameters</h4>
+            </div>
+            <div class="modal-body" id="addTechnicalCompetenciesContainer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<link href="~/Content/lib/jquery.idealforms.css" rel="stylesheet" />
+<script src="~/Scripts/lib/jquery.idealformself.min.js"></script>
+<link href="~/Content/lib/bootstrap-modal-carousel.min.css" rel="stylesheet" />
+<script src="~/Scripts/app/AppraisalManagement/myappraisal.js?v=4.2"></script>

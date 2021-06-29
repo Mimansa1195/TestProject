@@ -1,0 +1,1943 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8F148744-44FF-4A18-84D2-7714F0818A98}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MIS.Model</RootNamespace>
+    <AssemblyName>MIS.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccessCard.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="acc_monitor_log.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AdvanceLeave.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AdvanceLeaveDetail.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AllocationTypeMaster.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="API.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="APIRolePermission.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="APIUserPermission.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppraisalCycle.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppraisalParameter.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppraisalRating.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppraisalSetting.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppraisalSettingDesignation.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppraisalSettingStage.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppraisalStage.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AsquareUserMapping.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Asset.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AssetDetail.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AssetDetailAttribute.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AssetRequest.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AssetsBrand.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AssetsMaster.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AssetStatu.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AssetTransaction.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AssetType.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AttendanceDataChangeRequestApplication.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AttendanceDataChangeRequestCategory.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AttendanceDataChangeRequestHistory.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AttendanceReportAccess.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AttendanceStatusMaster.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AttendanceUploadHistoryAsquare.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BlockingReasonMaster.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CabPickDropLocation.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CabRequest.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CabRequestHistory.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CabServiceType.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CabShiftMaster.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CabStatusMaster.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CardPunchinData.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CertificationsAndReward.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ChangeExtnRequest.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="City.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Client.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClientMaster.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClientResourceMaster.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClientSideManagerMaster.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Company.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CompetencyForm.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CompetencyFormDetail.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CompetencyType.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Country.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Currency.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DashboardWidget.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DashboardWidgetRolePermission.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DashboardWidgetUserPermission.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DateMaster.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DateWiseAttendance.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DateWiseAttendanceAsquare.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DateWiseLeaveType.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DateWiseLNSA.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DateWisePunchInData.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Department.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DepartmentWiseAssetLimit.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Designation.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DesignationGroup.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Division.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Document.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentGroup.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentPermissionGroup.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentPermissionGroupPermission.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentTag.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmailTemplate.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmpAppraisal.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmpAppraisalLog.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmpAppraisalParameterDetail.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmpAppraisalSetting.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmpAppraisalSettingLog.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmpAppraisalSettingStage.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeProfile.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeWiseWeekOff.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeWish.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorLog.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ExcludedUsersForAttendanceImport.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ExplodeDates_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FeedbackStatu.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FeedbackType.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FinalLoggedTask.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fnGetAppraisalOverallRating_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fnGetHRDetail_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fnGetWeekInfoByDateId_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fnSplitWord_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Fn_GetUserForExamLeaves_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Form.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Fun_FetchUsersOnshoreMgr_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Fun_GetAccountApproverId_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Fun_GetAllAppraisalCycleId_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Fun_GetAssetsTypeRoleWise_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Fun_GetCabRequestMonthYear_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Fun_GetCommonKey_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Fun_GetCurrentAppraisalCycle_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Fun_GetDesignationListByDepartment_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Fun_GetDesignationListByDesignationGroup_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Fun_GetDesignationListByTeam_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Fun_GetEmployeeTreeByUserId_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Fun_GetFinancialYearForInvoice_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Fun_GetFinancialYear_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Fun_GetFiscalDates_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Fun_GetOldAndNewPLByUser_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Fun_GetQuartersForFY_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Fun_GetReimbursementMonthYearToViewAndApprove_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Fun_GetReimbursementMonthYear_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Fun_GetRequiredUserDetailsToSendMail_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Fun_GetUserConsecutiveLeaves_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Fun_GetUserMonthYear_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Fun_GetUserPrevilegesForTeamGoal_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Fun_GetUserToViewAttendance_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Fun_GetUserWiseFinancialYear_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Fun_SplitStringInt_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Fun_SplitStringStr_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Gender.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetLeaveInformation_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetMonthList_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetRowsFromCommaSeparatedString_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GoalCategory.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GoalStatu.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GSOCProject.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GSOCProjectSubscriber.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HttpVerb.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IdentityType.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Industry.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Invoice.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InvoiceRequest.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InvoiceRequestDetail.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JobCategory.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LeaveBalance.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LeaveBalanceHistory.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LeaveHistory.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LeaveRequestApplication.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LeaveRequestApplicationDetail.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LeaveStatusMaster.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LeaveTypeMaster.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LegitimateLeaveRequest.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LegitimateLeaveRequestHistory.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LegitimateLeaveStatu.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ListofHoliday.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LNSAStatusMaster.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Location.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LocationPremisesListMaster.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LoggedTask.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ManagementEmployee.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ManpowerRequisitionForm.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ManpowerRequisitionInvite.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MaritalStatu.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MealCategory.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MealDish.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MealPackage.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MealPackageDetail.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MealPackageFeedback.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MealPeriod.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MealType.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Menu.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MenusApprovalLevel.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MenusRolePermission.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MenusUserDelegation.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MenusUserPermission.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MISModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MISModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MISModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MISModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MISModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="News.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Occupation.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OnshoreManager.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OutingRequest.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OutingRequestDetail.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OutingRequestHistory.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OutingRequestStatu.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OutingType.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PimcoAchievement.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PimcoAchievementDetail.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PimcoMonthlyAchievement.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PimcoMonthlyAchievementDetail.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PimcoProject.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PimcoProjectTeamMember.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PimcoProjectVertical.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PimcoUser.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PimcoUserExpiration.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Policy.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_AuthenticateLogin_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_BulkActionOnApproveCompOff_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_BulkActionOnApproveDataChange_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_BulkActionOnApproveLeave_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_BulkActionOnApproveLegitimateRequest_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_BulkActionOnApproveOuting_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_BulkActionOnApproveWFH_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_BulkApproveLnsaRequest_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_BulkImportSeatDetailTemp_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_DetailsOfActiveEmployees_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_FetchAllGeminiUsersForPimco_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_FetchAllUnmappedStaffToAccessCard_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_FetchAPIPermissions_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_FetchCabInfoByCabRequestId_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_FetchCabRequestDetailByRequestId_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_FetchLeaveDetailsForPromotionAndNewUser_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_FetchOffshoreUsers_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_FetchOnshoreUsers_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_FetchPendingApprovalsForUserId_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_FetchPendingLnsaShiftRequest_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_FetchPimcoOrgData_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_FetchPimcoUserHierarchy_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_FetchSchedulerActions_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_FetchUserForTimesheets_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_FetchUserHierarchy_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_FetchUsersOnshoreManagerData_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_FinalizeCabRequest_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GenerateInvoice_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetAllAssetsByUserId_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetAllAssetsDetail_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetAllGeminiUsersSkill_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetAllLnsaShiftRequest_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetAllLnsaShiftReviewRequest_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetAllocationTypeMaster_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetAllTeamGoals_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetAllUsersAssets_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetAllUserUnMappedCardHistory_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetAppraisalSetting_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetAppraiserListByIDs_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetApproverDetails_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetApproverListByIDs_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetApproverList_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetAssetsDetailsByRequestId_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetAutoLogin_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetBlockingReasonMaster_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetCabRequestDetail_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetCabRequestToFinalize_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetCabReviewRequest_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetCabShift_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetCalendarForWeekOff_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetCompetencyFormDetail_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetCompetencyForm_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetCOMPOffDataDateWise_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetDatesForPickAndDrop_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetDateToCancelOutingRequest_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROC_GetDesignationListByDesignationGroup_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetEmpAppraisalFormForManagement_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetEmpAppraisalFormForPDF_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetEmpAppraisalForm_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetEmpAppraisalLog_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetEmpAppraisalSettingDetail_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetEmpAppraisalSettingForManagement_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetEmpAppraisalSettingLogHistory_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetEmpAppraisalSettingNotGenerated_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetEmpAppraisalSetting_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetEmpInformationForLegitimateLeave_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetEmpInformation_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetEmployeeAppraisalStatus_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetEmployeeListByText_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetEmployeeList_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetEmployeeWeekData_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetFinalizedCabRequestDetail_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetFloorSeatAllocationDetail_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetGoalReport_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetGroupedCabRequestToFinalize_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetGroupedFinalizedCabRequest_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetLeaveBalanceHistoryByFY_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetLeaveHistoryForFullNFinal_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetLegitimateLeave_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetLNSADataDateWise_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetMealDishes_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetMealFeedback_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetOutingRequestByUserId_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetOutingReviewRequest_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetParameterList_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetPimcoIdExpirationData_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetPimcoUsers_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetPremisesFloorMapping_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetProbationAndTrainingCompletionData_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetPunchInOutLogForAllCard_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetPunchInOutLogForStaff_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetPunchInOutLogForTempCard_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetPunchInOutLog_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetReimbursementFormData_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetReimbursementListToReview_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetReimbursementList_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetRouteLocationForCab_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetRoutesForCab_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetSchedulerActions_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetSeatAllocationDetail_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetSeatCheckDetail_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetSeatItemMaster_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetSeatMaster_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetSeatStatusMaster_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetSeatTypeMaster_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetShiftMappingDetails_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetTeamGoalHistoryById_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetTeamLeaves_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetTeamMembersListForUserTeamMapping_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetTeamsToAddGoals_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetTeamsToReviewGoals_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetTimeSheetInfoForAllSelectedUsers_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetTournamentSchedule_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetTournamentScoreDetails_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetUserDashboardCompOff_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetUserPremisesFloorMapping_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetUsersActiveAssets_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetUsersLeaveBalanceForFnF_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetUsersLnsaRequestsDetail_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_GetUserWiseWeekDataInCalendar_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_SchedulerGetEmployeeAttendance_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_SelectCards_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_SelectTempCardDetailsForMIS_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_SelectVisitorDetailsForMIS_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_SelectVisitorDetailsWithId_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_SelectVisitorDetails_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_TakeActionOnCabBulkApprove_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Proc_UserAppliedLegitimateLeave_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProfessionalAndEducationalExperience.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProfileRequest.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Project.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectIndustryType.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectMaster.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectPrefrence.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectRole.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectStatu.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectTeamMember.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectVertical.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Referral.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReferralDetail.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReferralReview.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReimbursementCategory.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReimbursementDetail.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReimbursementHistory.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReimbursementRequest.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReimbursementStatu.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReimbursementType.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Relationship.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RequestCompOff.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RequestCompOffDetail.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RequestCompOffHistory.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RequestLnsa.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RequestLnsaHistory.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Role.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SchedulerAction.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SeatAllocationDetail.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SeatCheckDetail.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SeatDetailTemp.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SeatItemMaster.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SeatMaster.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SeatStatusMaster.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SeatTypeMaster.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SharedGroupDocument.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ShareDocument.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ShiftMaster.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Skill.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SkillLevel.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SkillType.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spAddUpdateEmpAppraisalAchievementBySelf_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spAllocateAsset_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spFetchActiveEmployees_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spFetchAllAccessCards_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spFetchAllActiveEmployees_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spFetchAllApprovedLnsaRequest_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spFetchAllEmployeesByStatus_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spFetchAllLnsaRequestStatusByUserId_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spFetchAllPendingLnsaRequestByManagerId_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spFetchAllReportingManagers_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spFetchAllUnmappedAccessCard_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spFetchAllUnmappedUserToAccessCard_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spFetchAllUserAccessCardMappings_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spFetchAppovedTasksForTaskVerification_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spFetchCompletedForms_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spFetchCompletedTimeSheets_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spFetchDailyLeaveReport_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spFetchIncompleteForms_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spFetchLastNApprovedLnsa_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spFetchLastTwentyFiveApprovedLnsa1_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spFetchLastTwentyFiveApprovedLnsa_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spFetchListOfEmployeesOnLeaveOrWfh_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spFetchManpowerForm_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spFetchMonthlyLeaveReport_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spFetchPendingTimeSheets_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spFetchPimcoRootProjects_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spFetchProjectsAssignedToUser_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spFetchRootProjects_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spFetchTeamWeekInfo_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spFetchTeamWeeks_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spFetchUserAchievements_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spFetchUserCardMappingInfoById_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spFetchUserExperiences_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spFetchUsersForDongleReminderMail_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spFetchUsersForReturnOfDongle_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spFetchWeekInfo_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spFetchWeekMap_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGeAttendanceForEmployeeAttendanceRegister1_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGeAttendanceForEmployeeAttendanceRegister_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGeAttendanceRegisterByDepartmentIdOrEmployeeIdForEmployeesReportingToUser_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGenerateDataForTeamWiseWeekWiseTimeSheetForClientReports_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGenerateDataForTeamWiseWeekWiseTimeSheetForInternalReports_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetActiveUsersInfoReportingToUser_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetAllActiveForms_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetAllAssets_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetAllClientResource_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetAllClientSideManager_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetAllClients_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetAllEmployees_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetAllEmptyMandatoryFieldsForUserRegistration_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetAllForms_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetAllHolidays_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetAllProjects_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetAllReportingManagers_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetAllShifts_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetAllUserGoals_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetAllUserRegistrations_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetAppliedCompOffDetailByUserId_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetAppliedLnsaDetailByUserId_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetAppliedLwpDetailByUserId_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetAppraisalFormPendingForApproval_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetAppraisalFormPendingForReview_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetAppraisalMenuByUserId_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetAppraisalReport_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetAppraisalSubMenuByUserId_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetApprovedCompOffDetailByUserId_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetApprovedLnsaDetailByUserId_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetAssetCountForAllDepartment_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetAssetCountForDepartmentByManagerId_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetAssetDetailOnBasisOfAssetTag_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetAssetDetailOnBasisOfRequestId_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetAssetDetailsForITDepartment_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetAssetDetailsForReportingManager_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetAssetReport_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetAssetStatusForUser_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetAttendanceForAllUsersByDate_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetAttendanceForTodayAndTommorrowByUserId_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetAttendanceForUserOnDashboard_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetAttendanceForUser_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SpGetAttendanceRawDataByDate_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetAttendanceRegisterByTeamId_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetAttendanceRegisterForEmployee_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetAttendanceRegisterForSupportingStaffMembers_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetAttendanceRegisterForUser_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetAttendanceUploadStatusOfASquare_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetAvailedCompOffDetailByUserId_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetAvailedLwpDetailByUserId_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetCalender_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetCancelledLwpDetailByUserId_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetClubbedReport_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetCommentsForAppraisalFormByHeaderId_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetCompOffReport_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetCompOff_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetCriteriaForAppraisalFormByHeaderId_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetCriteriaInFormOfQuestionByHeaderId_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetDataChangeRequests_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetDateForWorkFromHome_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetDatesForDataChangeRequest_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetDatesToRequestCompOff_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetDepartmentForAttendanceRegisterByUserId_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetDepartmentWiseTeams_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetEmployeeAttendanceDetailsByDate_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetEmployeeAttendanceSummary_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetEmployeeAttendance_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetEmployeeLeaves_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetEmployeeProfileById_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetEmployeeShiftMapping_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetEmployeesReportingToUser_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetEmployeesWithNoAttendance_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetEmployeeTotalLoggedHours_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetEmployesForWorkAnniversary_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetErrorLogs_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetGoalHistoryById_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetLeaveApplication_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetLeaveBalanceForAllUser_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetLeaveBalanceForUser_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetLeaveInformation_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetLeaveOrWfhLastRecordDetail_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetLeaves_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetLnsaReport_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetLwpReport_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetManagerResourceStatusByDate_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetMenusPermissions_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetOldestAvailableCompOff_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetPendingCompOffDetailByUserId_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetPendingLnsaDetailByUserId_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetPerformanceReviewFormStatus_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetPromotionDesignationsList_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetRejectedCompOffDetailByUserId_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetRejectedLnsaDetailByUserId_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetReportingManagerForADepartment_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetReportingManagerForATeam_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetShiftUserMappingList_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetTeamForADepartment_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetTeamWiseReportingManagers_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetTotalWorkingDays_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetUserAppliedCompOff_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetUserAppliedDataChangeRequest_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetUserAppliedLeaveForLWPChangeRequest_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetUserAppliedLeave_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetUserAppliedLeave_Result1.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetUserAppliedWorkFromHome_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetUserLastyearGoals_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetUserNextyearGoals_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetUserPerformanceReviewOverAllRating_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetUsersForAttendanceRegisterByUserIdAndDepartmentId_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetUsersForReportsByUserIdAndDepartmentIdAndReportingManager_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetWFHRequest_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetWidgetPermissions_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spImportUserShiftMapping_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spInsertDataChangeRequest_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spLapseCompOff_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spLoadAttendanceStatus_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spReferBackAppraisalForm_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spRequestCompOff_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spRequestWorkFromHome_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spSubmitAppraisalForm_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spUpdatePerformanceReviewFormStatus_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spValidateAppraisalForm_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="State.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SupportingStaffMember.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TaskSubDetail1.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TaskSubDetail2.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TaskTeam.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TaskTeamTaskTypeMapping.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TaskTemplate.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TaskType.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TaskTypeTaskSubDetail1Mapping.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TaskTypeTaskSubDetail2Mapping.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Team.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TeamEmailType.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TeamEmailTypeMapping.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TeamGoal.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TeamGoalComment.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TeamGoalHistory.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TeamRole.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TempCardIssueDetail.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TempUserAddressDetail.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TempUserRegistration.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TempUserShift.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TempUserShiftDetail.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TempUserShiftHistory.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TimeSheet.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TimesheetExcludedUser.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TimeSheetFinalTask.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TimeSheetReportAccess.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TimesheetStatu.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TimeSheetTaskMapping.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Timezone.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tournament.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TournamentCategory.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TournamentSchedule.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TournamentScore.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TournamentTeam.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Training.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TrainingDetail.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TrainingStatu.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UDSP_GetAllChildsGroupByParentGroupId_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UDSP_GetCompanyExpenseDashbordChart_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UDSP_GetDuplicateCompanyExpenseRecords_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UDSP_GetEmployeeAttendanceDashbordChartWithLeaveType_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UDSP_GetEmployeeExpenseDashbordChart_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UDSP_GetEmployeeExpenseVsEarningChartData_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UDSP_GetEmployeePerformanceDashbordChart_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UDSP_GetExpenseVsEarningChartData_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UDSP_GetProjectExpenseDashboardData_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UDSP_GetProjectExpenseVsEarningDashboardData_Result.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserAccessCard.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserAchievement.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserAchievementComment.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserAchievementForMidYear.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserActivity.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserActivityLog.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserAddressDetail.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserClientSideManagerAndProjectMapping.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserDetail.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserFamilyDetail.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserFeedback.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserForm.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserGoal.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserGoalComment.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserGoalHistory.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserHierarchy.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserLocationHistory.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserPromotionHistory.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UsersAssetDetail.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UsersHealthInsurance.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserShiftMapping.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserSkill.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UsersOnshoreMgrMapping.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UsersToken.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserTeamMapping.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VehicleDetail.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vertical.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_PremisesFloorMapping.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_SeatMaster.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VisitorDetail.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VisitorPurpose.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwActiveStaffMember.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwActiveUser.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwAllUser.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwAttendanceReportAccess.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwEligibleUsersToFillTimesheet.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwEmpAppraisalSetting.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwListLockedUser.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwTasksForTaskVerification.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwTeamWiseUserInfo.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwTimeSheetApprovedTasksForClientReport.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwTimeSheetApprovedTasksForInternalReport.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwTimeSheetReportAccess.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwTimesheetReportAccessForAllTeam.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwUserDetail.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwUserTeamMapping.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WeekDay.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WishType.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WPSCheckItemMaster.cs">
+      <DependentUpon>MISModel.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="MISModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MISModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="App.Config" />
+    <None Include="MISModel.edmx.diagram">
+      <DependentUpon>MISModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MISModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MISModel.edmx</DependentUpon>
+      <LastGenOutput>MISModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="MISModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MISModel.edmx</DependentUpon>
+      <LastGenOutput>MISModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

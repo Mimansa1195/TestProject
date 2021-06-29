@@ -1,0 +1,419 @@
+﻿<div class="row" id="maindiv">
+    <div class="form-group full-width col-sm-6 col-md-4 col-lg-4">
+        <label>Location<span class="spnError">*</span></label>
+        <select style="width: 100%;" id="ddlCountry" class="form-control select2 select2-hidden-accessible validation-required" aria-hidden="true"></select>
+    </div>
+
+    <div class="form-group full-width col-sm-6 col-md-4 col-lg-4">
+        <label>Vertical<span class="spnError">*</span></label>
+        <select style="width: 100%;" id="ddlVertical" class="form-control select2 select2-hidden-accessible validation-required" aria-hidden="true"></select>
+    </div>
+    <div class="form-group full-width col-sm-6 col-md-4 col-lg-4">
+        <label>Division<span class="spnError">*</span></label>
+        <select style="width: 100%;" id="ddlDivision" class="form-control select2 select2-hidden-accessible validation-required" aria-hidden="true">
+            <option value="0">Select</option>
+        </select>
+    </div>
+    <div class="form-group full-width col-sm-6 col-md-4 col-lg-4">
+        <label>Department<span class="spnError">*</span></label>
+        <select style="width: 100%;" id="ddlDepartment" class="form-control select2 select2-hidden-accessible validation-required" aria-hidden="true">
+            <option value="0">Select</option>
+        </select>
+    </div>
+    <div class="form-group full-width col-sm-6 col-md-4 col-lg-4">
+        <label>Designation<span class="spnError">*</span></label>
+        <select style="width: 100%;" id="ddlDesignation" class="form-control select2 select2-hidden-accessible validation-required" aria-hidden="true">
+            <option value="0">Select</option>
+        </select>
+    </div>
+    <div class="form-group full-width col-sm-6 col-md-4 col-lg-4">
+        <label>Form Sufix &nbsp;<i class="fa fa-info-circle" title="" data-toggle="tooltip" data-original-title="leaving form suffix blank will save the form as default"></i></label>
+        <input type="text" id="txtFormName" class="form-control" />
+    </div>
+</div>
+<div class="row text-right">
+    <div class="col-md-12">
+        <button id="btnCreateForm" type="button" class="btn btn-success"><i class="fa fa-save"></i>&nbsp;Create Form</button>
+        <button id="btnResetCreateForm" type="button" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Reset </button>
+    </div>
+</div>
+
+<div id="divAssignParameterToForm" style="display:none;margin-top:10px">
+    <h5 class="with-border m-t-0">Form : <span id="spnFormName"></span></h5>
+    <div class="row margin-bottom-15">
+        <div class="col-md-12 marginTop10" id="divCompetencyType">
+            <div class="form-group full-width col-sm-6 col-md-4 col-lg-4">
+                <select style="width: 100%;" id="ddlCompentencyType" class="form-control select2 select2-hidden-accessible validation-required" aria-hidden="true">
+                    <option value="0">Select</option>
+                </select>
+            </div>
+            <a id="btnAddNew" data-toggle="modal" class="btn btn-primary pull-left"><i class="fa fa-plus"></i></a>
+            <a id="btnAddParameter" data-toggle="modal" class="btn btn-primary pull-right" style="display:none">Add Parameter</a>
+        </div>
+        <div id="divParameterCombinations">
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="modal-footer">
+            <button id="btnSaveForm" type="button" class="btn btn-success"><i class="fa fa-save"></i>&nbsp;Save As Draft</button>
+            <button id="btnFinalizeForm" type="button" class="btn btn-gemini"><i class="fa fa-thumbs-up"></i>&nbsp;Finalize</button>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    var competencyList;
+
+    $(function () {
+        $("#ddlCountry").select2();
+        $("#ddlVertical").select2();
+        $("#ddlDivision").select2();
+        $("#ddlDepartment").select2();
+        $("#ddlDesignation").select2();
+        $("#ddlCompentencyType").select2();
+
+        fetchCompanyLocation("#ddlCountry", 0);
+        fetchVertical("#ddlVertical", 0);
+        GetCompetencyForLocal();
+
+        $("#ddlVertical").change(function () {
+            fetchDivision($("#ddlVertical").val(), "#ddlDivision", 0);
+        });
+
+        $("#ddlDivision").change(function () {
+            fetchDepartment($("#ddlDivision").val(), "#ddlDepartment", 0);
+        });
+
+        $("#ddlDepartment").change(function () {
+            populateDesignation($("#ddlDepartment").val(), "#ddlDesignation", 0);
+        });
+    });
+
+    function fetchCompanyLocation(controlId, selectedId) {
+        $(controlId).empty();
+        calltoAjax(misApiUrl.getCompanyLocation, "POST", '',
+            function (result) {
+                if (result != null && result.length > 0) {
+                    $(controlId).append("<option value = 0>Select</option>");
+                    for (var x = 0; x < result.length; x++) {
+                        $(controlId).append("<option value = '" + result[x].Value + "'>" + result[x].Text + "</option>");
+                    }
+                    if (selectedId > 0) {
+                        $(controlId).val(selectedId);
+                    }
+                }
+            });
+    }
+
+    function fetchVertical(controlId, selectedId) {
+        $(controlId).empty();
+        calltoAjax(misApiUrl.getVertical, "POST", '',
+            function (result) {
+                if (result != null && result.length > 0) {
+                    $(controlId).append("<option value = 0>Select</option>");
+                    for (var x = 0; x < result.length; x++) {
+                        $(controlId).append("<option value = '" + result[x].Value + "'>" + result[x].Text + "</option>");
+                    }
+                    if (selectedId > 0) {
+                        $(controlId).val(selectedId);
+                    }
+                }
+            });
+    }
+
+    function fetchDivision(verticalId, controlId, selectedId) {
+        $(controlId).empty();
+        $(controlId).append("<option value = 0>Select</option>");
+        var jsonObject = { 'verticalId': verticalId || 0 }
+        calltoAjax(misApiUrl.getDivisionByVertical, "POST", jsonObject,
+            function (result) {
+                if (result != null && result.length > 0) {
+                    for (var x = 0; x < result.length; x++) {
+                        $(controlId).append("<option value = '" + result[x].Value + "'>" + result[x].Text + "</option>");
+                    }
+                    if (selectedId > 0) {
+                        $(controlId).val(selectedId);
+                    }
+                }
+            });
+    }
+
+    function fetchDepartment(divisionId, controlId, selectedId) {
+        $(controlId).empty();
+        $(controlId).append("<option value = 0>Select</option>");
+        var jsonObject = { 'divisionIds': divisionId || 0 }
+        calltoAjax(misApiUrl.getDepartmentByDivision, "POST", jsonObject,
+            function (result) {
+                if (result != null && result.length > 0) {
+                    for (var x = 0; x < result.length; x++) {
+                        $(controlId).append("<option value = '" + result[x].Value + "'>" + result[x].Text + "</option>");
+                    }
+                    if (selectedId > 0) {
+                        $(controlId).val(selectedId);
+                    }
+                }
+            });
+    }
+
+    function populateDesignation(departmentId, controlId, selectedId) {
+        $(controlId).empty();
+        $(controlId).append("<option value = 0>Select</option>");
+        var jsonObject = { departments: departmentId || 0 }
+        calltoAjax(misApiUrl.getDesignationsByDepartments, "POST", jsonObject,
+            function (result) {
+                if (result != null && result.length > 0) {
+                    for (var x = 0; x < result.length; x++) {
+                        $(controlId).append("<option value = '" + result[x].Value + "'>" + result[x].Text + "</option>");
+                    }
+                    if (selectedId > 0) {
+                        $(controlId).val(selectedId);
+                    }
+                }
+            });
+    }
+
+    $("#btnAddParameter").click(function () {
+        loadModal("popupAddParameter", "modalAddParameter", misAppUrl.addAppraisalParameter, true);
+    });
+
+    $("#btnCreateForm").click(function () {
+        if (!validateControls('maindiv')) {
+            return false;
+        }
+
+        var jsonObject =
+            {
+                departmentId: $("#ddlDepartment").val(),
+                designationId: $("#ddlDesignation").val(),
+                formSufix: $("#txtFormName").val()
+            }
+        calltoAjax(misApiUrl.getAppraisalFormName, "POST", jsonObject,
+               function (result) {
+                   if (result != null) {
+                       $("#ddlCountry").prop("disabled", true);
+                       $("#ddlVertical").prop("disabled", true);
+                       $("#ddlDivision").prop("disabled", true);
+                       $("#ddlDepartment").prop("disabled", true);
+                       $("#ddlDesignation").prop("disabled", true);
+                       $("#txtFormName").prop("disabled", true);
+                       _FormName = result;
+                       $("#spnFormName").html(result);
+                       $("#divAssignParameterToForm").css("display", "block");
+                       bindCompetencywithJason("#ddlCompentencyType", 0);
+
+                   }
+               });
+
+    });
+
+    $("#btnResetCreateForm").click(function () {
+        $("#ddlCountry").prop("disabled", false);
+        $("#ddlVertical").prop("disabled", false);
+        $("#ddlDivision").prop("disabled", false);
+        $("#ddlDepartment").prop("disabled", false);
+        $("#ddlDesignation").prop("disabled", false);
+        $("#txtFormName").prop("disabled", false);
+        $("#ddlCountry").val(0);
+        $("#ddlCountry").select2();
+        $("#ddlVertical").val(0);
+        $("#ddlVertical").select2();
+        fetchDivision($("#ddlVertical").val(), "#ddlDivision", 0);
+        fetchDepartment($("#ddlDivision").val(), "#ddlDepartment", 0);
+        populateDesignation($("#ddlDepartment").val(), "#ddlDesignation", 0);
+        $("#txtFormName").val('');
+        $("#spnFormName").html('');
+    });
+
+    $("#btnAddNew").click(function () {
+        if (!validateControls('divCompetencyType')) {
+            return false;
+        }
+        $("#btnAddParameter").css("display", "block");
+        generateControls('divParameterCombinations');
+    });
+
+    function generateControls(containerId, maxNoOfTextBoxes, minNoOfMandatoryTxtBoxes) {
+        maxNoOfTextBoxes = maxNoOfTextBoxes || 40;
+        if (containerId) {
+            var txtCount = 0;
+            var itemrow = $("#" + containerId + " .itemRow");
+            if (itemrow && itemrow.length > 0) {
+                var controlName = itemrow.last();
+                txtCount = parseInt(controlName.closest('div').first().find('select')[0].id.replace("ddlCompetencyType", "")) + 1;
+            }
+            //var txtCount = $("#" + containerId).find('.itemRow').length;
+            if (txtCount < maxNoOfTextBoxes) {
+                $("#" + containerId).append(getDynamicControls(txtCount, minNoOfMandatoryTxtBoxes || 1, ''));
+            }
+            else {
+                misAlert("You can't add more than " + maxNoOfTextBoxes + " options!", 'Sorry', 'warning');
+            }
+            bindCompetencywithJason('#ddlCompetencyType' + txtCount + '', $("#ddlCompentencyType").val() || 0);
+            GetParameter('#ddlParameter' + txtCount + '', $("#ddlCompentencyType").val() || 0, 0)
+        }
+    }
+
+    function getDynamicControls(idx, minNoOfMandatoryTxtBoxes, value) {
+        return '<div class="col-md-12 itemRow">' +
+               '<div class="row">' +
+               '<div class="col-md-3"><div class="form-group"><label class="control-label">Competency Type<span class="spnError">*</span></label><div class="inputGroupContainer"><div class="input-group"><select class="form-control select-validate validation-required" id="ddlCompetencyType' + idx + '" onchange="bindParameter(' + idx + ')"></select></div></div></div></div>' +
+               '<div class="col-md-3"><div class="form-group"><label class="control-label">Parameter<span class="spnError">*</span></label><div class="inputGroupContainer"><div class="input-group"><select class="form-control select-validate validation-required" id="ddlParameter' + idx + '"></select></div></div></div></div>' +
+               '<div class="col-md-4"><div class="form-group"><label class="control-label">Evaluation Criteria</label><div class="inputGroupContainer"><div class="input-group"><textarea type="text" class="form-control" id="txtevaluationCriteria' + idx + '"> </textarea></div></div></div></div>' +
+               '<div class="col-md-2" style="padding-top: 22px;"><span class="input-group-btn"><button class="btn btn-danger" style="background-color: #d2322d;" value="X" onclick="removeControls(this)">X</button></span></div>' +
+               '</div></div>';
+    }
+
+    function removeControls(item) {
+        $(item).closest('.itemRow').remove();
+    }
+
+    function GetCompetencyForLocal() {
+        calltoAjax(misApiUrl.getCompetency, "POST", '',
+                function (result) {
+                    if (result != null && result.length > 0) {
+                        competencyList = result;
+                    }
+                });
+    }
+
+    function bindCompetencywithJason(controlId, selectedId) {
+        $(controlId).empty();
+        if (competencyList != null) {
+            if (competencyList != null && competencyList.length > 0) {
+                $(controlId).append("<option value = 0>Select</option>");
+                for (var x = 0; x < competencyList.length; x++) {
+                    $(controlId).append("<option value = '" + competencyList[x].Value + "'>" + competencyList[x].Text + "</option>");
+                }
+                if (selectedId > 0) {
+                    $(controlId).val(selectedId);
+                }
+            }
+        }
+    }
+
+    function GetParameter(controlId, competencyId, selectedId) {
+        $(controlId).empty();
+        var jsonObject =
+            {
+                'competencyId': competencyId,
+            }
+
+        calltoAjax(misApiUrl.getParameter, "POST", jsonObject,
+                function (result) {
+                    if (result != null && result.length > 0) {
+                        $(controlId).append("<option value = 0>Select</option>");
+                        for (var x = 0; x < result.length; x++) {
+                            $(controlId).append("<option value = '" + result[x].Value + "'>" + result[x].Text + "</option>");
+                        }
+                        if (selectedId > 0) {
+                            $(controlId).val(selectedId);
+                        }
+                    }
+                });
+    }
+
+    $("#btnSaveForm").click(function () {
+        if (!validateControls('divParameterCombinations')) {
+            return false;
+        }
+        var jsonObject = {
+            LocationId: $("#ddlCountry").val(),
+            VerticalId: $("#ddlVertical").val(),
+            DivisionId: $("#ddlDivision").val(),
+            DepartmentId: $("#ddlDepartment").val(),
+            DesignationId: $("#ddlDesignation").val(),
+            FormName: $("#txtFormName").val(),
+            ParameterList: getFormData(),
+            IsFinalize: false
+        };
+        calltoAjax(misApiUrl.addUpdateCompetencyForm, "POST", jsonObject,
+            function (result) {
+                if (result.Status == 1) {
+                    $("#addCompetencyForm").modal("hide");
+                    GetCompetencyFormsList();
+                    misAlert("Form has been created successfully.", "Success", "success");
+                }
+                if (result.Status == 2) {
+                    misAlert("Form has been already created for designation <span color='red'>" + result.Result + "</span>", "Warning", "warning");
+                }
+                if (result.Status == 3) {
+                    misAlert("Competency and parameter combinations duplicate", "Warning", "warning");
+                }
+            });
+
+    });
+
+    $("#btnFinalizeForm").click(function () {
+        if (!validateControls('divParameterCombinations')) {
+            return false;
+        }
+        var reply = misConfirm("Are you sure you want to Finalize the form.", "Confirm", function (reply) {
+            if (reply) {
+                var jsonObject = {
+                    LocationId: $("#ddlCountry").val(),
+                    VerticalId: $("#ddlVertical").val(),
+                    DivisionId: $("#ddlDivision").val(),
+                    DepartmentId: $("#ddlDepartment").val(),
+                    DesignationId: $("#ddlDesignation").val(),
+                    FormName: $("#txtFormName").val(),
+                    ParameterList: getFormData(),
+                    IsFinalize: true
+                };
+                calltoAjax(misApiUrl.addUpdateCompetencyForm, "POST", jsonObject,
+                    function (result) {
+                        if (result.Status == 1) {
+                            $("#addCompetencyForm").modal("hide");
+                            GetCompetencyFormsList();
+                            misAlert("Form has been created successfully.", "Success", "success");
+                        }
+                        if (result.Status == 2) {
+                            misAlert("Form has been already created for designation <span color='red'>" + result.Result + "</span>", "Warning", "warning");
+                        }
+                        if (result.Status == 3) {
+                            misAlert("Competency and parameter combinations duplicate", "Warning", "warning");
+                        }
+                    });
+            }
+        });
+
+    });
+
+    function bindParameter(idx) {
+        var controlId = "#ddlParameter" + idx;
+        var competencyId = $("#ddlCompetencyType" + idx).val();
+        $(controlId).empty();
+        var jsonObject =
+            {
+                'competencyId': competencyId,
+            }
+        calltoAjax(misApiUrl.getParameter, "POST", jsonObject,
+                function (result) {
+                    if (result != null && result.length > 0) {
+                        $(controlId).append("<option value = 0>Select</option>");
+                        for (var x = 0; x < result.length; x++) {
+                            $(controlId).append("<option value = '" + result[x].Value + "'>" + result[x].Text + "</option>");
+                        }
+                    }
+                });
+    }
+
+    function getFormData() {
+        var i = 0;
+        var collection = new Array();
+        var items;
+        $('#divParameterCombinations .itemRow').each(function (i, obj) {
+            var id = parseInt($(obj).find('select')[0].id.replace("ddlCompetencyType", ""));
+            items = new Object();
+            items.CompetencyTypeId = $("#ddlCompetencyType" + id).val();
+            items.ParameterId = $("#ddlParameter" + id).val();
+            items.EvaluationCriteria = $("#txtevaluationCriteria" + id).val();
+            items.SequenceNo = i;
+            items.CompetencyFormDetailId = 0;// change on edit call
+            collection.push(items);
+        });
+        return collection;
+    }
+
+</script>

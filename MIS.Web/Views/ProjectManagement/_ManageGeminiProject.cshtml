@@ -1,0 +1,181 @@
+﻿
+<div class="row rightMainDivContainer">
+    <div id="viewDocument-leftContainer" class=" col-md-2 roundedCorner" style="background-color:#eee;padding-top:10px">
+        <div id="ProjectsTree">
+        </div>
+        <!-- Definition of context menu -->
+        <ul id="myMenu" class="contextMenu" style="width: 180px; padding: 2px;">
+            <li class="newDocument"><a href="#AddProject">Add Project</a></li>
+        </ul>
+    </div>
+    <div id="viewDocument-rightContainer" class="col-md-10">
+        <div class="profile-statistic tbl plaincustomheader">
+            <div class="tbl-row">
+                <div class="tbl-cell">
+                   GEMINI PROJECT INFORMATION
+                </div>
+            </div>
+        </div>
+        <div class='gridViewBody gridViewContainerBorder'>
+            <div class="col-md-12 clearfix">
+                <table id="tblProjectInfoList" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-10">
+        <div class="profile-statistic tbl plaincustomheader">
+            <div class="tbl-row">
+                <div class="tbl-cell">
+                    GEMINI TEAM INFORMATION
+                </div>
+            </div>
+        </div>
+        <div class="btn-group m-b-1 project-data" role="group" aria-label="Basic example">
+            <button type="button" data-attr-state="active" class="btn btn-default active" id="btnActiveEmp">Active</button>
+            <button type="button" data-attr-state="inactive" class="btn btn-default" id="btnInActiveEmp">InActive</button>
+            <button type="button" data-attr-state="all" class="btn btn-default" id="btnAllEmp">All</button>
+        </div>
+        <div id='documentGridView' class='gridViewBody gridViewContainerBorder'>
+            <div class="col-md-12 clearfix">
+                <table id="tblTeamInfoList" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+            </div>
+        </div>
+    </div>
+    <div class="clearBoth"></div>
+</div>
+
+
+<div id="popupWindowProjectInfo" class="modal fade" role="dialog" aria-labelledby="popupWindowProjectInfo" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">Add Project</h4>
+            </div>
+            <div class="container margin-top-10">
+                <div class="form-group row">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Project Name<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control validation-required txtInput" id="txtProjectName" placeholder="Project Name" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Description<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control validation-required txtInput" id="txtProjectDescription" placeholder="Description" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Industry Type<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <select class="form-control select-validate validation-required" id="ddlProjectIndustryType"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Start Date<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="inputGroupContainer  date date-picker" id="txtProjectStartDate">
+                                <div class="input-group">
+                                    <input type="text" class="form-control validation-required" readonly="" name="FromDate" placeholder="From" />
+                                    <span class="input-group-btn">
+                                        <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                            @*<input type="text" class="form-control validation-required txtInput" placeholder="Start Date" />*@
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>End Date<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="inputGroupContainer  date date-picker" id="txtProjectEndDate">
+                                <div class="input-group">
+                                    <input type="text" class="form-control validation-required" readonly="" name="FromDate" placeholder="From" />
+                                    <span class="input-group-btn">
+                                        <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                            @*<input type="text" class="form-control validation-required txtInput" placeholder="End Date" />*@
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Status<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <select class="form-control select-validate validation-required" id="ddlProjectStatus"></select>
+                        </div>
+                    </div>
+                </div>
+                <span id="spError-VD"></span>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" id="btnProjectPopup"></button>
+                    <button id="btnCloseAddProject" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="popupWindowShareDocument" class="modal fade" role="dialog" aria-labelledby="popupWindowShareDocument" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <input id="txtShareDocId" type="hidden" />
+                <span id="lblbShareDocTitle"></span>
+            </div>
+            <div class="container margin-top-10">
+                <input id="txtDocIdShareDocWithgropus" type="hidden" />
+                <span id="lblbShareDocTitleWithgropus"></span>
+                <div class="form-group row">
+                    <div class="col-md-5 form-group">
+                        <h4 id="hUsers">Users</h4>
+                        <select id="lstBoxShareDocAllUser" size="10" style="width: 100%; height: 300px; overflow:auto" class="form-control formddl generalinput"></select>
+                    </div>
+                    <div class="col-md-2 form-group">
+                        <div class="col-md-12" style="margin-top: 150px;">
+                            <button id="btnShareDocumentAdd" type="button" class="btn default">>>></button>
+                            <button id="btnShareDocumentRemove" type="button" class="btn default margin-top-10"><<<</button>
+                        </div>
+                    </div>
+                    <div class="col-md-5 form-group">
+                        <div class="">
+                            <h4 id="hSharedUsers">Shared with users</h4>
+                            <select id="lstBoxShareDocSharedUser" size="10" style="width: 100%; height: 300px; overflow:auto" class="form-control formddl generalinput"></select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button id="btnCloseGroups" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/app/ProjectManagement/projectinformation.js?v=2.1"></script>

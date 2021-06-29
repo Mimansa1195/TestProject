@@ -1,0 +1,73 @@
+﻿<div class="container-fluid">
+    <section class="card">
+        <div class="card-block">
+            <h5 class="with-border m-t-0">My Achievements</h5>
+            <div class="row">
+                <label style="margin-left:15px;">Financial year</label>
+                <div class="col-md-3 col-sm-3">
+                    <select id="showAchievementYear" style="text-align:center" class="form-control select2"></select>
+                </div>
+                <div class="col-md-2 col-sm-6">
+                    <button type="button" style="display:none;" class="btn btn-success float-right" id="btnAddAchievement">Add Achievement</button>
+                </div>
+            </div>
+            <div class="clearfix"><br /></div>
+            <table id="tblMyAchievements" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+        </div>
+    </section>
+</div>
+
+
+
+<div id="modal-uploadMyAchievement" class="modal fade" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" id="modal-uploadMyAchievementContainer">
+    </div>
+</div>
+
+<div id="viewAchievementModal" class="modal fade" role="dialog" aria-labelledby="viewDocumentModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">Add Achievements</h4>
+            </div>
+            <div class="container margin-top-25 margin-bottom-15">
+                <div class="form-group">
+                    <label style="display:inline-block;">  Financial Year: </label>
+                    <input style="display:inline-block;text-align:center;width:120px;margin: 0 10px;" type="text" disabled id="showAppraisalYear" class="form-control" />
+                    <label style="display:inline-block;"> 1<sup>st</sup> April <span id="cntYear"></span> to 31<sup>st</sup> March <span id="nxtYear"></span></label>
+                    <input type="hidden" id="txtHiddenGoalCycleId" />
+                </div>
+                <div class="clearfix"></div>
+                <a id="btnAddNewAchievement" data-toggle="modal" class="btn btn-primary pull-left"><i class="fa fa-plus"></i></a>
+                &nbsp;<span>Click here to add achievement.</span><br />
+                &nbsp;<span class="spnError">To add multiple achievements repeat this [+] action.</span>
+                <div id="dynamicAddAchievement" class="padding-top10">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnSubmitAchievement" class="btn btn-success"><i class="fa fa-save"></i>&nbsp;Submit</button>
+                <button data-dismiss="modal" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div id="modalViewAchievementPopUp" class="modal fade" role="dialog" aria-labelledby="modalViewAchievementPopUp">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">View Achievements</h4>
+            </div>
+            <div class="container margin-top-25 margin-bottom-15  ">
+                <table id="tblViewMyAchievements" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+            </div>
+            <div class="modal-footer">
+                <button data-dismiss="modal" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/app/AppraisalManagement/myachievement.js?v=1.7"></script>

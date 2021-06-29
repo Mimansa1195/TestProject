@@ -1,0 +1,170 @@
+﻿<div class="container-fluid">
+    <section class="card">
+        <div class="card-block">
+            <h5 class="with-border m-t-0">Competency Form</h5>
+            <div id="appraisalsettingsDiv">
+                <div class="white-light-bg">
+                   <div>
+                           <a id="btnAddCompetencyForm" data-toggle="modal" class="btn btn-success">Add Competency Form</a>
+                   </div>
+                    <div class="row margin-top-10">
+                        <div id="divAppraisalSettingFilter">
+                           <div class="row">
+                              <div class="col-md-12">
+                                  <div class="form-group col-sm-6 col-md-4 col-lg-3">
+                                      <label>Appraisal Cycle<span class="spnError">*</span></label>
+                                      <select id="ddlAppraisalCycleMaster" class="form-control select2 validation-required" aria-hidden="true"></select>
+                                  </div>
+                                  <div class="form-group col-sm-6 col-md-4 col-lg-3">
+                                      <label>Location<span class="spnError">*</span></label>
+                                      <select id="ddlCountryMaster" class="form-control select2 validation-required" aria-hidden="true"></select>
+                                  </div>
+                                  <div class="form-group col-sm-6 col-md-4 col-lg-3">
+                                      <label>Vertical<span class="spnError">*</span></label>
+                                      <select id="ddlVerticalMaster" class="form-control select2 validation-required" aria-hidden="true"></select>
+                                  </div>
+                                  <div class="form-group col-sm-6 col-md-4 col-lg-3">
+                                      <label>Division<span class="spnError">*</span></label>
+                                      <select id="ddlDivisionMaster" class="form-control multiselect multipleSelect validation-required" aria-hidden="true" multiple="multiple"></select>
+                                  </div>
+                              </div>
+                           </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group col-sm-6 col-md-4 col-lg-3">
+                                        <label>Department<span class="spnError">*</span></label>
+                                        <select id="ddlDepartmentMaster" class="form-control multiselect multipleSelect validation-required" aria-hidden="true" multiple="multiple"></select>
+                                    </div>
+                                    <div class="form-group col-sm-6 col-md-4 col-lg-3">
+                                        <label>Designation<span class="spnError">*</span></label>
+                                        <select id="ddlPopDesignationMaster" multiple="multiple" class="form-control multiselect multipleSelect validation-required" aria-hidden="true"></select>
+                                    </div>
+                                    @*<div class="form-group col-sm-6 col-md-4 col-lg-3">
+                                        <label>Year<span class="spnError">*</span></label>
+                                        <select id="ddlYearMaster" class="form-control select2 validation-required" aria-hidden="true"></select>
+                                    </div>*@
+                                    <div class="form-group col-sm-6 col-md-4 col-lg-3">
+                                        <label>&nbsp;</label>
+                                        <button id="btnFilterSearch" class="btn btn-primary" type="button"><i class="fa fa-search"></i>&nbsp; Search</button>
+                                        <button id="btnFilterReset" class="btn btn-default" type="button"><i class="fa fa-refresh"></i>&nbsp; Reset</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="divCompetencyFormList">
+                        <div class="col-md-12">
+                            <table id="tblCompetencyForm" data-filter-control="true" data-toolbar="#toolbar" class="table table-hover"></table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- modal placeholder-->
+<div id="addCompetencyForm" class="modal fade" role="dialog" aria-labelledby="addCompetencyForm" aria-hidden="true">
+    <div class="modal-full modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">Create Competency Form</h4>
+            </div>
+            <div class="modal-body" id="addCompetencyFormContainer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- modal placeholder-->
+<div id="EditCompetencyForm" class="modal fade" role="dialog" aria-labelledby="EditCompetencyForm" aria-hidden="true">
+    <div class="modal-full modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">Update Competency Form</h4>
+                <input type="hidden" name="name" value="" id="hdnCompetencyFormId" />
+            </div>
+            <div class="modal-body" id="EditCompetencyFormContainer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="CloneCompetencyForm" class="modal fade" role="dialog" aria-labelledby="CloneCompetencyForm" aria-hidden="true">
+    <div class="modal-full modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">Clone Competency Form</h4>
+                <input type="hidden" name="name" value="" id="hdnCompetencyFormIdClone" />
+            </div>
+            <div class="modal-body" id="CloneCompetencyFormContainer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="popupAddParameter" class="modal fade" role="dialog" aria-labelledby="mypopup" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="popupMealPeriodTitle" class="modal-title">Add Parameter</h4>
+                <input type="hidden" value="1" id="isFinalize" />
+            </div>
+            <div class="modal-body" id="modalAddParameter">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="popupViewForm" class="modal fade" role="dialog" aria-labelledby="popupViewForm" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="popupMealPeriodTitle" class="modal-title">View Competency Form</h4>
+            </div>
+            <div class="modal-body" id="modalAddParameter">
+               <div class="row">
+                   <div class="form-group full-width col-sm-6 col-md-6 col-lg-6">
+                       <label><strong>Location</strong></label>
+                       <label id="lblLocation"></label>
+                   </div>
+                   <div class="form-group full-width col-sm-6 col-md-6 col-lg-6">
+                       <label><strong>Vertical</strong></label>
+                       <label id="lblVertical"></label>
+                   </div>
+                   <div class="form-group full-width col-sm-6 col-md-6 col-lg-6">
+                       <label><strong>Division</strong></label>
+                       <label id="lblDivision"></label>
+                   </div>
+                   <div class="form-group full-width col-sm-6 col-md-6 col-lg-6">
+                       <label><strong>Department</strong></label>
+                       <label id="lblDepartment"></label>
+                   </div>
+                   <div class="form-group full-width col-sm-6 col-md-6 col-lg-6">
+                       <label><strong>Designation</strong></label>
+                       <label id="lblDesignation"></label>
+                   </div>
+                   <div class="form-group full-width col-sm-6 col-md-6 col-lg-6">
+                       <label><strong>FormName</strong></label>
+                       <label id="lblFormName" style="word-wrap:break-word"></label>
+                   </div>
+                   <div class="col-md-12">
+                       <table id="tblCompetencyAndParameterList" data-filter-control="true" data-toolbar="#toolbar" class="table table-hover"></table>
+                   </div>
+               </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<script src="~/Scripts/app/AppraisalManagement/filter.js"></script>*@
+<script src="~/Scripts/app/AppraisalManagement/competencyform.js?v=12"></script>

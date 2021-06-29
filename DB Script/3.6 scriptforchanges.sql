@@ -1,0 +1,2 @@
+ UPDATE A SET A.AssignedTillDate=B.LastModifiedDate From UserAccessCard A INNER JOIN UserAccessCard B 
+         WITH (NOLOCK) ON A.UserAccessCardId=B.UserAccessCardId  WHERE  A.IsDeleted=1 AND A.IsActive=0

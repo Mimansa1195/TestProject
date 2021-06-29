@@ -1,0 +1,125 @@
+@media (min-width: 544px) {
+    #teamAppraisalFormPopup .modal-dialog {
+        max-width: 100% !important;
+        margin: 30px auto;
+    }
+
+      #selfAppraisalFormPopup .modal-dialog {
+        max-width: 100% !important;
+        margin: 30px auto;
+    }
+}
+
+#selfAppraisalFormPopup .modal {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+}
+
+#selfAppraisalFormPopup .modal-dialog {
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    height: 100% !important;
+    width: 100% !important;
+}
+
+#selfAppraisalFormPopup .modal-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    border: none;
+}
+
+#selfAppraisalFormPopup .modal-content {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+#selfAppraisalFormPopup .modal-body {
+    position: absolute;
+    /*top: 50px;*/
+    top: 0px !important;
+    bottom: 0;
+    font-size: 15px;
+    overflow: auto;
+    margin-bottom: 60px;
+    padding: 0 15px 0;
+    width: 100% !important;
+}
+
+#selfAppraisalFormPopup .modal-footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 60px;
+    padding: 10px;
+    background: #f1f3f5;
+}
+
+
+#teamAppraisalFormPopup .modal {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+}
+
+#teamAppraisalFormPopup .modal-dialog {
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    height: 100% !important;
+    width: 100% !important;
+}
+
+#teamAppraisalFormPopup .modal-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    border: none;
+}
+
+#teamAppraisalFormPopup .modal-content {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+#teamAppraisalFormPopup .modal-body {
+    position: absolute;
+    top: 0px !important;
+    bottom: 0;
+    font-size: 15px;
+    overflow: auto;
+    margin-bottom: 60px;
+    padding: 0 15px 0;
+    width: 100% !important;
+}
+
+#teamAppraisalFormPopup .modal-footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 60px;
+    padding: 10px;
+    background: #f1f3f5;
+}

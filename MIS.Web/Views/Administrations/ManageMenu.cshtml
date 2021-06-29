@@ -1,0 +1,150 @@
+﻿<div class="container-fluid">
+    <section class="card">
+        <div class="card-block">
+            <h5 class="with-border m-t-0">Manage Navigation Menu</h5>
+            <div>
+                <button type="button" class="btn btn-success" onclick="showPopupAddNavigationMenu();">Add Navigation Menu</button>
+            </div>
+            <div role="tabpanel" class="tab-pane margin-top-10">
+                <section>
+                    <div class="row form-body">
+                        <div class="col-md-12 clearfix">
+                            <table id="tblNavigationMenuList" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div id="mypopupAddNavigationMenu" class="modal fade" role="dialog" aria-labelledby="mypopup" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" id="btnClose" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">Add Navigation Menu</h4>
+            </div>
+            <div class="modal-body" id="divAddNavigationMenu">
+                <div class="row">
+                    <div class="col-md-4 form-group">
+                        <label>Menu Name<span class="spnError">*</span></label>
+                        <input type="text" class='form-control validation-required txtDocument generalinput' id="txtMenuName" />
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label>Action Name<span class="spnError">*</span></label>
+                        <input type="text" class='form-control validation-required txtDocument generalinput' id="txtActionName" />
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-md-3 form-group clearfix">
+                        Select Menu
+                        <input type="checkbox" id="menuType" name="menuType" data-width="200px" data-height="38px" data-toggle="toggle" data-on="New Menu" data-off="Child Menu" data-onstyle="success" data-offstyle="info" data-size="micro">
+                    </div>
+                    <div class="col-md-3 form-group clearfix" id="divIsNewMenu" style="display:block">
+                        <label>Controller Name<span class="spnError">*</span></label>
+                        <input type="text" class='form-control validation-required txtDocument generalinput' id="txtControllerName" />
+                    </div>
+                    <div class="col-md-3 form-group clearfix" id="divIsParentMenu">
+                        <label>Controller Name<span class="spnError">*</span></label>
+                        <select id="parentControllerScroll" class="form-control select2 validation-required"></select>
+                    </div>
+                    <div class="col-md-3 form-group clearfix">
+                        <label>CSS Class<span class="spnError"></span></label>
+                        <input type="text" class='form-control' id="CSSClass" />
+                    </div>
+                    <div class="col-md-3 form-group clearfix">
+                        <label>Menu Sequence<span class="spnError">*</span></label>
+                        <input class="form-control validation-required" type="number" name="sequence"  step="1" min="1" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  max="50" id="txtSequenceScroll" value="1">
+                    </div>
+                    <div class="col-md-12 clearfix">
+                        <div class="col-md-3 form-group clearfix">
+                            <label><input type="checkbox" id="IsLinkEnabled"> Is Link Enabled</label>
+                        </div>
+                        <div class="col-md-3 form-group clearfix">
+                            <label><input type="checkbox" id="IsMenuVisible"> Is Menu Visible</label>
+                        </div>
+
+                        <div class="col-md-3 form-group clearfix">
+                            <label><input type="checkbox" id="IsDelegatable"> Is Delegatable</label>
+                        </div>
+                        <div class="col-md-3 form-group clearfix">
+                            <label><input type="checkbox" id="IsTabMenu"> Is Tab Menu</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-success" id="btnSaveMenus"><i class="fa fa-save"></i>&nbsp;Add</button>
+            <button id="btnCloseAddMenu" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close</button>
+        </div>
+    </div>
+</div>
+</div>
+
+<div id="updateNavigationMenu" class="modal fade" role="dialog" aria-labelledby="mypopup" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">Edit Navigation Menu</h4>
+            </div>
+            <div class="modal-body" id="divAddNavigationMenuEdit">
+                <div class="row">
+                    <div class="col-md-3 form-group">
+                        <label>Menu Name<span class="spnError">*</span></label>
+
+                        <input type="text" class='form-control validation-required txtDocument generalinput' id="txtMenuNameEdit" />
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label>Action Name<span class="spnError">*</span></label>
+                        <input type="text" class='form-control validation-required txtDocument generalinput' id="txtActionNameEdit" />
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-md-3 form-group">
+                        Select Menu
+                        <input type="checkbox" id="menuTypeEdit" name="menuType"  data-width="200px" data-height="38px" data-toggle="toggle" data-on="New Menu" data-off="Child Menu" data-onstyle="success" data-offstyle="info" data-size="micro">
+                    </div>
+                    <div class="col-md-3 form-group" id="divIsNewMenuEdit">
+                        <label>Controller Name<span class="spnError">*</span></label>
+                        <input type="text" class='form-control validation-required txtDocument generalinput' id="txtControllerNameEdit" />
+                    </div>
+                    <div class="col-md-3 form-group" id="divIsParentMenuEdit">
+                        <label>Controller Name<span class="spnError">*</span></label>
+                        <select id="parentControllerScrollEdit" class="form-control validation-required"></select>
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label>CSS Class<span class="spnError"></span></label>
+                        <input type="text" class='form-control' id="CSSClassEdit" />
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label>Menu Sequence<span class="spnError">*</span></label>
+                        <input class="form-control validation-required" type="number" name="sequence" min="1" max="50" id="txtSequenceScrollEdit">
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label><input type="checkbox" id="IsLinkEnabledEdit"> Is Link Enabled</label>
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label><input type="checkbox" id="IsMenuVisibleEdit"> Is Menu Visible</label>
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label><input type="checkbox" id="IsDelegatableEdit"> Is Delegatable</label>
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label><input type="checkbox" id="IsTabMenuEdit"> Is Tab Menu</label>
+                    </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-success" id="btnUpdate"><i class="fa fa-save"></i>&nbsp;Update</button>
+            <button id="btnCloseEditMenu" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close</button>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+
+<script src="~/Scripts/app/Administrations/manageMenu.js?v=3.0"></script>

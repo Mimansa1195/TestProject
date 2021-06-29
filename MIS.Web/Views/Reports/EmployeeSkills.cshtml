@@ -1,0 +1,58 @@
+﻿<div class="container-fluid">
+    <section class="card">
+        <div class="card-block">
+            <h5 class="with-border m-t-0">Employee Skills</h5>
+            <div class="text-right" style="padding-bottom:5px" id="divDeligation">
+
+            </div>
+            <div class="row form-body">
+                <div class="col-md-12">
+                    <div class="form-group col-md-3">
+                        <label class="control-label">Technology<span class="spnError">*</span></label>
+                        <div>
+                            <p class="form-control-static">
+                                <select class="form-control select-validate validation-required" multiple="multiple" id="ddlSkillsReport">
+                                </select>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label class="control-label">Proficiency Level<span class="spnError">*</span></label>
+                        <div>
+                            <p class="form-control-static">
+                                <select class="form-control select-validate validation-required" multiple="multiple" id="ddlSkillLevelReport"></select>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label class="control-label">Skill Type<span class="spnError">*</span></label>
+                        <div>
+                            <p class="form-control-static">
+                                <select class="form-control select-validate validation-required" multiple="multiple" id="ddlSkillTypeReport"></select>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label class="control-label">Min. Experience (In Months)</label>
+                        <div>
+                            <p class="form-control-static">
+                                <input type="text" id="expinMonthsReport" maxlength="3" class="form-control validation-required" placeholder="Min. Experience (In Months)" onkeypress="return isNumber(event)" />
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-12">
+                    <div class="col-md-12">
+                        <div class="form-group text-right">
+                            <button id="btnReportEmployeeSkills" type="button" class="btn green"><i class="fa fa-search"></i>&nbsp;Search</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 clearfix">
+                    <table id="tblReportEmployeeSkillsList" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script src="~/Scripts/app/Reports/employeeSkills.js?v=1.0"></script>

@@ -1,0 +1,116 @@
+﻿<div class="container-fluid">
+    <section class="card">
+        <div class="card-block">
+            <h5 class="with-border m-t-0">Manage Asset</h5>
+            <div class="form-group row">
+                <div class="col-sm-4" style="text-align:left">
+                    <button type="button" class="btn btn-success" onclick="showPopupAddNewAsset()">Add new asset</button>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane">
+                <section>
+                    <div class="row form-body">
+                        <div class="col-md-12 clearfix">
+                            <table id="tblAllAsset" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div id="popupAssetDetails" class="modal fade" role="dialog" aria-labelledby="mypopup" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="popupAssetDetailsTitle" class="modal-title"></h4>
+            </div>
+            <div class="modal-body" id="modalAssetDetails">
+                <input type="hidden" id="hdnAssetDetailId" />
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Asset type<span class="spnError">*</span></label>
+                            <div class="inputGroupContainer">
+                                <div class="input-group">
+                                    @*<span class="input-group-addon"><i class="fa fa-list"></i></span>*@
+                                    <select readonly="" class="form-control select-validate validation-required" placeholder="Asset type" id="assetType" onchange="onAssetTypeChange();">
+                                        <option value="0">Select</option>
+                                    </select>
+                                    <label><span id="assetTypetext"></span></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Asset model<span class="spnError">*</span></label>
+                            <div class="inputGroupContainer">
+                                <div class="input-group">
+                                    @*<span class="input-group-addon"><i class="fa fa-list"></i></span>*@
+                                    <select readonly="" class="form-control select-validate validation-required" placeholder="Asset model" id="assetModel">
+                                        <option value="0">Select</option>
+                                    </select>
+                                    <label><span id="assetModeltext"></span></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Serial number<span class="spnError">*</span></label>
+                            <div class="inputGroupContainer">
+                                <div class="input-group">
+                                    <input type="text" class="form-control validation-required" id="serialNumber" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Asset tag<span class="spnError">*</span></label>
+                            <div class="inputGroupContainer">
+                                <div class="input-group">
+                                    <input type="text" class="form-control validation-required" id="assetTag" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Attribute type<span class="spnError">*</span></label>
+                            <div class="inputGroupContainer">
+                                <div class="input-group">
+                                    <input type="text" class="form-control validation-required" id="attributeType" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Attribute value<span class="spnError">*</span></label>
+                            <div class="inputGroupContainer">
+                                <div class="input-group">
+                                    <input type="text" class="form-control validation-required" id="attributeValue" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btnAddAsset" type="button" class="btn btn-success" onclick="addAsset()"><i class="fa fa-save"></i>&nbsp;Add</button>
+                <button id="btnUpdateAsset" type="button" class="btn btn-success" onclick="updateAsset()"><i class="fa fa-save"></i>&nbsp;Update</button>
+                <button id="btnClosePopupAssetDetails" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/app/Asset/manage.js?v=1.4"></script>

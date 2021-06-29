@@ -1,0 +1,173 @@
+﻿<div id="InActivateEmployeeModal" class="modal fade in" role="dialog" aria-labelledby="InActivateEmployeeModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 id="modalTitle" class="modal-title"> De-activate Employee</h4>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" name="hdnEmployeeId" id="hdnEmployeeId" value="" />
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Employee Name</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="txtEmpName" disabled="disabled" placeholder="Employee Name">
+                            </div>
+                        </div>
+                    </div>
+                    @*</div>
+            <div class="row">*@
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Date of Leaving<span class="spnError">*</span></label>
+                            <div class="inputGroupContainer date date-picker" id='datetimepicker1'>
+                                <div class="input-group">
+                                    <input type="text" class="form-control validation-required" id="txtDate" readonly="">
+                                    <span class=" input-group-btn">
+                                        <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 clearfix">
+                        <div class="input-group">
+                            <table id="tblReportees" data-filter-control="true" data-toolbar="#toolbar" class="table table-hover"></table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-12 text-right">
+                            <div class="form-group">
+                                <button id="btnInActivate" type="button" class="btn btn-success" onclick="changeUserStatus()">@*<i class="fa fa-save"></i>&nbsp;*@Update </button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> &nbsp; Close </button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+
+
+@*<div id="InActivateEmployeeModal" class="modal fade in" role="dialog" aria-labelledby="InActivateEmployeeModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 id="modalTitle" class="modal-title">InActivate Employee</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input type="text" disabled="disabled" id="txtEmpName"/>
+                            </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Enter Termination Date<span class="spnError">*</span></label>
+                                <div class="inputGroupContainer date date-picker" id='datetimepicker1'>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control validation-required" id="txtDate" readonly="" placeholder="Enter Termination Date">
+                                        <span class=" input-group-btn">
+                                            <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" name="hdnEmployeeId" id="hdnEmployeeId" value="" />
+                        </div>
+                        <div class="row text-right">
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <button id="btnInActivate" type="button" class="btn btn-success" onclick="changeUserStatus()"><i class="fa fa-save"></i>&nbsp;update</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;Close </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+<table id="tblActiveUser" data-filter-control="true" data-toolbar="#toolbar" class="table table-hover"></table>
+
+<script>
+    $(document).ready(function () {
+        getActiveEmployees();
+    });
+
+    function getActiveEmployees() {
+        var jsonObject = {
+            status: 1,
+        };
+        calltoAjax(misApiUrl.getAllEmployeesByStatus, "POST", jsonObject,
+            function (result) {
+                var resultData = $.parseJSON(JSON.stringify(result));
+                $("#tblActiveUser").dataTable({
+                    "responsive": true,
+                    "autoWidth": false,
+                    "paging": true,
+                    "bDestroy": true,
+                    "searching": true,
+                    "ordering": true,
+                    "info": true,
+                    "deferRender": true,
+                    "aaData": resultData,
+                    "aoColumns": [
+                        {
+                            "mData": "Name",
+                            "sTitle": "Name",
+                        },
+                        {
+                            "mData": "EmployeeId",
+                            "sTitle": "Employee Id",
+                        },
+                        {
+                            "mData": "EmailId",
+                            "sTitle": "Email Id",
+                        },
+                        {
+                            "mData": null,
+                            "sTitle": "Action",
+                            'bSortable': false,
+                            "sClass": "text-left",
+                            mRender: function (data, type, row) {
+
+                                var html = '';
+                                html += '<button type="button" class="btn btn-sm teal" data-toggle="modal" data-target="#myModal"' + 'onclick="loadActiveUserDetailContainer(\'' + row.EmployeeAbrhs + '\')" /*data-toggle="tooltip"*/ title="Edit user details"><i class="fa fa-edit"> </i></button>';
+                                html += '&nbsp;<button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#myModal"' + 'onclick="loadFullNFinalDetailContainer(\'' + row.EmployeeAbrhs + '\',\'' + row.DOJ+'\')" /*data-toggle="tooltip"*/ title="Full & Final"><i class="glyphicon glyphicon-eye-open"> </i></button>';
+                                //html += '&nbsp;<button type="button" class="btn btn-sm btn-danger" data-toggle="modal" ' + 'onclick="inActivateEmployee(\'' + row.EmployeeAbrhs + '\',\'' + row.Name + '\')" /*data-toggle="tooltip" */title="Inactivate employee"><i class="fa fa-trash-o"> </i> </button>';
+                                return html;
+                            }
+                        },
+                    ]
+                });
+            });
+    }
+
+    function loadActiveUserDetailContainer(employeeAbrhs) {
+        $('#userManagement').addHiddenInputData({
+            "hdnEmployeeAbrhs": employeeAbrhs,
+            "requestType": 1,
+        });
+        loadUrlToId(misAppUrl.manageUserDetail, 'divActiveUserPartialContainer');
+    }
+
+    function loadFullNFinalDetailContainer(employeeAbrhs, DOJ) {
+        $('#userManagement').addHiddenInputData({
+            "hdnEmployeeAbrhs": employeeAbrhs,
+            "hdnDOJ": DOJ,
+            "requestType": 1,
+        });
+        loadUrlToId(misAppUrl.fullNFinalDetailContainer, 'divActiveUserPartialContainer');
+    }
+</script>

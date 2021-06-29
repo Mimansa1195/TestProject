@@ -1,0 +1,292 @@
+﻿/***
+F&F
+Author: Sanjay Singh Bisht
+License: no license
+***/
+.p-5 {
+    padding: 5px !important;
+}
+
+.statistic-box .number {
+    font-size: 2em;
+}
+
+.emp-image {
+    height: 230px;
+    max-width: 100%;
+    border: 1px solid #c7c7c7;
+    border-radius: 50%;
+    width: 250px;
+}
+
+#leaveCard .col-sm-2:nth-child(1) .statistic-box, .red, .CL {
+    background: #fa424a !important;
+    color: #fff;
+}
+
+#leaveCard .col-sm-2:nth-child(2) .statistic-box, .PL {
+    background: #ac6bec !important;
+    color: #fff;
+}
+
+#leaveCard .col-sm-2:nth-child(3) .statistic-box, .LWP {
+    background: #fdad2a !important;
+    color: #fff;
+}
+
+#leaveCard .col-sm-2:nth-child(4) .statistic-box, .COFF {
+    background: #46c35f !important;
+    color: #fff;
+}
+
+#leaveCard .col-sm-2:nth-child(5) .statistic-box, .WFH {
+    background: #2794ee !important;
+    color: #fff;
+}
+
+#leaveCard .col-sm-2:nth-child(6) .statistic-box, .ML {
+    background: #707070 !important;
+    color: #fff;
+}
+
+#leaveCard .col-sm-2:nth-child(6) .statistic-box, .PLM {
+    background: #707070 !important;
+    color: #fff;
+}
+
+#leaveCard .col-sm-2:nth-child(7) .statistic-box, .LNSA {
+    background: #0cafab !important;
+    color: #fff;
+}
+
+#leaveCard .col-sm-2:nth-child(8) .statistic-box, .OutDuty {
+    background: #de66e9 !important;
+    color: #fff;
+}
+
+.card {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+}
+
+.card-header {
+    padding: 10px;
+    margin-bottom: 0;
+    background-color: rgba(0,0,0,.03);
+    border-bottom: 1px solid rgba(0,0,0,.125);
+    border-radius: .25em .25em 0 0;
+    font-weight: normal;
+    font-size: 12px;
+}
+
+.card-body {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+}
+
+#leavetype .list-group {
+    background: white;
+}
+
+#leavetype label, #boxes label, .financial-years label {
+    display: inline-block;
+    /* font-weight: normal; */
+    margin-left: 5px;
+    position: relative;
+    top: -2px;
+}
+
+#financialYears a {
+    font-size: 12px;
+    font-weight: normal
+}
+
+#financialYears .nav.nav-pills .nav-link {
+    padding: 5px 15px 3px 15px;
+}
+
+#financialYears a {
+    font-size: 12px;
+    font-weight: normal;
+    background: #d8d6d6;
+}
+
+#financialYears .nav-link.active {
+    background: #00a8ff !important;
+}
+
+#financialYears.nav.nav-pills .nav-item {
+    margin: 2px;
+}
+
+.leaveDates {
+    font-size: 12px;
+    line-height: 15px;
+    padding: 5px 10px;
+    border: 1px solid #c7c7c7;
+}
+
+.expand-dates {
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+#boxes div[class*="section-"] {
+    margin-bottom: 15px;
+}
+
+#boxes .card-body {
+    line-height: 30px;
+    min-height: 180px;
+    max-height: 360px;
+    overflow: auto;
+}
+
+.emp-details-section .list-group-item {
+    padding: 10px 15px !important;
+    background: #fff !important;
+    border: 1px solid #dddddd !important;
+    border-radius: 0 !important;
+    width: 100%;
+    border-bottom: 0 !important;
+}
+
+.emp-details-section .list-group-item:last-child {
+    border-bottom: 1px solid #dddddd !important;
+}
+    .card .list-group-item {
+        position: relative;
+        display: inline-block;
+        padding: 5px 10px 0px 10px;
+        background-color: #d8d6d6;
+        border: 0;
+        border-radius: 25rem;
+        color: #818181;
+        margin: 0 10px 0 0;
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .card .list-group-item label {
+        font-weight: normal
+    }
+
+    .card .list-group-item.active, .fixed-header.affix .list-group-item.active {
+        background-color: #00afb1;
+        color: #fff;
+    }
+
+.fy {
+    font-size: 10px;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+    font-weight: bolder;
+    padding: 5px 10px;
+}
+
+.financial-year {
+    background: #c7c7c7;
+    padding: 3px 5px;
+    height: 25px;
+    line-height: 22px;
+    font-size: 12px;
+}
+
+    .financial-year .fa {
+        margin-right: 5px;
+    }
+/* .financial-year span{
+    font-size: 10px;
+} */
+#boxes .card-body > div {
+    display: none;
+}
+
+    #boxes .card-body > div.active {
+        display: block;
+    }
+
+.fixed-header.affix {
+    z-index: 20;
+    background: rgb(202, 198, 198);
+    padding: 10px;
+    top: 0;
+}
+
+    .fixed-header.affix #leavetype .list-group {
+        border: none;
+        background: none;
+    }
+
+    .fixed-header.affix .list-group-item, .fixed-header.affix #financialYears a {
+        background: #ffffff;
+    }
+
+.fixed-header .list-group {
+    margin-bottom: 10px
+}
+
+.dates-section {
+    display: none;
+    background: #b1d2f7;
+    padding: 5px 10px;
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: 0 3px 0px #749ece;
+}
+
+    .dates-section .badge {
+        display: inline-block;
+        min-width: 49%;
+        padding: 4px 7px 2px 7px;
+        font-size: 11px;
+        font-weight: normal;
+        line-height: 12px;
+        color: #fff;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        background-color: #777;
+        border-radius: 4px;
+        margin: 2px 2px 2px 0;
+        box-shadow: 0px 2px 0px #040202;
+    }
+
+a.toggle-dates-section {
+    float: right;
+    color: #fff !important;
+    background: rgb(12, 141, 216);
+    border-radius: 3px;
+    padding: 2px 5px 0px 5px;
+    line-height: 18px;
+}
+
+@media(min-width:768px) and (max-width: 768px) {
+    #boxes .card-body > div {
+        width: 50%;
+        float: left;
+    }
+}
+
+@media(min-width:320px) and (max-width: 767px) {
+    #boxes .card-body {
+        min-height: 100%;
+        max-height: 100%;
+    }
+}

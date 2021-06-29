@@ -1,0 +1,12 @@
+﻿{
+  "ExcludedMenuForInEligibleUsers": [
+    {
+      "MenuId": 12,
+      "Menuname": "Apply Leave"
+    },
+    {
+      "MenuId": 23,
+      "Menuname": "Apply LNSA"
+    }
+  ]
+}

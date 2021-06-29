@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+<script src="@Url.Content("~/Scripts/lib/jquery.min.js")" type="text/javascript"></script>
+<script language="javascript" type="text/javascript">
+    //if (window.location.hostname !== 'localhost') {
+    //    if (window.location.protocol !== 'https:') {
+    //        window.location = 'https://' + window.location.hostname + (window.location.port ? ':' + window.location.port : '') + window.location.pathname + window.location.hash;
+    //    }
+    //}
+    //Post login script
+    $(function () {
+        blockContainer('One moment please while we collect your information...');
+        misSession.authenticate();
+    });
+</script>
+<script src="~/Scripts/common/mis.basepath.js?v=6.1"></script>
+<script src="~/Scripts/common/mis.common.min.js?v=4.6"></script>
+<script src="@Url.Content("~/Scripts/lib/jquery.blockUI.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/lib/sweetalert.min.js")" type="text/javascript"></script>

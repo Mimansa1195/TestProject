@@ -1,0 +1,91 @@
+﻿<div class="container-fluid">
+    <section class="card">
+        <div class="card-block">
+            <h5 class="with-border m-t-0">Document Permission Group</h5>
+            <div class="row">
+                <div class="col-md-12 clearfix margin-bottom-10">
+                    <button type="button" class="btn btn-success" id="btnAddGroup">Add Group</button>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane">
+                <div class="row">
+                    <div class="col-md-12 clearfix">
+                        <table id="tblGroupsList" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div id="popupWindowPermissionGroupMembers" class="modal fade" role="dialog" aria-labelledby="popupWindowPermissionGroupMembers" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">Share Document</h4>
+                <input type="hidden" name="name" value=" " id="hdnPermissionGroupId" />
+                <div id="groupName" style="color:green"></div>
+            </div>
+            <div class="container margin-top-10">
+                <input id="txtShareDocId" type="hidden" />
+                <span id="lblbShareDocTitle"></span>
+                <div class="form-group row">
+                    <div class="col-md-5 form-group">
+                        <div class="col-md-12">
+                            <h4 id="hUsers">Users</h4>
+                            <select id="lstBoxGroupPermissionAllUser" size="10" style="width: 100%; height: 300px; overflow:auto" class="form-control formddl generalinput"></select>
+                        </div>
+                    </div>
+                    <div class="col-md-2 form-group">
+                        <div class="col-md-12" style="margin-top: 150px;">
+                            <button id="btnPermissionGroupAdd" type="button" class="btn default" style="margin-bottom:5px">>>></button>
+                            <button id="btnPermissionGroupRemove" type="button" class="btn default"><<<</button>
+                        </div>
+                    </div>
+                    <div class="col-md-5 form-group">
+                        <div class="col-md-12">
+                            <h4 id="hSharedUsers">Shared with users</h4>
+                            <select id="lstBoxGroupPermissionSharedUser" size="10" style="width: 100%; height: 300px; overflow:auto" class="form-control formddl generalinput"></select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button id="btnCloseDocPermission" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="popupWindowAddNewDocPermissionGroup" class="modal fade" role="dialog" aria-labelledby="popupWindowAddNewDocPermissionGroup" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">Add Group</h4>
+                <input type="hidden" name="name" value=" " id="hdnPermissionGroupId" />
+            </div>
+            <div class="container margin-top-10">
+                <div class="form-group row" id="divDocGroup">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Group Name<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" class='form-control txtDocument generalinput validation-required' id="txtPermissionGroupName" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" id="btnSavePermissionGroup"><i class="fa fa-save"></i>&nbsp;Add</button>
+                    <button id="btnCloseAddGroup" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/app/KnowledgeBase/docpermissiongroup.js"></script>

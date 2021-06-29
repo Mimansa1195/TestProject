@@ -1,0 +1,448 @@
+﻿<link href="~/Content/app/appraisalForm.css?v=4.5" rel="stylesheet" />
+<style>
+    .label-input-container textarea {
+        border: 1px solid #F4F4F4;
+        height: 250px;
+        padding: 10px;
+        width: 100%;
+        font-size: 16px;
+    }
+
+    .rating-button {
+        width: 20% !important;
+        background-color: transparent !important;
+    }
+</style>
+<div id="appraisalForm">
+    <div class="content">
+        <div class="idealsteps-container">
+            <nav class="idealsteps-nav">
+
+            </nav>
+            <div action="" novalidate autocomplete="off" class="idealforms">
+                <div class="idealsteps-wrap">
+                    <!-- Step 1 -->
+                    <section class="idealsteps-step" id="step1">
+                        <div class="white-light-bg">
+                            <div class="col-md-12">
+                                <section class="invoice" id="appraisalForm">
+                                    <div class="row" id="appraisalFormDivGroup1">
+                                        <div class="col-sm-4 invoice-col">
+                                            <h4 class="page-header">
+                                                <i class="fa fa-user" style="color: #793f79 !important;"></i>&nbsp;Appraisee Details
+                                            </h4>
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <label class="col-sm-4 control-label" for="inputEmail3">Name</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" id="txtAppraiseName" readonly="readonly" class="form-control" />
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <br>
+                                                <div class="form-group">
+                                                    <label class="col-sm-4 control-label" for="inputEmail3">Designation</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" id="txtAppraiseDesignation" readonly="readonly" class="form-control" />
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <br>
+                                                <div class="form-group">
+                                                    <label class="col-sm-4 control-label" for="inputEmail3">Date of Joining</label>
+                                                    <div class="col-sm-8">
+                                                        <div class="input-group">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </div>
+                                                            <input type="text" id="txtAppraiseDOJ" readonly="readonly" class="form-control" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-4 invoice-col">
+                                            <h4 class="page-header">
+                                                <i class="fa fa-user" style="color: #793f79 !important;"></i>&nbsp;Appraiser Details
+                                            </h4>
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <label class="col-sm-4 control-label">Name</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" id="txtAppraiserName" readonly="readonly" class="form-control" />
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <br>
+                                                <div class="form-group">
+                                                    <label class="col-sm-4 control-label">Designation</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" id="txtAppraiserDesignation" readonly="readonly" class="form-control" />
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <br>
+                                                <div class="form-group no-padding">
+                                                    <label class="col-sm-4 control-label">Review Period From</label>
+                                                    <div class="col-sm-8">
+                                                        <div class="input-group">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </div>
+                                                            <input type="text" id="txtReviewFrom" readonly="readonly" class="form-control pull-right" />
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-4 invoice-col">
+                                            <h4 class="page-header">
+                                                <i class="fa fa-user" style="color: #793f79 !important;"></i>&nbsp;Approver Details
+                                            </h4>
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <label class="col-sm-4 control-label">Name</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" id="txtReviewerName" readonly="readonly" class="form-control" />
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <br>
+                                                <div class="form-group">
+                                                    <label class="col-sm-4 control-label">Designation</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" id="txtReviewerDesignation" readonly="readonly" class="form-control" />
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <br>
+                                                <div class="form-group no-padding">
+                                                    <label class="col-sm-4 control-label">Review Period To</label>
+                                                    <div class="col-sm-8">
+                                                        <div class="input-group">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </div>
+                                                            <input type="text" id="txtReviewTo" class="form-control pull-right" readonly="readonly" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="border-top:1px solid #e2e2e2; margin: 5px 0"></div>
+                                    <div class="col-md-12 rightMainDivContainer" style="font-size: 14px;font-family: segoe ui;">
+                                        <div class="text-center margin-bottom-10"><span class="boldText"> (PLEASE DO NOT START FILLING THE ANNUAL REVIEW FORM UNLESS YOU READ THE COMPLETE INSTRUCTIONS) </span></div>
+                                        <ol type="1">
+                                            <li> The appraisal process will be having 3 stages of evaluation namely self(appraisee), appraiser and approver. </li>
+                                            <li> The employee has to fill their part (self) and submit the form (uploaded on MIS) followed by appraiser for evaluation and so on till the final rating is locked. </li>
+                                            <li> No print outs or snapshots of the form would be allowed. </li>
+                                            <li> The review forms contain confidential information and should be treated with due respect for the individual&#39;s privacy. Any violation of the same would be viewed strictly.</li>
+                                            <li> The appraisal form should contain sufficient information and analysis to support the Self and Appraiser’s Ratings. Incomplete forms or forms with inadequate data will be sent back for a re-review. </li>
+                                            <li> Employees are advised to refrain themselves from giving a generalized score and if the ratings are not supported by proper comment/feedback then will not qualify for rating factor. </li>
+                                            <li> Employees are requested to rate themselves against each competency/KRA where a particular score signifies any of the below mentioned factors. </li>
+                                        </ol>
+                                        <span style="font-family: 'segoe ui';font-size: 14px;font-weight: normal;padding-top: 15px;display: block;padding-bottom: 10px;">
+                                            The following rating scale guide is being provided to assist the evaluator (self/appraiser/approver) in assigning the most appropriate measurement of the employees’ performance factors, behavioral traits, and supervisory factors.
+                                        </span>
+                                        <ul>
+                                            <li> <span class="boldText">BELOW EXPECTATION (1) – </span>Unacceptable - Consistently fails to meet job requirements; performance clearly below minimum requirements. Immediate improvement required to maintain employment.</li>
+                                            <li> <span class="boldText">MEET SOME EXPECTATION (2) </span>Needs Improvement – Occasionally fails to meet job requirements; performance must improve to meet expectations of the position.</li>
+                                            <li> <span class="boldText">MEET EXPECTATION (3) – </span>Able to perform 100% of job duties satisfactorily. Normal guidance and supervision are required.</li>
+                                            <li> <span class="boldText">EXCEEDS EXPECTATION (4) – </span>Frequently exceeds job requirements; all planned objectives were achieved.</li>
+                                            <li> <span class="boldText">SUPER EXCEEDS EXPECTATION (5) – </span>Consistently exceeds job requirements; this is the highest level of performance that can be attained.</li>
+                                        </ul>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Step 2 -->
+
+                    <section class="idealsteps-step" id="step2">
+                        <div class="col-sm-12">
+                            <table class="table appraisalHeaderTable">
+                                <thead>
+                                    <tr>
+                                        <th>Technical Competency</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                            <table id="gridAppraisalTechnicalCompetency" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info" style="width:100%;margin-top:-1px !important;"></table>
+                        </div>
+                        <div class="col-sm-12">
+                            <table class="table appraisalHeaderTable">
+                                <thead>
+                                    <tr>
+                                        <th>Behavioural Competency</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                            <table id="gridAppraisalBehaviouralCompetency" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info" style="width:100%;margin-top:-1px !important;"></table>
+                        </div>
+                    </section>
+
+                    <!-- Step 3 : Goals -->
+
+                    <section class="idealsteps-step" id="step3">
+                        <div class="col-sm-12">
+                            <table class="table appraisalHeaderTable">
+                                <thead>
+                                    <tr>
+                                        <th>Goals</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                            <table id="gridAppraisalGoals" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info" style="width:100%;margin-top:-1px !important;"></table>
+                        </div>
+                    </section>
+                    <!-- Step 4 : Achievements -->
+
+                    <section class="idealsteps-step" id="step4">
+                        <div class="col-sm-12">
+                            <table class="table appraisalHeaderTable">
+                                <thead>
+                                    <tr>
+                                        <th>Achievements</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                            <div id="divEmployeeAchievements" style="padding-top:15px"></div>
+                            <table id="gridAppraisalAchievements" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info" style="width:100%;margin-top:-15px !important;"></table>
+                        </div>
+                    </section>
+
+                    <!-- Step 5 : Promotions -->
+
+                    <section class="idealsteps-step" id="step5" style="display:none">
+                        <div class="col-sm-12">
+                            <table class="table appraisalHeaderTable">
+                                <thead>
+                                    <tr>
+                                        <th>Promotions</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                            <div id="divPromotions" class="row">
+                                <div class="col-sm-12">
+                                    <table class="table table-striped" style="vertical-align:top;border:1px solid #eee">
+                                        <thead>
+                                            <tr>
+                                                <th>Appraiser</th>
+                                                <th>Approver</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td style="vertical-align:top;width: 50%;border-right:1px solid #eee" id="appraiserPromotionsDiv">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <div class="checkbox">
+                                                                    <label><input type="checkbox" value="" id="ckbRecommendedDesignationAprs" onclick="showHidePromotionsControls(1);"> Would you like to recommend the employee for next level</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" id="divAppraiserPromotionsControls">
+                                                        <div class="col-md-8">
+                                                            <div class="form-group">
+                                                                <label>Recommended Designation<span class="spnError">*</span></label>
+                                                                <select style="width: 100%;" id="ddlRecDesigAppraiser" placeholder="Select employee to add goal" class="form-control" aria-hidden="true">
+                                                                    <option value="0">Select</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <div class="form-group">
+                                                                <label>Appraiser Remarks<span class="spnError">*</span></label>
+                                                                <textarea id="txtAppraiserRemarks" placeholder="Enter your remarks here..." rows="3" class="form-control" maxlength="4000" onkeypress='return blockSpecialChar(event)'></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>% Recommendation<span class="spnError">*</span></label>
+                                                                <input id="txtAppraiserPercRecommendation" placeholder="Enter your % here..." class="form-control" maxlength="3" onkeypress="return isNumber(event)" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td style="vertical-align:top;width: 50%;" id="ApproverPromotionsDiv">
+                                                    <div id="ApproverPromotionsDivInner">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <div class="checkbox">
+                                                                        <label><input type="checkbox" value="" id="ckbRecommendedDesignationAprv" onclick="showHidePromotionsControls(2);"> Would you like to recommend the employee for next level</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row" id="divApproverPromotionsControls">
+                                                            <div class="col-md-8">
+                                                                <div class="form-group">
+                                                                    <label>Recommended Designation<span class="spnError">*</span></label>
+                                                                    <select style="width: 100%;" id="ddlRecDesigApprover" placeholder="Select employee to add goal" class="form-control" aria-hidden="true">
+                                                                        <option value="0">Select</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <div class="form-group">
+                                                                    <label>Approver Remarks<span class="spnError">*</span></label>
+                                                                    <textarea id="txtApproverRemarks" placeholder="Enter your remarks here..." rows="3" class="form-control" maxlength="4000" onkeypress='return blockSpecialChar(event)'></textarea>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label>% Recommendation<span class="spnError">*</span></label>
+                                                                    <input id="txtApproverPercRecommendation" placeholder="Enter your % here..." class="form-control" maxlength="3" onkeypress="return isNumber(event)" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+
+                            <table class="table appraisalHeaderTable">
+                                <thead>
+                                    <tr>
+                                        <th>High Potential</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                            <div id="divPromotions" class="row">
+                                <div class="col-sm-12">
+                                    <table class="table table-striped" style="vertical-align:top;border:1px solid #eee">
+                                        <thead>
+                                            <tr>
+                                                <th>Appraiser</th>
+                                                <th>Approver</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td style="vertical-align:top;width: 50%;border-right:1px solid #eee" id="appraiserHPDiv">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <div class="checkbox">
+                                                                    <label><input type="checkbox" value="" id="ckbHPAprs" onclick="showHidePromotionsControls(3);"> Do you consider the employee as high potential</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" id="divAppraiserHPControls">
+                                                        <div class="col-md-8">
+                                                            <div class="form-group">
+                                                                <label>Appraiser Remarks<span class="spnError">*</span></label>
+                                                                <textarea id="txtAppraiserRemarksHP" placeholder="Enter your remarks here..." rows="3" class="form-control" maxlength="4000" onkeypress='return blockSpecialChar(event)'></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td style="vertical-align:top;width: 50%;" id="approverHPDiv">
+                                                    <div id="approverHPDivInner">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <div class="checkbox">
+                                                                        <label><input type="checkbox" value="" id="ckbHPAprv" onclick="showHidePromotionsControls(4);"> Do you consider the employee as high potential</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row" id="divApproverHPControls">
+                                                            <div class="col-md-8">
+                                                                <div class="form-group">
+                                                                    <label>Approver Remarks<span class="spnError">*</span></label>
+                                                                    <textarea id="txtApproverRemarksHP" placeholder="Enter your remarks here..." rows="3" class="form-control" maxlength="4000" onkeypress='return blockSpecialChar(event)'></textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Step 6 -->
+                    <section class="idealsteps-step" id="step6">
+                        <div class="col-sm-12">
+                            <table class="table appraisalHeaderTable">
+                                <thead>
+                                    <tr>
+                                        <th>WEIGHTED RATING</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                            <div id="part8">
+                                <div class="row text-center" style="padding-top:20px;font-size:20px;padding-bottom: 10px;" id="divRating">
+                                </div>
+                            </div>
+                            <table class="table appraisalHeaderTable">
+                                <thead>
+                                    <tr>
+                                        <th>NORMAL RATING</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                            <div id="part9">
+                                <div class="row text-center" style="padding-top:20px;font-size:20px;padding-bottom: 10px;" id="divNormalRating">
+                                </div>
+                            </div>
+                            <table class="table appraisalHeaderTable">
+                                <thead>
+                                    <tr>
+                                        <th>TO THE EMPLOYEE</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                            <div id="part7" class="padding10">
+                                <span class="boldText normalFont">
+                                    I have been advised of my performance rating. I have discussed the contents of this review with my manager.
+
+                                    I hereby declare that the comments/ratings provided is accurate and I will be liable of any further action/implication to the same.
+                                </span>
+                                <br />
+                                <br />
+                                <table id="toEmployee_table" class="fullWidth medpadding padding-top30" style="width:100%">
+                                    <tr>
+                                        <td class="boldText normalFont pull-left">
+                                            Signature: <span id="appraiseeName" style="text-decoration: underline;"></span>
+                                        </td>
+                                        <td class="underline1 employeeName"></td>
+                                        <td class="boldText normalFont pull-right">
+                                            Date: <span id="spndate" style="text-decoration: underline;"></span>
+                                        </td>
+                                        <td class="underline1 createdDate"></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/app/AppraisalManagement/appraisalformformanagement.js"></script>
+<script>
+    $(".idealsteps-container").removeClass("adaptive");
+</script>

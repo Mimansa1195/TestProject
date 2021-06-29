@@ -1,0 +1,850 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{59A91E71-D506-42A0-A62B-1F0E5A1ED52D}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MIS.Web</RootNamespace>
+    <AssemblyName>MIS.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
+    <TypeScriptToolsVersion>1.0</TypeScriptToolsVersion>
+    <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Entity">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.ApplicationServices">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Core">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Extensions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Configuration">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Services">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.EnterpriseServices">
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\app\appraisalForm.css" />
+    <Content Include="Content\app\mis.common.css" />
+    <Content Include="Content\app\mis.newsticker.css" />
+    <Content Include="Content\app\mis.org.str-min.css" />
+    <Content Include="Content\app\pim.str-min.css" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\fonts\Proxima_Nova_Bold.svg" />
+    <Content Include="Content\fonts\Proxima_Nova_Bold_Italic.svg" />
+    <Content Include="Content\fonts\Proxima_Nova_Light.svg" />
+    <Content Include="Content\fonts\Proxima_Nova_Light_Italic.svg" />
+    <Content Include="Content\fonts\Proxima_Nova_Regular.svg" />
+    <Content Include="Content\fonts\Proxima_Nova_Regular_Italic.svg" />
+    <Content Include="Content\fonts\Proxima_Nova_Semibold.svg" />
+    <Content Include="Content\fonts\Proxima_Nova_Semibold_Italic.svg" />
+    <Content Include="Content\fonts\startui.svg" />
+    <Content Include="Content\Images\emp.png" />
+    <Content Include="Content\Images\employeeRoaster.png" />
+    <Content Include="Content\Images\org_graphics.png" />
+    <Content Include="Content\Images\icons.gif" />
+    <Content Include="Content\Images\loading.gif" />
+    <Content Include="Content\Images\page_white_copy.png" />
+    <Content Include="Content\Images\page_white_delete.png" />
+    <Content Include="Content\Images\page_white_edit.png" />
+    <Content Include="Content\Images\page_white_newDocument.png" />
+    <Content Include="Content\Images\page_white_newFolder.png" />
+    <Content Include="Content\Images\page_white_paste.png" />
+    <Content Include="Content\Images\vline.gif" />
+    <Content Include="Content\lib\accordion.css" />
+    <Content Include="Content\lib\bootstrap-modal-carousel.min.css" />
+    <Content Include="Content\lib\bootstrap-multiselect.css" />
+    <Content Include="Content\lib\bootstrap-toggle.min.css" />
+    <Content Include="Content\lib\bootstrap.css" />
+    <Content Include="Content\lib\bootstrap.min.css" />
+    <Content Include="Content\lib\c3.min.css" />
+    <Content Include="Content\lib\datatable\buttons.dataTables.min.css" />
+    <Content Include="Content\lib\datatable\datatables-net.min.css" />
+    <Content Include="Content\lib\datatable\datatables.min.css" />
+    <Content Include="Content\lib\datatable\jquery.dataTables.min.css" />
+    <Content Include="Content\lib\datatable\responsive.dataTables.min.css" />
+    <Content Include="Content\lib\datatable\rowReorder.bootstrap.min.css" />
+    <Content Include="Content\lib\datatable\rowReorder.dataTables.min.css" />
+    <Content Include="Content\lib\datepicker.css" />
+    <Content Include="Content\lib\dateTimepicker.css" />
+    <Content Include="Content\lib\fileinput.css" />
+    <Content Include="Content\lib\font-awesome.min.css" />
+    <Content Include="Content\lib\fullcalendar\fullcalendar.css" />
+    <Content Include="Content\lib\fullcalendar\fullcalendar_print.css" />
+    <Content Include="Content\lib\fullNFinal.css" />
+    <Content Include="Content\lib\jquery-ui.min.css" />
+    <Content Include="Content\lib\jquery.contextMenu.css" />
+    <Content Include="Content\lib\jquery.idealforms.css" />
+    <Content Include="Content\lib\lnsaShiftCalendar.css" />
+    <Content Include="Content\lib\lobipanel.min.css" />
+    <Content Include="Content\lib\login.min.css" />
+    <Content Include="Content\lib\main.css" />
+    <Content Include="Content\lib\profile-2.min.css" />
+    <Content Include="Content\lib\select2.min.css" />
+    <Content Include="Content\lib\separate\lobipanel.min.css" />
+    <Content Include="Content\lib\separate\vender\lobipanel.min.css" />
+    <Content Include="Content\lib\separate\widgets.min.css" />
+    <Content Include="Content\lib\sweet-alert-animations.min.css" />
+    <Content Include="Content\lib\sweetalert.css" />
+    <Content Include="Content\lib\ui.dynatree.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\Proxima_Nova_Bold.svg" />
+    <Content Include="fonts\Proxima_Nova_Bold_Italic.svg" />
+    <Content Include="fonts\Proxima_Nova_Light.svg" />
+    <Content Include="fonts\Proxima_Nova_Light_Italic.svg" />
+    <Content Include="fonts\Proxima_Nova_Regular.svg" />
+    <Content Include="fonts\Proxima_Nova_Regular_Italic.svg" />
+    <Content Include="fonts\Proxima_Nova_Semibold.svg" />
+    <Content Include="fonts\Proxima_Nova_Semibold_Italic.svg" />
+    <Content Include="fonts\startui.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Images\loading2.gif" />
+    <Content Include="Images\addFolder.png" />
+    <Content Include="Images\docFile.png" />
+    <Content Include="Images\documentTag.png" />
+    <Content Include="Images\icons.gif" />
+    <Content Include="Images\loader.gif" />
+    <Content Include="Images\loading.gif" />
+    <Content Include="Images\pdfFile.png" />
+    <Content Include="Images\Refresh.png" />
+    <Content Include="Images\reviewTimesheetColorCode.PNG" />
+    <Content Include="Images\SpiralBinding.png" />
+    <Content Include="Images\txtFile.png" />
+    <Content Include="Images\xlsxFile.png" />
+    <Content Include="img\avatar-sign.png" />
+    <Content Include="img\birthday-bg.jpg" />
+    <Content Include="img\birthday.gif" />
+    <Content Include="img\cookie.png" />
+    <Content Include="img\dot-loader.gif" />
+    <Content Include="img\gemini-news.png" />
+    <Content Include="img\GeminiLogo-Small-Black.png" />
+    <Content Include="img\GeminiLogo-Small-White.png" />
+    <Content Include="img\MealOfTheDay.jpg" />
+    <Content Include="img\statistic-box-green.png" />
+    <Content Include="img\statistic-box-purple.png" />
+    <Content Include="img\statistic-box-red.png" />
+    <Content Include="img\statistic-box-yellow.png" />
+    <Content Include="Scripts\angular\app.js" />
+    <Content Include="Scripts\angular\controllers\shiftMasterController.js" />
+    <Content Include="Scripts\angular\controllers\teamInformationController.js" />
+    <Content Include="Scripts\angular\controllers\teamMappingController.js" />
+    <Content Include="Scripts\angular\controllers\userShiftMappingController.js" />
+    <Content Include="Scripts\angular\CSS\bootstrap-timepicker.min.css" />
+    <Content Include="Scripts\angular\JS\angular-datatables.min.js" />
+    <Content Include="Scripts\angular\JS\angular-route.js" />
+    <Content Include="Scripts\angular\JS\angular.min.js" />
+    <Content Include="Scripts\angular\JS\bootstrap-timepicker.min.js" />
+    <Content Include="Scripts\angular\services\teamManagementService.js" />
+    <Content Include="Scripts\angular\services\UserService.js" />
+    <Content Include="Scripts\app\AccessCard\manage.js" />
+    <Content Include="Scripts\app\AccessCard\userCardMapping.js" />
+    <Content Include="Scripts\app\AccountsPortal\generateInvoice.js" />
+    <Content Include="Scripts\app\AccountsPortal\invoiceReport.js" />
+    <Content Include="Scripts\app\Administrations\errorLogs.js" />
+    <Content Include="Scripts\app\Administrations\manageMenu.js" />
+    <Content Include="Scripts\app\Administrations\manageScheduler.js" />
+    <Content Include="Scripts\app\Administrations\userRole.js" />
+    <Content Include="Scripts\app\Administrations\manageRole.js" />
+    <Content Include="Scripts\app\Administrations\manageRolePermission.js" />
+    <Content Include="Scripts\app\Administrations\manageUserPermission.js" />
+    <Content Include="Scripts\app\Administrations\manageWidgetRolePermission.js" />
+    <Content Include="Scripts\app\Administrations\manageWidgetUserPermission.js" />
+    <Content Include="Scripts\app\Administrations\menuPermission.js" />
+    <Content Include="Scripts\app\Administrations\widgetPermission.js" />
+    <Content Include="Scripts\app\AppraisalManagement\appraisalcycle.js" />
+    <Content Include="Scripts\app\AppraisalManagement\appraisalformformanagement.js" />
+    <Content Include="Scripts\app\AppraisalManagement\appraisalformself.js" />
+    <Content Include="Scripts\app\AppraisalManagement\appraisalformupperlevel.js" />
+    <Content Include="Scripts\app\AppraisalManagement\appraisalnotgenerated.js" />
+    <Content Include="Scripts\app\AppraisalManagement\appraisalsettings.js" />
+    <Content Include="Scripts\app\AppraisalManagement\competencyform.js" />
+    <Content Include="Scripts\app\AppraisalManagement\consolidatedAppraisalReport.js" />
+    <Content Include="Scripts\app\AppraisalManagement\downloadappraisalform.js" />
+    <Content Include="Scripts\app\AppraisalManagement\employeeappraisalstatus.js" />
+    <Content Include="Scripts\app\AppraisalManagement\employeesappraisal.js" />
+    <Content Include="Scripts\app\AppraisalManagement\filter.js" />
+    <Content Include="Scripts\app\AppraisalManagement\manageGoal.js" />
+    <Content Include="Scripts\app\AppraisalManagement\myachievement.js" />
+    <Content Include="Scripts\app\AppraisalManagement\myappraisal.js" />
+    <Content Include="Scripts\app\AppraisalManagement\parametermaster.js" />
+    <Content Include="Scripts\app\AppraisalManagement\manageteamappraisal.js" />
+    <Content Include="Scripts\app\AppraisalManagement\pimcoAchievements.js" />
+    <Content Include="Scripts\app\AppraisalManagement\selfGoal.js" />
+    <Content Include="Scripts\app\AppraisalManagement\teamachievement.js" />
+    <Content Include="Scripts\app\AppraisalManagement\teamAchievementNew.js" />
+    <Content Include="Scripts\app\AppraisalManagement\teamappraisal.js" />
+    <Content Include="Scripts\app\AppraisalManagement\teamPimcoAchievements.js" />
+    <Content Include="Scripts\app\Asset\allocate.js" />
+    <Content Include="Scripts\app\Asset\allocate_bkp.js" />
+    <Content Include="Scripts\app\Asset\manage.js" />
+    <Content Include="Scripts\app\Asset\manage_bkp.js" />
+    <Content Include="Scripts\app\Asset\request.js" />
+    <Content Include="Scripts\app\Asset\review.js" />
+    <Content Include="Scripts\app\Asset\viewStatus.js" />
+    <Content Include="Scripts\app\Attendance\asquareattendance.js" />
+    <Content Include="Scripts\app\Attendance\employeeattendance.js" />
+    <Content Include="Scripts\app\Attendance\staffattendance.js" />
+    <Content Include="Scripts\app\CabManagement\finalizeRequest.js" />
+    <Content Include="Scripts\app\CabManagement\reviewRequest.js" />
+    <Content Include="Scripts\app\Dashboard\dashboard.js" />
+    <Content Include="Scripts\app\Dashboard\_helpDocument.js" />
+    <Content Include="Scripts\app\Dashboard\_skills.js" />
+    <Content Include="Scripts\app\Dashboard\_dashBoardSettings.js" />
+    <Content Include="Scripts\app\Feedback\submitFeedback.js" />
+    <Content Include="Scripts\app\Feedback\viewFeedback.js" />
+    <Content Include="Scripts\app\Form\manage.js" />
+    <Content Include="Scripts\app\Form\myForm.js" />
+    <Content Include="Scripts\app\Form\teamForm.js" />
+    <Content Include="Scripts\app\Form\viewForm.js" />
+    <Content Include="Scripts\app\HRPortal\addReferral.js" />
+    <Content Include="Scripts\app\HRPortal\manageFeedbackMail.js" />
+    <Content Include="Scripts\app\HRPortal\manageHealthInsuranceCard.js" />
+    <Content Include="Scripts\app\HRPortal\manageNews.js" />
+    <Content Include="Scripts\app\HRPortal\manageTraining.js" />
+    <Content Include="Scripts\app\HRPortal\pendingRequests.js" />
+    <Content Include="Scripts\app\HRPortal\uploadHealthInsuranceCard.js" />
+    <Content Include="Scripts\app\LeaveManagement\weeklyRoster.js" />
+    <Content Include="Scripts\app\PimcoUserManagement\manageUser.js" />
+    <Content Include="Scripts\app\ProjectManagement\pimcoProjectInformation.js" />
+    <Content Include="Scripts\app\Reports\goalsreport.js" />
+    <Content Include="Scripts\app\KnowledgeBase\docpermissiongroup.js" />
+    <Content Include="Scripts\app\KnowledgeBase\sharedoc.js" />
+    <Content Include="Scripts\app\KnowledgeBase\viewdoc.js" />
+    <Content Include="Scripts\app\LeaveManagement\applyLeave.js" />
+    <Content Include="Scripts\app\LeaveManagement\applyOutingRequest.js" />
+    <Content Include="Scripts\app\LeaveManagement\applyWFH.js" />
+    <Content Include="Scripts\app\LeaveManagement\dashboard.js" />
+    <Content Include="Scripts\app\LeaveManagement\LWPChangeRequest.js" />
+    <Content Include="Scripts\app\LeaveManagement\outingStatus.js" />
+    <Content Include="Scripts\app\LeaveManagement\requestCompoff.js" />
+    <Content Include="Scripts\app\LeaveManagement\dataChangeRequestReview.js" />
+    <Content Include="Scripts\app\LeaveManagement\leaveStatus.js" />
+    <Content Include="Scripts\app\LeaveManagement\requestDataChange.js" />
+    <Content Include="Scripts\app\LeaveManagement\reviewLeave.js" />
+    <Content Include="Scripts\app\LeaveManagement\reviewLegitimate.js" />
+    <Content Include="Scripts\app\LeaveManagement\reviewOuting.js" />
+    <Content Include="Scripts\app\LeaveManagement\updateAttendance.js" />
+    <Content Include="Scripts\app\LeaveManagement\updateLeave.js" />
+    <Content Include="Scripts\app\Lnsa\apply.js" />
+    <Content Include="Scripts\app\Lnsa\review.js" />
+    <Content Include="Scripts\app\Lnsa\viewStatus.js" />
+    <Content Include="Scripts\app\login\login.js" />
+    <Content Include="Scripts\app\login\passwordReset.js" />
+    <Content Include="Scripts\app\MealManagement\manageMealCategory.js" />
+    <Content Include="Scripts\app\MealManagement\manageMealDishes.js" />
+    <Content Include="Scripts\app\MealManagement\manageMealPeriod.js" />
+    <Content Include="Scripts\app\MealManagement\manageMealType.js" />
+    <Content Include="Scripts\app\MealManagement\mealmenu.js" />
+    <Content Include="Scripts\app\MealManagement\mealpackage.js" />
+    <Content Include="Scripts\app\Policy\managePolicy.js" />
+    <Content Include="Scripts\app\Policy\viewPolicy.js" />
+    <Content Include="Scripts\app\ProjectManagement\projectinformation.js" />
+    <Content Include="Scripts\app\ProjectManagement\teaminformation.js" />
+    <Content Include="Scripts\app\ProjectManagement\verticalinformation.js" />
+    <Content Include="Scripts\app\Reimbursement\manageReimbursementRequest.js" />
+    <Content Include="Scripts\app\Reimbursement\reviewReimbursementFormData.js" />
+    <Content Include="Scripts\app\Reimbursement\reviewReimbursementList.js" />
+    <Content Include="Scripts\app\Reimbursement\viewReimbursementFormDetail.js" />
+    <Content Include="Scripts\app\Reimbursement\viewReimbursementList.js" />
+    <Content Include="Scripts\app\Reports\clubbedreport.js" />
+    <Content Include="Scripts\app\Reports\compoff.js" />
+    <Content Include="Scripts\app\Reports\employeeSkills.js" />
+    <Content Include="Scripts\app\Reports\leave.js" />
+    <Content Include="Scripts\app\Reports\lnsa.js" />
+    <Content Include="Scripts\app\Reports\lnsacompoffreport.js" />
+    <Content Include="Scripts\app\Reports\lwp.js" />
+    <Content Include="Scripts\app\Reports\mealfeedback.js" />
+    <Content Include="Scripts\app\Reports\mealmenu.js" />
+    <Content Include="Scripts\app\Reports\reportcommon.js" />
+    <Content Include="Scripts\app\Reports\useractivity.js" />
+    <Content Include="Scripts\app\Reports\vms.js" />
+    <Content Include="Scripts\app\Sports\Sports.js" />
+    <Content Include="Scripts\app\TaskManagement\manageTaskSubDetail1.js" />
+    <Content Include="Scripts\app\TaskManagement\manageTaskSubDetail2.js" />
+    <Content Include="Scripts\app\TaskManagement\manageTaskTeam.js" />
+    <Content Include="Scripts\app\TaskManagement\manageTaskType.js" />
+    <Content Include="Scripts\app\TechnoClub\GSOC.js" />
+    <Content Include="Scripts\app\timesheet\ConfigureTimeSheet.js" />
+    <Content Include="Scripts\app\timesheet\CreateTimeSheet.js" />
+    <Content Include="Scripts\app\timesheet\Dashboard.js" />
+    <Content Include="Scripts\app\timesheet\ManageTaskTemplates.js" />
+    <Content Include="Scripts\app\timesheet\Reports.js" />
+    <Content Include="Scripts\app\timesheet\ReviewTimeSheet.js" />
+    <Content Include="Scripts\app\timesheet\teamDataUpdation.js" />
+    <Content Include="Scripts\app\UserManagement\fileinput.js" />
+    <Content Include="Scripts\app\UserManagement\fullNFinal.js" />
+    <Content Include="Scripts\app\UserManagement\manageUser.js" />
+    <Content Include="Scripts\app\UserManagement\newUserRegistration.js" />
+    <Content Include="Scripts\app\UserManagement\promoteUser.js" />
+    <Content Include="Scripts\app\UserManagement\unlockUser.js" />
+    <Content Include="Scripts\app\UserManagement\userActivityLog.js" />
+    <Content Include="Scripts\app\UserManagement\_manageUserDetail.js" />
+    <Content Include="Scripts\app\UserManagement\_verifyUserDetail.js" />
+    <Content Include="Scripts\lib\accordion.js" />
+    <Content Include="Scripts\lib\datatable\buttons.colVis.js" />
+    <Content Include="Scripts\lib\dateTimepicker.js" />
+    <Content Include="Scripts\lib\fullcalendar\fullcalendar.js" />
+    <Content Include="Scripts\lib\jquery-ui.multidatespicker.js" />
+    <Content Include="Scripts\common\mis.basepath.js" />
+    <Content Include="Scripts\common\mis.common.js" />
+    <Content Include="Scripts\app\Directory\employeeDirectory.js" />
+    <Content Include="Scripts\common\mis.common.min.js" />
+    <Content Include="Scripts\common\mis.layout.js" />
+    <Content Include="Scripts\common\mis.newsticker.js" />
+    <Content Include="Scripts\common\pim.str-min.js" />
+    <Content Include="Scripts\common\mis.org.str-min.js" />
+    <Content Include="Scripts\lib\app.js" />
+    <Content Include="Scripts\lib\bootstrap-datepicker.min.js" />
+    <Content Include="Scripts\lib\bootstrap-multiselect.js" />
+    <Content Include="Scripts\lib\bootstrap-show-password-init.js" />
+    <Content Include="Scripts\lib\bootstrap-show-password.min.js" />
+    <Content Include="Scripts\lib\bootstrap-toggle.min.js" />
+    <Content Include="Scripts\lib\bootstrap.js" />
+    <Content Include="Scripts\lib\bootstrap.min.js" />
+    <Content Include="Scripts\lib\charts\c3.min.js" />
+    <Content Include="Scripts\lib\datatable\buttons.html5.min.js" />
+    <Content Include="Scripts\lib\datatable\buttons.print.min.js" />
+    <Content Include="Scripts\lib\datatable\dataTables.bootstrap.min.js" />
+    <Content Include="Scripts\lib\datatable\dataTables.buttons.min.js" />
+    <Content Include="Scripts\lib\datatable\dataTables.editor.min.js" />
+    <Content Include="Scripts\lib\datatable\datatables.min.js" />
+    <Content Include="Scripts\lib\datatable\dataTables.responsive.min.js" />
+    <Content Include="Scripts\lib\datatable\dataTables.rowReorder.min.js" />
+    <Content Include="Scripts\lib\datatable\jquery.dataTables.min.js" />
+    <Content Include="Scripts\lib\datatable\jszip.min.js" />
+    <Content Include="Scripts\lib\datatable\pdfmake.min.js" />
+    <Content Include="Scripts\lib\datatable\vfs_fonts.js" />
+    <Content Include="Scripts\lib\jquery-jtemplates.js" />
+    <Content Include="Scripts\lib\jquery-ui.custom.js" />
+    <Content Include="Scripts\lib\jquery-ui.min.js" />
+    <Content Include="Scripts\lib\jquery.blockUI.min.js" />
+    <Content Include="Scripts\lib\jquery.contextMenu-custom.js" />
+    <Content Include="Scripts\lib\jquery.cookie.js" />
+    <Content Include="Scripts\lib\jquery.dynatree.js" />
+    <Content Include="Scripts\lib\jquery.idealformLevel1.min.js" />
+    <Content Include="Scripts\lib\jquery.idealformself.min.js" />
+    <Content Include="Scripts\lib\jquery.js" />
+    <Content Include="Scripts\lib\jquery.loadTemplate.js" />
+    <Content Include="Scripts\lib\jquery.matchHeight.js" />
+    <Content Include="Scripts\lib\jquery.matchHeight.min.js" />
+    <Content Include="Scripts\lib\jquery.min.js" />
+    <Content Include="Scripts\lib\jquery.tokeninput.js" />
+    <Content Include="Scripts\lib\jquery.ui.core.js" />
+    <Content Include="Scripts\lib\jquery.ui.position.min.js" />
+    <Content Include="Scripts\lib\jquery.validation.min.js" />
+    <Content Include="Scripts\lib\lobipanel.min.js" />
+    <Content Include="Scripts\lib\marquee.js" />
+    <Content Include="Scripts\lib\moment.min.js" />
+    <Content Include="Scripts\lib\momentLocale.js" />
+    <Content Include="Scripts\lib\plugins.js" />
+    <Content Include="Scripts\lib\select2.min.js" />
+    <Content Include="Scripts\lib\sweetalert.min.js" />
+    <Content Include="Scripts\lib\tether.min.js" />
+    <Content Include="Scripts\lib\underscore-min.js" />
+    <Content Include="Views\Asset\Manage_bkp.html" />
+    <Content Include="Views\Asset\Allocate_bkp.html" />
+    <Content Include="Views\PimcoUserManagement\Index.cshtml" />
+    <Content Include="Views\PimcoUserManagement\ManageUser.cshtml" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AccessCardController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AccountsPortalController.cs" />
+    <Compile Include="Controllers\AdministrationsController.cs" />
+    <Compile Include="Controllers\AppraisalManagementController.cs" />
+    <Compile Include="Controllers\AssetController.cs" />
+    <Compile Include="Controllers\AttendanceController.cs" />
+    <Compile Include="Controllers\CabRequestController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\DirectoryController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\FeedbackController.cs" />
+    <Compile Include="Controllers\FormController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KnowledgeBaseController.cs" />
+    <Compile Include="Controllers\LeaveManagementController.cs" />
+    <Compile Include="Controllers\LnsaController.cs" />
+    <Compile Include="Controllers\MealManagementController.cs" />
+    <Compile Include="Controllers\OrganizationController.cs" />
+    <Compile Include="Controllers\PimcoController.cs" />
+    <Compile Include="Controllers\PimcoUserManagementController.cs" />
+    <Compile Include="Controllers\PolicyController.cs" />
+    <Compile Include="Controllers\ProjectManagementController.cs" />
+    <Compile Include="Controllers\HRPortalController.cs" />
+    <Compile Include="Controllers\TechnoClubController.cs" />
+    <Compile Include="Controllers\TrainingController.cs" />
+    <Compile Include="Controllers\ReimbursementController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
+    <Compile Include="Controllers\SportsController.cs" />
+    <Compile Include="Controllers\TaskManagementController.cs" />
+    <Compile Include="Controllers\TeamManagementController.cs" />
+    <Compile Include="Controllers\TimeSheetController.cs" />
+    <Compile Include="Controllers\UserManagementController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\fonts\Proxima_Nova_Bold.eot" />
+    <Content Include="Content\fonts\Proxima_Nova_Bold.ttf" />
+    <Content Include="Content\fonts\Proxima_Nova_Bold.woff" />
+    <Content Include="Content\fonts\Proxima_Nova_Bold.woff2" />
+    <Content Include="Content\fonts\Proxima_Nova_Bold_Italic.eot" />
+    <Content Include="Content\fonts\Proxima_Nova_Bold_Italic.ttf" />
+    <Content Include="Content\fonts\Proxima_Nova_Bold_Italic.woff" />
+    <Content Include="Content\fonts\Proxima_Nova_Bold_Italic.woff2" />
+    <Content Include="Content\fonts\Proxima_Nova_Light.eot" />
+    <Content Include="Content\fonts\Proxima_Nova_Light.ttf" />
+    <Content Include="Content\fonts\Proxima_Nova_Light.woff" />
+    <Content Include="Content\fonts\Proxima_Nova_Light.woff2" />
+    <Content Include="Content\fonts\Proxima_Nova_Light_Italic.eot" />
+    <Content Include="Content\fonts\Proxima_Nova_Light_Italic.ttf" />
+    <Content Include="Content\fonts\Proxima_Nova_Light_Italic.woff" />
+    <Content Include="Content\fonts\Proxima_Nova_Light_Italic.woff2" />
+    <Content Include="Content\fonts\Proxima_Nova_Regular.eot" />
+    <Content Include="Content\fonts\Proxima_Nova_Regular.ttf" />
+    <Content Include="Content\fonts\Proxima_Nova_Regular.woff" />
+    <Content Include="Content\fonts\Proxima_Nova_Regular.woff2" />
+    <Content Include="Content\fonts\Proxima_Nova_Regular_Italic.eot" />
+    <Content Include="Content\fonts\Proxima_Nova_Regular_Italic.ttf" />
+    <Content Include="Content\fonts\Proxima_Nova_Regular_Italic.woff" />
+    <Content Include="Content\fonts\Proxima_Nova_Regular_Italic.woff2" />
+    <Content Include="Content\fonts\Proxima_Nova_Semibold.eot" />
+    <Content Include="Content\fonts\Proxima_Nova_Semibold.ttf" />
+    <Content Include="Content\fonts\Proxima_Nova_Semibold.woff" />
+    <Content Include="Content\fonts\Proxima_Nova_Semibold.woff2" />
+    <Content Include="Content\fonts\Proxima_Nova_Semibold_Italic.eot" />
+    <Content Include="Content\fonts\Proxima_Nova_Semibold_Italic.ttf" />
+    <Content Include="Content\fonts\Proxima_Nova_Semibold_Italic.woff" />
+    <Content Include="Content\fonts\Proxima_Nova_Semibold_Italic.woff2" />
+    <Content Include="Content\fonts\startui.eot" />
+    <Content Include="Content\fonts\startui.ttf" />
+    <Content Include="Content\fonts\startui.woff" />
+    <Content Include="Views\Shared\_LoginLayout.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\Error\Maintenance.cshtml" />
+    <Content Include="Views\Error\Unauthorized.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\Proxima_Nova_Bold.eot" />
+    <Content Include="fonts\Proxima_Nova_Bold.ttf" />
+    <Content Include="fonts\Proxima_Nova_Bold.woff" />
+    <Content Include="fonts\Proxima_Nova_Bold.woff2" />
+    <Content Include="fonts\Proxima_Nova_Bold_Italic.eot" />
+    <Content Include="fonts\Proxima_Nova_Bold_Italic.ttf" />
+    <Content Include="fonts\Proxima_Nova_Bold_Italic.woff" />
+    <Content Include="fonts\Proxima_Nova_Bold_Italic.woff2" />
+    <Content Include="fonts\Proxima_Nova_Light.eot" />
+    <Content Include="fonts\Proxima_Nova_Light.ttf" />
+    <Content Include="fonts\Proxima_Nova_Light.woff" />
+    <Content Include="fonts\Proxima_Nova_Light.woff2" />
+    <Content Include="fonts\Proxima_Nova_Light_Italic.eot" />
+    <Content Include="fonts\Proxima_Nova_Light_Italic.ttf" />
+    <Content Include="fonts\Proxima_Nova_Light_Italic.woff" />
+    <Content Include="fonts\Proxima_Nova_Light_Italic.woff2" />
+    <Content Include="fonts\Proxima_Nova_Regular.eot" />
+    <Content Include="fonts\Proxima_Nova_Regular.ttf" />
+    <Content Include="fonts\Proxima_Nova_Regular.woff" />
+    <Content Include="fonts\Proxima_Nova_Regular.woff2" />
+    <Content Include="fonts\Proxima_Nova_Regular_Italic.eot" />
+    <Content Include="fonts\Proxima_Nova_Regular_Italic.ttf" />
+    <Content Include="fonts\Proxima_Nova_Regular_Italic.woff" />
+    <Content Include="fonts\Proxima_Nova_Regular_Italic.woff2" />
+    <Content Include="fonts\Proxima_Nova_Semibold.eot" />
+    <Content Include="fonts\Proxima_Nova_Semibold.ttf" />
+    <Content Include="fonts\Proxima_Nova_Semibold.woff" />
+    <Content Include="fonts\Proxima_Nova_Semibold.woff2" />
+    <Content Include="fonts\Proxima_Nova_Semibold_Italic.eot" />
+    <Content Include="fonts\Proxima_Nova_Semibold_Italic.ttf" />
+    <Content Include="fonts\Proxima_Nova_Semibold_Italic.woff" />
+    <Content Include="fonts\Proxima_Nova_Semibold_Italic.woff2" />
+    <Content Include="fonts\startui.eot" />
+    <Content Include="fonts\startui.ttf" />
+    <Content Include="fonts\startui.woff" />
+    <Content Include="Views\Directory\EmployeeDirectory.cshtml" />
+    <Content Include="Views\Lnsa\Apply.cshtml" />
+    <Content Include="Views\Lnsa\Review.cshtml" />
+    <Content Include="Views\Lnsa\ViewStatus.cshtml" />
+    <Content Include="Views\TimeSheet\ConfigureTimeSheet.cshtml" />
+    <Content Include="Views\TimeSheet\ManageTaskTemplates.cshtml" />
+    <Content Include="Views\TimeSheet\CreateTimeSheet.cshtml" />
+    <Content Include="Views\TimeSheet\Reports.cshtml" />
+    <Content Include="Views\TimeSheet\Dashboard.cshtml" />
+    <Content Include="Views\TimeSheet\ReviewTimeSheet.cshtml" />
+    <Content Include="Views\Asset\Request.cshtml" />
+    <Content Include="Views\Asset\Review.cshtml" />
+    <Content Include="Views\Asset\ViewStatus.cshtml" />
+    <Content Include="Views\Asset\Allocate.cshtml" />
+    <Content Include="Views\Asset\_AllocateAsset.cshtml" />
+    <Content Include="Views\Asset\_ReturnAsset.cshtml" />
+    <Content Include="Views\Form\Manage.cshtml" />
+    <Content Include="Views\Form\ViewForm.cshtml" />
+    <Content Include="Views\Form\_AddForm.cshtml" />
+    <Content Include="Views\Attendance\Index.cshtml" />
+    <Content Include="Views\KnowledgeBase\ViewDoc.cshtml" />
+    <Content Include="Views\KnowledgeBase\ViewSharedDoc.cshtml" />
+    <Content Include="Views\KnowledgeBase\DocPermissionGroup.cshtml" />
+    <Content Include="Views\TaskManagement\ManageTaskType.cshtml" />
+    <Content Include="Views\TaskManagement\ManageTaskTeam.cshtml" />
+    <Content Include="Views\TaskManagement\ManageTaskSubDetail1.cshtml" />
+    <Content Include="Views\TaskManagement\ManageTaskSubDetail2.cshtml" />
+    <Content Include="Views\Reports\AttendanceSummary.cshtml" />
+    <Content Include="Views\Reports\CompOff.cshtml" />
+    <Content Include="Views\Reports\LNSA.cshtml" />
+    <Content Include="Views\Reports\LWP.cshtml" />
+    <Content Include="Views\ProjectManagement\ManageProjects.cshtml" />
+    <Content Include="Views\ProjectManagement\ManageVerticals.cshtml" />
+    <Content Include="Views\AccessCard\Manage.cshtml" />
+    <Content Include="Views\AccessCard\UserCardMapping.cshtml" />
+    <Content Include="Views\LeaveManagement\Apply.cshtml" />
+    <Content Include="Views\LeaveManagement\ReviewRequest.cshtml" />
+    <Content Include="Views\UserManagement\ManageUser.cshtml" />
+    <Content Include="Views\UserManagement\_ViewUsersList.cshtml" />
+    <Content Include="Views\UserManagement\_CreateUser.cshtml" />
+    <Content Include="Views\UserManagement\UserActivityLog.cshtml" />
+    <Content Include="Views\UserManagement\UnlockUser.cshtml" />
+    <Content Include="Views\TeamManagement\TeamInformation.cshtml" />
+    <Content Include="Views\TeamManagement\UserTeamMapping.cshtml" />
+    <Content Include="Views\UserManagement\NewUserRegistration.cshtml" />
+    <Content Include="Views\UserManagement\_ViewUserLocation.cshtml" />
+    <Content Include="Views\UserManagement\_ManageUserDetail.cshtml" />
+    <Content Include="Views\UserManagement\_ListActiveUsers.cshtml" />
+    <Content Include="Views\UserManagement\_ListInactiveUsers.cshtml" />
+    <Content Include="Views\UserManagement\_ListUserRegistration.cshtml" />
+    <Content Include="Views\UserManagement\_VerifyUserDetail.cshtml" />
+    <Content Include="Views\LeaveManagement\Update.cshtml" />
+    <Content Include="Views\LeaveManagement\LeaveRequestStatus.cshtml" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
+    <None Include="Properties\PublishProfiles\MIS Web.pubxml" />
+    <None Include="Properties\PublishProfiles\MIS.Web.pubxml" />
+    <Content Include="Views\Dashboard\_DashBoardSetting.cshtml" />
+    <Content Include="Views\Reports\VMSReport.cshtml" />
+    <Content Include="Views\Dashboard\_Skills.cshtml" />
+    <Content Include="Views\Dashboard\_EditSkills.cshtml" />
+    <Content Include="Views\Reports\EmployeeSkills.cshtml" />
+    <Content Include="Views\UserManagement\_UserProfile.cshtml" />
+    <Content Include="Views\Reports\GetUserActivity.cshtml" />
+    <Content Include="Views\MealManagement\MealManage.cshtml" />
+    <Content Include="Views\MealManagement\MealPackage.cshtml" />
+    <Content Include="Views\MealManagement\MealMenu.cshtml" />
+    <Content Include="Views\Asset\Manage.cshtml" />
+    <Content Include="Views\Administrations\ManageRole.cshtml" />
+    <Content Include="Views\Administrations\MenuPermission.cshtml" />
+    <Content Include="Views\Administrations\_ManageRolePermission.cshtml" />
+    <Content Include="Views\Administrations\_ManageUserPermission.cshtml" />
+    <Content Include="Views\Administrations\UserRole.cshtml" />
+    <Content Include="Views\Administrations\ManageWidget.cshtml" />
+    <Content Include="Views\Administrations\_AddWidget.cshtml" />
+    <Content Include="Views\Administrations\_EditWidget.cshtml" />
+    <Content Include="Views\Administrations\_AddRole.cshtml" />
+    <Content Include="Views\Administrations\_EditRole.cshtml" />
+    <Content Include="Views\Administrations\ManageMenu.cshtml" />
+    <Content Include="Views\Administrations\_AddMenu.cshtml" />
+    <Content Include="Views\Administrations\_EditMenu.cshtml" />
+    <Content Include="Views\Administrations\WidgetPermission.cshtml" />
+    <Content Include="Views\Administrations\_ManageWidgetRolePermission.cshtml" />
+    <Content Include="Views\Administrations\_ManageWidgetUserPermission.cshtml" />
+    <Content Include="Views\UserManagement\_UpdateProfile.cshtml" />
+    <Content Include="Views\Administrations\_UserDelegation.cshtml" />
+    <Content Include="Views\Account\PasswordReset.cshtml" />
+    <Content Include="Views\Reports\LeaveReport.cshtml" />
+    <Content Include="Views\Reports\MealMenuReport.cshtml" />
+    <Content Include="Views\TeamManagement\UserShiftMapping.cshtml" />
+    <Content Include="Views\TeamManagement\ShiftInformation.cshtml" />
+    <Content Include="Views\Administrations\ErrorLog.cshtml" />
+    <Content Include="Views\Reports\MealFeedbackReport.cshtml" />
+    <Content Include="Views\AppraisalManagement\AppraisalSettings.cshtml" />
+    <Content Include="Views\AppraisalManagement\_AddAppraisalSettings.cshtml" />
+    <Content Include="Views\AppraisalManagement\AppraisalCycle.cshtml" />
+    <Content Include="Views\AppraisalManagement\ParameterMaster.cshtml" />
+    <Content Include="Views\AppraisalManagement\CompetencyForm.cshtml" />
+    <Content Include="Views\AppraisalManagement\_AddAppraisalParameter.cshtml" />
+    <Content Include="Views\AppraisalManagement\_CreateCompetencyForm.cshtml" />
+    <Content Include="Views\AppraisalManagement\_EditCompetencyForm.cshtml" />
+    <Content Include="Views\AppraisalManagement\_CloneCompetencyForm.cshtml" />
+    <Content Include="Views\AppraisalManagement\_EditAppraisalSettings.cshtml" />
+    <Content Include="Views\AppraisalManagement\ManageTeamAppraisal.cshtml" />
+    <Content Include="Views\AppraisalManagement\AppraisalNotGenerated.cshtml" />
+    <Content Include="Views\AppraisalManagement\MyAppraisal.cshtml" />
+    <Content Include="Views\AppraisalManagement\TeamAppraisal.cshtml" />
+    <Content Include="Views\AppraisalManagement\SelfGoal.cshtml" />
+    <Content Include="Views\Feedback\SubmitFeedback.cshtml" />
+    <Content Include="Views\Feedback\ViewFeedback.cshtml" />
+    <Content Include="Views\Policy\ManagePolicy.cshtml" />
+    <Content Include="Views\Policy\ViewPolicy.cshtml" />
+    <Content Include="Views\Policy\_AddPolicy.cshtml" />
+    <Content Include="Views\AppraisalManagement\_AppraisalFormUpperlevel.cshtml" />
+    <Content Include="Views\AppraisalManagement\_AppraisalFormSelf.cshtml" />
+    <Content Include="Views\Dashboard\_HelpDocument.cshtml" />
+    <Content Include="Views\AppraisalManagement\EmployeeAppraisalStatus.cshtml" />
+    <Content Include="Views\UserManagement\UpdateContactDetails.cshtml" />
+    <Content Include="Views\AppraisalManagement\ConsolidatedAppraisalReport.cshtml" />
+    <Content Include="Views\AppraisalManagement\AppraisalFormReport.cshtml" />
+    <Content Include="Views\Attendance\EmployeeAttendance.cshtml" />
+    <Content Include="Views\Attendance\StaffAttendance.cshtml" />
+    <Content Include="Views\Attendance\ASquareAttendance.cshtml" />
+    <Content Include="Views\AppraisalManagement\TeamGoal.cshtml" />
+    <Content Include="Views\TimeSheet\TeamDataUpdation.cshtml" />
+    <Content Include="Views\Administrations\ManageScheduler.cshtml" />
+    <Content Include="Views\Form\MyForm.cshtml" />
+    <Content Include="Views\Form\TeamForm.cshtml" />
+    <Content Include="Views\Form\_UploadMyForm.cshtml" />
+    <Content Include="Views\AppraisalManagement\MyAchievement.cshtml" />
+    <Content Include="Views\AppraisalManagement\TeamAchievement.cshtml" />
+    <Content Include="Views\Sports\Index.cshtml" />
+    <Content Include="Views\Organization\OrganizationStructure.cshtml" />
+    <Content Include="Views\AppraisalManagement\_UploadMyAchievement.cshtml" />
+    <Content Include="Views\AppraisalManagement\_CreateTechnicalCompetencies.cshtml" />
+    <Content Include="Views\AppraisalManagement\_AddAppraisalParameterByEmployee.cshtml" />
+    <Content Include="Views\Pimco\OrganizationStructure.cshtml" />
+    <Content Include="Views\Reports\ClubbedReport.cshtml" />
+    <Content Include="Views\UserManagement\_viewInactiveUserDetail.cshtml" />
+    <Content Include="Views\CabRequest\Index.cshtml" />
+    <Content Include="Views\CabRequest\Review.cshtml" />
+    <Content Include="Scripts\app\Lnsa\lnsaData.js" />
+    <Content Include="Views\UserManagement\_PromoteUsers.cshtml" />
+    <Content Include="Views\HRPortal\ForwardReferral.cshtml" />
+    <Content Include="Views\HRPortal\Referral.cshtml" />
+    <Content Include="Views\HRPortal\ManageTraining.cshtml" />
+    <Content Include="Views\Training\ReviewTrainingRequest.cshtml" />
+    <Content Include="Views\Reports\Goals.cshtml" />
+    <Content Include="Views\Reimbursement\_ViewReimbursementList.cshtml" />
+    <Content Include="Views\Reimbursement\_ViewReimbursementFormDetail.cshtml" />
+    <Content Include="Views\Reimbursement\_ReviewReimbursementList.cshtml" />
+    <Content Include="Views\Reimbursement\_ReviewReimbursementFormData.cshtml" />
+    <Content Include="Views\Reimbursement\_ManageReimbursementRequest.cshtml" />
+    <Content Include="Views\Reimbursement\ReviewReimbursement.cshtml" />
+    <Content Include="Views\Reimbursement\MyReimbursement.cshtml" />
+    <Content Include="Views\UserManagement\_PromotionHistory.cshtml" />
+    <Content Include="Views\HRPortal\HRLeaveDashboard.cshtml" />
+    <Content Include="Views\AccountsPortal\GenerateInvoice.cshtml" />
+    <Content Include="Views\AccountsPortal\InvoiceReport.cshtml" />
+    <Content Include="Views\AccountsPortal\RequestedInvoiceAction.cshtml" />
+    <Content Include="Views\AppraisalManagement\PimcoAchievements.cshtml" />
+    <Content Include="Views\AppraisalManagement\TeamPimcoAchievements.cshtml" />
+    <Content Include="Views\LeaveManagement\WeeklyRoster.cshtml" />
+    <Content Include="Views\HRPortal\ManageNews.cshtml" />
+    <Content Include="Views\CabRequest\FinalizeRequest.cshtml" />
+    <Content Include="Views\AccountsPortal\MyAccount.cshtml" />
+    <Content Include="Views\UserManagement\_ManageFullNFinal.cshtml" />
+    <Content Include="Views\TechnoClub\GSOC.cshtml" />
+    <Content Include="Views\TechnoClub\GSOCProjects.cshtml" />
+    <Content Include="Views\HRPortal\PendingRequests.cshtml" />
+    <Content Include="Views\CabRequest\ReviewCabRequest.cshtml" />
+    <Content Include="Views\ProjectManagement\_ManagePimcoProject.cshtml" />
+    <Content Include="Views\ProjectManagement\_ManageGeminiProject.cshtml" />
+    <Content Include="Views\UserManagement\UserOnboarding.cshtml" />
+    <Content Include="Views\AppraisalManagement\EmployeesAppraisal.cshtml" />
+    <Content Include="Views\AppraisalManagement\_AppraisalFormForManagement.cshtml" />
+    <Content Include="Views\HRPortal\ManageCompletionFeedbackMail.cshtml" />
+    <Content Include="Views\Reports\LNSACompoffReport.cshtml" />
+    <Content Include="Views\HRPortal\ManageHealthInsuranceCard.cshtml" />
+    <Content Include="Views\HRPortal\_UploadHealthInsuranceCard.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>6419</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:6419/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

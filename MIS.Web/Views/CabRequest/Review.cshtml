@@ -1,0 +1,136 @@
+﻿<div class="container-fluid">
+    <section class="card">
+        <div class="card-block">
+            <div class="row border-bottom-1" style="padding: 0">
+                <div class="col-md-6">
+                    <h5 class="margin-bottom-0 l-h-38">Review Request</h5>
+                </div>
+            </div>
+            <div class="row margin-top-10" id="divCabReview">
+                <section class="col-xl-12 col-lg-12">
+                    <section class="tabs-section">
+                        <div class="tab-content no-styled profile-tabs">
+                            <div role="tabpanel" class="tab-pane active" id="tabs-1-tab-1">
+
+                                <div class="form-body">
+                                    <div role="tabpanel" class="tab-pane" id="tabs-1-tab-1">
+                                        <section class="box-typical box-typical-padding">
+                                            <div class="form-body">
+                                                <div id="divInCompleteReviewFormsGridHeader" class="gridViewHeader">
+                                                    <div class="profile-statistic tbl redcustomheader">
+                                                        <div class="tbl-row">
+                                                            <div class="tbl-cell">
+                                                                Pending
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class='gridViewBody gridViewContainerBorder'>
+                                                    <table id="tblCabReviewRequestPending" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+                                                </div>
+                                                <div class="text-center" id="divBulkCabApprove">
+                                                </div>
+                                                <br />
+                                                <br />
+                                                <div id="divCompleteReviewFormsGridHeader" class="gridViewHeader">
+                                                    <div class="profile-statistic tbl greencustomheader">
+                                                        <div class="tbl-row">
+                                                            <div class="tbl-cell">
+                                                                Approved/Rejected
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id='divInCompleteReviewFormsGridView' class='gridViewBody gridViewContainerBorder'>
+                                                    <table id="tblCabReviewRequestComplete" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+                                                </div>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div><!--.tab-content-->
+
+                            </div>
+                        </div>
+                    </section>
+                </section>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<div id="mypopupCabRequestRemark" class="modal fade" role="dialog" aria-labelledby="mypopupCabRequestRemark" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Remarks</h4>
+            </div>
+            <div class="container margin-top-10">
+                <div class="form-group col-md-12">
+                    <textarea rows="6" cols="2000" id="cabRequestRemark" maxlength="500" placeholder="Enter reason for WFH" class="form-control validation-required"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="mypopupBulkApprove" class="modal fade" role="dialog" aria-labelledby="mypopupBulkApprove" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">View Employees<span id="popupfor"></span></h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+
+                    <div class="form-group col-md-12">
+                        <div class="col-md-4">
+                            <label>Selected Employees</label>
+                        </div>
+                        <div class="col-md-8" id="employeesNames">
+
+                        </div>
+                    </div>
+                    <div class="container margin-top-10" id="">
+                        <div class="form-group col-md-12">
+                            <textarea rows="6" cols="2000" id="txtRemarkForBulkCabRequest" maxlength="500" placeholder="Please enter remarks here" class="form-control validation-required"></textarea>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="submitCabRequestBulk" type="button" class="btn btn-success"><i class="fa fa-"></i>&nbsp;Submit </button>
+                <button id="btnCloseBulk" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="mypopupReviewCabrequestRemark" class="modal fade" role="dialog" aria-labelledby="mypopupReviewCabrequestRemark" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Remarks</h4>
+                <input type="hidden" id="hdnCabRequestId" />
+            </div>
+            <div class="container margin-top-10" id="">
+                <div class="form-group col-md-12">
+                    <textarea rows="6" cols="2000" id="txtCabRequestRemark" maxlength="500" placeholder="Please enter remarks here" class="form-control validation-required"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btnRejectCabRequest" style="display:none;" type="button" class="btn btn-danger"><i class="fa fa-times"></i>&nbsp;Reject</button>
+                <button id="btnApproveCabRequest" style="display:none;" type="button" class="btn btn-success"><i class="fa fa-check"></i>&nbsp;Approve</button>
+                <button type="button" data-dismiss="modal" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/app/CabManagement/reviewRequest.js?v=1.4"></script>

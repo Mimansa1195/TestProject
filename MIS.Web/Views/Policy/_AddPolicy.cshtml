@@ -1,0 +1,110 @@
+﻿<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 id="modalTitle" class="modal-title">Add New Policy</h4>
+    </div>
+    <div class="container margin-top-10">
+        <div class="form-group row">
+            <div class="form-group">
+                <div class="col-md-4">
+                    <label>Policy Title<span class="spnError">*</span></label>
+                </div>
+                <div class="col-md-8">
+                    <input maxlength="2000" type="text" class="form-control validation-required" placeholder="Policy Title" id="policyTitle" />
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="form-group">
+                <div class="col-md-4">
+                    <label>Policy Document<span class="spnError">*</span></label>
+                </div>
+                <div class="col-md-8">
+                    <input type="file" id="policyDocument" name="policyDocument" class="form-control validation-required">
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="form-group">
+                <div class="col-md-12">
+                    <span class="spnError">Selected file format should be .pdf only</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button id="btnSavePolicy" type="button" class="btn btn-success"><i class="fa fa-save"></i>&nbsp;Save</button>
+        <button id="btnClose" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close</button>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $("#btnSavePolicy").click(function () {
+            savePolicy();
+        });
+
+        $("#policyDocument").change(function () {
+            checkFileIsValid(this.value);
+        });
+
+        $("#btnClose").click(function () {
+            $("#modal-addPolicy").modal('hide');
+        });
+    });
+
+    var base64PolicyData;
+
+    function checkFileIsValid(sender) {
+        var validExts = new Array(".pdf");
+        var fileExt = sender.substring(sender.lastIndexOf('.'));
+        if (validExts.indexOf(fileExt) < 0) {
+            misAlert("Invalid file selected. Only PDF file is allowed", "Warning", "warning");
+            $("#policyDocument").val("");
+            return false;
+        } else {
+            convertToBase64();
+            return true;
+        }
+    }
+
+    function convertToBase64() {
+        var selectedFile = document.getElementById("policyDocument").files;
+        if (selectedFile.length > 0) //Check File is not Empty
+        {
+            var fileToLoad = selectedFile[0]; // Select the very first file from list
+            var fileReader = new FileReader(); // FileReader function for read the file.
+            fileReader.onload = function (fileLoadedEvent) // Onload of file read the file content
+            {
+                base64PolicyData = fileLoadedEvent.target.result;// Base 64 data
+            };
+            fileReader.readAsDataURL(fileToLoad); // Convert data to base64
+        }
+    }
+
+    function savePolicy() {
+        var fileName = $("#policyDocument").val().replace(/^.*\\/, "");
+        if (!validateControls('modal-addPolicy')) {
+            return false;
+        }
+        var jsonObject = {
+            policyTitle: $("#policyTitle").val(),
+            policyName: fileName,
+            base64PolicyData: base64PolicyData,
+            userAbrhs: misSession.userabrhs
+        }
+        calltoAjax(misApiUrl.addPolicy, "POST", jsonObject,
+            function (result) {
+                var resultData = $.parseJSON(JSON.stringify(result));
+                if (resultData === true) {
+                    misAlert("Policy document has been added successfully", "Success", "success");
+                    getAllPolicies();
+                    $("#modal-addPolicy").modal('hide');
+                }
+                else if (resultData === false)
+                    misAlert("Policy document with same name already exists", "Warning", "warning");
+                else
+                    misAlert("Unable to process your request. Try again", "Error", "error");
+            });
+    }
+</script>

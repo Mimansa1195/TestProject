@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Gemini MIS</title>
+    <link href="~/Content/lib/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/lib/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/lib/login.min.css" rel="stylesheet" />
+    <link href="~/Content/lib/main.css?v=1.5" rel="stylesheet" />
+    <link href="~/Content/lib/sweetalert.css" rel="stylesheet" />
+    <link href="~/Content/lib/sweet-alert-animations.min.css" rel="stylesheet" />
+    <link href="~/Content/lib/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/app/mis.common.css?v=2.9" rel="stylesheet" />
+
+    <script language="javascript" type="text/javascript">
+    //if (window.location.hostname !== 'localhost') {
+    //    if (window.location.protocol !== 'https:') {
+    //        window.location = 'https://' + window.location.hostname + (window.location.port ? ':' + window.location.port : '') + window.location.pathname + window.location.hash;
+    //    }
+    //}
+    </script>
+    <script src="~/Scripts/lib/jquery.min.js"></script>
+    <script src="~/Scripts/lib/datatable/vfs_fonts.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="~/Scripts/lib/jquery.blockUI.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/common/mis.basepath.js?v=6.1"></script>
+    <script src="~/Scripts/common/mis.common.min.js?v=4.6"></script>
+</head>
+<body>
+    <div class="page-center" id="loginContainer">
+        <div>
+            <div class="container-fluid">
+                @RenderBody()
+            </div>
+        </div>
+        <div class="text-center" style="margin-top: 15px;">
+            <p>&copy; @DateTime.Now.Year MIS | All Rights Reserved</p>
+        </div>
+    </div>
+</body>
+</html>
+<!--.page-center-->
+<script src="~/Scripts/lib/bootstrap.js"></script>
+<script src="~/Scripts/lib/jquery.matchHeight.min.js"></script>
+<script src="~/Scripts/lib/plugins.js"></script>
+<script src="~/Scripts/lib/jquery.validation.min.js"></script>
+<script src="~/Scripts/lib/jquery.blockUI.min.js" type="text/javascript"></script>
+@*<script src="~/Scripts/lib/bootstrap-show-password.min.js"></script>
+    <script src="~/Scripts/lib/bootstrap-show-password-init.js"></script>*@
+<script src="~/Scripts/lib/sweetalert.min.js"></script>
+
+<script>
+    $(function () {
+        $(document).ajaxStart($.blockUI).ajaxError($.unblockUI).ajaxStop($.unblockUI);
+        //$('.page-center').matchHeight({
+        //    target: $('html')
+        //});
+
+        //$(window).resize(function () {
+        //    setTimeout(function () {
+        //        $('.page-center').matchHeight({ remove: true });
+        //        $('.page-center').matchHeight({
+        //            target: $('html')
+        //        });
+        //    }, 100);
+        //});
+    });
+</script>

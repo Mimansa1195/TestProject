@@ -1,0 +1,156 @@
+﻿<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 id="modalTitle" class="modal-title">Upload Achievement</h4>
+    </div>
+    <div class="container margin-top-10">
+        <div class="form-group row">
+            <div class="form-group">
+                <div class="col-md-5">
+                    <label>Document Type<span class="spnError">*</span></label>
+                </div>
+                <div class="col-md-7">
+                    <select id="departmentalForm" class="form-control select2 validation-required" placeholder="Form"></select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="form-group">
+                <div class="col-md-5">
+                    <label>Achievement Document<span class="spnError">*</span></label>
+                </div>
+                <div class="col-md-7">
+                    <input type="file" class="form-control validation-required" onchange="checkFileIsValid(this);" name="file" id="fuAchievement">
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="form-group">
+                <div class="col-md-12">
+                    <span class="spnError">Selected file format should be .pdf)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button id="btnSaveAchievement" type="button" class="btn btn-success"><i class="fa fa-save"></i>&nbsp;Submit</button>
+        <button id="btnClose" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close</button>
+    </div>
+</div>
+
+<script>
+    var base64AchievementDocData;
+
+    $(document).ready(function () {
+        bindDepartmentalForms();
+
+        $("#btnSaveAchievement").click(function () {
+            uploadMyAchievement();
+        });
+
+        $("#btnClose").click(function () {
+            $("#modal-uploadMyAchievement").modal('hide');
+        });
+    });
+
+    function bindDepartmentalForms() {
+        var jsonObject = {
+            departmentAbrhs: "s0XXCn3bo+Q=" //bind HR departments forms
+        };
+        $("#departmentalForm").select2();
+        $("#departmentalForm").empty();
+        $("#departmentalForm").append("<option value='0'>Select</option>");
+        calltoAjax(misApiUrl.getAllActiveForms, "POST", jsonObject,
+            function (result) {
+                if (result != null)
+                    $.each(result, function (index, item) {
+                        $("#departmentalForm").append("<option value = '" + item.FormId + "' >" + item.FormTitle + "</option>");
+                    });
+            });
+    }
+
+    function checkFileIsValid(sender) {
+        var validExts = new Array(".pdf");
+        var fileExt = sender.value;
+        fileExt = fileExt.substring(fileExt.lastIndexOf('.'));
+        if (validExts.indexOf(fileExt) < 0) {
+            misAlert("Invalid file selected. Supported extension is " + validExts.toString(), "Warning", "warning");
+            $("#fuAchievement").val("");
+            return false;
+        } else {
+            convertToBase64();
+            return true;
+        }
+    }
+
+    function convertToBase64() {
+        var selectedFile = document.getElementById("fuAchievement").files;
+        if (selectedFile.length > 0) //Check File is not Empty
+        {
+            var fileToLoad = selectedFile[0];
+            var fileReader = new FileReader();
+            fileReader.onload = function (fileLoadedEvent) {
+                base64AchievementDocData = fileLoadedEvent.target.result;
+            };
+            fileReader.readAsDataURL(fileToLoad);
+        }
+    }
+
+    function uploadMyAchievement() {
+        var extn = getFileExtension($("#fuAchievement").val().replace(/^.*\\/, ""));
+        var today = new Date();
+        var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        var fileName = $("#departmentalForm option:selected").text() + "_" + misSession.displayname + '_' + months[today.getMonth()] + '_' + today.getFullYear() + '.' + extn;
+
+        if (!validateControls('modal-uploadMyAchievement')) {
+            return false;
+        }
+        var jsonObject = {
+            formId: $("#departmentalForm").val(),
+            formName: fileName,
+            base64FormData: base64AchievementDocData
+        }
+        calltoAjax(misApiUrl.uploadMyForm, "POST", jsonObject, function (result) {
+            var resultData = $.parseJSON(JSON.stringify(result));
+            if (resultData == 1) {
+                misAlert("Your achievement form has been uploaded successfully", "Success", "success");
+                bindMyAchievement();
+                $("#modal-uploadMyAchievement").modal('hide');
+            }
+            else if (resultData == 2)
+                misAlert("Please fill all mandatory fields", "Warning", "warning");
+            else if (resultData == 3)
+                misAlert("Similar form already exists with active status, please deactive old form to upload new one.", "Warning", "warning");
+            else
+                misAlert('Your request cannot be processed, please try after some time or contact to MIS team for further assistance.', 'Error', 'error');
+        });
+    }
+
+
+    function uploadMyForm() {
+        var extn = getFileExtension($("#fuForm").val().replace(/^.*\\/, ""));
+        var fileName = $("#departmentalForm option:selected").text() + "_" + misSession.displayname + '.' + extn; //fileName, //$("#fuForm").val().replace(/^.*\\/, "");
+        if (!validateControls('modal-uploadMyForm')) {
+            return false;
+        }
+        var jsonObject = {
+            formId: $("#departmentalForm").val(),
+            formName: fileName,
+            base64FormData: base64FormData
+        }
+        calltoAjax(misApiUrl.uploadMyForm, "POST", jsonObject, function (result) {
+            var resultData = $.parseJSON(JSON.stringify(result));
+            if (resultData == 1) {
+                misAlert("Your form has been uploaded successfully", "Success", "success");
+                bindAllMyForms();
+                $("#modal-uploadMyForm").modal('hide');
+            }
+            else if (resultData == 2)
+                misAlert("Please fill all mandatory fields", "Warning", "warning");
+            else if (resultData == 3)
+                misAlert("Form with same name already exists", "Warning", "warning");
+            else
+                misAlert('Your request cannot be processed, please try after some time or contact to MIS team for further assistance.', 'Error', 'error');
+        });
+    }
+</script>

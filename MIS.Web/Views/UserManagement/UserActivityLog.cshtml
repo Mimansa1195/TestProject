@@ -1,0 +1,82 @@
+﻿<div class="container-fluid">
+    <section class="card">
+        <div class="card-block">
+            <h5 class="with-border m-t-0">User Activity Logs</h5>
+            <div class="row form-body">
+                <div class="col-md-12 clearfix" id="logContainer">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="control-label">From<span class="spnError">*</span></label>
+                                <div class="inputGroupContainer date date-picker" id="logFromDate">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control validation-required" readonly="" name="logFromDate" placeholder="From">
+                                        <span class=" input-group-btn">
+                                            <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="control-label">Till<span class="spnError">*</span></label>
+                                <div class="inputGroupContainer date date-picker" id="logTillDate">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control validation-required" readonly="" name="logTillDate" placeholder="Till">
+                                        <span class=" input-group-btn">
+                                            <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="control-label">Employee</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <select class="form-control select2" id="employees">
+                                            <option value="">All</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="control-label">&nbsp;</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <button id="btnSearch" type="button" class="btn green"><i class="fa fa-search"></i>&nbsp;Search</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 clearfix">
+                    <table id="userActivityLogsGrid" data-filter-control="true" data-toolbar="#toolbar" class="table table-hover"></table>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div id="userLocationModal" class="modal fade" role="dialog" aria-labelledby="userLocationModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">User Location</h4>
+            </div>
+            <div class="modal-body modal-scrollable" id="userLocationModalContainer">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;Close </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/app/UserManagement/userActivityLog.js?v=2.8"></script>

@@ -1,0 +1,27 @@
+ALTER TABLE [DateWiseLNSA] ADD StatusId BIGINT NULL
+GO
+UPDATE DW  SET DW.StatusId = R.StatusId FROM [DateWiseLNSA] DW JOIN RequestLnsa R ON DW.RequestId = R.RequestId
+GO
+ALTER TABLE [DateWiseLNSA] ALTER COLUMN StatusId  BIGINT NOT NULL
+GO
+ALTER TABLE DateWiseLNSA ADD CONSTRAINT DateWiseLNSA_LNSAStatusMaster_StatusId FOREIGN KEY (StatusId) REFERENCES LNSAStatusMaster(StatusId)
+GO
+ALTER TABLE [DateWiseLNSA] ADD Remarks VARCHAR(500) NULL
+GO
+ALTER TABLE DateWiseLNSA ADD CreatedBy INT NULL
+GO
+ALTER TABLE DateWiseLNSA ADD CreatedDate DATETIME NULL
+GO
+UPDATE D  SET D.CreatedBy = R.CreatedBy, D.CreatedDate = R.CreatedDate FROM DateWiseLNSA D JOIN RequestLnsa R ON D.RequestId = R.RequestId
+GO
+ALTER TABLE [DateWiseLNSA] ALTER COLUMN CreatedBy INT NOT NULL
+GO
+ALTER TABLE [DateWiseLNSA] ALTER COLUMN CreatedDate DATETIME NOT NULL
+GO
+ALTER TABLE DateWiseLNSA ADD CONSTRAINT DateWiseLNSA_CreatedDate DEFAULT(GETDATE()) FOR CreatedDate
+GO
+ALTER TABLE DateWiseLNSA Add LastModifiedBy INT NULL, LastModifiedDate DATETIME NULL
+GO
+UPDATE D  SET D.LastModifiedDate = R.LastModifiedDate, D.LastModifiedBy = R.LastModifiedBy FROM DateWiseLNSA D JOIN RequestLnsa R ON D.RequestId = R.RequestId
+
+GO

@@ -1,0 +1,162 @@
+﻿@* Angularjs Code starts here ------------------------------------------------------*@
+
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-datatables/0.5.6/angular-datatables.min.js"></script>
+
+
+<script src="~/Scripts/angular/app.js"></script>
+<script src="~/Scripts/angular/services/UserService.js"></script>
+<script src="~/Scripts/angular/services/teamManagementService.js"></script>
+<script src="~/Scripts/angular/controllers/teamManagementController.js"></script>
+
+@* Angularjs Code Ends here ------------------------------------------------------*@
+
+<script src="~/Scripts/app/TeamManagement/teamInformation.js"></script>
+
+
+<div ng-app="misApp" ng-controller="TeamManagementController" >
+
+    <div class="container-fluid">
+        <section class="card">
+            <div class="card-block">
+                <h5 class="with-border m-t-0">Team Information </h5>
+                <div class="form-group row">
+                    <div class="col-sm-12 text-right">
+                        <button type="button" class="btn btn-inline" onclick="showTeamPopup();" id="btnAddNewTeam">Add New Team</button>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane">
+                    <div class="row form-body">
+                        <div class="col-md-12 clearfix">
+
+                            <div>
+                                <div>
+
+                                    <table my-table options="options" class="table table-bordered table-hover display table-striped"></table>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 clearfix">
+
+                            @*<table datatable="ng" dt-options="dtOptions" dt-columns="dtColumns" class="">
+                                    <tr ng-repeat="dt in TeamList"></tr>
+                                </table>*@
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+    </div>
+
+    <div id="popupGeminiTeamInfo" class="modal fade col-md-12 col-lg-12" role="dialog" aria-labelledby="popupGeminiTeamInfo" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header ">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 id="modalTitle" class="modal-title">Add/Edit New Team</h4>
+                    <input type="hidden" name="name" value=" " id="hdnId" />
+                </div>
+                <div class="container margin-top-10 " id="divManageVertical">
+                    <div class="form-group row  padding-left-20">
+                        <div class="form-group clearfix">
+                            <div class="col-md-2 padding-top10">
+                                <label>Team Name<span class="spnError">*</span></label>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" class='form-control validation-required txtDocument generalinput' id="txtVertical" />
+                            </div>
+                            <div class="col-md-2 col-lg-2  padding-top10 ">
+                                <label>Week Start Day<span class="spnError">*</span></label>
+                            </div>
+                            <div class="col-md-3">
+                                <select class="form-control select-validate validation-required" id="ddlOwner"><option>Monday</option></select>
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <div class="col-md-2 padding-top10">
+                                <label>Department<span class="spnError">*</span></label>
+                            </div>
+                            <div class="col-md-3">
+                                <select id="ddlDepartment" class="form-control select-validate validation-required"><option>Monday</option></select>
+                            </div>
+                            <div class="col-md-2">
+                                <label>Team Head<span class="spnError">*</span></label>
+                            </div>
+                            <div class="col-md-3">
+                                <select id="ddlTeamHead" class="form-control select-validate validation-required"><option>Monday</option></select>
+                            </div>
+                        </div>
+                        <div class="form-group padding-top10 clearfix">
+                            <div class="col-md-3  ">
+                                <label><input type="checkbox"> Enable Reminder</label>
+                            </div>
+                            <div class="col-md-3 padding0">
+                                <label><input type="checkbox"> Enable Attendance Emails</label>
+                            </div>
+                            <div class="col-md-2">
+                                @*<label><input type="checkbox" ng-model="IsSubChecked" /> Is Sub Team</label>*@
+                            </div>
+                            <div class="col-md-3" ng-if="IsSubTeam">
+                                <select id="ddlTeamHead" class="form-control select-validate validation-required"><option>Monday</option></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row padding-left-20">
+                        <div class="form-group">
+                            <div class="col-md-11 fontBold margin-bottom-10-bor">
+                                Add Acknowledgement, Dashboard, Report and Reminders
+                            </div>
+
+                            <div class="clearfix"> </div>
+
+                            <div class="col-md-4 margin-top-25">
+                                <select ng-model="ReminderType" class="form-control select-validate validation-required" id="ddlOwner">
+                                    <option class="active">Acknowledgement</option>
+                                    <option>Dashboard</option>
+                                    <option>Report</option>
+                                    <option>Reminder</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2 margin-top-25">
+                                <button id="btnAddReminderDynamc" class="btn btn-lg-add " ng-click="DynamicAddReminderinPopup();" type="button" data-original-title="Add New Reminder" data-toggle="tooltip"><i class="fa fa-plus-square-o"> </i></button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group row padding-left-20">
+                        <div class="form-group">
+                            <table class="col-md-11">
+                                <tbody>
+                                    <tr ng-repeat="dt in ReminderList" class="padding10">
+                                        <td class="padding10"><span>{{dt.ReminderName}}</span> </td>
+                                        <td class="padding10"><select id="ddlDay" ng-model="dt.Day" class="form-control select-validate validation-required"><option>Monday</option></select></td>
+                                        <td class="padding10"><select id="ddlWeek" ng-model="dt.Week" class="form-control select-validate validation-required"></select></td>
+                                        <td class="padding10"><select id="ddlTime" ng-model="dt.Time" class="form-control select-validate validation-required"></select></td>
+                                        <td class="padding10"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn green" id="btnVerticalPopup">Save</button>
+                        <button id="btnCloseTeamInfo" type="button" class="btn default " data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i>&nbsp;Close </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+

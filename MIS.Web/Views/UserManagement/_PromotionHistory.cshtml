@@ -1,0 +1,67 @@
+﻿<table id="tblPromotionHistory" data-filter-control="true" data-toolbar="#toolbar" class="table table-hover"></table>
+<script>
+    $(document).ready(function () {
+        getPromotionHistory();
+    });
+    function getPromotionHistory() {
+        calltoAjax(misApiUrl.getPromotionHistory, "POST", " ",
+            function (result) {
+                var resultData = $.parseJSON(JSON.stringify(result));
+                $("#tblPromotionHistory").dataTable({
+                    "responsive": true,
+                    "autoWidth": false,
+                    "paging": true,
+                    "bDestroy": true,
+                    "searching": true,
+                    "ordering": true,
+                    "info": true,
+                    "deferRender": true,
+                    "aaData": resultData,
+                    "aoColumns": [
+                        {
+                            "mData": "Name",
+                            "sTitle": "Employee Name",
+                        },
+                        {
+                            "mData": "OldEmployeeId",
+                            "sTitle": "Old EmpCode",
+                        },
+                        {
+                            "mData": "NewEmployeeId",
+                            "sTitle": "New EmpCode",
+                        },
+                        {
+                            "mData": "OldDesignation",
+                            "sTitle": "Old Designation",
+                        },
+                        {
+                            "mData": "NewDesignation",
+                            "sTitle": "New Designation",
+                        },
+                        {
+                            "mData": null,
+                            "sTitle": "Promotion Date",
+                            mRender: function (data, type, row) {
+                                //var date = row.JoiningDate.slice(0, 10);
+                                return moment(row.PromotionDate).format('DD MMM YYYY');
+                            }
+                        },
+                        {
+                            "mData": "CreatedByName",
+                            "sTitle": "Promoted By",
+                            //"className": "none"
+                        },
+                        {
+                            "mData": null,
+                            "sTitle": "Promoted On",
+                            //"className": "none",
+                            mRender: function (data, type, row) {
+                                //var date = row.JoiningDate.slice(0, 10);
+                                return moment(row.CreatedDate).format('DD MMM YYYY hh:mm:ss');
+                            }
+                        },
+                    ]
+                });
+            });
+    }
+</script>

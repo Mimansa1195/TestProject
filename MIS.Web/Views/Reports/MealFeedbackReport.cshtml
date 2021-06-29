@@ -1,0 +1,61 @@
+﻿<div class="container-fluid">
+    <section class="card">
+        <div class="card-block">
+            <h5 class="with-border m-t-0">Meal Feedback Report</h5>
+            <div class="text-right" style="padding-bottom:5px" id="divDeligation">
+
+            </div>
+            <div class="row" id="divLeave">
+                <div class="col-xl-12 col-lg-12">
+                    <div class="row form-body">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label">From<span class="spnError">*</span></label>
+                                <div class="inputGroupContainer date date-picker" id="fromDate">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control validation-required" readonly="">
+                                        <span class=" input-group-btn">
+                                            <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label">Till<span class="spnError">*</span></label>
+                                <div class="inputGroupContainer date date-picker" id="tillDate">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control validation-required" readonly="">
+                                        <span class=" input-group-btn">
+                                            <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label">&nbsp;</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <button id="btnMealMenu" type="button" class="btn green"><i class="fa fa-search"></i>&nbsp;Search</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <div class=" col-md-12">
+                                <table id="tblMealFeedback" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script src="~/Scripts/app/Reports/mealfeedback.js?v=1.0"></script>
+

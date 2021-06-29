@@ -1,0 +1,175 @@
+﻿<div id="PromoteEmployeeModal" class="modal fade in" role="dialog" aria-labelledby="PromoteEmployeeModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" id="btnClose1" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 id="modalTitle" class="modal-title"> Promote Employee</h4>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" name="hdnEmployeeId" id="hdnEmployeeId" value="" />
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label">Employee Name</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="txtName" disabled="disabled">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Date of Promotion<span class="spnError">*</span></label>
+                            <div class="inputGroupContainer date date-picker" id='dtpPromotionDate'>
+                                <div class="input-group">
+                                    <input type="text" class="form-control validation-required" id="txtPromotionDate" readonly="">
+                                    <span class=" input-group-btn">
+                                        <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Current Designation</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="txtEmpDesignation" disabled="disabled">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Designation Group</label>
+                            <div class="inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-list"></i></span>
+                                    <select class="form-control select2" id="txtEmpNewDesignationGroup" onchange="OnChangeDesigGroup();">
+                                        <option value="">Select All</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 clearfix">
+                        <div class="form-group">
+                            <label class="control-label">New Designation<span class="spnError">*</span></label>
+                            <div class="inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-list"></i></span>
+                                    <select class="form-control select2 validation-required" id="txtEmpNewDesignation" onchange="bindDataToBeUpdated();">
+                                        <option value="0">Select</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Current Employee Code</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="txtEmpCode" disabled="disabled">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">New Employee Code<span class="spnError">*</span></label>
+                            <div class="input-group">
+                                <input type="text" class="form-control validation-required" id="txtNewEmpCode">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 clearfix">
+                        <div class="form-group">
+                            @*<label class="control-label">Note:Old data to be replaced by new data</label>*@
+                            <div class="input-group">
+                                <table id="tblDataUpdated" data-filter-control="true" data-toolbar="#toolbar" class="table table-hover"></table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <div class="form-group">
+                            <button id="btnPromote" type="button" class="btn btn-success" onclick="promoteUser()">@*<i class="fa fa-save"></i>&nbsp;*@Promote </button>
+                            <button type="button" id="btnClose" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> &nbsp; Close </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<table id="tblPromoteUser" data-filter-control="true" data-toolbar="#toolbar" class="table table-hover"></table>
+<script>
+    $(document).ready(function () {
+        getAllActiveEmployees();
+    });
+
+    function getAllActiveEmployees() {
+        calltoAjax(misApiUrl.getAllEmployees, "POST", " ",
+            function (result) {
+                var resultData = $.parseJSON(JSON.stringify(result));
+                $("#tblPromoteUser").dataTable({
+                    "responsive": true,
+                    "autoWidth": false,
+                    "paging": true,
+                    "bDestroy": true,
+                    "searching": true,
+                    "ordering": true,
+                    "info": true,
+                    "deferRender": true,
+                    "aaData": resultData,
+                    "aoColumns": [
+                        {
+                            "mData": "Name",
+                            "sTitle": "Employee Name",
+                        },
+                        {
+                            "mData": "EmployeeId",
+                            "sTitle": "Employee Id",
+                            "className" : "none"
+                        },
+                        {
+                            "mData": "Manager",
+                            "sTitle": "Manager Name",
+                        },
+                        {
+                            "mData": "Designation",
+                            "sTitle": "Designation",
+                        },
+                        {
+                            "mData": "Team",
+                            "sTitle": "Team",
+                        },
+                        {
+                            "mData": "Department",
+                            "sTitle": "Department",
+                        },
+                        {
+                            "mData": null,
+                            "sTitle": "Joining Date",
+                            mRender: function (data, type, row) {
+                                //var date = row.JoiningDate.slice(0, 10);
+                                return moment(row.JoiningDate).format('DD MMM YYYY');
+                            }
+                        },
+                        {
+                            "mData": null,
+                            "sTitle": "Action",
+                            'bSortable': false,
+                            "sClass": "text-left",
+                            mRender: function (data, type, row) {
+
+                                var html = '';
+                                html += '<button type="button" class="btn btn-sm btn-info" data-toggle="modal" ' + 'onclick="promoteEmployee(\'' + row.EmployeeAbrhs + '\',\'' + row.DesignationGrpAbrhs + '\',\'' + row.Name + '\',\'' + row.Designation + '\',\'' + row.EmployeeId + '\',\'' + row.IsIntern + '\')" /*data-toggle="tooltip" */title="Promote employee"><i class="fa fa-pencil"> </i> </button>';
+                                return html;
+                            }
+                        },
+                    ]
+                });
+            });
+    }
+</script>
+<script src="~/Scripts/app/UserManagement/promoteUser.js?v=3.4"></script>

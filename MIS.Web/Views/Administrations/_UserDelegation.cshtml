@@ -1,0 +1,205 @@
+﻿<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 id="modalTitle" class="modal-title">Delegate</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row" id="divDelegationForm">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label">From<span class="spnError">*</span></label>
+                    <div class="inputGroupContainer date date-picker" id="delegationFromDateEmp">
+                        <div class="input-group">
+                            <input type="text" class="form-control validation-required" readonly="" name="delegationFromDateEmp" placeholder="From">
+                            <span class=" input-group-btn">
+                                <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label">Till<span class="spnError">*</span></label>
+                    <div class="inputGroupContainer date date-picker" id="delegationTillDateEmp">
+                        <div class="input-group">
+                            <input type="text" class="form-control validation-required" readonly="" name="delegationTillDateEmp" placeholder="Till">
+                            <span class=" input-group-btn">
+                                <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="control-label">Employee</label>
+                    <div class="inputGroupContainer">
+                        <div class="input-group">
+                            <select class="form-control select2 validation-required" id="employeeNameDeligation"></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row text-right">
+            <div class="form-group">
+                <div class="col-md-12">
+                    <button id="btnDelegation" type="button" class="btn btn-success"><i class="fa fa-save"></i>&nbsp;Update</button>
+                    <button id="btnDelegationClose" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer" style="margin-top :10px">
+        <table id="tblDelegationList" data-filter-control="true" data-toolbar="#toolbar" class="table table-hover"></table>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+
+        $('#delegationFromDateEmp').datepicker({
+            format: "mm/dd/yyyy",
+            autoclose: true,
+            todayHighlight: true
+        }).datepicker('setStartDate', new Date()).on('changeDate', function (ev) {
+            $('#delegationTillDateEmp input').val('');
+            $('#delegationTillDateEmp').datepicker('setStartDate', $('#delegationFromDateEmp input').val()).trigger('change');
+        });
+
+        $('#delegationTillDateEmp').datepicker({
+            format: "mm/dd/yyyy",
+            autoclose: true,
+            todayHighlight: true
+        });
+
+        $("#employeeNameDeligation").select2();
+        getEmployees();
+        getDelegatedRecords();
+    });
+
+    $("#btnDelegationClose").click(function () {
+        $("#mypopupUserDelegation").modal("hide");
+    });
+
+    function getEmployees() {
+        $("#employeeNameDeligation").empty();
+        calltoAjax(misApiUrl.listAllActiveUsers, "POST", '',
+            function (result) {
+                $("#employeeNameDeligation").empty();
+                $("#employeeNameDeligation").append("<option value='0'>Select</option>");
+                if (result != null) {
+                    for (var i = 0; i < result.length ; i++) {
+                        $("#employeeNameDeligation").append("<option value = '" + result[i].EmployeeAbrhs + "'>" + result[i].EmployeeName + "</option>");
+                    }
+                }
+            });
+    }
+
+    $("#btnDelegation").click(function () {
+        if (!validateControls('divDelegationForm')) {
+            return false;
+        }
+
+        var jsonObject = {
+            FromDate: $("#delegationFromDateEmp input").val(),
+            ToDate: $("#delegationTillDateEmp input").val(),
+            MenuAbrhs: misPermissions.menuAbrhs,
+            EmpAbrhs: $("#employeeNameDeligation").val(),
+            UserAbrhs: misSession.userabrhs,
+        };
+        calltoAjax(misApiUrl.saveMenuDelegation, "POST", jsonObject,
+        function (result) {
+            if (result == 1) {
+                misAlert("You have delegated this Menu.", "Success", "success");
+                getDelegatedRecords();
+            }
+            if (result == 2) {
+                misAlert("You dont have right to delegated this Menu.", "Warning", "warning");
+            }
+            if (result == 3) {
+                misAlert("You have already delegated this Menu to the user.", "Warning", "warning");
+            }
+        });
+    });
+
+    function getDelegatedRecords() {
+        var jsonObject = {
+            menuAbrhs: misPermissions.menuAbrhs,
+            userAbrhs: misSession.userabrhs,
+        };
+        calltoAjax(misApiUrl.getMenuDelegation, "POST", jsonObject,
+        function (result) {
+            var resultdata = $.parseJSON(JSON.stringify(result));
+            $("#tblDelegationList").dataTable({
+                "responsive": true,
+                "autoWidth": false,
+                "paging": true,
+                "bDestroy": true,
+                "ordering": true,
+                "order": [],
+                "info": true,
+                "deferRender": true,
+                "aLengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+                "aaData": resultdata,
+                "aoColumns": [
+                      {
+                          "sClass": "text-left",
+                          "mData": "Employee",
+                          "sTitle": "Employee Name",
+                      },
+                      {
+                          "mData": null,
+                          "sTitle": "From",
+                          "sClass": "text-left",
+                          'bSortable': false,
+                          mRender: function (data, type, row) {
+                              return toddMMMyyy(row.FromDate);
+                          }
+                      },
+                      {
+                          "mData": null,
+                          "sTitle": "To",
+                          "sClass": "text-left",
+                          'bSortable': false,
+                          mRender: function (data, type, row) {
+                              return toddMMMyyy(row.ToDate);
+                          }
+                      },
+                     {
+                         "mData": null,
+                         "sTitle": "Action",
+                         'bSortable': false,
+                         mRender: function (data, type, row) {
+                             if (row.IsActive) {
+                                 return html = '<button type="button" class="btn btn-sm btn-danger" onclick="deletePermission(' + row.MenusUserDelegationId + ')" data-toggle="tooltip" title="Re Owned"><i class="fa fa-trash"></i></button>';
+                             }
+                             else {
+                                 return "<span style='color: #3fc15c;font-weight: bolder;'> Re Owned </span>";
+                             }
+
+                         }
+                     },
+                ]
+            });
+        });
+    }
+
+    function deletePermission(menusUserDelegationId) {
+        var reply = misConfirm("Are you sure you want to re owned the permissions ?", "Confirm", function (reply) {
+            if (reply) {
+                var jsonObject = {
+                    menusUserDelegationId: menusUserDelegationId,
+                    userAbrhs: misSession.userabrhs,
+                };
+                calltoAjax(misApiUrl.deleteMenuDelegation, "POST", jsonObject,
+                function (result) {
+                    if (result == 1) {
+                        misAlert("This menu right has been re owned.", "Success", "success");
+                        getDelegatedRecords();
+                    }
+                });
+            }
+        });
+    }
+</script>

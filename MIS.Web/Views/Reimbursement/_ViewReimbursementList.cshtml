@@ -1,0 +1,56 @@
+﻿<div class="row">
+    <div class="col-md-3 col-sm-12 form-group">
+        <label class="control-label">Type<i class="spnError">*</i></label>
+        <select id="viewReimbType" style="text-align:center" class="form-control select2 validation-required"></select>
+    </div>
+    <div class="col-md-3 col-sm-12 form-group">
+        <label class="control-label">Financial Year<i class="spnError">*</i></label>
+        <select id="viewMonthYear" placeholder="Category" style="text-align:center" class="form-control select2 validation-required"> </select>
+    </div>
+    <div class="col-md-3">
+        <label id="lblFinancialYear" style="display:inline-block; padding-top:30px"> 1<sup>st</sup> April <span id="cntYear"></span> to 31<sup>st</sup> March <span id="nxtYear"></span></label>
+    </div>
+</div>
+<div class="row m-t-1">
+    <div role="tabpanel" class="tab-pane margin-top-10 col-md-12">
+        <section>
+            <div class="row form-body">
+                <div class="col-md-12 clearfix">
+                    <table id="tblReimbursementList" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info">
+                        <tfoot>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th style="text-align:right">Page Total:<br />Total:</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<!-- Reimbursement request html-->
+<div id="reimbursementRemark" class="modal fade" role="dialog" aria-labelledby="reimbursementRemark">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Remarks History</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-bordered table-hover" style="width:100%" id="reimbursementHistoryBody" role="grid" aria-describedby="example1_info"></table>
+            </div>
+            <div class="modal-footer">
+                <button data-dismiss="modal" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/app/Reimbursement/viewReimbursementList.js?v=1.3"></script>

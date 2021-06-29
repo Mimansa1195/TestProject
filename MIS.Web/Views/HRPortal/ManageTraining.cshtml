@@ -1,0 +1,235 @@
+﻿<div class="container-fluid">
+    <section class="card">
+        <div class="card-block">
+            <h5 class="with-border m-t-0">Manage Trainings</h5>
+            <div>
+                <button type="button" class="btn btn-success" onclick="showAddTrainingPopup();">Add Upcoming Trainings</button>
+            </div>
+            <div class="clearfix"><br /></div>
+            <table id="tblTraining" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+        </div>
+    </section>
+</div>
+<div id="mypopupAddTraining" class="modal fade" role="dialog" data-backdrop="static" aria-labelledby="mypopupAddTraining" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" id="buttonClose" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">Add Training</h4>
+            </div>
+            <div class="container margin-top-10">
+
+                <div class="form-group row">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Nomination From<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="inputGroupContainer date date-picker" id="fromDate">
+                                <div class="input-group">
+                                    <input type="text" class="form-control validation-required" readonly="" placeholder="Enter nominations start date" name="fromDate" id="fromDateEmp">
+                                    <span class=" input-group-btn">
+                                        <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Nomination Till<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="inputGroupContainer date date-picker" id="tillDate">
+                                <div class="input-group">
+                                    <input type="text" class="form-control validation-required" readonly="" placeholder="Enter nominations end date" name="tillDate" id="tillDateEmp">
+                                    <span class=" input-group-btn">
+                                        <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Tentative Date<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="inputGroupContainer date date-picker" id="tentativeDate">
+                                <div class="input-group">
+                                    <input type="text" class="form-control validation-required" readonly="" placeholder="Enter tentative date of session." name="tentativeDate" id="tentativeDateEmp">
+                                    <span class=" input-group-btn">
+                                        <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Training Title<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <textarea rows="2" class="form-control validation-required" style="width:100%" id="trainingTitle" maxlength="1000" placeholder="Enter training title."></textarea>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Training Description<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <textarea rows="5" class="form-control validation-required" style="width:100%" id="trainingDescription" maxlength="1000" placeholder="Enter training description."></textarea>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Document<span class="spnError"></span></label>
+                        </div>
+
+                        <div class="col-md-8">
+                            <input type="file" class="form-control" onchange="checkValidFile(this);" name="file" id="document">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <span class="spnError">Note: Selected file format should be .pdf only.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="btnSaveTraining" type="button" class="btn btn-success"><i class="fa fa-save"></i>&nbsp;Save</button>
+                    <button id="btnClose" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="mypopupEditTraining" class="modal fade" role="dialog" data-backdrop="static" aria-labelledby="mypopupEditTraining" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" id="buttonCloseEdit" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">Update Training</h4>
+            </div>
+            <div class="container margin-top-10">
+
+                <div class="form-group row">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Nomination From<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="inputGroupContainer date date-picker" id="fromDateEdit">
+                                <div class="input-group">
+                                    <input type="text" class="form-control validation-required" readonly="" placeholder="Enter nominations start date" name="fromDate" id="fromDateEmpEdit">
+                                    <span class=" input-group-btn">
+                                        <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Nominations Till<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="inputGroupContainer date date-picker" id="tillDateEdit">
+                                <div class="input-group">
+                                    <input type="text" class="form-control validation-required" readonly="" placeholder="Enter nominations end date" name="tillDate" id="tillDateEmpEdit">
+                                    <span class=" input-group-btn">
+                                        <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Tentative Date<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="inputGroupContainer date date-picker" id="tentativeDateEdit">
+                                <div class="input-group">
+                                    <input type="text" class="form-control validation-required" readonly="" placeholder="Enter tentative date of session." name="tentativeDate" id="tentativeDateEmpEdit">
+                                    <span class=" input-group-btn">
+                                        <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Training Title<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <textarea rows="2" class="form-control validation-required" style="width:100%" id="trainingTitleEdit" maxlength="1000" placeholder="Enter training title."></textarea>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Training Description<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <textarea rows="5" class="form-control validation-required" style="width:100%" id="trainingDescriptionEdit" maxlength="1000" placeholder="Enter training description."></textarea>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btnTrainingEdit" type="button" class="btn btn-success"><i class="fa fa-save"></i>&nbsp;Save</button>
+                <button id="btnCloseEdit" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="modalViewTrainingDetails" class="modal fade" role="dialog" aria-labelledby="modalViewTrainingDetails" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="header" class="modal-title"></h4>
+            </div>
+            <div class="container margin-top-10">
+                <div class="col-md-12">
+                    <div class="form-group row">
+                        <div class="form-group">
+
+                            <table id="tblAppliedTraining" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btnRequestClose" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/app/HRPortal/manageTraining.js?v=2.1"></script>

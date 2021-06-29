@@ -1,0 +1,115 @@
+﻿<div class="row">
+    <div class="col-md-3">
+        <div class="form-group">
+            <label>User Name</label>
+            <span id="userName"></span>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label>IP</label>
+            <span class="label label-success" id="ip"></span>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label>Device</label>
+            <span id="device"></span>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label>Browser</label>
+            <span id="browser"></span>
+        </div>
+    </div>
+    <div class="col-md-3" style="clear:both">
+        <div class="form-group">
+            <label>ISP</label>
+            <span id="isp"></span>
+        </div>
+    </div>
+    @*<div class="col-md-3">
+        <div class="form-group">
+            <label>ISP AS</label>
+            <span id="ispAs"></span>
+        </div>
+    </div>*@
+    <div class="col-md-3">
+        <div class="form-group">
+            <label>City</label>
+            <span id="city"></span>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label>Country</label>
+            <span id="country"></span>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label>Zip</label>
+            <span id="zip"></span>
+        </div>
+    </div>
+    <div class="col-md-3" style="clear:both">
+        <div class="form-group">
+            <label>Time Zone</label>
+            <span id="timeZone"></span>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label>Region</label>
+            <span id="region"></span>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div id="userActivityMap" style="height: 354px; width:100%;"></div>
+    </div>
+</div>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=initialize&key=AIzaSyDvU0uvjJDWnQv1Zc0IySede9dzWfpUhKA"></script>
+
+<script type="text/javascript">
+    var map;
+    var lat = $("#hdnLat").val();
+    var lon = $("#hdnLong").val();
+    function initialize() {
+        var latLng = new google.maps.LatLng(lat, lon);
+        var mapOptions = {
+            center: latLng,
+            zoom: 15,
+            //draggable: false,
+            //scrollwheel: false,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById("userActivityMap"), mapOptions);
+
+        var marker = new google.maps.Marker({
+            position: latLng,
+            map: map,
+            title: $("#hdnName").val()
+        });
+        marker.setMap(map);
+    };
+
+    $(document).ready(function () {
+        //navigator.geolocation.getCurrentPosition(initialize);
+        $("#userName").html($("#hdnName").val());
+        $("#browser").html($("#hdnBrowser").val());
+        $("#device").html($("#hdnDevice").val());
+        $("#isp").html($("#hdnISP").val());
+        //$("#ispAs").html($("#hdnISPAs").val());
+        $("#city").html($("#hdnCity").val());
+        $("#country").html($("#hdnCountry").val());
+        $("#ip").html($("#hdnIP").val());
+        $("#region").html($("#hdnRegion").val());
+        $("#timeZone").html($("#hdnTimeZone").val());
+        $("#zip").html($("#hdnZip").val());
+        //$("#userName").html($("#hdnLat").val());
+        //$("#userName").html($("#hdnLong").val());
+    });
+</script>

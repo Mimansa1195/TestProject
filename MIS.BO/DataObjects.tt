@@ -1,0 +1,54 @@
+﻿<#@ include file="SQLServer.ttinclude" #>  
+<#@ import namespace="System.Linq" #>
+using System;
+ 
+namespace <#=Namespace #>  
+{ 
+<#
+    var tables = LoadTables();
+
+    foreach(Table tbl in tables)
+    {
+	    if(!ExcludeTables.Contains(tbl.Name))
+        {
+#>
+    public class <#=tbl.ClassName#>
+    {
+<#          foreach(Column col in tbl.Columns)
+            {
+
+			if (tbl.ClassName == col.CleanName)
+			{
+				col.CleanName += "X";
+			}
+#>
+        public <#=col.SysType #><#=CheckNullable(col)#> <#=col.CleanName #> { get; set; }
+<#
+            }
+#>
+	}
+     
+<#      
+
+    var enumTable = GetEnumTables().Where(a => a.TableName == tbl.Name).FirstOrDefault() ;
+	if (enumTable != null)
+    {
+        var items = LoadTablesData(enumTable.IDColumnName, enumTable.EnumColumnName, enumTable.TableName);
+#>	/// <summary>
+	/// Enum of Table <#= tbl.Name #>
+	/// </summary>		
+	public enum <#= Inflector.MakePlural(tbl.Name)#>
+	{
+	<#	foreach(var item in items)
+	{ #>
+	<#= item.Value +" = "+item.Id + " ," #>
+	<#} #>
+}
+
+<# 
+			}
+		}
+    }
+    
+#>
+}

@@ -1,0 +1,63 @@
+﻿<div class="container-fluid">
+    <section class="card">
+        <div class="card-block">
+            <div class="row border-bottom-1" style="padding: 0">
+                <div class="col-md-6">
+                    <h5 class="with-border m-t-0">Review Training Request</h5>
+                </div>
+            </div>
+            <section class="box-typical box-typical-padding">
+                <div class="form-body">
+                    <input type="hidden" id="appid" />
+                    <input type="hidden" id="forwardedid" value="0" />
+                    <div>
+                        <div class="profile-statistic tbl redcustomheader">
+                            <div class="tbl-row">
+                                <div class="tbl-cell">
+                                    Pending
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <table id="tblTrainingRequest" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+
+                    </div>
+                    <br />
+                    <div>
+                        <div class="profile-statistic tbl greencustomheader">
+                            <div class="tbl-row">
+                                <div class="tbl-cell">
+                                    Approved/Rejected
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <table id="tblRespondedRequest" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+</div>
+<div id="mypopupRemark" class="modal fade" role="dialog" aria-labelledby="mypopupRemark" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" id="buttonRemarkClose" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Remarks</h4>
+            </div>
+            <div class="container margin-top-10" id="CopyTaskDiv">
+                <div class="form-group col-md-12">
+                    <textarea rows="4" cols="2000" id="trainingRemark" maxlength="500" placeholder="Please enter remarks here" class="form-control validation-required"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="submitTrainingRemark" type="button" class="btn btn-success"><i class="fa fa-"></i>&nbsp;Submit </button>
+                <button id="btnRemarkClose" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/app/HRPortal/manageTraining.js?v=1.7"></script>

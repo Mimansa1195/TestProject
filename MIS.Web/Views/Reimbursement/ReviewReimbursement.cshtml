@@ -1,0 +1,26 @@
+﻿<div class="container-fluid" id="reimbursementDiv">
+    <section class="card">
+        <div class="card-block">
+            <h5 class="with-border m-t-0">
+                <span id="lblReimbursementReview">
+                    Reimbursement
+                </span>
+                <span>
+                    <a style="text-decoration:underline; font-size:medium; display:none;" id="btnBackToReviewReimbursementList" class="pull-right text-info "><i class="fa fa-angle-double-left"></i> Back</a>
+                </span>
+            </h5>
+            <div id="partialReimbursementReviewContainer">
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+    $(function () {
+        loadUrlToId(misAppUrl.reviewReimbursementList, 'partialReimbursementReviewContainer');
+        $("#btnBackToReviewReimbursementList").on('click', function () {
+            loadUrlToId(misAppUrl.reviewReimbursementList, 'partialReimbursementReviewContainer');
+        });
+
+    });
+</script>
+

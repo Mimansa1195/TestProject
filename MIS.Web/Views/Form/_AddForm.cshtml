@@ -1,0 +1,132 @@
+﻿<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 id="modalTitle" class="modal-title">Add Form</h4>
+    </div>
+    <div class="container margin-top-10">
+        <div class="form-group row">
+            <div class="form-group">
+                <div class="col-md-4">
+                    <label>Department<span class="spnError">*</span></label>
+                </div>
+                <div class="col-md-8">
+                    <select id="formDepartment" class="form-control select2 validation-required" placeholder="Department">
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="form-group">
+                <div class="col-md-4">
+                    <label>Form Title<span class="spnError">*</span></label>
+                </div>
+                <div class="col-md-8">
+                    <input maxlength="2000" type="text" class="form-control validation-required" placeholder="Form Title" id="formTitle" />
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="form-group">
+                <div class="col-md-4">
+                    <label>Form Name<span class="spnError">*</span></label>
+                </div>
+                <div class="col-md-8">
+                    <input type="file" class="form-control validation-required" onchange="checkFileIsValid(this);" name="file" id="formName">
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="form-group">
+                <div class="col-md-12">
+                    <span class="spnError">Selected file format should be .doc, .docx, .xls, .xlsx or .pdf</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button id="btnSaveForm" type="button" class="btn btn-success"><i class="fa fa-save"></i>&nbsp;Save</button>
+        <button id="btnClose" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close</button>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#formDepartment").select2();
+        $("#formDepartment").empty();
+        $("#formDepartment").append("<option value='0'>Select</option>");
+        calltoAjax(misApiUrl.getDepartments, "POST", '',
+            function (result) {
+                if (result != null)
+                    $.each(result, function (index, item) {
+                        $("#formDepartment").append("<option value = '" + item.DepartmentAbrhs + "' >" + item.DepartmentName + "</option>");
+                    });
+            });
+
+        $("#btnSaveForm").click(function () {
+            addForm();
+        });
+
+        $("#btnClose").click(function () {
+            $("#modal-addForm").modal('hide');
+        });
+    });
+
+    var base64FormData;
+    function checkFileIsValid(sender) {
+        var validExts = new Array(".doc", ".docx", ".xlsx", ".xls", ".pdf");
+        var fileExt = sender.value;
+        fileExt = fileExt.substring(fileExt.lastIndexOf('.'));
+        if (validExts.indexOf(fileExt) < 0) {
+            misAlert("Invalid file selected. supported extensions are " + validExts.toString(), "Warning", "warning");
+            $("#formName").val("");
+            return false;
+        } else {
+            convertToBase64();
+            return true;
+        }
+    }
+
+    function convertToBase64() {
+        var selectedFile = document.getElementById("formName").files;
+        if (selectedFile.length > 0) //Check File is not Empty
+        {
+            var fileToLoad = selectedFile[0]; // Select the very first file from list
+            var fileReader = new FileReader(); // FileReader function for read the file.
+            fileReader.onload = function (fileLoadedEvent) // Onload of file read the file content
+            {
+                base64FormData = fileLoadedEvent.target.result;// Print data in console
+                //console.log(base64FormData);
+            };
+            fileReader.readAsDataURL(fileToLoad); // Convert data to base64
+        }
+    }
+
+    function addForm() {
+        var fileName = $("#formName").val().replace(/^.*\\/, "");
+        if (!validateControls('modal-addForm')) {
+            return false;
+        }
+        var jsonObject = {
+            formDepatmentAbrhs: $("#formDepartment").val(),
+            formTitle: $("#formTitle").val(),
+            formName: fileName,
+            base64FormData: base64FormData,
+            userAbrhs: misSession.userabrhs
+        }
+        calltoAjax(misApiUrl.addForm, "POST", jsonObject,
+            function (result) {
+                var resultData = $.parseJSON(JSON.stringify(result));
+                if (resultData == 1) {
+                    misAlert("Request processed successfully", "Success", "success");
+                    getAllForms();
+                    $("#modal-addForm").modal('hide');
+                }
+                else if (resultData == 3)
+                    misAlert("File with same name already exists", "Warning", "warning");
+                else
+                    misAlert("Unable to process request. Try again", "Error", "error");
+            });
+    }
+
+
+</script>

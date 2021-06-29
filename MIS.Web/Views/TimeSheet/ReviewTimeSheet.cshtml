@@ -1,0 +1,237 @@
+﻿<div class="container-fluid">
+    <section class="card">
+        <div class="card-block">
+            <h5 class="with-border m-t-0 text-right" style="width: 100%; float: left">
+                <span class="pull-left">
+                    Review TimeSheet
+                </span>
+                <span style="display: inline-block" id="divDeligation"> </span>
+            </h5>
+            <div class="row">
+                <div class="col-xl-12 col-lg-12">
+                    <section class="tabs-section">
+                        <div class="tabs-section-nav tabs-section-nav-left">
+                            <ul class="nav" role="tablist">
+                                <li class="nav-item" id="tabPendingTimeSheets">
+                                    <a class="nav-link active" href="#tabs-2-tab-1" role="tab" data-toggle="tab">
+                                        <span class="nav-link-in text-green">Pending TimeSheets</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item" id="tabApprovedTimeSheets">
+                                    <a class="nav-link" href="#tabs-2-tab-2" role="tab" data-toggle="tab">
+                                        <span class="nav-link-in text-green">Approved TimeSheets</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div><!--.tabs-section-nav-->
+
+                        <div class="tab-content no-styled profile-tabs">
+                            <div role="tabpanel" class="tab-pane active" id="tabs-2-tab-1">
+                                <section class="box-typical box-typical-padding">
+                                    <div class="row form-body">
+                                        <div class="col-md-12 text-center">
+                                            <img src="~/Images/reviewTimesheetColorCode.PNG" />
+                                        </div>
+                                        <div class="col-md-12 clearfix">
+                                            <table id="tblPendingforApprovalList" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div><!--.tab-pane-->
+                            <div role="tabpanel" class="tab-pane" id="tabs-2-tab-2">
+                                <section class="box-typical box-typical-padding">
+                                    <div class="row" id="filterDiv">
+                                        <div class="form-group col-md-3">
+                                            <label>Year<span class="spnError">*</span></label>
+                                            <select class="form-control select-validate validation-required" id="yearSelect"><option selected>Select</option></select>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label>Week<span class="spnError">*</span></label>
+                                            <select class="form-control multiselect multipleSelect validation-required" id="weekSelect" multiple="multiple"></select>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label>Users<span class="spnError">*</span></label>
+                                            <select class="form-control multiselect multipleSelect validation-required" id="ddlReportingUsers" multiple="multiple"></select>
+                                        </div>
+                                        <div class="form-group col-md-3" style="margin-top:22px">
+                                            <button id="btnSearchCompletedTimesheet" type="button" class="btn green"><i class="fa fa-search"></i>&nbsp;Search</button>
+                                        </div>
+                                    </div>
+                                    <div class="row form-body">
+                                        <div class="col-md-12 clearfix">
+                                            @*<button id="btnDownloadAllUsersTimeSheetReport" class="btn teal m-b-1">Download All <i class="fa fa-download"></i></button>*@
+                                            <table id="tblApprovedTimeSheetList" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div><!--.tab-pane-->
+                        </div><!--.tab-content-->
+                    </section><!--.tabs-section-->
+                </div>
+            </div>
+            <div class="row" id="dvTimeSheet">
+                <div class="col-xl-12 col-lg-12" id="dvTimeSheetInfo">
+                    <div id="dvTimeSheetControl">
+                        <div id="dvTimeTable" class="main-container" style="max-height: 480px; overflow: auto;">
+                            <table id="tblTimeTableq" style="table-layout: fixed;" class="table table-bordered table-striped table-hover">
+                                <thead id="dvHeader">
+
+                                </thead>
+                                <tbody id="tblTimeTable"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row" id='divTimeSheetRemarks'>
+                        <div id="tdRemarks" class="col-md-4">
+                            <div class="form-group">
+                                <label>User Comments :</label>
+                                <textarea type="text" class="form-control" placeholder="User Comments" id="txtTimeSheetRemarks"></textarea>
+                            </div>
+                        </div>
+                        <div id="tdApproverRemarks" class="col-md-4">
+                            <div class="form-group">
+                                <label>Approver Comments :</label>
+                                <textarea type="text" class="form-control" placeholder="Approver Comments" id="txtApproverRemarks"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-4 margin-top-25 text-right">
+                            <div class="form-group">
+                                <input type="button" class="btn btn-success" value="Approve" id="btnApproveTimeSheet" />
+                                <input type="button" class="btn btn-danger" value="Reject" id="btnRejectTimeSheet" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div id="myLogNewTaskModal" class="modal fade" role="dialog" aria-labelledby="myLogNewTaskModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title"><span id="txtLogTaskProject"></span> - <span id="txtLogTaskDay"></span> , <span id="txtLogTaskDate"></span></h4>
+            </div>
+            <div class="modal-body" id="addTaskTemplateDiv">
+                <div class="row" id='divLogTaskTemplate'>
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Template Name</label>
+                        </div>
+                        <div class="col-md-8">
+                            <select class="form-control" id="ddlLogTaskTaskTemplates">
+                                <option value="0">Select</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id='divLogTaskDescription'>
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Description <span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <textarea type="text" class="form-control form-filter validation-required" placeholder="Description" id="txtLogTaskDescription"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="divLogTaskTeamInfo">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Team Name<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <select class="form-control select-validate validation-required" id="ddlLogTaskTeamName">
+                                <option value="0">Select</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group" id="divLogTaskTypeInfo">
+                        <div class="col-md-4">
+                            <label>Task Type<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <select class="form-control select-validate validation-required" id="ddlLogTaskTaskType">
+                                <option value="0">Select</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id='divLogTaskSubDetail1Info'>
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Sub Detail 1<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <select class="form-control select-validate validation-required" id="ddlLogTaskTaskSubDetail1"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id='divLogTaskSubDetail2Info'>
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Sub Detail 2<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <select class="form-control select-validate validation-required" id="ddlLogTaskTaskSubDetail2"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="divLogTaskTimeSpent">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Time Spent (In Hrs.)<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <select class="form-control select-validate validation-required" id="ddlLogTaskTime">
+                                <option value="0">Select</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="divCopyDate">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Copy till Date</label>
+                        </div>
+                        <div class="col-md-8">
+                            <select class="form-control select-validate validation-required" id="ddlCopyTillDate">
+                                <option value="0">Select</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row text-right">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <button id="btnLogTask" type="button" class="btn btn-success" value="Add"><i class="fa fa-save">&nbsp;Save</i></button>
+                            <button id="btnLogTaskClose" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+                            <input type="hidden" id="txtLogTaskTimeSheetId" />
+                            <input type="hidden" id="txtLogTaskProjectId" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <div id="divLoggedTasksHeader" class="gridViewHeader text-left">
+                    <span>Logged Tasks</span>
+                </div>
+                <div id='divLoggedTasksGridView' class='gridViewBody gridViewContainerBorder'>
+                    <table id="tblLoggedTaskList" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+                </div>
+                <div id='divLoggedTasksGridFooter' class="CustomizeGridFooter">
+                </div>
+                <div style='clear: both'>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/app/timesheet/ReviewTimeSheet.js?v=11.1"></script>

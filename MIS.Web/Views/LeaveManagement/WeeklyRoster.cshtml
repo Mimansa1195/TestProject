@@ -1,0 +1,103 @@
+﻿<div class="container-fluid">
+    <section class="card">
+        <div class="card-block">
+            <div class="row border-bottom-1" style="padding: 0">
+                <div class="col-md-2 col-sm-12">
+                    <h5 class="margin-bottom-0 l-h-38"> Weekly Roster</h5>
+                </div>
+                <div class="col-md-4 ">
+                </div>
+                <div class="col-md-6">
+                    <div class="pull-right" style="padding-bottom:5px" id="divDeligation">
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="divLeave">
+                <div class="col-xl-12 col-lg-12">
+                    <section class="tabs-section">
+                        <div class="tab-content no-styled profile-tabs">
+                            <div class="tab-pane-active" id="tabWeekOffInfo">
+                                <section class="box-typical box-typical-padding">
+                                    <div class="form-body">
+                                        <div class="header">
+                                            <!--<span class="lnsa-headings">LNSA Shift Calendar</span> -->
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <span class="lnsa-headings pull-left">
+                                                        <input type="button" class="btn" value="<<" id="btnWeekOffPreviousMonth" />
+                                                        <span id="currentMonthYear" data-attr-monthNumber="" data-attr-year=""></span>
+                                                        <input type="button" class="btn" value=">>" id="btnWeekOffNextMonth" />
+                                                    </span>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <a class="roaster-info" rel="popover" data-toggle="popover" href="#">
+                                                        <i class="fa fa-question-circle fa-2x" id="infoIcon" style="float:right;margin-right:10px"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" id="hdnWeekOffStartDate" />
+                                            <input type="hidden" id="hdnWeekOffEndDate">
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="divTable"><div class="divRow" id="teamRoaster"></div></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </section><!--.tabs-section-->
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<div id="myModalAddWeekOff" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" id="btnClose1" data-dismiss="modal">
+                    &times;
+                </button>
+                <h4 class="modal-title">Add WeekOff Users</h4>
+            </div>
+            <div class="modal-body" id="weekOffModal">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label> Select User<span class="spnError">*</span></label>
+                        <select id="ddlUsers" multiple="multiple" class="form-control validation-required" required></select>
+                    </div>
+                    <div class="col-md-4">
+                        <label> Select Date<span class="spnError">*</span></label>
+                        <select id="ddlDates" multiple="multiple" class="form-control validation-required" required></select>
+                    </div>
+                    <div class="col-md-4">
+                        <label><span class="spnError"></span></label>
+                        <button type="button" id="saveWeekOffData" class="btn btn-success"><i class="fa fa-check"></i>&nbsp;Save</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <table id="tblMarkedEmployeesInfo" data-filter-control="true" data-toolbar="#toolbar" class="table table-hover"></table>
+
+                        <div class="text-center margin-top-25" id="divBulkRemoveWeekOff">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                @*<button type="button" id="saveWeekOffData" class="btn btn-success">
+                        <i class="fa fa-check"></i>&nbsp;Save
+                    </button>*@
+                <button type="button" id="btnClose" class="btn btn-default" data-dismiss="modal">
+                    <i class="fa fa-times"></i>&nbsp;Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<link href="~/Content/lib/lnsaShiftCalendar.css?v=4.1" rel="stylesheet" />
+<script src="~/Scripts/lib/bootstrap-multiselect.js"></script>
+<script src="~/Scripts/app/LeaveManagement/weeklyRoster.js?v=1.5"></script>

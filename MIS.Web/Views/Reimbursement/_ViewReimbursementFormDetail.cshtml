@@ -1,0 +1,30 @@
+﻿<div>
+    <div class="row">
+        <div class="col-md-3 col-sm-12 form-group">
+            <label class="control-label ">Type<i class="spnError">*</i></label>
+            <select disabled id="txtReimbType" style="text-align:center" class="form-control select2 validation-required"></select>
+        </div>
+        <div class="col-md-3 col-sm-12 form-group">
+            <label class="control-label ">Month-Year<i class="spnError">*</i></label>
+            <select disabled id="txtMonthYear" placeholder="Category" style="text-align:center" class="form-control select2 validation-required"></select>
+        </div>
+    </div>
+</div>
+<div class="row  m-t-1">
+    <div class="col-md-12 m-t-1" style="position:relative;">
+        <table class="edit-file-details" cellspacing="0" cellpadding="0" border="0">
+            <thead class="file-details-header"><tr><th>Image</th> <th>Category</th> <th>Bill No</th> <th> Date</th><th class="text-right">Amount</th><th> Status</th> </tr> </thead>
+            <tbody class="rows"></tbody>
+            <tfoot id="tblFootr" class="file-details-footer">
+            <tr><th class="text-right" colspan="4">Valid Amount:</th><th><span id="txtTotalAmount" class="padding-right-10" style="float:right;"></span></th><th></th></tr>
+                <tr><th class="text-right" colspan="4">Reimbursement Amount:</th><th><input disabled value="" type="text" class="form-control validation-required text-right padding-right-10" id="txtReimbursementAmount" /></th><th></th></tr>
+        </tfoot>
+        </table>
+    </div>
+</div>
+<br />
+
+<link href="~/Content/lib/datepicker.css" rel="stylesheet" />
+<link href="~/Content/app/upload.css?v=1.1" rel="stylesheet" />
+<script src="~/Scripts/app/Reimbursement/viewReimbursementFormDetail.js?v=1.2"></script>
+

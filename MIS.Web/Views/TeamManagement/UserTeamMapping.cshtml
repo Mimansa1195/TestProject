@@ -1,0 +1,192 @@
+﻿@* Angularjs Code starts here ------------------------------------------------------*@
+
+<script src="~/Scripts/angular/JS/angular.min.js"></script>
+<script src="~/Scripts/angular/JS/angular-route.js"></script>
+<script src="~/Scripts/angular/JS/angular-datatables.min.js"></script>
+
+<script src="~/Scripts/angular/controllers/teamMappingController.js?v=1.1"></script>
+
+@* Angularjs Code Ends here ------------------------------------------------------*@
+
+
+
+
+<div ng-app="misApp" ng-controller="TeamMappingController" data-ng-init="FillTealList();" ng-cloak>
+
+    <div class="container-fluid">
+        <section class="card">
+            <div class="card-block">
+                <h5 class="with-border m-t-0">User Team Mapping </h5>
+                <div class="form-group row">
+                    <div class="col-sm-12 text-right">
+
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane">
+                    <div class="row form-body">
+                        <div class="col-md-12 clearfix">
+
+                            <div>
+                                <div ng-if="!show" class="minH500">
+
+                                    <table datatable="ng" dt-options="dtOptions" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info">
+                                        <thead>
+                                            <tr>
+                                                <th> <span>Team</span> </th>
+                                                <th><span>Department</span></th>
+                                                <th><span>Employee Count</span></th>
+                                                <th class="none" style="width:100%"><div>User Name</div></th>
+                                                <th> <span>Action</span> </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="dt in TeamMappingList">
+                                                <td> <span>{{dt.TeamName}}</span> </td>
+                                                <td><span>{{dt.DepartmentName}}</span></td>
+                                                <td><span>{{dt.EmployeeCount}}</span></td>
+                                                <td><p ng-repeat="user in dt.UserName.split(',')">{{user}}</p>  </td>
+                                                <td>
+                                                    <button title="" class="btn btn-sm " ng-click="FillMappedUsers(dt.TeamAbrhs,dt.TeamName);" type="button" data-original-title="Edit" data-toggle="tooltip"><i class="fa fa-edit"> </i></button>
+                                                    @*<button title="" class="btn btn-sm-del " onclick="" type="button" data-original-title="Delete" data-toggle="tooltip"><i class="fa fa-trash-o"> </i></button>*@
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+
+                                <div ng-if="show" class="LoaderDiv clearfix">
+                                    @*<img src="~/Images/loading.gif" class="LoaderImg">*@
+                                </div>
+
+                                <div class="clearfix"> </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+    <div id="popupGeminiTeamMapping" class="modal fade col-md-12 col-lg-12" role="dialog" aria-labelledby="popupGeminiTeamMapping" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header ">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 id="modalTitle" class="modal-title">User(s) Team Mapping</h4>
+                    <input type="hidden" name="name" value=" " id="hdnPermissionGroupId" />
+                </div>
+                <div class="container margin-top-10 " id="divManageTeamMapping">
+
+                    <div class="form-group row margin-top-10 ">
+                        <div class="col-md-6 padding-left-15">
+                            Team : {{MappedTeamName}}
+                        </div>
+                        <div class="col-md-6 fontBold">
+                            <span ng-class="custClass">{{msgsuccess}}</span>
+                        </div>
+
+                    </div>
+                    <div class="form-group row ">
+                        <div class="form-group">
+
+
+                            <div class="col-md-6 ">
+                                <div class="col-md-12 padding0">
+                                    <label class="h5">Unmapped Users</label>
+                                </div>
+
+                                <div class="col-md-12 padding0 hightfix400">
+                                    <table class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th><span>User Name</span> </th>
+                                                <th class="center"><span>Client<br />Report</span> </th>
+                                                <th class="center"><span>Role</span> </th>
+                                            </tr>
+                                            <tr>
+                                                <th colspan="4">
+                                                    <input class="form-control font-weight-normal" type="text" ng-model="searchText" placeholder="Search unmapped users">
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="dt in AllMappedUserList | filter: searchText" ng-if="!dt.IsMapped">
+                                                <td> <input type="checkbox" ng-model="dt.IsSelected" /> </td>
+                                                <td> <span>{{dt.Name}}</span></td>
+                                                <td class="center"> <input type="checkbox" ng-model="dt.ConsiderInClientReports" /> </td>
+                                                <td class="center">
+                                                    <select data-ng-model="dt.RoleAbrhs" ng-class="dt.IsSelected ? 'form-control select-validate validation-required':'form-control'">
+                                                        <option ng-repeat="dts in dt.RoleList" ng-selected="dt.RoleAbrhs == dts.RoleAbrhs" value="{{dts.RoleAbrhs}}">{{dts.RoleName}}</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-md-1 text-center padding-top30per margin-bottom-15">
+                                <button title="" class="btn btn-lg-add " ng-click="AddinMappedUserlist();" type="button"><i class="fa fa-arrow-right"> </i></button>
+                                <br /><br />
+                                <button title="" class="btn btn-lg-add " ng-click="RemoveFromMappedUserlist();" type="button"><i class="fa fa-arrow-left"> </i></button>
+                            </div>
+                            <div class="col-md-5 ">
+                                <div class="col-md-12 padding0">
+                                    <label class="h5"><label class="h5">Mapped Users</label></label>
+                                </div>
+                                <div class="col-md-12 padding0 hightfix400">
+
+                                    <table class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th><span>User Name</span> </th>
+                                                <th class="center"><span>Client Report</span> </th>
+                                                <th class="center"><span>Role</span> </th>
+                                            </tr>
+                                            <tr>
+                                                <th colspan="4">
+                                                    <input class="form-control font-weight-normal" type="text" ng-model="searchName" placeholder="Search mapped users">
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="dt in AllMappedUserList | filter: searchName" ng-if="dt.IsMapped">
+                                                <td> <input type="checkbox" ng-model="dt.IsSelected" /> </td>
+                                                <td> <span>{{dt.Name}}</span></td>
+                                                <td class="center"><span>{{dt.ConsiderInClientReports ? 'Yes':'No'}}</span>  </td>
+                                                <td class="center">
+                                                    <select disabled data-ng-model="dt.RoleAbrhs" ng-class="dt.IsSelected ? 'form-control select-validate validation-required':'form-control'">
+                                                        <option ng-repeat="dts in dt.RoleList" ng-selected="dt.RoleAbrhs == dts.RoleAbrhs" value="{{dts.RoleAbrhs}}">{{dts.RoleName}}</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                    </table>
+                                    <div ng-if="(AllMappedUserList | filter:{IsMapped:true}).length == 0" class="col-md-12 padding10 border center text-primary clearfix">
+                                        No User Mapped with this Team.
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group row padding-left-20 margin-top-25 ">
+                    </div>
+                    <div class="modal-footer">
+
+                        <button id="btnCloseTeamMapping" type="button" class="btn default " data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i>&nbsp;Close </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+@*<script src="~/Scripts/app/TeamManagement/userTeamMapping.js?v=1.1"></script>*@

@@ -1,0 +1,206 @@
+﻿<div class="container-fluid">
+    <section class="card">
+        <div class="card-block">
+            <h5 class="with-border m-t-0">Pimco Achievements</h5>
+            <div class="row">
+                <div class="col-xl-12 col-lg-12">
+                    <section class="tabs-section">
+                        <div class="tabs-section-nav tabs-section-nav-left">
+                            <ul class="nav" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#tabMonthlyPimcoAchievement" role="tab" data-toggle="tab">
+                                        <span class="nav-link-in text-green">Monthy</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#tabQuarterlyPimcoAchievement" role="tab" data-toggle="tab">
+                                        <span class="nav-link-in text-green">Quarterly</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div><!--.tabs-section-nav-->
+                        <div class="tab-content no-styled profile-tabs">
+                            <div role="tabpanel" class="tab-pane active" id="tabMonthlyPimcoAchievement">
+                                <section class="box-typical box-typical-padding">
+                                    <div class="row form-body">
+                                        <div class="col-md-4">
+                                            <label>Financial year<span class="spnError">*</span></label>
+                                            <select id="ddlYear" style="text-align:center" class="form-control select2"></select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Month<span class="spnError">*</span></label>
+                                            <select id="ddlMonth" style="text-align:center" class="form-control select2"></select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="clearfix"><br /></div>
+                                            <button type="button" class="btn btn-success" style="display:none" id="btnAddPimcoMonthlyAchievement">Add Achievement</button>
+                                        </div>
+                                        <div class="col-md-12 m-t-1">
+                                            <table id="tblPimcoMonthlyAchievements" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="tabQuarterlyPimcoAchievement">
+                                <section class="box-typical box-typical-padding">
+                                    <div class="row form-body">
+                                        <div class="col-md-4">
+                                            <label>Financial year<span class="spnError">*</span></label>
+                                            <select id="showYear" style="text-align:center" class="form-control select2"></select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Quarter<span class="spnError">*</span></label>
+                                            <select id="showQuarter" style="text-align:center" class="form-control select2"></select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="clearfix"><br /></div>
+                                            <button type="button" class="btn btn-success" style="display:none" id="btnAddPimcoAchievement">Add Achievement</button>
+                                        </div>
+                                        <div class="col-md-12 m-t-1">
+                                            <table id="tblPimcoAchievements" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@*------monthly---------*@
+<div id="modal-uploadPimcoMonthlyAchievement" class="modal fade" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" id="modal-uploadPimcoMonthlyAchievementContainer">
+    </div>
+</div>
+
+<div id="viewPimcoMonthlyAchievementModal" class="modal fade" role="dialog" aria-labelledby="viewMonthlyDocumentModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">Add Achievements</h4>
+            </div>
+            <div class="container margin-top-25 margin-bottom-15">
+                <div class="form-group">
+                    <label style="display:inline-block;">Financial Year: </label>
+                    <input style="display:inline-block;text-align:center;width:120px;margin: 0 10px;" type="text" disabled id="txtFYYear" class="form-control" />
+                    <label style="display:inline-block;"><span>Month: </span><span id="cntMonth"></span></label>
+                    <input type="hidden" id="txtHiddenGoalCycleId" />
+                </div>
+                <div class="clearfix"></div>
+                <a id="btnAddNewPimcoMonthlyAchievement" data-toggle="modal" class="btn btn-primary pull-left"><i class="fa fa-plus"></i></a>
+                &nbsp;<span>Click here to add achievement.</span><br />
+                &nbsp;<span class="spnError">To add multiple achievements repeat this [+] action.</span>
+                <div id="dynamicAddPimcoMonthlyAchievement" class="padding-top10">
+                </div>
+                @*<div class="row">
+                    <div class="col-md-12">
+                        <label>Comments<span class="spnError"></span></label>
+                        <textarea rows="3" cols="100" id="empCommentsForMonthly" maxlength="500" placeholder="Enter your comments (if any)" class="form-control"></textarea>
+                    </div>
+                </div>*@
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnSubmitPimcoMonthlyAchievement" class="btn btn-success"><i class="fa fa-save"></i>&nbsp;Submit</button>
+                <button data-dismiss="modal" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div id="modalViewPimcoMonthlyAchievementPopUp" class="modal fade" role="dialog" aria-labelledby="modalViewPimcoMonthlyAchievementPopUp">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">View Monthly Achievements</h4>
+            </div>
+            <div class="container">
+                <table id="tblViewMyPimcoMonthlyAchievements" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+            </div>
+            @*<div class="col-md-12">
+                    <label style="display:none;" id="lblComment">RM Comments<span class="spnError"></span></label>
+                    <textarea rows="3" cols="100" id="RMComments" maxlength="500" class="form-control" style="display:none;" disabled></textarea>
+                </div>*@
+            <div class="clearfix"></div>
+            <div class="modal-footer margin-top-8">
+                <button data-dismiss="modal" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*----------Quarterly-------------*@
+
+<div id="modal-uploadPimcoAchievement" class="modal fade" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" id="modal-uploadPimcoAchievementContainer">
+    </div>
+</div>
+
+<div id="viewPimcoAchievementModal" class="modal fade" role="dialog" aria-labelledby="viewDocumentModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">Add Achievements</h4>
+            </div>
+            <div class="container margin-top-15 margin-bottom-15">
+                <div class="form-group">
+                    <label style="display:inline-block;">  Financial Year: </label>
+                    <input style="display:inline-block;text-align:center;width:120px;margin: 0 10px;" type="text" disabled id="showFYYear" class="form-control" />
+                    <label style="display:inline-block;"><span id="cntQuarter"></span></label>
+                    <input type="hidden" id="txtHiddenGoalCycleId" />
+                </div>
+                <div class="clearfix"></div>
+                <a id="btnAddNewPimcoAchievement" data-toggle="modal" class="btn btn-primary pull-left"><i class="fa fa-plus"></i></a>
+                &nbsp;<span>Click here to add achievement.</span><br />
+                &nbsp;<span class="spnError">To add multiple achievements repeat this [+] action.</span>
+                <div id="dynamicAddPimcoAchievement" class="padding-top10">
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label>Comments<span class="spnError"></span></label>
+                        <textarea rows="3" cols="100" id="empComments" maxlength="500" placeholder="Enter your comments (if any)" class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnSubmitPimcoAchievement" class="btn btn-success"><i class="fa fa-save"></i>&nbsp;Submit</button>
+                <button data-dismiss="modal" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div id="modalViewPimcoAchievementPopUp" class="modal fade" role="dialog" aria-labelledby="modalViewPimcoAchievementPopUp">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">View Achievements</h4>
+            </div>
+            <div class="container">
+                <table id="tblViewMyPimcoAchievements" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+            </div>
+            @*<div class="row">*@
+            @*<div class="form-group col-md-12">
+                    <textarea rows="4" cols="2000" id="reason" maxlength="500" placeholder="Please enter reason for cancellation." class="form-control validation-required"></textarea>
+                </div>*@
+            <div class="col-md-12">
+                <label style="display:none;" id="lblComment">RM Comments<span class="spnError"></span></label>
+                <textarea rows="3" cols="100" id="RMComments" maxlength="500" class="form-control" style="display:none;" disabled></textarea>
+            </div>
+            <div class="clearfix"></div>
+            <div class="modal-footer margin-top-8">
+                <button data-dismiss="modal" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/app/AppraisalManagement/pimcoAchievements.js?v=4.7"></script>

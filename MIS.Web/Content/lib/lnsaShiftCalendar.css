@@ -1,0 +1,398 @@
+#lnsaDetails {
+    /*padding-top: 30px;*/
+    /*background-image: url('../Images/spiral.jpg');*/
+}
+
+.divTable {
+    display: table;
+    width: 100%;
+    box-shadow: 0px 5px 5px #333;
+}
+
+.divRow {
+    display: table-row;
+    width: auto;
+}
+
+.divCell {
+    float: left;
+    display: table-cell;
+    border-top: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    /* padding: 0px 10px; */
+    box-sizing: border-box;
+}
+
+.divCellWidth4 {
+    width: calc(100% / 4);
+}
+
+.divCellWidth5 {
+    width: calc(100% / 5);
+}
+
+.divCellWidth6 {
+    width: calc(100% / 6);
+}
+.divCellWidth7 {
+    width: calc(100% / 7);
+}
+
+.divCell:last-child {
+    border-right: 1px solid #ccc;
+}
+
+.divRow:last-child .divCell {
+    border-bottom: 1px solid #ccc;
+}
+
+.left {
+    float: left;
+    margin: 0 5px;
+    min-width: 35px;
+}
+
+.right {
+    float: left;
+    margin: 0 5px;
+    line-height: 18px;
+    text-align: left
+}
+
+.date {
+    font-size: 24px;
+}
+
+.day {
+    font-size: 16px;
+}
+
+.month-year {
+    font-size: 12px;
+    display: block;
+}
+
+div[class*="week"] > div {
+    border-bottom: 1px solid #ccc;
+    float: left;
+    padding: 8px 0 8px 0px;
+    width: 100%;
+    text-align: center;
+    min-height: 55px;
+}
+
+/*div[class*="week"] > div:last-child {
+border-bottom: 0;
+}*/
+.pull-right {
+    float: right;
+}
+
+.lnsa-headings {
+    display: inline-block;
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+.lnsaApplied {
+    background: #016177 !important;
+    color: #fff;
+}
+
+.approved {
+    background: #abf6a3 !important;
+}
+
+.notEligible {
+    cursor: not-allowed;
+    pointer-events: all !important;
+    opacity: 0.65;
+    filter: alpha(opacity=65);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+
+.select-label {
+    display: inline-block;
+    margin-left: 5px;
+}
+
+#tabLsnaShift .active {
+    background: #0aa0c2;
+    color: #fff;
+}
+
+#tabLsnaShift {
+    border: 1px solid #d8e2e7;
+    padding: 10px;
+}
+
+.legends, .legends .legend {
+    display: inline-block;
+}
+
+    .legends .legend .box {
+        margin: 5px;
+        padding: 0px 20px;
+    }
+
+        .legends .legend .box.selected {
+            background: #0aa0c2 !important;
+        }
+
+        .legends .legend .box.applied {
+            background: #016177 !important;
+        }
+
+        .legends .legend .box.approved {
+            background: #abf6a3 !important;
+        }
+
+.week-heading {
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    background: linear-gradient(#fbf5f5, #dcdcd6, #e4e4e6);
+    border-top: 1px solid #ccc;
+    color: #343434;
+    padding: 10px;
+}
+
+#teamRoaster .week-heading {
+    padding: 0;
+}
+
+.week.weekdays div:first-child {
+    border-bottom: 1px solid #ccc;
+    background: linear-gradient(#fbf5f5, #dcdcd6, #e4e4e6);
+    border-top: 1px solid #ccc;
+    color: #343434;
+}
+
+.left-sections {
+    float: left;
+    background: #cac0c0;
+    padding: 6px;
+    width: 30%;
+    height: 54px;
+}
+
+.month .left-sections {
+    background: #ddddd7;
+}
+
+.right-sections {
+    float: left;
+    margin: 0 1%;
+    line-height: 18px;
+    text-align: left;
+    width: 68%;
+}
+
+#teamRoaster .date {
+    font-size: 17px;
+}
+
+#teamRoaster div[class*="week"] > div {
+    padding: 0;
+}
+
+.active-month * {
+    color: #fff !important;
+}
+
+.active-month .left-sections {
+    background: #0aa0c2;
+}
+
+.month * {
+    color: #999;
+}
+
+.weekdays.week div {
+    min-height: 55px;
+    line-height: 52px;
+    padding: 0 15px !important;
+}
+
+.employee * {
+    color: #343434 !important;
+    font-size: 10px;
+}
+
+.employee img {
+    margin: 3px 2px;
+    width: 20px;
+}
+
+.selectEmp {
+    background: none;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+    height: 53px;
+    min-height: 53px;
+    width: 100%;
+    padding: 10px;
+    min-height: 53px;
+    outline: none;
+}
+ 
+.active-month:last-child .left-sections ,.active-month:nth-last-child(2) .left-sections {
+    background: #e23833;
+    color: #333 !important;
+}
+.month:last-child .left-sections, .month:nth-last-child(2) .left-sections {
+    background: #ecaba9;
+    color: #333 !important;
+}
+
+.month:nth-last-child(2) .left-sections *, .month:last-child .left-sections * {
+    color: #e07878;
+}
+#tblMarkedEmployeesInfo .badge {
+    margin: 2px;
+    padding: 1px 5px;
+    border-radius: 5px;
+    font-size: 12px;
+    color: #fff;
+    display: inline-block
+}
+#tblMarkedEmployeesInfo .badge.badge-success {
+    background: #0aa0c2;
+}
+#tblMarkedEmployeesInfo .badge.badge-danger {
+    background: #e23833;
+}
+#tblMarkedEmployeesInfo tbody td.all * {
+    border: none !important;
+}
+#tblMarkedEmployeesInfo tbody td {
+    vertical-align: bottom;
+}
+.roaster-info {
+    float: right;
+    margin-top: 15px;
+    color: #0aa0c2;
+}
+.roaster-info-section * {
+    font-size: 12px !important;
+}
+div[role="tooltip"] .popover-content {
+    padding: 0;
+}
+.disabled-header {
+    pointer-events: none;
+    opacity: 0.6;
+}
+@media (min-width: 320px) and (max-width: 767px) {
+    .roaster-info {
+        margin-top: 8px;
+    }
+    #tabWeekOffInfo .divTable {
+        box-shadow: none;
+    }
+    .button-row button {
+        width: 100%;
+    }
+
+    .week-heading {
+        background: linear-gradient(#fbf5f5, #dcdcd6, #e4e4e6);
+        
+    }
+   
+    .divRow:last-child .divCell {
+        border-bottom: 0;
+    }
+
+    #lnsaDetails .divCell {
+        float: left;
+        display: block;
+        width: 100%;
+        border-top: 1px solid #ccc;
+        border-left: 1px solid #ccc;
+        box-sizing: border-box;
+        border-right: 1px solid #ccc;
+        margin-top: 10px;
+    }
+
+    .lnsa-headings {
+        display: block;
+        font-size: 12px;
+        margin: 5px 0;
+    }
+
+    .lnsa-headings.pull-right {
+        float: left;
+    }
+    #divLeave > div {
+        padding: 0;
+    } 
+    .legends .legend {
+        display: inline-block;
+        font-size: 12px;
+    }
+    .legends .legend .box {
+        padding: 0px 10px;
+    }
+    #teamRoaster .divCell {
+        width: 100%;
+        margin-top: 10px;
+        border-right: 1px solid #ccc;
+    }
+    #teamRoaster .divCell:first-child {
+        display: none;
+    }
+    #teamRoaster .divTable {
+        box-shadow: none;
+    }
+    .emp-week-roster-table {
+        display: inline-block;
+    }
+
+    .emp-week-roster-table thead {
+        display: none;
+    }
+
+
+    #tblMarkedEmployeesInfo > tbody td {
+        vertical-align: middle;
+    }
+
+    #tblMarkedEmployeesInfo .emp-week-roster-table tbody td {
+        display: block;
+        vertical-align: middle;
+        border: 2px solid #fff !important;
+        white-space: nowrap;
+    }
+    #weekOffModal table.dataTable .emp-week-roster-table tbody td {
+        padding: 4px 8px !important;
+    }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+    #weekOffModal .multiselect .multiselect-selected-text {
+        width: 100px;
+    }
+    .day, .legends .legend * {
+        font-size: 14px;
+    }
+    .month-year {
+        font-size: 10px;
+        display: block;
+    }
+    .lnsa-headings {
+        font-size: 16px;
+    }
+    .legends .legend .box {
+        margin: 5px;
+        padding: 0px 15px;
+    }
+     
+    #teamRoaster .selectEmp {
+        padding: 10px 2px;
+        font-size: 14px;
+    }
+    .employee img {
+        width: 16px;
+    } 
+} 

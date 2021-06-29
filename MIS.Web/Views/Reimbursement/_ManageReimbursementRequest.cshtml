@@ -1,0 +1,43 @@
+﻿<div>
+    <div class="row">
+        <div id="reimbusrementTypeAndMonthYear">
+            <div class="col-md-3 col-sm-12 form-group">
+                <label class="control-label">Type<i class="spnError">*</i></label>
+                <select id="txtReimbType" style="text-align:center" class="form-control select2 validation-required"></select>
+            </div>
+            <div class="col-md-3 col-sm-12 form-group">
+                <label class="control-label">Month-Year<i class="spnError">*</i></label>
+                <select id="txtMonthYear" placeholder="Category" style="text-align:center" class="form-control select2 validation-required"></select>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-12 m-t-22">
+            <p id="browseBtn">
+                <lable class="browse-label">Browse</lable>
+                <input type="file" id="file" multiple />
+            </p>
+        </div>
+    </div>
+</div>
+<div class="row m-t-1">
+    <div  class="col-md-12 m-t-1" style="position:relative;">
+        <table id="tblDiv" style="display:none;" class="edit-file-details" cellspacing="0" cellpadding="0" border="0">
+            <thead class="file-details-header"><tr><th class="text-center">Image</th><th>Category</th> <th>Bill No</th> <th> Date</th><th class="text-right">Amount</th><th> Action</th> </tr> </thead>
+            <tbody id="tblBody" class="rows"></tbody>
+            <tfoot id="tblFootr" class="file-details-footer">
+                <tr><th class="text-right" colspan="4">Total Valid Amount:</th><th><span id="txtTotalAmount" class="padding-right-10" style="float:right;"></span></th><th></th></tr>
+                <tr><th class="text-right" colspan="4">Reimbursement Amount:</th><th><input  value="" type="text" oncopy="return false" onpaste="return false" oncut="return false"  class="form-control validation-required text-right padding-right-10" id="txtReimbursementAmount" /></th><th></th></tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+<br />
+<div class="row" id="divBtn" style="display:none; float:right;">
+    <div class="col-md-12">
+        <button type="button" style="margin-right: 10px;" class="btn btn-outline-info start" id="draftBtn">Save as draft</button>
+        <button type="button" class="btn btn-success" id="submitBtn">  Submit</button>
+    </div>
+</div>
+
+<link href="~/Content/lib/datepicker.css" rel="stylesheet" />
+<link href="~/Content/app/upload.css?v=1.1" rel="stylesheet" />
+<script src="~/Scripts/app/Reimbursement/manageReimbursementRequest.js?v=1.4"></script>

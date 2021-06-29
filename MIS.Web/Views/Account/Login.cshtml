@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+<style>
+    #recaptcha_widget_div {
+        overflow: visible;
+        transform: scaleX(0.93);
+        margin-left: -11px;
+    }
+</style>
+<header style="text-align: center;">
+    <img src="~/img/GeminiLogo-Small-Black.png">
+</header>
+<div class="loginMsgDiv">
+    This website is to be used only for authorized business purposes by the employees of Gemini Solutions.
+    Unauthorized distribution of any information contained in the website is a violation of Gemini Solutions’ internal policies.
+    Use of the website is monitored.
+    If user shares personal data including login credentials with an unauthorized external third party,
+    they may compromise the user’s confidential information. Gemini Solutions shall have no liability or responsibility for the integrity,
+    and security of that confidential information.
+</div>
+<form class="login-form sign-box">
+    <div class="sign-avatar">
+        <img alt="" id="user-avatar">
+    </div>
+    <header class="sign-title" id="loginTitle">Sign In</header>
+    <div class="alert alert-danger display-hide">
+        <button class="close"></button>
+        <span class="message">
+            Enter your username and password.
+        </span>
+
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="Username" id="username" name="username" />
+    </div>
+    <div class="form-group">
+        <input type="password" autocomplete="off" class="form-control" placeholder="Password" id="password" name="password">
+    </div>
+    <!--<div class="form-group" id="recaptcha_widget_div">
+        <div class="g-recaptcha" data-sitekey="6LdRfRQUAAAAANaReBYCwlL65lGjGxicM7jU8PJ9"></div>
+    </div>-->
+    <div class="form-group">
+        <div class="float-left">
+            <a href="javascript:void(0)" id="lnkForgotPassword">Forgot Password?</a>
+            <a href="javascript:void(0)" id="lnkSignIn" style="display:none;">Sign In</a>
+        </div>
+        <div class="float-right reset">
+            <input type="button" class="btn btn-rounded m-a-0" name="submit" value="Sign in" id="btnLogin" onclick="userLogin();" />
+        </div>
+    </div>
+</form>
+<script src="~/Scripts/app/login/login.js?v=2.5"></script>

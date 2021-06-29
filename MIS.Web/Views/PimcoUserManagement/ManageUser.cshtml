@@ -1,0 +1,104 @@
+﻿<div class="container-fluid">
+    <section class="card">
+        <div class="card-block">
+            <h5 class="with-border m-t-0">Manage PIMCO User</h5>
+            <div class="row">
+                <label style="margin-left:15px;">Employees</label>
+                <div class="col-md-3 col-sm-3">
+                    <select id="ddlEmployeeAbrhsNew" class="form-control validation-required" multiple="multiple" aria-hidden="true"></select>
+                </div>
+                <div class="col-md-2 col-sm-6">
+                    <button type="button" id="mapNewManager" class="btn btn-info"><i class="fa fa-plus"></i> Map PIMCO User</button>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    <div id='divInCompleteReviewFormsGridView' class='gridViewBody gridViewContainerBorder'>
+                        <table id="tblMappedOnshoreMgr" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div id="modalAddNewOnshoreManager" class="modal fade" role="dialog" aria-labelledby="modalAddNewOnshoreManager" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">PIMCO User Maping</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label">Employee Name<span class="spnError">*</span></label>
+                            <div class="input-group">
+                                <select id="ddlUserAbrhs" class="form-control select2 validation-required"><option></option></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label">Client Side Employee Id</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control validation-required" placeholder="Use's Client Side Id" id="txtClientSideCode" />
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="txtHiddenMappingId" />
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label">Onshore Manager<span class="spnError">*</span></label>
+                            <div class="input-group">
+                                <select id="ddlOnshoreMgrAbrhs" class="form-control select2 validation-required"><option></option></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label">Valid From</label>
+                            <div class="inputGroupContainer date date-picker" id="txtValidFrom">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="User Valid From Date" readonly="" name="txtValidFrom" />
+                                    <span class="input-group-btn">
+                                        <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label">Valid Till</label>
+                            <div class="inputGroupContainer date date-picker" id="txtValidTill">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="User Valid Till Date" readonly="" name="txtValidTill" />
+                                    <span class="input-group-btn">
+                                        <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div id="btnNotifySwitch">
+                            <div class="form-group">
+                                <label class="control-label">Notify Manager</label>
+                                <input type="checkbox" id="notifyMgr" name="userType" data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="success" data-offstyle="danger" data-size="Medium" data-width="100">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnSave" class="btn  btn-success">Save</button>
+                <button data-dismiss="modal" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/app/PimcoUserManagement/manageUser.js?v1.3"></script>
+

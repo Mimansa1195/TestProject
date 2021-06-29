@@ -1,0 +1,319 @@
+﻿<link href="~/Content/lib/jquery.contextMenu.css" rel="stylesheet" />
+<script src="~/Scripts/lib/jquery.tokeninput.js"></script>
+<script src="~/Scripts/lib/jquery-ui.custom.js"></script>
+<script src="~/Scripts/lib/jquery.cookie.js"></script>
+<script src="~/Scripts/lib/jquery.ui.core.js"></script>
+<script src="~/Scripts/lib/jquery.contextMenu-custom.js"></script>
+<link href="~/Content/lib/ui.dynatree.css" rel="stylesheet" />
+<script src="~/Scripts/lib/jquery.dynatree.js"></script>
+<script src="~/Scripts/lib/select2.min.js"></script>
+
+<div class="container-fluid">
+    <section class="card">
+        <div class="card-block">
+            <h5 class="with-border m-t-0">View Documents</h5>
+                <div class="row rightMainDivContainer">
+                    <div id="viewDocument-leftContainer" class=" col-md-2 roundedCorner" style="background-color:#eee;padding-top:10px">
+                        <div>
+                            <a id="popupAddNewDocumentTag">
+                                <img src="../Images/documentTag.png?v=1.0" alt='Add New Document Tag' title="Add New Document Tag" />
+                            </a>
+                            <a id='popupAddNewDocGroup'>
+                                <img src='../Images/addFolder.png?v=1.0' alt='Add New Folder' id="img2" title="Add New Folder " />
+                            </a>
+                            <a id='imgAllDocument'>
+                                <img src='../Images/Refresh.png?v=1.0' alt='Refresh' id='imgDocRefresh' title="Refresh" />
+                            </a>
+                        </div>
+                        <div id="DocumentGrouptree">
+                        </div>
+                        <!-- Definition of context menu -->
+                        <ul id="myMenu" class="contextMenu" style="width: 180px; padding: 2px;top:60px !important;left:130px !important">
+                            <li class="newFolder"><a href="#addNewFolder">Add New Folder</a></li>
+                            <li class="newDocument"><a href="#addNewDocument">Add New document</a></li>
+                            <li class="delete"><a href="#delete">Delete</a></li>
+                            <li class="edit"><a href="#rename">Rename</a></li>
+                        </ul>
+                    </div>
+                    <div id="viewDocument-rightContainer" class="col-md-10">
+                        <div id='documentGridView' class='gridViewBody gridViewContainerBorder'>
+                            <div class="col-md-12 clearfix">
+                                <table id="tbldocumentGridViewList" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+                            </div>
+                        </div>
+                        <div id='customizeGridData' class="CustomizeGridFooter">
+                        </div>
+                       </div>
+                    <div class="clearBoth"></div>
+                </div>
+        </div>
+    </section>
+</div>
+
+<div id="mypopupWindowShareDocumentModal" class="modal fade" role="dialog" aria-labelledby="mypopupWindowShareDocumentModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">Share Document</h4>
+            </div>
+            <div class="container margin-top-10">
+                <input id="txtShareDocId" type="hidden" />
+                <span id="lblbShareDocTitle"></span>
+                    <div class="form-group row">
+                        <div class="col-md-5 form-group">
+                            <div class="col-md-12">
+                                <h4 id="hUsers">Users</h4>
+                                <select id="lstBoxShareDocAllUser" size="10" style="width: 100%; height: 300px; overflow:auto" class="form-control formddl generalinput"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-2 form-group">
+                            <div class="col-md-12" style="margin-top: 150px;">
+                                <button id="btnShareDocumentAdd" type="button" class="btn default">>>></button>
+                                <button id="btnShareDocumentRemove" type="button" class="btn default"><<<</button>
+                            </div>
+                        </div>
+                        <div class="col-md-5 form-group">
+                            <div class="col-md-12">
+                                <h4 id="hUsers">Shared with users</h4>
+                                <select id="lstBoxShareDocSharedUser" size="10" style="width: 100%; height: 300px; overflow:auto" class="form-control formddl generalinput"></select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button id="btnCloseShareDocument" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div id="mypopupWindowViewDocumentModal" class="modal fade" role="dialog" aria-labelledby="mypopupViewDocModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">View Document</h4>
+            </div>
+            <div class="container margin-top-10">
+                <div id="popupWindowViewDocument">
+                    <object id="objViewPdf" type="application/pdf" data="" width="100%" height="500" internalinstanceid="65">No Support</object>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="mypopupWindowShareDocumentWithGropusModal" class="modal fade" role="dialog" aria-labelledby="mypopupViewDocModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">View Document</h4>
+            </div>
+            <div class="container margin-top-10">
+                <input id="txtDocIdShareDocWithgropus" type="hidden" />
+                <span id="lblbShareDocTitleWithgropus"></span>
+                <div class="form-group row">
+                    <div class="col-md-5 form-group">
+                        <div class="col-md-12">
+                            <h4 id="hUsers">Groups</h4>
+                            <select id="lstBoxShareDocAllGroups" size="10" style="width: 100%; height: 300px; overflow:auto" class="form-control formddl generalinput"></select>
+                        </div>
+                    </div>
+                    <div class="col-md-2 form-group">
+                        <div class="col-md-12" style="margin-top: 150px;">
+                            <button id="btnShareDocumentWithGroup" type="button" class="btn default">>>></button>
+                            <button id="btnShareDocumentRemoveGroup" type="button" class="btn default"><<<</button>
+                        </div>
+                    </div>
+                    <div class="col-md-5 form-group">
+                        <div class="col-md-12">
+                            <h4 id="hUsers">Shared with Groups</h4>
+                            <select id="lstBoxShareDocSharedGroups" size="10" style="width: 100%; height: 300px; overflow:auto" class="form-control formddl generalinput"></select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button id="btnCloseShareDocumentGroups" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="mypopupWindowAddNewDocumentModal" class="modal fade" role="dialog" aria-labelledby="mypopupWindowAddNewDocumentModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">Add Document</h4>
+            </div>
+            <div class="container margin-top-10">
+                <div class="form-group row">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Attach Document<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <input id="DocumentToUpload" type="file" name="fileToUpload" class="form-control validation-required txtDocument" onchange="checkFileIsValid(this);" />
+                            <img id="loading" src="../Images/loader.gif" style="display: none;" alt='image' />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Title<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" class='form-control validation-required txtDocument generalinput' id="txtDescription" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>File Description<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" class='form-control validation-required generalinput' id="txtFileDiscription" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Tags<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <select class="select2 select2-hidden-accessible" multiple="" tabindex="-1" aria-hidden="true" id="txtDocumentTags"></select>
+                        </div>
+                    </div>
+                </div>
+                <label class="ErrorLabel" for="txtDocumentTags"></label>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" id="btnSaveDocument"><i class="fa fa-save"></i>&nbsp;Add</button>
+                    <button id="btnCloseDocument" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+                </div>
+                    
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="mypopupWindowReplaceDocumentModal" class="modal fade" role="dialog" aria-labelledby="mypopupWindowReplaceDocumentModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">Replace Document</h4>
+            </div>
+            <div class="container margin-top-10">
+                <input type="hidden" class='txtInput generalinput' id="txtReDocumentId" />
+                <div class="form-group row">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Replace Document<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <input id="DocumentToReUpload" type="file" name="fileToReUploadDocument" class="form-control validation-required txtReplaceDocument" onchange="checkFileIsValid(this);" />
+                            <img id="Img1" src="../Images/loader.gif" style="display: none;" alt='image' />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Title<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" class='form-control validation-required txtReplaceDocument' id="txtRetitleDocument" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                           
+                        </div>
+                        <div class="col-md-8">
+                            <label class="ErrorLabel" id="ErrorLabel"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="form-group">
+                        <div class="col-md-4">
+
+                        </div>
+                        <div class="col-md-8">
+                            <button type="button" class="btn btn-success" id="btnreplacedocument"><i class="fa fa-save"></i>&nbsp;Update</button>
+                            <button id="btnClosereplacedocument" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="mypopupAddNewDocGroupModal" class="modal fade" role="dialog" aria-labelledby="mypopupAddNewDocGroupModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">Add Folder</h4>
+            </div>
+            <div class="container margin-top-10">
+                <div class="form-group row">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Folder<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control validation-required txtInput" id="groupName" placeholder="Group Name" />
+                        </div>
+                    </div>
+                </div>
+                <span id="spError-VD"></span>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" id="btnSaveGroup"><i class="fa fa-save"></i>&nbsp;Add</button>
+                    <button id="btnCloseGroup" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="mypopupAddNewDocumentTagModal" class="modal fade" role="dialog" aria-labelledby="mypopupAddNewDocumentTagModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">Create Tag Name</h4>
+            </div>
+            <div class="container margin-top-10">
+                <div class="form-group row">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Tag Name<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" class='form-control validation-required txtInput' id="txtTagName" />
+                        </div>
+                    </div>
+                </div>
+                <span id="spnErrorDocumentTag"></span>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" id="btnSaveDocumentTag"><i class="fa fa-save"></i>&nbsp;Add</button>
+                    <button id="btnCloseDocumentTag" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/app/KnowledgeBase/viewdoc.js"></script>

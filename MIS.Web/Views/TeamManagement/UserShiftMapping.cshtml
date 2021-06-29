@@ -1,0 +1,266 @@
+﻿@* Angularjs Code starts here ------------------------------------------------------*@
+
+<script src="~/Scripts/angular/JS/angular.min.js"></script>
+<script src="~/Scripts/angular/JS/angular-route.js"></script>
+<script src="~/Scripts/angular/JS/angular-datatables.min.js"></script>
+<link href="~/Scripts/angular/CSS/bootstrap-timepicker.min.css" rel="stylesheet" />
+<script src="~/Scripts/angular/JS/bootstrap-timepicker.min.js"></script>
+<script src="~/Scripts/angular/controllers/userShiftMappingController.js?v=1"></script>
+@* Angularjs Code Ends here ------------------------------------------------------*@
+
+<div ng-app="misApp" ng-controller="UserShiftMappingController" data-ng-init="GetShiftMappingDetails();" ng-cloak>
+
+    <div class="container-fluid">
+        <section class="card">
+            <div class="card-block">
+                <h5 class="with-border m-t-0">User Shift Mapping </h5>
+                <div>
+                    @*<button type="button" class="btn btn-success" ng-click="ShowShiftMappingPopup();" id="btnAddNewTeam">Add New Mapping</button>*@
+                </div>
+                <div class="form-group row margin-top-10">
+                    <div class="col-sm-12 padding0 ">
+                        <div class="col-md-10 padding0">
+                            <div id="divSearch" class="col-md-12 text-left">
+                                <div class="col-md-4 padding0">
+                                    <div class="col-md-12 paddingL0R15 padding-top10">
+                                        Department
+                                    </div>
+                                    <div class="col-md-12 paddingL0R15 ">
+                                        <select name="ddlDeptNameSrch" id="ddlDeptNameSrch" data-ng-model="DeptAbrhsSrch" ng-change="GetTeamSearchByDeptId();" class="form-control select2 ">
+                                            <option ng-repeat="dts in DepartmentList" ng-selected="DeptAbrhsSrch == dts.DeptAbrhs"  value="{{dts.DeptAbrhs}}">{{dts.DeptName}}</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-4 padding0">
+                                    <div class="col-md-12 paddingL0R15 padding-top10">
+                                        Team
+                                    </div>
+                                    <div class="col-md-12 paddingL0R15 ">
+                                        <select name="ddlTeamNameSrch" id="ddlTeamNameSrch" data-ng-model="TeamAbrhsSrch" class="form-control select2 ">
+                                            <option ng-repeat="dts in SearchTeamListByDept" ng-selected="TeamAbrhsSrch == dts.TeamAbrhsById" value="{{dts.TeamAbrhsById}}">{{dts.TeamNameById}}</option>
+                                        </select>
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-2 padding0">
+                                    <div class="col-md-12 paddingL0R15 padding-top10">
+                                        Shift
+                                    </div>
+                                    <div class="col-md-12 paddingL0R15">
+                                        <select name="ddlShiftNameSrch" id="ddlShiftNameSrch" data-ng-model="ShiftAbrhsSrch" class="form-control select2">
+                                            <option ng-repeat="dts in AllMappedUsersListSearch" ng-selected="ShiftAbrhsSrch == dts.ShiftAbrhs" value="{{dts.ShiftAbrhs}}">{{dts.ShiftName}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 padding0">
+                                    <div class="col-md-12 paddingL0R15 padding-top10">
+                                        Year
+                                    </div>
+                                    <div class="col-md-12 paddingL0R15">
+                                        <select name="ddlYearSrch" id="ddlYearSrch" data-ng-model="YearSrch" ng-change="GetWeekListbyYearSearch();" class="form-control select2 validation-required">
+                                            <option ng-repeat="dt in YearList" ng-selected="YearSrch == dt.Id" value="{{dt.Id}}">{{dt.Year}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 padding0">
+                                    <div class="col-md-12 paddingL0R15 padding-top10">
+                                        Week
+                                    </div>
+                                    <div class="col-md-12 paddingL0R15">
+                                        <select name="ddlWeekNameSrch" id="ddlWeekNameSrch" data-ng-model="WeekNoSrch" multiple="multiple" class="form-control validation-required">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 padding0">
+                                    <div class="col-md-12 paddingL0R15 padding-top30" style="margin-top:2px">
+                                        <button title="" class="btn" ng-click="SearchResult();" type="button" Title="Search" ><i class="fa fa-search"> </i> &nbsp; Search</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane">
+                    <div class="row form-body">
+                        <div class="col-md-12 clearfix">
+
+                            <div>
+                                <div ng-if="!show" class="minH500">
+                                    <table datatable="ng"  dt-options="dtOptions" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info">
+                                        <thead>
+                                            <tr>
+                                                <th> <span>Team Name</span> </th>
+                                                <th> <span>Shift</span> </th>
+                                                <th> <span>User Name</span> </th>
+                                                <th> <span>Date</span> </th>
+                                                <th><span>Week</span></th>
+                                                <th> <span>In Time</span> </th>
+                                                <th> <span>Out Time</span> </th>
+                                                <th> <span>Shift Type</span> </th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="dt in ShiftUserMappingList">
+
+                                                <td> <span>{{dt.TeamName}}</span> </td>
+                                                <td> <span>{{dt.ShiftName}}</span> </td>
+                                                <td> <span>{{dt.UserName}}</span> </td>
+                                                <td> <span>{{dt.DateValue}} <br/>({{dt.Day}})</span> </td>
+                                                <td><span>{{dt.WeekNo}}</span></td>
+                                                <td> <span>{{dt.InTime}}</span></td>
+                                                <td> <span>{{dt.OutTime}}</span></td>
+                                                <td> <span>{{dt.ShiftType}} </span></td>
+                                                <td>
+                                                    <button title="" class="btn btn-sm-del " ng-click="DeleteUserShiftMappingDetails(dt.MappingId);" type="button" Title="Delete"><i class="fa fa-trash-o"> </i></button>
+                                                </td>
+                                            </tr>
+                                    </table>
+                                </div>
+
+                                <div ng-if="show" class="LoaderDiv clearfix">
+                                  
+                                </div>
+
+                                <div class="clearfix"> </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="popupGeminiShiftUserInfo" class="modal fade col-md-12 col-lg-12" role="dialog" aria-labelledby="popupGeminiShiftUserInfo" aria-hidden="true">
+
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header ">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 id="modalTitle" class="modal-title">Add/Edit Shift Mapping</h4>
+                    <input type="hidden" name="name" value=" " id="hdnId" />
+                </div>
+                <div class="container margin-top-10 " id="divManageShiftUserMapping">
+                    <div class="form-group row  padding-left-20 ">
+
+
+
+                        <div class="col-md-4 margin-top-10 ">
+                            <div class="form-group clearfix padding-top10">
+                                <div class="col-md-11  ">
+                                    <label>Department Name</label>
+                                </div>
+                                <div class="col-md-11">
+                                    <select name="ddlDeptName" id="ddlDeptName" data-ng-model="ddlDeptAbrhs" ng-change="GetTeamByDeptId();" class="form-control select2 ">
+                                        <option ng-repeat="mt in DepartmentList" ng-selected="ddlDeptAbrhs == mt.DeptAbrhs" value="{{mt.DeptAbrhs}}">{{mt.DeptName}}</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group clearfix padding-top10">
+                                <div class="col-md-11  ">
+                                    <label>Team Name<span class="spnError">*</span></label>
+                                </div>
+                                <div class="col-md-11">
+                                    <select name="ddlTeamName" id="ddlTeamName" data-ng-model="TeamAbrhs" ng-change="GetMappedUserDetails();" class="form-control select2 validation-required">
+                                        <option ng-repeat="dt in TeamListByDept" ng-selected="TeamAbrhs == dt.TeamAbrhsById" value="{{dt.TeamAbrhsById}}">{{dt.TeamNameById}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group clearfix padding-top10">
+                                <div class="col-md-11 ">
+                                    <label>Year<span class="spnError">*</span></label>
+                                </div>
+                                <div class="col-md-11">
+                                    <select name="ddlYear" id="ddlYear" data-ng-model="Year" ng-change="GetWeekListbyYearForPopUp();" class="form-control select2 validation-required">
+                                        <option ng-repeat="dt in YearList" ng-selected="Year == dt.Id" value="{{dt.Id}}">{{dt.Year}}</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group clearfix padding-top10">
+                                <div class="col-md-11">
+                                    <label>Week<span class="spnError">*</span></label>
+                                </div>
+                                <div class="col-md-11">
+                                    <select name="ddlWeeks" id="ddlWeeks" data-ng-model="WeekNo" class="form-control multiselect validation-required select2" aria-hidden="true">
+                                        <option ng-repeat="dt in AllWeekListData" ng-selected="WeekNo == dt.WeekNo" value="{{dt.WeekNo}}">{{dt.WeekDateString}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="col-md-8 margin-top-10">
+                            <div class="col-md-12 padding5 text-danger fontBold">
+                                {{Mappedmsg}}
+                            </div>
+                            <div class="form-group clearfix padding-top10">
+                                <div class="col-md-12 padding0 hightfix400">
+                                    <table class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info">
+                                        <thead>
+                                            <tr>
+                                                <th><input type="checkbox" ng-model="IsAllSelected" ng-change="CheckAll();" /></th>
+                                                <th><span>User Name</span> </th>
+                                                <th class="center"><span>Shift Name</span> </th>
+                                            </tr>
+                                            <tr>
+                                                <th style="align-items:center" colspan="1">
+                                                    
+                                                </th>
+                                                <th  class="padding-bottom-10" style="vertical-align:central;text-align:center;" colspan="1">
+                                                    @*<label><span class="l-h-38">Select Shift</span></label>*@
+                                                </th>
+                                                <th colspan="2">
+                                                    <select ng-model="ShiftAbrhs" class="form-control" ng-change="setvalues()">
+                                                        <option ng-repeat="ts in AllMappedUsersList[0].ShiftsList" value="{{ts.ShiftAbrhs}}">{{ts.ShiftName}}</option>
+                                                    </select>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr ng-repeat="dt in AllMappedUsersList ">
+                                                <td> <input type="checkbox" ng-model="dt.IsSelected" ng-change="CheckSingle();" /> </td>
+                                                <td> <span>{{dt.Name}}</span></td>
+                                                <td class="center">
+                                                    <select ng-model="dt.ShiftAbrhs" ng-class="dt.IsSelected ? 'form-control select-validate validation-required':'form-control'">
+                                                        <option ng-repeat="dts in dt.ShiftsList" value="{{dts.ShiftAbrhs}}">{{dts.ShiftName}}</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                    </table>
+                                    <div ng-if="AllMappedUsersList.length == 0" class="col-md-12 padding10 border center text-primary clearfix">
+                                        No records available.
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="clear">
+                        </div>
+
+                        <div class="modal-footer clearfix">
+                            <div class="col-md-12">
+                                <button id="btnAddShiftInfo" ng-if="!showShiftUpdate" type="button" class="btn btn-success" ng-click="SaveShiftUserMappinginDB();"><i class="fa fa-save">&nbsp;Save</i></button>
+                                <button id="btnUpdateShiftInfo" ng-if="showShiftUpdate" type="button" class="btn btn-success" ng-click="SaveShiftUserMappinginDB();"><i class="fa fa-save">&nbsp;Update</i></button>
+                                <button id="btnCloseShiftInfo" type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i>&nbsp;Close </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+

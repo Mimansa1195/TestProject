@@ -1,0 +1,73 @@
+﻿<div class="container-fluid">
+    <section class="card">
+        <div class="card-block">
+            <h5 class="with-border m-t-0">Allocate/Return Asset</h5>
+            <div role="tabpanel" class="tab-pane">
+                <section>
+                    <div class="row form-body">
+                        <div class="col-md-12 clearfix">
+                            <table id="tblAssetCount" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="tabs-section-nav tabs-section-nav-left">
+                <ul class="nav" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#tabPendingAllocationRequest" role="tab" data-toggle="tab">
+                            <span class="nav-link-in">Pending for allocation</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#tabPendingReturnRequest" role="tab" data-toggle="tab" onclick="getPendingRetunRequest();">
+                            <span class="nav-link-in">Pending for acknowledgement</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#tabDeclinedAssets" role="tab" data-toggle="tab" onclick="getDeclinedRequest();">
+                            <span class="nav-link-in">Declined requests</span>
+                        </a>
+                    </li>
+                </ul>
+            </div><!--.tabs-section-nav-->
+
+            <div class="tab-content no-styled profile-tabs">
+                <div role="tabpanel" class="tab-pane active" id="tabPendingAllocationRequest">
+                    <section class="box-typical box-typical-padding">
+                        <div class="container-fluid">
+                            <table id="tblPendingAllocationGrid" data-filter-control="true" data-toolbar="#toolbar" class="table table-hover"></table>
+                        </div>
+                    </section>
+                </div><!--.tab-pane-->
+                <div role="tabpanel" class="tab-pane" id="tabPendingReturnRequest">
+                    <section class="box-typical box-typical-padding">
+                        <div class="container-fluid">
+                            <table id="tblPendingReturnGrid" data-filter-control="true" data-toolbar="#toolbar" class="table table-hover"></table>
+                        </div>
+                    </section>
+                </div><!--.tab-pane-->
+                <div role="tabpanel" class="tab-pane" id="tabDeclinedAssets">
+                    <section class="box-typical box-typical-padding">
+                        <div class="container-fluid">
+                            <table id="tblDeclinedAssets" data-filter-control="true" data-toolbar="#toolbar" class="table table-hover"></table>
+                        </div>
+                    </section>
+                </div><!--.tab-pane-->
+            </div>
+        </div>
+    </section>
+</div>
+
+<div id="modal-allocateAsset" class="modal fade" role="dialog" aria-labelledby="myDocumentsDetails" aria-hidden="true">
+    <input type="hidden" name="name" value=" " id="hdnAllocateAssetRequestId" />
+    <div class="modal-dialog" id="modal-allocateAssetContainer">
+    </div>
+</div>
+
+<div id="modal-returnAsset" class="modal fade" role="dialog" aria-labelledby="myDocumentsDetails" aria-hidden="true">
+    <input type="hidden" name="name" value=" " id="hdnAssetRequestId" />
+    <div class="modal-dialog" id="modal-returnAssetContainer">
+    </div>
+</div>
+
+<script src="~/Scripts/app/Asset/allocate.js?v=1.2"></script>

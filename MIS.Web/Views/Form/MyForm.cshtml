@@ -1,0 +1,35 @@
+﻿<div class="container-fluid">
+    <section class="card">
+        <div class="card-block">
+            <h5 class="with-border m-t-0">My Forms</h5>
+            <div>
+                <button type="button" class="btn btn-success" id="uploadForm">Upload Form</button>
+            </div>
+            <div class="clearfix"><br /></div>
+            <table id="tblMyForms" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+        </div>
+    </section>
+</div>
+
+<div id="modal-uploadMyForm" class="modal fade" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" id="modal-uploadMyFormContainer">
+    </div>
+</div>
+
+<div id="viewDocumentModal" class="modal fade" role="dialog" aria-labelledby="viewDocumentModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">View Document</h4>
+            </div>
+            <div class="container margin-top-10">
+                <div id="popupWindowViewDocument">
+                    <object id="objViewPdf" type="application/pdf" data="" width="100%" height="500" internalinstanceid="65">No Support</object>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/app/Form/myForm.js?v=1.2"></script>

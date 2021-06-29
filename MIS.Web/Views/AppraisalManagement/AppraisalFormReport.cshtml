@@ -1,0 +1,29 @@
+﻿<div class="container-fluid">
+    <section class="card">
+        <div class="card-block">
+            <h5 class="with-border m-t-0">Appraisal Forms Report</h5>
+            <div class="row">
+                <div id="divAppraisalStatusReport">
+                    <div class="form-group full-width col-sm-6 col-md-4 col-lg-3">
+                        <label>Appraisal Cycle<span class="spnError">*</span></label>
+                        <select style="width: 100%;" id="ddlAppraisalCycleMaster" class="form-control select2 select2-hidden-accessible validation-required" tabindex="101" aria-hidden="true" onchange="bindAppraisalStatus();"></select>
+                    </div>
+                    <div class="form-group full-width col-sm-6 col-md-4 col-lg-3">
+                        <label>Appraisal Status<span class="spnError">*</span></label>
+                        <select style="width: 100%;" id="ddlAppraisalStatus" multiple="multiple" class="form-control multiselect multipleSelect validation-required" aria-hidden="true"></select>
+                    </div>
+
+                    <div class="form-group full-width col-sm-6 col-md-4 col-lg-3" style="margin-top:23px">
+                        <button id="btnFilterSearch" class="btn btn-primary" type="button"><i class="fa fa-search"></i>&nbsp; Search</button>
+                    </div>
+                </div>
+                <div id="divAppraisalSettingList">
+                    <div class="col-md-12">
+                        <table id="tblEmployeeAppraisalStatusList" data-filter-control="true" data-toolbar="#toolbar" class="table table-hover"></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script src="~/Scripts/app/AppraisalManagement/downloadappraisalform.js?v=9"></script>

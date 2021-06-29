@@ -1,0 +1,187 @@
+﻿<div class="container-fluid">
+    <section class="card">
+        <div class="card-block">
+            <h5 class="with-border m-t-0">Manage Team Appraisal</h5>
+            <div id="teamAppraisalDiv">
+                <div class="white-light-bg">
+                    <div class="row">
+                        <div id="divAppraisalSettingFilter">
+                            <div class="form-group full-width col-sm-6 col-md-4 col-lg-3">
+                                <label>Appraisal Cycle<span class="spnError">*</span></label>
+                                <select style="width: 100%;" id="ddlAppraisalCycleMaster" class="form-control select2 select2-hidden-accessible validation-required" tabindex="101" aria-hidden="true"></select>
+                            </div>
+                            <div class="form-group full-width col-sm-6 col-md-4 col-lg-3">
+                                <label>Location<span class="spnError">*</span></label>
+                                <select style="width: 100%;" id="ddlCountryMaster" class="form-control select2 select2-hidden-accessible" tabindex="1" aria-hidden="true"></select>
+                            </div>
+
+                            <div class="form-group full-width col-sm-6 col-md-4 col-lg-3">
+                                <label>Vertical<span class="spnError">*</span></label>
+                                <select style="width: 100%;" id="ddlVerticalMaster" class="form-control select2 select2-hidden-accessible validation-required" tabindex="2" aria-hidden="true"></select>
+                            </div>
+                            <div class="form-group full-width col-sm-6 col-md-4 col-lg-3">
+                                <label>Division<span class="spnError">*</span></label>
+                                <select style="width: 100%;" id="ddlDivisionMaster" class="form-control validation-required" tabindex="2" aria-hidden="true" multiple="multiple"></select>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="form-group full-width col-sm-6 col-md-4 col-lg-3">
+                                <label>Department<span class="spnError">*</span></label>
+                                <select style="width: 100%;" id="ddlDepartmentMaster" class="form-control validation-required" tabindex="2" aria-hidden="true" multiple="multiple"></select>
+                            </div>
+
+                            <div class="form-group full-width col-sm-6 col-md-4 col-lg-3">
+                                <label>Team<span class="spnError">*</span></label>
+                                <select style="width: 100%;" id="ddlPopTeamMaster" multiple="multiple" class="form-control validation-required" tabindex="3" aria-hidden="true"></select>
+                            </div>
+                            <div class="form-group full-width col-sm-6 col-md-4 col-lg-3">
+                                <label>Appraiser<span class="spnError">*</span></label>
+                                <select style="width: 100%;" id="ddlAppraiserMaster" multiple="multiple" class="form-control validation-required" tabindex="4" aria-hidden="true"></select>
+                            </div>
+                            <div class="form-group full-width col-sm-6 col-md-4 col-lg-3">
+                                <label>Approver<span class="spnError">*</span></label>
+                                <select style="width: 100%;" id="ddlApproverMaster" multiple="multiple" class="form-control validation-required" tabindex="4" aria-hidden="true"></select>
+                            </div>
+                            <div class="form-group pull-right full-width col-sm-6 col-md-4 col-lg-3" style="margin-top:23px">
+                                <button id="btnFilterSearchTeamWise" class="btn btn-primary" type="button"><i class="fa fa-search"></i>&nbsp; Search</button>
+                                <button id="btnFilterReset" class="btn btn-primary" type="button"><i class="fa fa-refresh"></i>&nbsp; Reset</button>
+                            </div>
+                        </div>
+                        <div id="divTeamAppraisalList">
+                            <div class="col-md-12">
+                                <table id="tblTeamAppraisal" data-filter-control="true" data-toolbar="#toolbar" class="table table-hover"></table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-full modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <span class="modalName">Team Appraisal Settings</span>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 white-light-bg">
+                        <span class="modal-title empName" id="myModalLabel"></span>
+                        <span class="empDesignation" id="spnDesignation"></span>
+                        <span class="appraisalCycle" id="spnCycledate"></span>
+                        <hr style="margin:5px" />
+                        <div class="clearfix"></div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 marginTop10">
+                            <div class="formSteps row">
+                                <div class="form-group col-sm-12">
+                                    <label>Reporting Manager</label>
+                                    <input type="text" id="txtReportingManager" class="form-control" readonly="readonly" />
+                                </div>
+                                <div class="form-group col-sm-12">
+                                    <label>Appraiser</label>
+                                    <select style="width: 100%;" id="ddlAppraiser" class="form-control select2 select2-hidden-accessible validation-required" tabindex="-1" aria-hidden="true"></select>
+                                </div>
+                                <div class="form-group col-sm-12">
+                                    <label>Approver 1<span class='spnError'>*</span></label>
+                                    <select style="width: 100%;" id="ddlApprover1" class="form-control select2 select2-hidden-accessible validation-required" tabindex="-1" aria-hidden="true"></select>
+
+                                </div>
+                                <div class="form-group col-sm-12">
+                                    <label>Approver 2</label>
+                                    <select style="width: 100%;" id="ddlApprover2" class="form-control select2 select2-hidden-accessible" tabindex="-1" aria-hidden="true"></select>
+
+                                </div>
+                                <div class="form-group col-sm-12">
+                                    <label>Approver 3</label>
+                                    <select style="width: 100%;" id="ddlApprover3" class="form-control select2 select2-hidden-accessible" tabindex="-1" aria-hidden="true"></select>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 marginTop10" style="display: none">
+                            <div class="formSteps row">
+                                <div class="form-group col-sm-12">
+                                    <label id="txtpromotionNext"></label>
+                                    <input type="text" class="form-control" readonly="readonly" placeholder="Designation">
+                                </div>
+
+                                <div class="form-group col-sm-12">
+                                    <label id="txtpromotionFirst"></label>
+                                    <input type="text" id="txtFirstDesignationName" class="form-control" readonly="readonly" placeholder="Designation">
+                                </div>
+                                <div class="form-group col-sm-12">
+                                    <label id="txtpromotionSecond"></label>
+                                    <input type="text" id="txtSecondDesignationName" class="form-control" readonly="readonly" placeholder="Designation">
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label>Appraisal last Done</label>
+                                    <div class="input-group margin-bottom-15">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input type="text" id="txtLastDone" class="form-control" readonly="readonly">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Appraisal Next Due</label>
+                                    <div class="input-group margin-bottom-15">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input type="text" id="txtNextDue" class="form-control" readonly="readonly">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 marginTop10">
+                            <div class="formSteps row">
+                                <div class="col-md-12">
+                                    <label>Apprasial Start From</label>
+                                    <div class="input-group margin-bottom-15">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input type="text" id="txtappraisalstatdate" class="form-control validation-required">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Apprasial Ends By</label>
+                                    <div class="input-group margin-bottom-15">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input type="text" id="txtappraisalenddate" class="form-control validation-required">
+                                    </div>
+                                    <span class="validationError" style="color: red; font-size: 25px;"></span>
+                                </div>
+                                <div id="divstages" class="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 marginTop10">
+                        <div class="form-group col-md-12">
+                            <label>Appraisal Form<span class='spnError'>*</span></label>
+                            <select style="width: 100%;" id="ddlCompetency" class="form-control select2 select2-hidden-accessible validation-required" tabindex="-1" aria-hidden="true">
+                                <option selected="selected">Competency</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btnMTASave" class="btn btn-success"><i class="fa fa-save"></i>&nbsp;Update</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;Close</button>
+                    <input type="hidden" id="hdnempAppraisalSettingId" />
+                    <input type="hidden" id="hdnEmployeeId" />
+                    <input type="hidden" id="hdnAppraisalCycleId" />
+                    <input type="hidden" id="hdnRMAccessId" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/app/AppraisalManagement/manageteamappraisal.js?v=2.9"></script>

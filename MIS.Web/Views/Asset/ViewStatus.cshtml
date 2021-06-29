@@ -1,0 +1,43 @@
+﻿<div class="container-fluid">
+    <section class="card">
+        <div class="card-block">
+            <h5 class="with-border m-t-0">View Asset Request Status</h5>
+            <table id="tblAssetStatusGrid" data-filter-control="true" data-toolbar="#toolbar" class="table table-hover"></table>
+        </div>
+    </section>
+</div>
+
+<div id="modal-returnAssetByUser" class="modal fade" role="dialog" aria-labelledby="mypopup" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Return dongle</h4>
+            </div>
+            <div class="modal-body" id="returnAssetContainer">
+                <input type="hidden" id="hdnAssetRequestId" />
+                <div class="form-group">
+                    <label class="control-label">Allocated date</label>
+                    <input type="text" readonly="" class="form-control" id="dongleAllocatedDate" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Return date<span class="spnError">*</span></label>
+                    <div class="inputGroupContainer">
+                        <div class="input-group">
+                            <input type="text" readonly="" class="form-control validation-required" id="dongleReturnDate" placeholder="Return Date" />                            
+                            <span class=" input-group-btn">
+                                <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btnAddMealCategory" type="button" class="btn btn-success" onclick="returnAssetByUser()"><i class="fa fa-save"></i>&nbsp;Return</button>
+                <button id="btnClose" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/app/Asset/viewStatus.js"></script>

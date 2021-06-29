@@ -1,0 +1,71 @@
+﻿<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 id="modalTitle" class="modal-title">ALLOCATE ASSET</h4>
+    </div>
+    <div class="container margin-top-10">
+        <div class="form-group row">
+            <div class="form-group">
+                <div class="col-md-4">
+                    <label>Asset Tag<span class="spnError">*</span></label>
+                </div>
+                <div class="col-md-8">
+                    <select type="text" class="form-control validation-required select2" id="assetTag" onchange="onAssetTagChange();">
+                        <option value="0">Select</option>
+                    </select>
+                    @*<input type="text" class="form-control validation-required" placeholder="Asset Tag" id="assetTag" />*@
+                </div>
+            </div>
+        </div>
+        <div id="hiddenAssetDetail" aria-hidden="true" style="display: none">
+            <div class="form-group row">
+                <div class="form-group">
+                    <div class="col-md-4">
+                        <label>Serial No</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input disabled="disabled" type="text" class="form-control validation-required" placeholder="Serial No" id="assetSerialNo" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="form-group">
+                    <div class="col-md-4">
+                        <label>Make</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input disabled="disabled" type="text" class="form-control validation-required" placeholder="Make" id="assetMake" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="form-group">
+                    <div class="col-md-4">
+                        <label>Model</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input disabled="disabled" type="text" class="form-control validation-required" placeholder="Model" id="assetModel" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="form-group">
+                    <div class="col-md-4">
+                        <label>Sim No</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input disabled="disabled" type="text" class="form-control validation-required" placeholder="Sim No" id="assetSimNo" />
+                    </div>
+                </div>
+            </div>
+                
+            <div class="modal-footer">
+                <button type="button" class="btn green" onclick="allocateAsset();"><i class="fa fa-save"></i>&nbsp;Allocate</button>
+                <button id="btnClose" type="button" class="btn default"><i class="fa fa-times"></i>&nbsp;Close </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/app/Asset/allocate.js?v=1.4"></script>
+

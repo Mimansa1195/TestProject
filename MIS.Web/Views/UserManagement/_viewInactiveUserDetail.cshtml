@@ -1,0 +1,678 @@
+﻿<div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-right-30 padding-top10">
+        <button id="btnBackToInActiveUserList" class="btn btn-success pull-xl-right pull-lg-right pull-md-right pull-sm-right pull-xs-right"><i class="fa fa-angle-double-left"></i> Back to list</button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 vertical-tab-container">
+
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 vertical-tab-menu">
+            <div class="list-group">
+                <a href="#" class="list-group-item active text-center">
+                    <h4 class="fa fa-user"></h4><br />Personal Detail
+                </a>
+                <a href="#" class="list-group-item text-center">
+                    <h4 class="fa fa-home"></h4><br />Address Detail
+                </a>
+                <a href="#" class="list-group-item text-center">
+                    <h4 class="fa fa-graduation-cap"></h4><br />Career Detail
+                </a>
+                <a href="#" class="list-group-item text-center">
+                    <h4 class="fa fa-file-text"></h4><br />ID Proof
+                </a>
+                <a href="#" class="list-group-item text-center">
+                    <h4 class="fa fa-credit-card"></h4><br />Joining Detail
+                </a>
+            </div>
+        </div>
+
+        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 vertical-tab" id="userRegDetails">
+            <div class="vertical-tab-content active" id="personalInfoEdit">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Official Email Id</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                        <input disabled id="officialEmail" class="form-control validation-required" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Personal Email Id</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                        <input disabled id="personalEmail" class="form-control validation-required" type="text" @*placeholder="Personal emailId"*@ />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">First Name</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                        <input disabled id="firstName" @*placeholder="First Name"*@ class="form-control validation-required" type="text" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Middle Name</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                        <input  disabled id="middleName" @*placeholder="Middle Name"*@ class="form-control" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Last Name</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                        <input disabled id="lastName" @*placeholder="Last Name"*@ class="form-control validation-required" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Mobile Number</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
+                                        <input disabled id="mobileNo"  class="form-control validation-required" type="text" maxlength="10" onkeypress="return isNumber(event);">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Emergency Contact Number</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
+                                        <input disabled id="emergencyNo"  class="form-control validation-required" type="text" maxlength="10" onkeypress="return isNumber(event);">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Date Of Birth</label>
+                                <div class="inputGroupContainer date date-picker" id="txtdobFromPicker">
+                                    <div class="input-group">
+                                        <input disabled type="text" class="form-control validation-required"   id="dob" />
+                                        <span class=" input-group-btn">
+                                            <button class="btn default" type="button"><i class="fa fa-calendar" ></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Blood Group</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-medkit"></i></span>
+                                        <select disabled class="form-control select-validate validation-required"  id="bloodGroup">
+                                            <option value="0" selected>Select</option>
+                                            <option value="A positive">A positive</option>
+                                            <option value="A negative">A negative</option>
+                                            <option value="B positive">B positive</option>
+                                            <option value="B negative">B negative</option>
+                                            <option value="O positive">O positive</option>
+                                            <option value="O negative">O negative</option>
+                                            <option value="AB positive">AB positive</option>
+                                            <option value="AB negative">AB negative</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Gender</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                        <select disabled class="form-control select-validate validation-required" id="gender">
+                                            <option value="0" selected>Select</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Marital status</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                        <select disabled class="form-control select-validate validation-required" id="maritalStatus">
+                                            <option value="0" selected>Select</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div align="center">
+                        <button class="btn default btnSaveUserProfile pull-md-right" type="button" onclick="saveAndContinue(1);">Save</button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="vertical-tab-content" id="addressInfoEdit">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h6><strong>Correspondence Address</strong></h6>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">Country</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-flag"></i></span>
+                                        <select disabled class="form-control select-validate validation-required" id="presentCountry"  onchange="presentCountryChange();">
+                                            <option value="0">Select</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">State</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-id-card-o"></i></span>
+                                        <select disabled class="form-control select-validate validation-required" id="presentState"  onchange="presentStateChange();">
+                                            <option value="0">Select</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">City</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-id-card-o"></i></span>
+                                        <select disabled class="form-control select-validate validation-required"  id="presentCity">
+                                            <option value="0">Select</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">Pin code</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-home"></i></span>
+
+                                        <input disabled id="presentPincode"  class="form-control validation-required" type="text" maxlength="6" onkeypress="return isNumber(event);" onkeyup="return removeAlphabets(this)" onkeydown="return removeAlphabets(this)">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">Address</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-home"></i></span>
+                                        <textarea disabled id="presentAddress" class="form-control" cols="5" rows="5" placeholder="Enter Address"></textarea>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-md-12">
+                            <h6><strong>Permanent Address</strong></h6>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">Country</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-flag"></i></span>
+                                        <select disabled class="form-control select-validate validation-required" id="permanentCountry"  onchange="permanentCountryChange();">
+                                            <option value="0">Select</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">State</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-id-card-o"></i></span>
+                                        <select disabled class="form-control select-validate validation-required" id="permanentState"  onchange="permanentStateChange();">
+                                            <option value="0">Select</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">City</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-id-card-o"></i></span>
+                                        <select disabled class="form-control select-validate validation-required"  id="permanentCity">
+                                            <option value="0">Select</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">Pin code</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-home"></i></span>
+                                        <input disabled id="permanentPincode"  class="form-control validation-required" type="text" maxlength="6" onkeypress="return isNumber(event);" onkeyup="return removeAlphabets(this)" onkeydown="return removeAlphabets(this)" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">Address</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-home"></i></span>
+                                        <textarea disabled id="permanentAddress" class="form-control" cols="5" rows="5" placeholder="Enter Address"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div align="center">
+                        <button class="btn default btnSaveUserProfile pull-md-right" type="button" onclick="saveAndContinue(2);">Save</button>
+                    </div>
+                </div>
+            </div>
+            <div class="vertical-tab-content" id="careerInfoEdit">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label">Job Experience</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                        <select disabled readonly="" class="form-control select-validate validation-required" id="jobExperience"  onchange="onJobExperienceChange();">
+                                            <option value="0">Select</option>
+                                            <option value="1">Fresher</option>
+                                            <option value="2">Experienced</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row forExperienced">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">Last Employer Name</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                        <input disabled id="lastEmployerName"  class="form-control" type="text" maxlength="50">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">Last Job Designation</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-briefcase"></i></span>
+                                        <input disabled id="lastJobDesignation"  class="form-control" type="text" maxlength="50">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">Last Employer Location</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-location-arrow"></i></span>
+                                        <input disabled id="lastEmployerLocation"  class="form-control" type="text" maxlength="50">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">Last Job Tenure(Months)</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                        <input disabled id="lastJobTenure"  class="form-control" type="text" maxlength="15">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">Reason for Leaving Job</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-motorcycle"></i></span>
+                                        <textarea disabled cols="5" rows="5" id="jobLeavingReason" class="form-control"></textarea>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">Last job UAN</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-id-badge"></i></span>
+                                        <input disabled id="lastJobUan" class="form-control" type="text" maxlength="15">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div align="center">
+                        <button class="btn default btnSaveUserProfile pull-md-right" type="button" onclick="saveAndContinue(3);">Save</button>
+                    </div>
+
+                </div>
+            </div>
+            <div class="vertical-tab-content" id="bankInfoEdit">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">PAN Number</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-address-card"></i></span>
+                                        <input disabled id="panNo" class="form-control validation-required" type="text" maxlength="10" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">Aadhaar Number</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-drivers-license"></i></span>
+                                        <input disabled id="aadhaarNo"  class="form-control" type="text" maxlength="12" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">Passport Number</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-drivers-license"></i></span>
+                                        <input disabled id="passportNo"  class="form-control" type="text" maxlength="15" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">Driving License number</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-drivers-license"></i></span>
+                                        <input disabled id="dLNo"  class="form-control" type="text" maxlength="15" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">VoterId number</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-drivers-license"></i></span>
+                                        <input disabled id="voterIdNo"  class="form-control" type="text" maxlength="15" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div align="center">
+                        <button class="btn default btnSaveUserProfile pull-md-right" type="button" onclick="saveAndContinue(4);">Save</button>
+                    </div>
+                </div>
+            </div>
+            <div id="joiningInfoEdit" class="vertical-tab-content">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">Employee Id</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-drivers-license-o"></i></span>
+                                        <input disabled id="employeeId" class="form-control validation-required" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">Role</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-list"></i></span>
+                                        <select disabled class="form-control select-validate validation-required" id="empRole">
+                                            <option value="0">Select</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">Date of joining</label>
+                                <div class="inputGroupContainer date date-picker" id="txtDateOfJoining">
+                                    <div class="input-group">
+                                        <input disabled type="text" class="form-control validation-required" readonly="" id="doj" />
+                                        <span class=" input-group-btn">
+                                            <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">Division</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-list"></i></span>
+                                        <select disabled class="form-control select-validate validation-required" id="empDivision">
+                                            <option value="0">Select</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">Department</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-list"></i></span>
+                                        <select disabled class="form-control select-validate validation-required" id="empDepartment">
+                                            <option value="0">Select</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">Team</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-list"></i></span>
+                                        <select disabled class="form-control select-validate validation-required" id="empTeam">
+                                            <option value="0">Select</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">Work Station Number</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-drivers-license-o"></i></span>
+                                        <input disabled id="wsNo" class="form-control" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">Extension Number</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-drivers-license-o"></i></span>
+                                        <input disabled id="extensionNo" class="form-control validation-required" type="text" maxlength="3" onkeypress="return isNumber(event);" onkeyup="return removeAlphabets(this)" onkeydown="return removeAlphabets(this)">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">Designation Group</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-list"></i></span>
+                                        <select disabled class="form-control select-validate validation-required" id="empDesignationGroup">
+                                            <option value="0">Select</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">Designation</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-list"></i></span>
+                                        <select disabled class="form-control select-validate validation-required" id="empDesignation">
+                                            <option value="0">Select</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">Reporting Manager</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-list"></i></span>
+                                        <select disabled class="form-control select-validate validation-required" id="empReportingManager">
+                                            <option value="0">Select</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">Date of Leaving </label>
+                                <div class="inputGroupContainer date date-picker" id="txtDateOfJoining">
+                                    <div class="input-group">
+                                        <input class="form-control" disabled type="text" id="dot" />
+                                        <span class=" input-group-btn">
+                                            <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">Probation Period(Months)<span class="spnError">*</span></label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                        <select class="form-control select2 select-validate validation-required" id="empProbationPeriod" disabled="disabled">
+                                            <option>0</option>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                            <option>11</option>
+                                            <option>12</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div align="center">
+                        <button class="btn default btnSaveUserProfile pull-md-right" type="button" onclick="saveAndContinue(5);">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="~/Scripts/app/UserManagement/_manageUserDetail.js?v=11.4"></script>

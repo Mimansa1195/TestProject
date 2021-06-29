@@ -1,0 +1,447 @@
+﻿<div class="row" id="maindivEdit">
+    <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 marginTop10">
+        <div class="formSteps">
+            <fieldset>
+                <div class="form-group col-sm-4">
+                    <label>Location<span class="spnError">*</span></label>
+                    <select style="width: 100%;" id="ddlCountryEdit" class="form-control select2 select2-hidden-accessible validation-required" tabindex="1" aria-hidden="true">
+                        <option value="0">Select</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-sm-4">
+                    <label>Vertical<span class="spnError">*</span></label>
+                    <select style="width: 100%;" id="ddlVerticalEdit" class="form-control select2 select2-hidden-accessible validation-required" tabindex="1" aria-hidden="true"></select>
+                </div>
+                <div class="form-group col-sm-4">
+                    <label>Division<span class="spnError">*</span></label>
+                    <select style="width: 100%;" id="ddlDivisionEdit" class="form-control select2 select2-hidden-accessible validation-required" tabindex="1" aria-hidden="true"></select>
+                </div>
+                <div class="form-group col-sm-4">
+                    <label>Department<span class="spnError">*</span></label>
+                    <select style="width: 100%;" id="ddlDepartmentEdit" class="form-control select2 select2-hidden-accessible validation-required" tabindex="1" aria-hidden="true"></select>
+                </div>
+
+                <div class="form-group col-sm-4">
+                    <label>Team<span class="spnError">*</span></label>
+                    <select style="width: 100%;" id="ddlPopTeamEdit" class="form-control select2 select2-hidden-accessible validation-required" tabindex="1" aria-hidden="true"></select>
+                </div>
+
+                <div class="form-group col-sm-4">
+                    <label>Designation<span class="spnError">*</span></label>
+                    <select style="width: 100%;" id="ddlPopDesignationEdit" multiple="multiple" class="form-control validation-required" tabindex="4" aria-hidden="true"></select>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+
+    <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 marginTop10">
+        <div class="formSteps">
+            <fieldset>
+                <div class="form-group col-sm-4">
+                    <label>Appraisal Cycle<span class="spnError">*</span></label>
+                    <select style="width: 100%;" id="ddlPopAppraisalCycleEdit" class="form-control select2 select2-hidden-accessible validation-required" aria-hidden="true"></select>
+                </div>
+                <div class="form-group col-sm-4">
+                    <label>Start Date<span class="spnError">*</span></label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="fa fa-calendar"></i>
+                        </div>
+                        <input type="text" class="form-control validation-required" placeholder="Select Start Date" tabindex="6" id="txtStartDateEdit" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask="" data-attr-name="r2"><span class="error-content errorMessage"></span>
+                    </div>
+                </div>
+                <div class="form-group col-sm-4">
+                    <label>End Date<span class="spnError">*</span></label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="fa fa-calendar"></i>
+                        </div>
+                        <input type="text" class="form-control validation-required" placeholder="Select End Date" tabindex="7" id="txtEndDateEdit" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask="" data-attr-name="r2"><span class="error-content errorMessage"></span>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+
+    <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 marginTop10">
+        <div class="formSteps">
+            <fieldset>
+                <div id="appraisalStagesEdit"></div>
+            </fieldset>
+        </div>
+
+    </div>
+</div>
+<div class="modal-footer">
+    <button id="btnUpdateAppraisalSetting" type="button" class="btn btn-success"><i class="fa fa-save"></i>&nbsp;Update</button>
+    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;Close </button>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $("#ddlCountryEdit").select2();
+        $("#ddlPopGroupMaster").select2();
+        $("#ddlVerticalEdit").select2();
+        $("#ddlPopAppraisalCycleEdit").select2();
+        $('#ddlDivisionEdit').select2();
+        $('#ddlDepartmentEdit').select2();
+        $('#ddlPopTeamEdit').select2();
+
+        $('#ddlPopDesignationEdit').multiselect({
+            includeSelectAllOption: true,
+            enableFiltering: true,
+            enableCaseInsensitiveFiltering: true,
+            buttonWidth: false,
+            onDropdownHidden: function (event) {
+            }
+        });
+
+        var JsonObject = {
+            AppraisalCycleId: $("#hdnEditAppraisalCycleId").val(),
+            AppraisalSettingId: $("#hdnEditAppraisalSettingId").val(),
+            LocationId: $("#hdnEditLocationId").val(),
+            VerticalIds: $("#hdnEditVerticalId").val(),
+            DivisionIds: $("#hdnEditDivisionId").val(),
+            DepartmentIds: $("#hdnEditDepartmentId").val(),
+            TeamIds: $("#hdnEditTeamId").val()
+        };
+        calltoAjax(misApiUrl.getAppraisalSettingList, "POST", JsonObject,
+            function (result) {
+                var resultdata = result[0];
+                resultdata.AppraisalStatges = $.parseJSON(resultdata.AppraisalStatges);
+                formData = resultdata;
+                fetchCompanyLocationEdit($("#hdnEditLocationId").val());
+                fetchVerticalEdit($("#hdnEditVerticalId").val());
+                fetchDivisionEdit($("#hdnEditVerticalId").val(), $("#hdnEditDivisionId").val());
+                fetchDepartmentEdit($("#hdnEditDivisionId").val(), $("#hdnEditDepartmentId").val());
+                populatePopTeamMasterEdit($("#hdnEditDepartmentId").val(), $("#hdnEditTeamId").val(), formData.DesignationIds);
+                fetchAppraisalCycleEdit($("#hdnEditAppraisalCycleId").val());
+
+                $("#txtStartDateEdit").val(toddmmyyyDatePicker(formData.StartDate));
+                $("#txtEndDateEdit").val(toddmmyyyDatePicker(formData.EndDate));
+                if (formData.EmpSettingCount > 0) {
+                    $("#txtStartDateEdit").attr("disabled", "disabled");
+                    $("#ddlPopDesignationEdit").attr("disabled", "disabled");
+                }
+                var stages = getAppraisalStagesEdit(formData.AppraisalStatges);
+                $("#appraisalStagesEdit").empty().append(stages);
+
+                var isGenerated = formData.EmpSettingCount > 0 ? 'true' : 'false';
+                setStagesDatesEdit(toddmmyyyDatePicker(formData.StartDate), toddmmyyyDatePicker(formData.EndDate), isGenerated);
+
+                $('#txtStartDateEdit').datepicker({
+                    format: "mm/dd/yyyy",
+                    autoclose: true,
+                    todayHighlight: true,
+                    startDate: toddmmyyyDatePicker(formData.StartDate),
+                }).on('changeDate', function (ev) {
+                    var fromStartDate = new Date(ev.date.valueOf() + 1000 * 3600 * 24);
+                    $('#txtEndDateEdit').val('');
+                    $('.datepicker').val('').datepicker('setStartDate', fromStartDate);
+                    $('#txtEndDateEdit').datepicker('setStartDate', fromStartDate).trigger('change');
+                    $('.datepicker').datepicker('setStartDate', fromStartDate).trigger('change');
+                    $(this).val(fromStartDate);
+                });
+                $('#txtEndDateEdit').datepicker({
+                    format: "mm/dd/yyyy",
+                    autoclose: true,
+                    todayHighlight: true,
+                    startDate: formData.EmpSettingCount > 0 ? toddmmyyyDatePicker(formData.EndDate) : toddmmyyyDatePicker(formData.StartDate), //formData.isGenerated.toLowerCase() == 'true') ? formData.EndDate :
+                }).on('changeDate', function (ev) {
+                    var toStartDate = new Date(ev.date.valueOf());
+                    if (formData.EmpSettingCount == 0) {
+                    $('.datepicker').val('');
+                    $('input.datepicker:last').val(this.value);
+                    $('.datepicker').datepicker('setEndDate', toStartDate).trigger('change');
+                    }
+                    else {
+                        $('input.datepicker:last').val(this.value);
+                        $('#appraisalStagesEdit div.col-sm-4 .datepicker').datepicker('setEndDate', toStartDate);
+                    }
+                });
+
+            });
+
+
+
+
+        $("#ddlVerticalEdit").change(function () {
+            fetchDivisionEdit($("#ddlVerticalEdit").val(), 0);
+            fetchDepartmentEdit(0, 0);
+            populatePopTeamMasterEdit(0, 0,'');
+        });
+
+        $("#ddlDivisionEdit").change(function () {
+            fetchDepartmentEdit($('#ddlDivisionEdit').val(), 0);
+            populatePopTeamMasterEdit(0,0,'');
+        });
+
+        $("#ddlDepartmentEdit").change(function () {
+            populatePopTeamMasterEdit($('#ddlDepartmentEdit').val(),0,'');
+        });
+
+        $("#ddlPopTeamEdit").change(function () {
+            populateDesignationMasterEdit($('#ddlPopTeamEdit').val(), 0);
+        });
+    });
+
+    function fetchCompanyLocationEdit(selectedId) {
+        $('#ddlCountryEdit').empty();
+        calltoAjax(misApiUrl.getCompanyLocation, "POST", '',
+            function (result) {
+                if (result != null && result.length > 0) {
+                    $('#ddlCountryEdit').append("<option value = 0>Select</option>");
+                    for (var x = 0; x < result.length; x++) {
+                        $('#ddlCountryEdit').append("<option value = '" + result[x].Value + "'>" + result[x].Text + "</option>");
+                    }
+                    if (selectedId > 0) {
+                        $('#ddlCountryEdit').val(selectedId);
+                    }
+                }
+            });
+    }
+
+    function fetchVerticalEdit(selectedId) {
+        $('#ddlVerticalEdit').empty();
+        calltoAjax(misApiUrl.getVertical, "POST", '',
+            function (result) {
+                if (result != null && result.length > 0) {
+                    $('#ddlVerticalEdit').append("<option value = 0>Select</option>");
+                    for (var x = 0; x < result.length; x++) {
+                        $('#ddlVerticalEdit').append("<option value = '" + result[x].Value + "'>" + result[x].Text + "</option>");
+                    }
+                    if (selectedId > 0) {
+                        $('#ddlVerticalEdit').val(selectedId);
+                    }
+                }
+            });
+    }
+
+    function fetchDivisionEdit(verticalId, selectedId) {
+        $('#ddlDivisionEdit').empty();
+        var jsonObject = { 'verticalId': verticalId || 0 }
+        calltoAjax(misApiUrl.getDivisionByVertical, "POST", jsonObject,
+            function (result) {
+                if (result != null && result.length > 0) {
+                    $('#ddlDivisionEdit').append("<option value = 0>Select</option>");
+                    for (var x = 0; x < result.length; x++) {
+                        $('#ddlDivisionEdit').append("<option value = '" + result[x].Value + "'>" + result[x].Text + "</option>");
+                    }
+                    if (selectedId > 0) {
+                        $('#ddlDivisionEdit').val(selectedId);
+                    }
+                }
+            });
+    }
+
+    function fetchAppraisalCycleEdit(selectedId) {
+        $('#ddlPopAppraisalCycleEdit').empty();
+        calltoAjax(misApiUrl.getAppraisalCycleList, "POST", '',
+                function (result) {
+                    if (result != null && result.length > 0) {
+                        $('#ddlPopAppraisalCycleEdit').append("<option value = 0>Select</option>");
+                        for (var x = 0; x < result.length; x++) {
+                            $('#ddlPopAppraisalCycleEdit').append("<option value = '" + result[x].Value + "'>" + result[x].Text + "</option>");
+                        }
+                        if (selectedId > 0) {
+                            $('#ddlPopAppraisalCycleEdit').val(selectedId);
+                        }
+                    }
+                });
+    }
+
+    function fetchDepartmentEdit(divisionIds, selectedId) {
+        $('#ddlDepartmentEdit').empty();
+        var jsonObject = { 'divisionIds': divisionIds }
+        calltoAjax(misApiUrl.getDepartmentByDivision, "POST", jsonObject,
+            function (result) {
+                if (result != null && result.length > 0) {
+                    $('#ddlDepartmentEdit').append("<option value = 0>Select</option>");
+                    for (var x = 0; x < result.length; x++) {
+                        $('#ddlDepartmentEdit').append("<option value = '" + result[x].Value + "'>" + result[x].Text + "</option>");
+                    }
+                    if (selectedId > 0) {
+                        $('#ddlDepartmentEdit').val(selectedId);
+                    }
+                }
+            });
+    }
+
+    function populatePopTeamMasterEdit(departmentIds, selectValue, designationIds) {
+        $('#ddlPopTeamEdit').empty();
+        var jsonObject = { departmentIds: departmentIds || 0 };
+        calltoAjax(misApiUrl.getTeamsByDepartment, "POST", jsonObject,
+            function (result) {
+                if (result != null && result.length > 0) {
+                    $('#ddlPopTeamEdit').append("<option value = 0>Select</option>");
+                    for (var x = 0; x < result.length; x++) {
+                        $('#ddlPopTeamEdit').append("<option value = '" + result[x].Value + "'>" + result[x].Text + "</option>");
+                    }
+                    if (selectValue > 0) {
+                        $('#ddlPopTeamEdit').val(selectValue);
+                    }
+                    populateDesignationMasterEdit(selectValue, designationIds);
+                }
+            });
+    }
+
+    function populateDesignationMasterEdit(teamIds, selectValue) {
+        $('#ddlPopDesignationEdit').multiselect('destroy');
+        $('#ddlPopDesignationEdit').empty();
+        $('#ddlPopDesignationEdit').multiselect();
+        var jsonObject = { teamIds: teamIds }
+        if (jsonObject.teamIds != '') {
+            calltoAjax(misApiUrl.getDesignationsByTeams, "POST", jsonObject,
+                function (result) {
+                    $('#ddlPopDesignationEdit').multiselect("destroy");
+                    $.each(result, function (index, value) {
+                        $('<option>').val(value.Value).text(value.Text).appendTo('#ddlPopDesignationEdit');
+                    });
+                   
+                    if (selectValue != '')
+                        $('#ddlPopDesignationEdit').val(selectValue.split(',') || 0);
+                    $('#ddlPopDesignationEdit').multiselect({
+                        includeSelectAllOption: true,
+                        enableFiltering: true,
+                        enableCaseInsensitiveFiltering: true,
+                        buttonWidth: false,
+                        onDropdownHidden: function (event) {
+                        }
+                    });
+                });
+        }
+    }
+
+    function getAppraisalStagesEdit(stagesData) {
+        var stages = '';
+        if (stagesData && stagesData.length > 0) {
+            $.each(stagesData, function (index, value) {
+                stages += '<div class="form-group col-sm-4">' +
+                      '<label>' + value.AppraisalStageName + '' + ((index == 0) ? '' : '<span class="asteric"> *</span></label>') +
+                      '<div class="input-group"><div class="input-group-addon"><i class="fa fa-calendar"></i></div>' +
+                      '<input type="text" class="form-control datepicker' + ((index == 0) ? '' : ' validation-required') + '" tabindex="' + (7 + eval(value.AppraisalStageId)) + '" value="' + toddmmyyyDatePicker(value.EndDate) + '" id="txt' + value.AppraisalStageId + '" data-attr-value="' + value.AppraisalStageId + '" placeholder="Select ' + value.AppraisalStageName + ' End Date">' +
+                      '</div></div>';
+            });
+        }
+        return stages;
+    }
+
+    function setStagesDatesEdit(appraisalstartDate, appraisalendDate, isGenerated) {
+        $('#appraisalStagesEdit div.col-sm-4').each(function () {
+            var startDate = (typeof ($(this).prev().find('input').val()) === 'undefined') ? nextDate(appraisalstartDate, 1) : nextDate($(this).prev().find('input').val(), 1);
+            var endDate = (typeof ($(this).next().find('input').val()) === 'undefined') ? nextDate(appraisalendDate, -1) : nextDate($(this).next().find('input').val(), -1);
+            $(this).find('input').datepicker({
+                autoclose: true,
+                todayHighlight: false,
+                format: "mm/dd/yyyy",
+                startDate: (isGenerated == 'true') ? appraisalstartDate : startDate,
+                endDate: (isGenerated == 'true') ? appraisalendDate : endDate,
+            }).on('changeDate', function (ev) {
+                if (isGenerated == 'false') {
+                    var fromStartDate = new Date(ev.date.valueOf() + 1000 * 3600 * 24);
+                    var fromEndDate = new Date(ev.date.valueOf() - 1000 * 3600 * 24);
+                    $(this).closest('div.col-sm-4:not(:last)').nextAll().find('.datepicker').val('');
+                    $(this).closest('div.col-sm-4').next().find('.datepicker').datepicker('setStartDate', fromStartDate);
+                    $(this).closest('div.col-sm-4').prev().find('.datepicker').datepicker('setEndDate', fromEndDate);
+                }
+            });
+        });
+    }
+
+    function nextDate(date, day) {
+        var sDate = new Date(date);
+        var nextDate = new Date(sDate);
+        nextDate.setDate(sDate.getDate() + day);
+        return nextDate;
+    }
+
+    function validateStages() {
+        var stageValid = true;
+        var id = '';
+        var endDate = new Date($('#txtEndDateEdit').val());
+        var message = '';
+        $('#appraisalStagesEdit div.col-sm-4').each(function () {
+            var stdate = new Date($(this).find('input').val());
+            var nextDate = new Date($(this).next().find('input').val());
+            if (stdate >= nextDate && stageValid) {
+                stageValid = false;
+                if (id == '') {
+                    id = $(this).find('input').attr('id');
+                }
+                message = $(this).find('input').attr('placeholder').replace('Select', '') + ' should be less than ' + $(this).next().find('input').attr('placeholder').replace('Select', '') + '!';
+            }
+            else if (endDate < stdate && stageValid) {
+                stageValid = false;
+                if (id == '') {
+                    id = $(this).attr('id');
+                }
+                message = 'Stages dates should be less than appraisal cycle end date!';
+            }
+        });
+        if (id != '') {
+            bAlert(message, false, false, function () {
+                $('#' + id).focus();
+            });
+        }
+        return stageValid;
+    }
+
+    $("#btnUpdateAppraisalSetting").click(function () {
+       
+        if (!validateControls('maindivEdit')) {
+            return false;
+        }
+
+        var $inputs = $('#appraisalStagesEdit :input');
+        var collection = new Array();
+        var items;
+        $inputs.each(function (index) {
+            items = new Object();
+            items.AppraisalStageId = $(this).attr("data-attr-value");
+            items.EndDate = $(this).val();
+            collection.push(items);
+        });
+
+        var designationIds = (($('#ddlPopDesignationEdit').val() != null && typeof $('#ddlPopDesignationEdit').val() != 'undefined' && $('#ddlPopDesignationEdit').val().length > 0) ? $('#ddlPopDesignationEdit').val().join(',') : '0');
+
+        var jsonObject = {
+            AppraisalSettingId: $("#hdnEditAppraisalSettingId").val(),
+            AppraisalCycleId: $("#ddlPopAppraisalCycleEdit").val(),
+            LocationId: $("#ddlCountryEdit").val(),
+            VerticalId: $("#ddlVerticalEdit").val(),
+            DivisionId: $('#ddlDivisionEdit').val(),
+            DepartmentId: $('#ddlDepartmentEdit').val(),
+            TeamId: $('#ddlPopTeamEdit').val(),
+            DesignationIds: designationIds,
+            StartDate: $("#txtStartDateEdit").val() || '',
+            EndDate: $("#txtEndDateEdit").val() || '',
+            AppraisalStagesList: collection
+        };
+        calltoAjax(misApiUrl.updateAppraisalSettings, "POST", jsonObject,
+          function (result) {
+              if (result.Status == '1') {
+                      GetAppraisalSettingsList();
+                      $("#editAppraisalSettings").modal('hide');
+                      misAlert("Appraisal Settings has been updated successfully","Success","success");
+              }
+              else {
+
+              }
+              //if (result.messageType == 'success') {
+              //    GetAppraisalSettingsList();
+              //    $("#editAppraisalSettings").modal('hide');
+              //}
+              //if (result.Status == 2) {
+              //    var data = $.parseJSON(result.Result);
+              //    var html = '<table>';
+              //    $.each(data, function (index, value) {
+              //        html += '<tr>';
+              //        html += '<td>' + value.DivisionName + '</td><td>' + value.TeamName + '</td><td>' + value.DepartmentName + '</td><td>' + value.DesignationName + '</td>';
+              //        html += '</tr>';
+              //    });
+              //    misAlert(Result)
+              //}
+          });
+    });
+
+</script>

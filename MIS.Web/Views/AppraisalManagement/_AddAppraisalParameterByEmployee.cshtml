@@ -1,0 +1,53 @@
+﻿<div id="maindiv">
+    <div class="form-group">
+        <label class="control-label">Competency<span class="spnError">*</span></label>
+        <div>
+            <p class="form-control-static">
+                <select class="form-control select-validate validation-required" id="ddlCompetencyAdd" disabled>
+                    <option value="2" selected>Technical</option>
+                </select>
+            </p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label">Parameter Name<span class="spnError">*</span></label>
+        <div class="inputGroupContainer">
+            <div class="input-group">
+                <input type="text" class="form-control validation-required" id="parameterName" onkeypress="return IsAlphaNumeric(event);" onblur="return IsAlphaNumericValidate(id);" />
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button id="btnSaveParameter" type="button" class="btn btn-success"><i class="fa fa-save"></i>&nbsp;Add Parameter</button>
+    <button id="btnClose" type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;Close </button>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#parameterName").val("");
+    });
+
+    $("#btnSaveParameter").click(function () {
+        if (!validateControls('modalAddParameter')) {
+            return false;
+        }
+        var JsonObject = {
+            isFinalized: $("#isFinalize").val(),
+            competencyTypeId: 2,
+            parameterName: $("#parameterName").val(),
+            weightage: 5
+        };
+        calltoAjax(misApiUrl.saveParameter, "POST", JsonObject,
+            function (result) {
+                if (result == 1) {
+                    misAlert("Parameter has been added successfully.", "Success", "success");
+                }
+                if (result == 2) {
+                    misAlert("Parameter Already exists.", "Warning", "warning");
+                }
+            });
+    });
+
+</script>
+

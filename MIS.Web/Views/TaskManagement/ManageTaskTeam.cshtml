@@ -1,0 +1,51 @@
+﻿<div class="container-fluid">
+    <section class="card">
+        <div class="card-block">
+            <h5 class="with-border m-t-0">Manage Task Team</h5>
+            <div>
+                    <button type="button" class="btn btn-success" onclick="addNewTaskTeam()">Add new task team</button>
+            </div>
+            <div role="tabpanel" class="tab-pane margin-top-10">
+                <section>
+                    <div class="row form-body">
+                        <div class="col-md-12 clearfix">
+                            <table id="tblAllTaskTeam" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div id="modal-addTaskTeam" class="modal fade" role="dialog" aria-labelledby="myDocumentsDetails" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">Add task team</h4>
+            </div>
+            <div class="container margin-top-10">
+                <div class="form-group row">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Task team name<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control validation-required" placeholder="Enter task team name" id="taskTeamName" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="addTaskTeamBtn" class="btn btn-success" onclick="finalAddTaskTeam();"><i class="fa fa-save"></i>&nbsp;Add</button>
+                <button type="button" id="editTaskTeamBtn" class="btn btn-success" onclick="finalEditTaskTeam();"><i class="fa fa-save"></i>&nbsp;Update</button>
+                <button id="btnClose" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+                <input type="hidden" name="name" value=" " id="hdnTaskTeamId" />
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/app/TaskManagement/manageTaskTeam.js"></script>

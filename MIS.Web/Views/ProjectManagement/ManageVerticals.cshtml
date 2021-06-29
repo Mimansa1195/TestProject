@@ -1,0 +1,60 @@
+﻿<div class="container-fluid">
+    <section class="card">
+        <div class="card-block">
+            <h5 class="with-border m-t-0">Manage Verticals</h5>
+            <div class="form-group row">
+                <div class="col-sm-12">
+                    <button type="button" class="btn btn-success" id="btnAddNewVertical">Add New Vertical</button>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane">
+                <div class="row form-body">
+                    <div class="col-md-12 clearfix">
+                        <table id="tblVerticalList" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div id="popupGeminiProjectVertical" class="modal fade" role="dialog" aria-labelledby="popupGeminiProjectVertical" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title"></h4>
+                <input type="hidden" name="name" value=" " id="hdnPermissionGroupId" />
+            </div>
+            <div class="container margin-top-10" id="divManageVertical">
+                <div class="form-group row">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Vertical<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" class='form-control validation-required txtDocument generalinput' id="txtVertical" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Owner<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <select class="form-control select-validate validation-required" id="ddlOwner"></select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" id="btnVerticalPopup"></button>
+                    <button id="btnCloseAddVertical" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/app/ProjectManagement/verticalinformation.js"></script>

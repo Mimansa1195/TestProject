@@ -1,0 +1,204 @@
+﻿<div class="modal-content" id="skillsdivEdit">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 id="modalTitle" class="modal-title">Manage Skills</h4>
+    </div>
+    <div class="container margin-top-10" id="UpdateSkills">
+        <div class="form-group row">
+            <div class="form-group">
+                <div class="col-md-4">
+                    <label>Technology<span class="spnError">*</span></label>
+                </div>
+                <div class="col-md-8">
+                    <select class="form-control select-validate validation-required" id="ddlSkillsEdit">
+                        <option value="0">Select</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="form-group">
+                <div class="col-md-4">
+                    <label>Proficiency Level<span class="spnError">*</span></label>
+                </div>
+                <div class="col-md-8">
+                    <select class="form-control select-validate validation-required" id="ddlSkillLevelEdit">
+                        <option value="0">Select</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row" id="skillType2" style="display:none">
+            <div class="form-group">
+                <div class="col-md-4">
+                    <label>Skill Type<span class="spnError">*</span></label>
+                </div>
+                <div class="col-md-8">
+                    <select class="form-control select-validate validation-required" id="ddlSkillTypeEdit"></select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row" id="skillType1" style="display:none">
+            <div class="form-group">
+                <div class="col-md-4">
+                    <label>Skill Type<span class="spnError">*</span></label>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="txtskilltypeedit" disabled />
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="form-group">
+                <div class="col-md-4">
+                    <label>Experience (In Months)<span class="spnError">*</span></label>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" id="expinMonthsEdit" maxlength="3" class="form-control validation-required" placeholder="Experience (In Months)" onkeypress="return isNumber(event)" />
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="form-group">
+                <div class="col-md-12">
+                    <span class="spnError">Proficiency Level: Beginner(upto 12 months); Intermediate(12+ months); Expert(36+ months)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button id="btnUpdateSkills" type="button" class="btn btn-success"><i class="fa fa-save"></i>&nbsp;Update</button>
+        <button id="btnDeleteSkills" type="button" class="btn btn-danger"><i class="fa fa-trash"></i>&nbsp;Delete</button>
+        <button id="btnskillsEditClose" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var skillId = 0;
+    var skillTypeId = 0;
+    $(document).ready(function () {
+        var jsonObject = {
+            UserSkillId: parseInt($("#hdnSkillDetailId").val()),
+            UserAbrhs: misSession.userabrhs,
+        }
+        calltoAjax(misApiUrl.getUserSkillsBySkillId, "POST", jsonObject,
+            function (result) {
+                if (result.UserSkillId > 0) {
+                    skillTypeId = result.SkillTypeId;
+                    $("#ddlSkillsEdit").attr("disabled", "true");
+                    bindSkillLevelDropDown("#ddlSkillLevelEdit", result.SkillLevelId);
+                    bindSkillDropDown("#ddlSkillsEdit", result.SkillId);
+                    skillId = result.SkillId;
+                    $("#expinMonthsEdit").val(result.ExperienceMonths);
+                    bindSkillTypeDropDown("#ddlSkillTypeEdit", result.SkillTypeId);
+                    if (result.SkillTypeId === 1) {
+                        $("#txtskilltypeedit").val("Primary");
+                        $("#skillType1").css("display", "block");
+                        $("#skillType2").css("display", "none");
+                        $("#btnDeleteSkills").css("display", "none");
+                        $("#ddlSkillTypeEdit").attr("disabled", "true");
+                        $("#ddlSkillLevelEdit").attr("disabled", "true");
+                    }
+                    else {
+                        $("#skillType1").css("display", "none");
+                        $("#skillType2").css("display", "block");
+                    }
+                }
+            });
+    });
+
+    function bindSkillLevelDropDown(ControlId, SelectedId) {
+        $(ControlId).empty();
+        $(ControlId).append($("<option></option>").val(0).html("Select"));
+        calltoAjax(misApiUrl.listSkillLevel, "POST", '',
+           function (result) {
+               $.each(result, function (idx, item) {
+                   $(ControlId).append($("<option></option>").val(item.Value).html(item.Text));
+               });
+               if (SelectedId > 0) {
+                   $(ControlId).val(SelectedId)
+               }
+           });
+    }
+
+    function bindSkillDropDown(ControlId, SelectedId) {
+        $(ControlId).empty();
+        $(ControlId).append($("<option></option>").val(0).html("Select"));
+        calltoAjax(misApiUrl.listSkill, "POST", '',
+          function (result) {
+              $.each(result, function (idx, item) {
+                  $(ControlId).append($("<option></option>").val(item.Value).html(item.Text));
+              });
+              if (SelectedId > 0) {
+                  $(ControlId).val(SelectedId)
+              }
+          });
+    }
+
+    function bindSkillTypeDropDown(ControlId, SelectedId) {
+        $(ControlId).empty();
+        $(ControlId).append($("<option></option>").val(0).html("Select"));
+        calltoAjax(misApiUrl.listSkillTypesForUser, "POST", '',
+          function (result) {
+              $.each(result, function (idx, item) {
+                  $(ControlId).append($("<option></option>").val(item.Value).html(item.Text));
+              });
+              if (SelectedId > 0) {
+                  $(ControlId).val(SelectedId)
+              }
+          });
+    }
+
+    $("#btnUpdateSkills").click(function () {
+        if (!validateControls('skillsdivEdit')) {
+            return false;
+        }
+        var jsonObject = {
+            'UserSkillId': $("#hdnSkillDetailId").val(),
+            'SkillId': skillId,
+            'SkillLevelId': $("#ddlSkillLevelEdit").val(),
+            'SkillTypeId': $("#ddlSkillTypeEdit").val(),
+            'ExperienceMonths': $("#expinMonthsEdit").val(),
+            'UserAbrhs': misSession.userabrhs
+        };
+        calltoAjax(misApiUrl.addSkills, "POST", jsonObject,
+            function (result) {
+                if (result == 1) {
+                    misAlert("Skills has been updated successfully.", 'Success', 'success');
+                    $("#mypopupEditSkills").modal("hide");
+                    getSkills();
+                }
+                else if (result == 2) {
+                    misAlert("Duplicate skills update not allowed. Please delete your duplicate skill", 'Warning', 'warning');
+                }
+                else if (result == 4) {
+                    misAlert("Unauthorized activity!", 'Warning', 'warning');
+                }
+            });
+    });
+
+    $("#btnDeleteSkills").click(function () {
+        var reply = misConfirm("Are you sure you want to delete ?", "Confirm", function (reply) {
+            if (reply) {
+                if (skillTypeId != 1) {
+                    var jsonObject = {
+                        'UserSkillId': $("#hdnSkillDetailId").val(),
+                        'UserAbrhs': misSession.userabrhs
+                    };
+                    calltoAjax(misApiUrl.deleteSkills, "POST", jsonObject,
+                        function (result) {
+                            if (result == 1) {
+                                misAlert("Skills has been deleted successfully.", 'Success', 'success');
+                                $("#mypopupEditSkills").modal("hide");
+                                getSkills();
+                            }
+                        });
+                }
+            }
+        });
+    });
+
+    $("#btnskillsEditClose").click(function () {
+        $("#mypopupEditSkills").modal("hide");
+    });
+</script>

@@ -1,0 +1,49 @@
+﻿<div class="container-fluid">
+    <section class="card">
+        <div class="card-block">
+            <h5 class="with-border m-t-0">Review Asset Request</h5>
+            <div role="tabpanel" class="tab-pane">
+                <section>
+                    <div class="row form-body">
+                        <div class="col-md-12 clearfix">
+                            <table id="tblAssetCount" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="tabs-section-nav tabs-section-nav-left">
+                <ul class="nav" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#tabPendingAssetRequest" role="tab" data-toggle="tab">
+                            <span class="nav-link-in">Pending</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#tabApprovedAssetRequest" role="tab" data-toggle="tab" onclick="getApprovedRequest();">
+                            <span class="nav-link-in">Approved</span>
+                        </a>
+                    </li>
+                </ul>
+            </div><!--.tabs-section-nav-->
+
+            <div class="tab-content no-styled profile-tabs">
+                <div role="tabpanel" class="tab-pane active" id="tabPendingAssetRequest">
+                    <section class="box-typical box-typical-padding">
+                        <div class="container-fluid">
+                            <table id="tblPendingAssetGrid" data-filter-control="true" data-toolbar="#toolbar" class="table table-hover"></table>
+                        </div>
+                    </section>
+                </div><!--.tab-pane-->
+                <div role="tabpanel" class="tab-pane" id="tabApprovedAssetRequest">
+                    <section class="box-typical box-typical-padding">
+                        <div class="container-fluid">
+                            <table id="tblApprovedAssetGrid" data-filter-control="true" data-toolbar="#toolbar" class="table table-hover"></table>
+                        </div>
+                    </section>
+                </div><!--.tab-pane-->
+            </div>
+        </div>
+    </section>
+</div>
+
+<script src="~/Scripts/app/Asset/review.js"></script>

@@ -1,0 +1,193 @@
+﻿<style>
+    .legend, .legend2 {
+        list-style: none;
+    }
+
+        .legend li, .legend2 li {
+            float: left;
+            margin-right: 10px;
+        }
+
+        .legend span {
+            border: 1px solid #ccc;
+            float: left;
+            width: 10px;
+            height: 16px;
+            margin: 3px;
+        }
+
+        .legend2 span {
+            border: 1px solid #ccc;
+            float: left;
+            width: 30px;
+            height: 16px;
+            margin: 3px;
+        }
+
+    /*form night shift users*/
+
+    .nightShift {
+        border: 1px solid #ccc;
+        width: 10px;
+        height: 16px;
+        margin: 3px;
+        padding: 2px 8px;
+        background-color: #ffdcdc;
+    }
+
+    .approved {
+        border: 1px solid #ccc;
+        width: 10px;
+        height: 16px;
+        margin: 3px;
+        padding: 2px 8px;
+        background-color: #03a817;
+    }
+
+    .pending {
+        border: 1px solid #ccc;
+        width: 10px;
+        height: 16px;
+        margin: 3px;
+        padding: 2px 8px;
+        background-color: #ff9800;
+    }
+
+    /* legend colors */
+    .legend .previuos {
+        background-color: #00bcd4;
+    }
+
+    .legend .current {
+        background-color: #03a817;
+    }
+
+    .legend .next {
+        background-color: #ff9800;
+    }
+
+    .legend .other {
+        background-color: #353131;
+    }
+
+    .legend2 .punch-in {
+        background-color: #d3fcd4;
+    }
+
+    .legend2 .punch-out {
+        background-color: #ffdcdc;
+    }
+</style>
+<div class="container-fluid">
+    <section class="card">
+        <div class="card-block">
+            <h5 class="with-border m-t-0">Employee Attendance</h5>
+            <div class="row form-body" id="filterDiv">
+                <div id="dateDiv">
+                    <div class="form-group col-md-3">
+                        <label>From Date<span class="spnError">*</span></label>
+                        <div class="inputGroupContainer date date-picker" id="fromDateEmp">
+                            <div class="input-group">
+                                <input readonly="" class="form-control validation-required" name="fromDateEmp"  placeholder="From Date" type="text" />
+                                <span class=" input-group-btn">
+                                    <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Till Date<span class="spnError">*</span></label>
+                        <div class="inputGroupContainer date date-picker" id="tillDateEmp">
+                            <div class="input-group">
+                                <input readonly="" class="form-control validation-required" name="tillDateEmp" placeholder="From Date" type="text" />
+                                <span class=" input-group-btn">
+                                    <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-3" id="divDepartment" style="display:none;">
+                    <label>Department Name<span class="spnError">*</span></label>
+                    <select class="form-control multiselect multipleSelect " id="department" multiple="multiple" onchange="getReportingManagersByDepartmentId(1);"></select>
+                </div>
+                <div class="form-group col-md-3" id="divReportingManager" style="display:none;">
+                    <label>Reporting  Manager<span class="spnError">*</span></label>
+                    <select class="form-control multiselect multipleSelect " id="reportingManager" multiple="multiple"></select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Location<span class="spnError">*</span></label>
+                    <select class="form-control multiselect multipleSelect " multiple="multiple" id="location"></select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Employee Name<span class="spnError">*</span></label>
+                    <select class="form-control multiselect multipleSelect " multiple="multiple" id="employeeName"></select>
+                </div>
+                <div class="form-group col-md-2 pull-left" style="margin-top:22px">
+                        <div class="form-group">
+                            <button id="btnProcessReportEmp" type="button" class="btn green"><i class="fa fa-search"></i>&nbsp;Search</button>
+                        </div>
+                    </div>
+                <div class="col-md-12 clearfix">
+                    <table id="tblEmployeeAttendanceList" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<div id="modalAttendanceLog" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalAttendanceLog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalAttendanceLogTitle" class="modal-title">Punch in/out summary</h4>
+            </div>
+            <div class="modal-body">
+                <div class="">
+                    <div class="float-left">
+                        <ul class="legend">
+                            <li><span class="previuos"></span> Previous Day</li>
+                            <li><span class="current"></span> Current Day</li>
+                            <li><span class="next"></span> Next Day</li>
+                            <li><span class="other"></span> Other Day</li>
+                        </ul>
+                    </div>
+                    <div class="float-right">
+                        <ul class="legend2">
+                            <li><span class="punch-in"></span> IN</li>
+                            <li><span class="punch-out"></span> OUT</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="" style="max-height:450px; overflow-y:auto;overflow-x: hidden;clear:both">
+                    <table class="table table-bordered table-hover" style="width:100%" id="gridAttendanceLog" role="grid" aria-describedby="example1_info"></table>
+                </div>
+                <span style="display:none" class="error" id="note"></span>
+            </div>
+            <div class="modal-footer">
+                <button id="btnClose" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="cardDetailModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Card Details</h4>
+            </div>
+            <div class="modal-body">
+                <pre id="cardDetailData"></pre>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<script src="~/Scripts/app/Attendance/employeeattendance.js?v=4.5"></script>

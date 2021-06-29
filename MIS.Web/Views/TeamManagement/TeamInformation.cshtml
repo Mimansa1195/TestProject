@@ -1,0 +1,305 @@
+﻿@* Angularjs Code starts here ------------------------------------------------------*@
+
+<script src="~/Scripts/angular/JS/angular.min.js"></script>
+<script src="~/Scripts/angular/JS/angular-route.js"></script>
+<script src="~/Scripts/angular/JS/angular-datatables.min.js"></script>
+<link href="~/Scripts/angular/CSS/bootstrap-timepicker.min.css" rel="stylesheet" />
+<script src="~/Scripts/angular/JS/bootstrap-timepicker.min.js"></script>
+
+
+@*<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-datatables/0.5.6/angular-datatables.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/css/bootstrap-timepicker.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/js/bootstrap-timepicker.min.js"></script>*@
+
+
+<script src="~/Scripts/angular/controllers/teamInformationController.js"></script>
+
+@* Angularjs Code Ends here ------------------------------------------------------*@
+
+
+
+
+<div ng-app="misApp" ng-controller="TeamManagementController" data-ng-init="GetTeamDetails();" ng-cloak>
+
+    @*<div ng-if="showLoader" class="LoadrrDiv">
+        <img src="~/Images/loading.gif" class="LoadrrImg">
+        </div>*@
+
+    <div class="container-fluid ng-cloak">
+        <section class="card">
+            <div class="card-block">
+                <h5 class="with-border m-t-0">Team Information </h5>
+                <div>
+                    <button col-sm-12type="button" class="btn btn-success" ng-click="AddNewTeamPopup();" id="btnAddNewTeam">Add New Team</button>
+                </div>
+                <div role="tabpanel" class="tab-pane margin-top-10">
+                    <div class="row form-body">
+                        <div class="col-md-12 clearfix">
+
+                            <div>
+                                <div ng-if="!show" class=" minH500">
+
+                                    <table datatable="ng" dt-options="dtOptions" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info">
+                                        <thead>
+                                            <tr>
+                                                <th> <span>Team Name</span> </th>
+                                                <th> <span>Week Day</span> </th>
+                                                <th> <span>Team Head</span> </th>
+                                                <th> <span>Department</span> </th>
+                                                <th> <span>Parent Team</span> </th>
+
+                                                <th style="width:85px;">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="dt in TeamList">
+                                                <td> <span>{{dt.TeamName}}</span> </td>
+                                                <td> <span>{{dt.WeekStartDay}}</span></td>
+                                                <td> <span>{{dt.TeamHead}}</span></td>
+                                                <td> <span>{{dt.Department}} </span></td>
+                                                <td> <span>{{dt.ParentTeam}} </span></td>
+
+                                                <td>
+                                                    <button title="" class="btn btn-sm " ng-click="ViewTeamDetails($index);" type="button" data-original-title="View" data-toggle="tooltip"><i class="fa fa-eye"> </i></button>
+                                                    <button title="" class="btn btn-sm " ng-click="FillEditTeamDetails($index);" type="button" data-original-title="Edit" data-toggle="tooltip"><i class="fa fa-edit"> </i></button>
+                                                    <button title="" class="btn btn-sm-del " ng-click="DeleteTeamDetails($index);" type="button" data-original-title="Delete" data-toggle="tooltip"><i class="fa fa-trash-o"> </i></button>
+                                                </td>
+                                            </tr>
+                                    </table>
+
+                                </div>
+
+                                <div ng-if="show" class="LoaderDiv clearfix">
+                                    @*<img src="~/Images/loading.gif" class="LoaderImg">*@
+                                </div>
+
+                                <div class="clearfix"> </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="popupGeminiTeamInfo" class="modal fade col-md-12 col-lg-12" role="dialog" aria-labelledby="popupGeminiTeamInfo" aria-hidden="true">
+
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header ">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 id="modalTitle" class="modal-title">Add/Edit New Team</h4>
+                    <input type="hidden" name="name" value=" " id="hdnId" />
+                </div>
+                <div class="container margin-top-10 " id="divManageTeam">
+                    <div class="form-group row  padding-left-20">
+                        <div class="form-group clearfix">
+                            <div class="col-md-2 padding-top10">
+                                <label>Team Name<span class="spnError">*</span></label>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" ng-model="TeamName" class='form-control validation-required txtDocument generalinput' />
+                            </div>
+                            <div class="col-md-3 padding-top10 ">
+                                <label>Week Start Day<span class="spnError">*</span></label>
+                            </div>
+                            <div class="col-md-3">
+                                <select name="ddlweekstartday" id="ddlweekstartday" data-ng-model="WeekStartDay" class="form-control select-validate validation-required">
+                                    <option ng-repeat="dt in WeekDayList" ng-selected="WeekStartDay == dt.Value" value="{{dt.Value}}">{{dt.Text}}</option>
+                                </select>
+
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <div class="col-md-2 padding-top10">
+                                <label>Department<span class="spnError">*</span></label>
+                            </div>
+                            <div class="col-md-3">
+
+                                <select name="ddlDepartment" id="ddlDepartment" ng-model="Department" class="form-control select2 validation-required">
+                                    <option ng-repeat="dt in DepartmentList" ng-selected="Department == dt.Value" value="{{dt.Value}}">{{dt.Text}}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3 padding-top10">
+                                <label>Team Head<span class="spnError">*</span></label>
+                            </div>
+                            <div class="col-md-3">
+                                <select name="ddlTeamHead" id="ddlTeamHead" ng-model="TeamHead" class="form-control select2 validation-required">
+                                    <option ng-repeat="dt in TeamHeadList" ng-selected="TeamHead == dt.EmployeeAbrhs" value="{{dt.EmployeeAbrhs}}">{{dt.EmployeeName}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group padding-top10 clearfix">
+                            <div class="col-md-3 padding-top10 ">
+                                <label><input type="checkbox" ng-model="EnableReminder"> Enable Reminder</label>
+                            </div>
+                            <div class="col-md-9 padding-top10 ">
+                                <label><input type="checkbox" ng-model="EnableAttendanceEmails"> Enable Attendance Emails</label>
+                            </div>
+                            <div class="col-md-2 margin-top-15">
+                                <label><input type="checkbox" ng-model="myVar" /> Is Sub Team</label>
+                            </div>
+                            <div ng-show="myVar" class="col-md-3 margin-top-10">
+                                <select name="ddlParentTeam" id="ddlParentTeam" ng-model="ParientTeam" class="form-control ">
+                                    <option ng-repeat="dt in ParientTeamList" ng-selected="ParientTeam == dt.Value" value="{{dt.Value}}">{{dt.Text}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row padding-left-20">
+                        <div class="form-group">
+                            <div class="col-md-11 fontBold margin-bottom-10-bor">
+                                Add Acknowledgement, Dashboard, Report and Reminders for Timesheet
+                            </div>
+
+                            <div class="clearfix"> </div>
+
+                            <div class="col-md-4 margin-top-25  paddingL0R15">
+                                <select name="ddlDay" id="ddlDay" ng-model="EmailType" class="form-control ">
+                                    <option ng-repeat="dt in EmailTypesList" ng-selected="EmailType == dt.Value" value="{{dt.Value}}">{{dt.Text}}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-8 margin-top-25 paddingL0R15">
+                                <button id="btnAddReminderDynamc" class="btn btn-sm font25" ng-click="DynamicAddReminderinPopup();" type="button" data-original-title="Add New Reminder" data-toggle="tooltip"><i class="fa fa-plus-square-o"> </i></button>
+                                &nbsp;<span class="text-danger">{{msg}}</span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group row padding-left-20">
+                        <div class="form-group hightfix300">
+                            <table class="col-md-12" ng-if="ShowAddReminderreptr">
+                                <tbody>
+                                    <tr ng-repeat="dt in ReminderList  | orderBy:'TeamEmailTypeName'" class="padding10">
+                                        <td class="col-md-3 col-xs-12 padding10 padding-top15"><span>{{dt.TeamEmailTypeName}} {{dt.Sequence}}</span> </td>
+                                        <td class="col-md-2 col-xs-12 padding10">
+                                            <select name="ddlDay" id="ddlDay" ng-model="dt.WeekDayId" class="form-control select-validate validation-required">
+                                                <option ng-repeat="dtweek in WeekDayList" ng-selected="dt.WeekDayId == dtweek.Value" value="{{dtweek.Value}}">{{dtweek.Text}}</option>
+                                            </select>
+                                        </td>
+                                        <td class="col-md-3  col-xs-12 padding10">
+                                            <select id="ddlWeek" ng-model="dt.Week" class="form-control ">
+                                                <option value="0">Current Week</option>
+                                                <option value="-1">Previous Week</option>
+                                            </select>
+                                        </td>
+                                        <td class="col-md-3 col-xs-12 padding10">
+                                            <div class="input-group bootstrap-timepicker timepicker">
+                                                <input id="timepicker1" type="text" ng-model="dt.Time" class="form-control time-validate validation-required txtDocument generalinput Timebox">
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                                            </div>
+
+                                            <script type="text/javascript">
+                                                $('.Timebox').timepicker({ showMeridian: false, minuteStep: 1 });
+                                            </script>
+                                        </td>
+                                        <td class="col-md-1 col-xs-12 padding10"><button title="" class="btn btn-lg-del " ng-click="RemoveDynamicReminder($index)" type="button"><i class="fa fa-times"> </i></button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="col-md-12">
+                            <button id="btnAddTeamInfo" ng-if="!showUpdate" type="button" class="btn btn-success" ng-click="AddNewTeamDetails();"><i class="fa fa-save">&nbsp;Save</i></button>
+                            <button id="btnUpdateTeamInfo" ng-if="showUpdate" type="button" class="btn btn-success" ng-click="UpdateTeamDetails();"><i class="fa fa-save">&nbsp;Update</i></button>
+                            <button id="btnCloseTeamInfo" type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i>&nbsp;Close </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div id="popupGeminiViewTeamInfo" class="modal fade col-md-12 col-lg-12" role="dialog" aria-labelledby="popupGeminiViewTeamInfo" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header ">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 id="modalTitle" class="modal-title">Team Details</h4>
+                    <input type="hidden" name="name" value=" " id="hdnId" />
+                </div>
+                <div class="container margin-top-10 " id="divManageVertical">
+                    <div class="form-group row  padding-left-20">
+                        <div class="form-group clearfix">
+                            <div class="col-md-2 fontBold">
+                                <label>Team Name</label>
+                            </div>
+                            <div class="col-md-3">
+                                <span ng-bind="TeamName_m"></span>
+                            </div>
+                            <div class="col-md-3 fontBold ">
+                                <label>Week Start Day</label>
+                            </div>
+                            <div class="col-md-3">
+                                <span ng-bind="WeekStartDay_m"></span>
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <div class="col-md-2 fontBold">
+                                <label>Department</label>
+                            </div>
+                            <div class="col-md-3">
+                                <span ng-bind="Department_m"></span>
+                            </div>
+                            <div class="col-md-3 fontBold">
+                                <label>Team Head Name</label>
+                            </div>
+                            <div class="col-md-3">
+                                <span ng-bind="TeamHead_m"></span>
+                            </div>
+                        </div>
+                        <div class="form-group  clearfix">
+                            <div class="col-md-2 fontBold" ng-show="ParentTeam_m">
+                                <label>Parent Team</label>
+                            </div>
+                            <div class="col-md-3">
+                                <span ng-bind="ParentTeam_m"></span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class=" bordre-bottom1 fontBold">
+                        Email Type Details
+                    </div>
+
+                    <div class="form-group row padding-left-15">
+                        <div class="form-group">
+                            <table class="col-md-12">
+                                <tbody>
+                                    <tr ng-repeat="dt in TeamEmailTypeDetailbyTeamId" class="">
+                                        <td class="">
+                                            <div class="form-group clearfix padding-left-3">
+                                                <div class="col-md-3 fontBold">
+                                                    {{dt.TeamEmailTypeName}} {{dt.Sequence}}
+                                                </div>
+                                                <div class="col-md-6">
+                                                    {{dt.TeamEmailValue}}
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

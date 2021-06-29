@@ -1,0 +1,87 @@
+﻿<script src="~/Scripts/common/mis.org.str-min.js?v=1"></script>
+<link href="~/Content/app/mis.org.str-min.css?v=1" rel="stylesheet" />
+<div id="orgStructure"></div>
+
+@*<div class="container-fluid">
+        <section class="card">
+            <div class="card-block">
+                <h5 class="with-border m-t-0">Organization Structure</h5>
+                <div role="tabpanel" class="tab-pane">
+                    <div class="row form-body">
+                        <div class="col-md-12 clearfix">
+                            <table id="tblOrganizationStructure" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info">
+                                <thead>
+                                    <tr>
+                                        <th>Document Name</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Organization Structure</td>
+                                        <td>
+                                            <button type="button" class="btn btn-sm teal" data-toggle"model" data-target="#viewDocumentModal" onclick="viewDocumentInPopup()" title="View"><i class="fa fa-eye"> </i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="viewDocumentModal" class="modal fade" role="dialog" aria-labelledby="viewDocumentModal" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 id="modalTitle" class="modal-title">View Document</h4>
+                </div>
+                <div class="container margin-top-10">
+                    <div id="popupWindowViewDocument">
+                        <embed id="objViewPdf" src="" width="100%" height="500" style="border:medium double rgb(172, 169, 169)" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+<script>
+    bindOrgStructure();
+    //$(document).ready(function () {
+    //    $('#tblOrganizationStructure').DataTable({
+    //        "responsive": true,
+    //        "autoWidth": false,
+    //        "paging": false,
+    //        "bDestroy": true,
+    //        "searching": false,
+    //        "ordering": false,
+    //        "info": false,
+    //        "deferRender": true,
+    //    });
+    //});
+
+    //function viewDocumentInPopup(formName) {
+    //    var extention = 'pdf';
+    //    var formTitle = 'Organization Structure';
+    //    calltoAjax(misApiUrl.fetchOrganizationStructurePdf, "POST", '',
+    //        function (resultData) {
+    //            if (resultData != null && resultData != '') {
+    //                if (extention == "pdf") {
+    //                    //$("#objViewPdf").attr("data", resultData);
+    //                    $("#objViewPdf").attr("src", (misApiFormsUrl + resultData + '#zoom=100&scrollbar=1&toolbar=0&navpanes=0&scrollbar=0'));
+    //                    $("#modalTitle").html(formTitle);
+    //                    $("#viewDocumentModal").modal("show");
+    //                }
+    //                else {
+    //                    downloadFileFromBase64(formTitle, resultData);
+    //                }
+    //            }
+    //            else {
+    //                misAlert('The file you have requested does not exist. Please try after some time or contact to MIS team for further assistance.', 'Oops...', 'info');
+    //            }
+    //        });
+    //}
+</script>

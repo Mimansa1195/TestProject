@@ -1,0 +1,29 @@
+﻿<link href="~/Content/lib/datatable/rowReorder.dataTables.min.css" rel="stylesheet" />
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <span>Configure Dashboard</span>
+    </div>
+    <div class="modal-body">
+        <table id="dashBoardSettingGrid" cellspacing="0" width="100%" class="display table table-bordered">
+            <thead>
+                <tr>
+                    <th>Sequence</th>
+                    <th>Widget Name</th>
+                    <th>Active / In-Active</th>
+                </tr>
+            </thead>
+            <tbody id="divdashboardvisit">
+
+            </tbody>
+        </table>
+        <div class="padding-top10">
+            <span style="color:red">Note : </span> Please drag and drop "sequence" to reorder your dashboard widgets.
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button id="btnSaveSetting" type="button" class="btn btn-success" value="Add"><i class="fa fa-save">&nbsp;Update</i></button>
+        <button id="btnCloseDashBoardSettings" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+    </div>
+</div>
+<script src="~/Scripts/app/Dashboard/_dashBoardSettings.js?v=2"></script>

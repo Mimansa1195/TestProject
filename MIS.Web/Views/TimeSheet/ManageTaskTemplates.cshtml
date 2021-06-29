@@ -1,0 +1,180 @@
+﻿<div class="container-fluid">
+    <section class="card">
+        <div class="card-block">
+            <h5 class="with-border m-t-0">Manage Task Templates</h5>
+            <div>
+                <input type="button" class="btn btn-success" value="Add New Template" id="btnAddNewTemplate"/>
+                <br />
+            </div>
+            <div class="clearfix">
+                <br />
+            </div>
+            <table id="tblTaskTemplatesList" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+        </div>
+    </section>
+</div>
+
+<div id="myAddTaskTemplateModal" class="modal fade" role="dialog" aria-labelledby="myTaskTemplateModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">Add Task Template</h4>
+            </div>
+            <div class="modal-body" id="addTaskTemplateDiv">
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Template Name<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control form-filter validation-required" placeholder="Template Name" id="txtTemplateName" />
+                        </div>
+                    </div>
+                    </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Description<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control form-filter validation-required" placeholder="Description" id="txtTemplateDescription" />
+                        </div>
+                    </div>
+                    </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Team Name<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <select class="form-control select-validate validation-required" id="ddlTeam">
+                                <option value="0">Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Task Type<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <select class="form-control select-validate validation-required" id="ddlTaskType">
+                                <option value="0">Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    </div>
+                <div class="row" id='divSubDetail1Info'>
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Sub Detail 1<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <select class="form-control select-validate validation-required" id="ddlTaskSubDetail1"></select>
+                        </div>
+                    </div>
+                    </div>
+                <div class="row" id='divSubDetail2Info'>
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Sub Detail 2<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <select class="form-control select-validate validation-required" id="ddlTaskSubDetail2"></select>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btnSaveTaskTemplate" type="button" class="btn btn-success"><i class="fa fa-save"></i>&nbsp;Save</button>
+                <button id="btnAddClose" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="myEditTaskTemplateModal" class="modal fade" role="dialog" aria-labelledby="myEditTaskTemplateModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modalTitle" class="modal-title">Edit Task Template</h4>
+            </div>
+            <div class="modal-body" id="EditTaskTemplateDiv">
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Template Name<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control form-filter validation-required" placeholder="Template Name" id="txtTemplateNameEdit" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Description<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control form-filter validation-required" placeholder="Description" id="txtTemplateDescriptionEdit" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Team Name<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <select class="form-control select-validate validation-required" id="ddlTeamEdit">
+                                <option value="0">Select</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Task Type<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <select class="form-control select-validate validation-required" id="ddlTaskTypeEdit">
+                                <option value="0">Select</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id='divSubDetail1InfoEdit'>
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Sub Detail 1<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <select class="form-control select-validate validation-required" id="ddlTaskSubDetail1Edit"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id='divSubDetail2InfoEdit'>
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>Sub Detail 2<span class="spnError">*</span></label>
+                        </div>
+                        <div class="col-md-8">
+                            <select class="form-control select-validate validation-required" id="ddlTaskSubDetail2Edit"></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btnUpdateTaskTemplate" type="button" class="btn btn-success"><i class="fa fa-save"></i>&nbsp;Update</button>
+                <button id="btnEditClose" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+                <input type="hidden" name="name" value=" " id="hdnTemplateId" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/app/timesheet/ManageTaskTemplates.js?v=2"></script>

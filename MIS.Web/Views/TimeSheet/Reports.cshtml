@@ -1,0 +1,55 @@
+﻿<div class="container-fluid">
+    <section class="card">
+        <div class="card-block" id="divReport">
+            <h5 class="with-border m-t-0">Reports</h5>
+            <div class="text-right" style="padding-bottom:5px" id="divDeligation">
+
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>Team</label>
+                    </div>
+                    <div class="col-md-4">
+                        <select multiple="multiple" id="teamSelect" class="multipleSelect validation-required"></select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>Year</label>
+                    </div>
+                    <div class="col-md-4">
+                        <select class="form-control select-validate validation-required" id="yearSelect">
+                            <option value="0">Select</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>Week</label>
+                    </div>
+                    <div class="col-md-4">
+                        <select class="form-control select-validate validation-required" id="weekSelect">
+                            <option value="0">Select</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-3">
+                    </div>
+                    <div class="col-md-9">
+                        <button id="btnSubmit" type="button" class="btn green" onclick="ProcessData()"><i class="fa font-icon-download"></i>&nbsp;Download</button>
+                        <button id="btnSubmit" type="button" class="btn btn-success" onclick="ProcessData()"><i class="fa fa-paper-plane-o"></i>&nbsp;Send On Mail</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script src="~/Scripts/app/timesheet/Reports.js?v=2"></script>

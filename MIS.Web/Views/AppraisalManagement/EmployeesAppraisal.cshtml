@@ -1,0 +1,118 @@
+﻿<div class="container-fluid">
+    <section class="card">
+        <div class="card-block" id="divEmpAppraisal">
+            <h5 class="with-border m-t-0">Employees Appraisal</h5>
+            <div class="row">
+                @*<div class="col-sm-12 col-md-12 col-lg-12">
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <label>Appraisal Cycle<span class="spnError">*</span></label>
+            </div>
+            <div class="col-sm-3 col-md-3 col-lg-3">
+                <select id="ddlAppraisalCycleMaster" class="form-control select2 validation-required" aria-hidden="true" onchange="BindEmployeesAppraisal()"></select>
+            </div>
+        </div>*@
+                <div class="form-group full-width col-sm-6 col-md-4 col-lg-3">
+                    <label>Appraisal Cycle<span class="spnError">*</span></label>
+                    <select style="width: 100%;" id="ddlAppraisalCycleFilter" class="form-control select2 select2-hidden-accessible validation-required" tabindex="101" aria-hidden="true"></select>
+                </div>
+                <div class="form-group full-width col-sm-6 col-md-4 col-lg-3">
+                    <label>Appraisal Status<span class="spnError">*</span></label>
+                    <select style="width: 100%;" id="ddlAppraisalStatusFilter" multiple="multiple" class="form-control multiselect multipleSelect validation-required" aria-hidden="true"></select>
+                </div>
+                <div class="form-group full-width col-sm-6 col-md-4 col-lg-3">
+                    <label>Appraiser<span class="spnError">*</span></label>
+                    <select style="width: 100%;" id="ddlAppraiserFilter" multiple="multiple" class="form-control validation-required" tabindex="4" aria-hidden="true"></select>
+                </div>
+                <div class="form-group full-width col-sm-6 col-md-4 col-lg-3">
+                    <label>Approver<span class="spnError">*</span></label>
+                    <select style="width: 100%;" id="ddlApproverFilter" multiple="multiple" class="form-control validation-required" tabindex="4" aria-hidden="true"></select>
+                </div>
+                @*<div class="form-group pull-left full-width col-sm-6 col-md-4 col-lg-3">
+                    <button id="btnFilterSearch" class="btn btn-primary" type="button"><i class="fa fa-search"></i>&nbsp; Search</button>
+                </div>*@
+            </div>
+            <div id="emplpyeeAppraisalDiv">
+                <table id="tblEmplpyeeAppraisal" data-filter-control="true" data-toolbar="#toolbar" class="table table-hover"></table>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div id="popupAppraisalHirtory" class="modal fade" role="dialog" aria-labelledby="mypopup" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="popupMealPeriodTitle" class="modal-title">Appraisal History</h4>
+            </div>
+            <div class="modal-body" id="modalMealPeriod">
+                <table class="table table-bordered table-hover" style="width:100%" id="grdappraisalHirtory" role="grid" aria-describedby="example1_info"></table>
+            </div>
+            <div class="modal-footer">
+                <button id="btnClose" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="appraisalHirtoryTA" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-full modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <span class="modalName">Appraisal Status History</span>
+            </div>
+            <div class="modal-body scroll-max-height-600">
+                <div class="marginTop10">
+                    <div id="grdappraisalHirtoryTAGrid">
+                        <table class="table table-bordered table-hover" style="width:100%" id="grdappraisalHirtoryTA" role="grid" aria-describedby="example1_info"></table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal-fullscreen" id="teamAppraisalFormPopup" tabindex="-1" role="dialog" aria-labelledby="appraisalFormPopup" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <input type="hidden" id="hdnEmpAppraisalSettingId" />
+            <div class="modal-body" id="modalBodyAppraisalForm" style="padding:0px !important">
+            </div>
+            <div class="modal-footer">
+                <button id="btnReferBack" type="button" class="btn btn-gemini pull-xl-left" style="display:none"><i class="fa fa-backward" aria-hidden="true"></i>&nbsp; Refer Back</button>
+                <button id="btnSaveAsDraft" type="button" class="btn btn-gemini nextTab"></button>
+                <button id="btnCloseAppraisalForm" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="AppraisalFormReferBackPopup" tabindex="-1" role="dialog" aria-labelledby="AppraisalFormReferBackPopup" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Refer Back</h4>
+            </div>
+            <div class="modal-body" id="referBackBody">
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label>Comments<span class="spnError">*</span></label>
+                        <textarea rows="4" cols="2000" id="txtReferBackRemark" maxlength="500" placeholder="Please enter remarks here" class="form-control validation-required"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btnSaveReferBack" type="button" class="btn btn-success"><i class="fa fa-backward" aria-hidden="true"></i>&nbsp; Refer Back</button>
+                <button id="btnClose" type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<link href="~/Content/lib/jquery.idealforms.css" rel="stylesheet" />
+<script src="~/Scripts/lib/jquery.idealformLevel1.min.js"></script>
+<link href="~/Content/lib/bootstrap-modal-carousel.min.css" rel="stylesheet" />
+<script src="~/Scripts/app/AppraisalManagement/employeesappraisal.js?v=1.3"></script>
+

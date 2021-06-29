@@ -1,0 +1,101 @@
+﻿<div class="container-fluid">
+    <section class="card">
+        <div class="card-block">
+            <h5 class="with-border m-t-0">Upload Attendance For ASquare</h5>
+            <div>
+                <button type="button" class="btn btn-success" id="openUploadPopup">Upload Attendance</button>
+            </div>
+            <div class="row form-body margin-top-10" id="ReportDiv">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">From<span class="spnError">*</span></label>
+                        <div class="inputGroupContainer  date date-picker" id="FromDate">
+                            <div class="input-group">
+                                <input type="text" class="form-control validation-required" readonly="" name="FromDate" placeholder="From" />
+                                <span class="input-group-btn">
+                                    <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">To<span class="spnError">*</span></label>
+                        <div class="inputGroupContainer date date-picker" id="ToDate">
+                            <div class="input-group">
+                                <input type="text" class="form-control validation-required" readonly="" name="ToDate" placeholder="To" />
+                                <span class="input-group-btn">
+                                    <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" style="margin-top:22px">
+                    <div class="form-group text-left">
+                        <button type="button" class="btn btn-primary" id="btnShowAttendance">Show Attendance</button>
+                    </div>
+                </div>
+                <div class="col-md-12 clearfix">
+                    <table id="tblAttendanceReport" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+                </div>
+            </div>
+            <h5 class="with-border m-t-0">Date Wise Attendance For ASquare</h5>
+            <div class="row">
+                <div class=" col-md-12 clearfix">
+                    <table id="tblAttendanceDetail" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div id="popupUploadFile" class="modal fade" role="dialog" aria-labelledby="popupUploadFile" aria-hidden="true">
+    <div class="modal-dialog">
+        <form action="" enctype="multipart/form-data" method="post" id="frmUploadTp" target="myiframe">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 id="modalTitle" class="modal-title">Upload Attendance</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row" id="divAttendanceUpload">
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <label>Device Id<span class="spnError">*</span></label>
+                            </div>
+                            <div class="col-md-8">
+                                <select class="form-control select-validate validation-required" id="ddlDeviceId">
+                                    <option value="0">Select</option>
+                                    <option value="230">Device Id - 230</option>
+                                    <option value="231">Device Id - 231</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="divLogTaskTeamInfo">
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <label>File<span class="spnError">*</span></label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label>Select excel file to upload(.xls,.xlsx)</label>
+                                    <input type="file" onchange="checkfileIsExceltp(this);" name="file" id="AttendanceFileUpload">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <iframe id="myiframe" name="myiframe" src="" frameborder="0" scrolling="yes" width="100%"></iframe>
+                </div>
+                <div class="modal-footer">
+                    <button id="btnUploadFile" type="button" class="btn btn-success" value="Add"><i class="fa fa-save">&nbsp;Upload</i></button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;Close </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="~/Scripts/app/Attendance/asquareattendance.js?v=2"></script>

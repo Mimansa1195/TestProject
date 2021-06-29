@@ -1,0 +1,255 @@
+﻿<div class="row" id="maindivCreateClone">
+    <div class="form-group full-width col-sm-6 col-md-4 col-lg-4">
+        <label>Location<span class="spnError">*</span></label>
+        <select style="width: 100%;" id="ddlCountryClone" class="form-control select2 select2-hidden-accessible validation-required" aria-hidden="true"></select>
+    </div>
+
+    <div class="form-group full-width col-sm-6 col-md-4 col-lg-4">
+        <label>Vertical<span class="spnError">*</span></label>
+        <select style="width: 100%;" id="ddlVerticalClone" class="form-control select2 select2-hidden-accessible validation-required" aria-hidden="true"></select>
+    </div>
+    <div class="form-group full-width col-sm-6 col-md-4 col-lg-4">
+        <label>Division<span class="spnError">*</span></label>
+        <select style="width: 100%;" id="ddlDivisionClone" class="form-control select2 select2-hidden-accessible validation-required" aria-hidden="true">
+            <option value="0">Select</option>
+        </select>
+    </div>
+    <div class="form-group full-width col-sm-6 col-md-4 col-lg-4">
+        <label>Department<span class="spnError">*</span></label>
+        <select style="width: 100%;" id="ddlDepartmentClone" class="form-control select2 select2-hidden-accessible validation-required" aria-hidden="true">
+            <option value="0">Select</option>
+        </select>
+    </div>
+    <div class="form-group full-width col-sm-6 col-md-4 col-lg-4">
+        <label>Designation<span class="spnError">*</span></label>
+        <select style="width: 100%;" id="ddlDesignationClone" class="form-control select2 select2-hidden-accessible validation-required" aria-hidden="true">
+            <option value="0">Select</option>
+        </select>
+    </div>
+    <div class="form-group full-width col-sm-6 col-md-4 col-lg-4">
+        <label>Form Sufix &nbsp;<i class="fa fa-info-circle" title="" data-toggle="tooltip" data-original-title="leaving form suffix blank will save the form as default"></i></label>
+        <input type="text" id="txtFormNameClone" class="form-control" />
+    </div>
+</div>
+<div class="row text-right">
+    <div class="col-md-12">
+        <button id="btnCreateClone" type="button" class="btn btn-success"><i class="fa fa-save"></i>&nbsp;Create Clone</button>
+        <button id="btnFinalizeCloneForm" type="button" class="btn btn-gemini"><i class="fa fa-thumbs-up"></i>&nbsp;Finalize</button>
+        <button id="btnCancel" type="button" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Close </button>
+    </div>
+</div>
+<div class="row margin-top-10">
+    <div class="col-md-12">
+        <table id="tblCompetencyAndParameterListClone" data-filter-control="true" data-toolbar="#toolbar" class="table table-hover"></table>
+    </div>
+</div>
+<script>
+    var competencyList;
+
+    $(function () {
+        $("#ddlCountryClone").select2();
+        $("#ddlVerticalClone").select2();
+        $("#ddlDivisionClone").select2();
+        $("#ddlDepartmentClone").select2();
+        $("#ddlDesignationClone").select2();
+        $("#ddlCompentencyType").select2();
+
+        if ($("#hdnCompetencyFormIdClone").val() > 0) {
+            var jsonObject = {
+                'competencyFormId': $("#hdnCompetencyFormIdClone").val()
+            };
+            calltoAjax(misApiUrl.getCompetencyFormDataForEdit, "POST", jsonObject,
+                function (result) {
+                    if (result.CompetencyFormData != null) {
+                        fetchCompanyLocation("#ddlCountryClone", result.CompetencyFormData.LocationId);
+                        fetchVertical("#ddlVerticalClone", result.CompetencyFormData.VerticalId);
+                        fetchDivision(result.CompetencyFormData.VerticalId, "#ddlDivisionClone", result.CompetencyFormData.DivisionId);
+                        fetchDepartment(result.CompetencyFormData.DivisionId, "#ddlDepartmentClone", result.CompetencyFormData.DepartmentId);
+                        populateDesignation(result.CompetencyFormData.DepartmentId, "#ddlDesignationClone", result.CompetencyFormData.DesignationId);
+                    }
+                    if (result.CompetencyAndParameterListBO.length > 0) {
+                        var resultData = $.parseJSON(JSON.stringify(result.CompetencyAndParameterListBO));
+                        $("#tblCompetencyAndParameterListClone").dataTable({
+                            "responsive": true,
+                            "autoWidth": false,
+                            "paging": false,
+                            "bDestroy": true,
+                            "searching": false,
+                            "ordering": false,
+                            "info": false,
+                            "deferRender": true,
+                            "aaData": resultData,
+                            "aoColumns": [
+                                {
+                                    "mData": "CompetencyType",
+                                    "sTitle": "CompetencyType",
+                                },
+                                {
+                                    "mData": "Parameter",
+                                    "sTitle": "Parameter",
+                                },
+                                {
+                                    "mData": "EvaluationCriteria",
+                                    "sTitle": "EvaluationCriteria",
+                                },
+                            ]
+                        });
+                    }
+                });
+        }
+
+        $("#ddlVerticalClone").change(function () {
+            fetchDivision($("#ddlVerticalClone").val(), "#ddlDivisionClone", 0);
+        });
+
+        $("#ddlDivisionClone").change(function () {
+            fetchDepartment($("#ddlDivisionClone").val(), "#ddlDepartmentClone", 0);
+        });
+
+        $("#ddlDepartmentClone").change(function () {
+            populateDesignation($("#ddlDepartmentClone").val(), "#ddlDesignationClone", 0);
+        });
+
+        $("#btnCreateClone").click(function () {
+            if (!validateControls('maindivCreateClone')) {
+                return false;
+            }
+            var jsonObject = {
+                CompetencyFormId: $("#hdnCompetencyFormIdClone").val(),
+                LocationId: $("#ddlCountryClone").val(),
+                VerticalId: $("#ddlVerticalClone").val(),
+                DivisionId: $("#ddlDivisionClone").val(),
+                DepartmentId: $("#ddlDepartmentClone").val(),
+                DesignationId: $("#ddlDesignationClone").val(),
+                FormName: $("#txtFormNameClone").val(),
+                IsFinalize: false
+            };
+            calltoAjax(misApiUrl.cloneCompetencyForm, "POST", jsonObject,
+                function (result) {
+                    if (result.Status == 1) {
+                        $("#CloneCompetencyForm").modal("hide");
+                        GetCompetencyFormsList();
+                        misAlert("Form has been Cloned successfully.", "Success", "success");
+                    }
+                    if (result.Status == 2) {
+                        misAlert("Form has been already created for designation.", "Warning", "warning");
+                    }
+                });
+        });
+
+        $("#btnCancel").click(function () {
+            $("#CloneCompetencyForm").modal("hide");
+        });
+
+        $("#btnFinalizeCloneForm").click(function () {
+            if (!validateControls('maindiv')) {
+                return false;
+            }
+            var jsonObject = {
+                CompetencyFormId: $("#hdnCompetencyFormIdClone").val(),
+                LocationId: $("#ddlCountryClone").val(),
+                VerticalId: $("#ddlVerticalClone").val(),
+                DivisionId: $("#ddlDivisionClone").val(),
+                DepartmentId: $("#ddlDepartmentClone").val(),
+                DesignationId: $("#ddlDesignationClone").val(),
+                FormName: $("#txtFormNameClone").val(),
+                IsFinalize: true
+            };
+            calltoAjax(misApiUrl.cloneCompetencyForm, "POST", jsonObject,
+                function (result) {
+                    if (result.Status == 1) {
+                        $("#CloneCompetencyForm").modal("hide");
+                        GetCompetencyFormsList();
+                        misAlert("Form has been Cloned and Finalized successfully.", "Success", "success");
+                    }
+                    if (result.Status == 2) {
+                        misAlert("Form has been already created for designation.", "Warning", "warning");
+                    }
+                });
+        });
+    });
+
+    function fetchCompanyLocation(controlId, selectedId) {
+        $(controlId).empty();
+        calltoAjax(misApiUrl.getCompanyLocation, "POST", '',
+            function (result) {
+                if (result != null && result.length > 0) {
+                    $(controlId).append("<option value = 0>Select</option>");
+                    for (var x = 0; x < result.length; x++) {
+                        $(controlId).append("<option value = '" + result[x].Value + "'>" + result[x].Text + "</option>");
+                    }
+                    if (selectedId > 0) {
+                        $(controlId).val(selectedId);
+                    }
+                }
+            });
+    }
+
+    function fetchVertical(controlId, selectedId) {
+        $(controlId).empty();
+        calltoAjax(misApiUrl.getVertical, "POST", '',
+            function (result) {
+                if (result != null && result.length > 0) {
+                    $(controlId).append("<option value = 0>Select</option>");
+                    for (var x = 0; x < result.length; x++) {
+                        $(controlId).append("<option value = '" + result[x].Value + "'>" + result[x].Text + "</option>");
+                    }
+                    if (selectedId > 0) {
+                        $(controlId).val(selectedId);
+                    }
+                }
+            });
+    }
+
+    function fetchDivision(verticalId, controlId, selectedId) {
+        $(controlId).empty();
+        var jsonObject = { 'verticalId': verticalId || 0 }
+        calltoAjax(misApiUrl.getDivisionByVertical, "POST", jsonObject,
+            function (result) {
+                if (result != null && result.length > 0) {
+                    $(controlId).append("<option value = 0>Select</option>");
+                    for (var x = 0; x < result.length; x++) {
+                        $(controlId).append("<option value = '" + result[x].Value + "'>" + result[x].Text + "</option>");
+                    }
+                    if (selectedId > 0) {
+                        $(controlId).val(selectedId);
+                    }
+                }
+            });
+    }
+
+    function fetchDepartment(divisionId, controlId, selectedId) {
+        $(controlId).empty();
+        var jsonObject = { 'divisionIds': divisionId || 0 }
+        calltoAjax(misApiUrl.getDepartmentByDivision, "POST", jsonObject,
+            function (result) {
+                if (result != null && result.length > 0) {
+                    $(controlId).append("<option value = 0>Select</option>");
+                    for (var x = 0; x < result.length; x++) {
+                        $(controlId).append("<option value = '" + result[x].Value + "'>" + result[x].Text + "</option>");
+                    }
+                    if (selectedId > 0) {
+                        $(controlId).val(selectedId);
+                    }
+                }
+            });
+    }
+
+    function populateDesignation(departmentId, controlId, selectedId) {
+        $(controlId).empty();
+        var jsonObject = { departments: departmentId || 0 }
+        calltoAjax(misApiUrl.getDesignationsByDepartments, "POST", jsonObject,
+            function (result) {
+                if (result != null && result.length > 0) {
+                    $(controlId).append("<option value = 0>Select</option>");
+                    for (var x = 0; x < result.length; x++) {
+                        $(controlId).append("<option value = '" + result[x].Value + "'>" + result[x].Text + "</option>");
+                    }
+                    if (selectedId > 0) {
+                        $(controlId).val(selectedId);
+                    }
+                }
+            });
+    }
+
+</script>

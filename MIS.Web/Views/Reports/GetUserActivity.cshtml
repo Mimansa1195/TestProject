@@ -1,0 +1,118 @@
+﻿<div class="container-fluid">
+    <section class="card">
+        <div class="card-block">
+            <h5 class="with-border m-t-0">Users Visit </h5>
+            <div class="text-right" style="padding-bottom:5px" id="divDeligation">
+
+            </div>
+            <div class="row form-body">
+                <div class="col-md-12 clearfix" id="logContainer">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="control-label">From<span class="spnError">*</span></label>
+                                <div class="inputGroupContainer date date-picker" id="fromDateEmp">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control validation-required" readonly="" name="fromDateEmp" placeholder="From">
+                                        <span class=" input-group-btn">
+                                            <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="control-label">Till<span class="spnError">*</span></label>
+                                <div class="inputGroupContainer date date-picker" id="tillDateEmp">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control validation-required" readonly="" name="tillDateEmp" placeholder="Till">
+                                        <span class=" input-group-btn">
+                                            <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="control-label">Employee</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <select class="form-control select2" id="employeeName"></select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="control-label">&nbsp;</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <button id="btnProcessReportEmp" type="button" class="btn green" onclick="GetUserActivity()"><i class="fa fa-search"></i>&nbsp;Search</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 clearfix">
+                    <table id="tblUserActivityList" data-filter-control="true" data-toolbar="#toolbar" class="table table-hover"></table>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@*<div class="container-fluid">
+    <section class="card">
+        <div class="card-block">
+            <h5 class="with-border m-t-0">User Activities</h5>
+            <div class="row form-body">
+                <div class="form-group col-md-4">
+                    <label class="col-sm-4 form-control-label">From Date<span class="spnError">*</span></label>
+                    <div class="col-sm-8">
+                        <div class="inputGroupContainer date date-picker">
+                            <div class="input-group">
+                                <input readonly="" class="form-control validation-required" id="fromDateEmp" placeholder="From Date" type="text" />
+                                <span class=" input-group-btn">
+                                    <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <label class="col-sm-4 form-control-label">Till Date<span class="spnError">*</span></label>
+                    <div class="col-sm-8">
+                        <div class="inputGroupContainer date date-picker">
+                            <div class="input-group">
+                                <input readonly="" class="form-control validation-required" id="tillDateEmp" placeholder="From Date" type="text" />
+                                <span class=" input-group-btn">
+                                    <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <label class="col-sm-4 form-control-label">Employee Name<span class="spnError">*</span></label>
+                    <div class="col-sm-8">
+                        <p class="form-control-static">
+                            <select class="form-control select2" id="employeeName"></select>
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group col-md-12">
+                    <div class="form-group text-right">
+                        <button id="btnProcessReportEmp" type="button" class="btn green" onclick="GetUserActivity()"><i class="fa fa-search"></i>&nbsp;Search</button>
+                    </div>
+                </div>
+                <div class="col-md-12 clearfix">
+                    <table id="tblUserActivityList" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>*@
+<script src="~/Scripts/app/Reports/useractivity.js?v=1.0"></script>

@@ -1,0 +1,227 @@
+﻿<style type="text/css">
+    .icon-circle .fa {
+        font-size: 25px;
+        color: #e84700;
+        margin: 0 auto;
+        height: 80px;
+        width: 80px;
+        border-radius: 50%;
+        border: 2px solid #e84700;
+        line-height: 80px;
+        cursor: pointer;
+        -webkit-transition: all ease-in-out 0.35s;
+        -moz-transition: all ease-in-out 0.35s;
+        -o-transition: all ease-in-out 0.35s;
+        -ms-transition: all ease-in-out 0.35s;
+        transition: all ease-in-out 0.20s,background-color ease-in-out 0.05s;
+    }
+
+        .icon-circle .fa:hover {
+            background-color: #e84700;
+            color: #fff;
+            border: 1px solid #e84711;
+            -moz-box-shadow: inset 0px 0px 0px 5px #ffffff;
+            -o-box-shadow: inset 0px 0px 0px 5px #ffffff;
+            -ms-box-shadow: inset 0px 0px 0px 5px #ffffff;
+            -webkit-box-shadow: inset 0px 0px 0px 5px #ffffff;
+            box-shadow: inset 0px 0px 0px 5px #ffffff;
+            -ms-transform: scale(1.2,1.2);
+            -webkit-transform: scale(1.2,1.2);
+            -moz-transform: scale(1.2,1.2);
+            -o-transform: scale(1.2,1.2);
+            transform: scale(1.2,1.2);
+        }
+
+    .icon-circle i:before {
+        margin-left: 0px;
+        font-size: 40px;
+    }
+
+    .icon-circle .fa:hover {
+        background-color: #e84700;
+        color: #fff;
+        border: 1px solid #e84711;
+        -moz-box-shadow: inset 0px 0px 0px 5px #ffffff;
+        -o-box-shadow: inset 0px 0px 0px 5px #ffffff;
+        -ms-box-shadow: inset 0px 0px 0px 5px #ffffff;
+        -webkit-box-shadow: inset 0px 0px 0px 5px #ffffff;
+        box-shadow: inset 0px 0px 0px 5px #ffffff;
+        -ms-transform: scale(1.2,1.2);
+        -webkit-transform: scale(1.2,1.2);
+        -moz-transform: scale(1.2,1.2);
+        -o-transform: scale(1.2,1.2);
+        transform: scale(1.2,1.2);
+    }
+
+    .icon-circle i:before {
+        margin-left: 0px;
+        font-size: 20px;
+    }
+
+    .ifacebook .fa {
+        color: #3B5998;
+        border: 2px solid #3B5998;
+    }
+
+        .ifacebook .fa:hover {
+            background-color: #3B5998;
+            color: #fff;
+            border: 1px solid #3B5998;
+        }
+
+    .itwittter .fa {
+        color: #33ccff;
+        border: 2px solid #33ccff;
+    }
+
+        .itwittter .fa:hover {
+            background-color: #33ccff;
+            color: #fff;
+            border: 1px solid #33ccff;
+        }
+
+    .igoogle .fa {
+        color: #BD3518;
+        border: 2px solid #BD3518;
+    }
+
+        .igoogle .fa:hover {
+            background-color: #BD3518;
+            color: #fff;
+            border: 1px solid #BD3518;
+        }
+
+    .iLinkedin .fa {
+        color: #007bb7;
+        border: 2px solid #007bb7;
+    }
+
+        .iLinkedin .fa:hover {
+            background-color: #007bb7;
+            color: #fff;
+            border: 1px solid #007bb7;
+        }
+</style>
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        @*<h4 id="modalTitle" class="modal-title">You are viewing <span id="userNameheader"></span>'s Profile</h4>*@
+        <h4 id="modalTitle" class="modal-title"><span id="userNameheader">Profile Summary</span></h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-primary">
+                    <div class="box-body box-profile">
+                        <div class="text-center" style="width: 100%;">
+                            <img id="profileImage" src="~/img/avatar-sign.png" class="profile-user-img img-responsive img-circle" alt="User profile picture">
+                        </div>
+                        <h3 class="profile-username text-center"><span id="userName"></span></h3>
+                        <p class="text-muted text-center"><span id="designation"></span></p>
+                        <p class="text-muted text-center"><span id="email"></span></p>
+                        <br />
+                        <div class="row">
+                            <div class="col-xs-12 col-md-4">
+                                <ul class="list-group list-group-unbordered">
+                                    <li class="list-group-item" style="border-top:0;">
+                                        <b>Department</b> <br />
+                                        <span title="" data-toggle='tooltip' id="department"></span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>Employee Code</b> <br />
+                                        <span id="employeeCode"></span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>Extn. No.</b><br />
+                                        <span id="extnNo"></span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-xs-12 col-md-4">
+                                <ul class="list-group list-group-unbordered">
+                                    <li class="list-group-item" style="border-top:0;">
+                                        <b>Team</b> <br />
+                                        <span title="" id="team" data-toggle='tooltip'></span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>Date of Joining</b><br />
+                                        <span id="doj"></span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>Work Station No.</b><br />
+                                        <span id="workStationNo">Not Assigned</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="col-xs-12 col-md-4">
+                                <ul class="list-group list-group-unbordered">
+                                    <li class="list-group-item" style="border-top:0;">
+                                        <b>Reporting Manager</b><br />
+                                        <span id="reportingto"></span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>Contact No.</b> <br />
+                                        <span id="contactNo"></span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-12">
+                                <ul class="list-group list-group-unbordered">
+                                    <li class="list-group-item" style="border:0;">
+                                        <strong>Expertise(skills): </strong>
+                                        <span id="skillSpan">
+                                            NA
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script>
+    $(document).ready(function () {
+        var jsonObject = {
+            emailId: $("#hdnEmpAbrhs").val()
+        }
+        calltoAjax(misApiUrl.fetchDataForEmployeeProfile, "POST", jsonObject,
+            function (result) {
+                $("#userName").html(result.EmployeeName);
+                $("#userNameheader").html('You are viewing ' + result.EmployeeName + "'s profile");
+                $("#designation").html(result.Designation);
+                $("#role").html(result.Role);
+                $("#email").html(result.EmailId);
+                $("#contactNo").html(result.MobileNumber);
+                $("#reportingto").html(result.ReportingManager);
+                $("#doj").html(result.DOJ);
+                $("#extnNo").html(result.Extension);
+                $("#employeeCode").html(result.EmployeeCode);
+                $("#department").html(result.Department);
+                $("#team").html(result.Team);
+                $("#department").attr("title", result.Department);
+                $("#team").attr("title", result.Team);
+                $("#workStationNo").html(result.SeatNo);
+                var imagepath = result.ImageName == "" ? "../img/avatar-sign.png" : misApiProfileImageUrl + result.ImageName;
+                $("#profileImage").attr("src", imagepath);
+                if (result.SkillList.length > 0) {
+                    var html = '';
+                    for (var i = 0; i < result.SkillList.length; i++) {
+                        html += '<span class="label label-info tags">' + result.SkillList[i].SkillName + '</span>&nbsp;';
+                    }
+                    $("#skillSpan").html(html);
+                }
+            });
+    });
+
+    $("#btnUserProfileClose").click(function () {
+        $("#mypopupUserProfile").modal("hide");
+    });
+</script>

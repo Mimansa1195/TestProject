@@ -1,0 +1,407 @@
+﻿
+<div class="row" id="maindiv">
+    <div class="form-group full-width col-sm-6 col-md-4 col-lg-4">
+        <label>Location<span class="spnError">*</span></label>
+        <select style="width: 100%;" id="ddlCountryEdit" class="form-control select2 select2-hidden-accessible validation-required" aria-hidden="true" disabled></select>
+    </div>
+
+    <div class="form-group full-width col-sm-6 col-md-4 col-lg-4">
+        <label>Vertical<span class="spnError">*</span></label>
+        <select style="width: 100%;" id="ddlVerticalEdit" class="form-control select2 select2-hidden-accessible validation-required" aria-hidden="true" disabled></select>
+    </div>
+    <div class="form-group full-width col-sm-6 col-md-4 col-lg-4">
+        <label>Division<span class="spnError">*</span></label>
+        <select style="width: 100%;" id="ddlDivisionEdit" class="form-control select2 select2-hidden-accessible validation-required" aria-hidden="true" disabled>
+            <option value="0">Select</option>
+        </select>
+    </div>
+    <div class="form-group full-width col-sm-6 col-md-4 col-lg-4">
+        <label>Department<span class="spnError">*</span></label>
+        <select style="width: 100%;" id="ddlDepartmentEdit" class="form-control select2 select2-hidden-accessible validation-required" aria-hidden="true" disabled>
+            <option value="0">Select</option>
+        </select>
+    </div>
+    <div class="form-group full-width col-sm-6 col-md-4 col-lg-4">
+        <label>Designation<span class="spnError">*</span></label>
+        <select style="width: 100%;" id="ddlDesignationEdit" class="form-control select2 select2-hidden-accessible validation-required" aria-hidden="true" disabled>
+            <option value="0">Select</option>
+        </select>
+    </div>
+    <div class="form-group full-width col-sm-6 col-md-4 col-lg-4">
+        <label>Form Sufix &nbsp;<i class="fa fa-info-circle" title="" data-toggle="tooltip" data-original-title="leaving form suffix blank will save the form as default"></i></label>
+        <input type="text" id="txtFormNameEdit" class="form-control" disabled/>
+    </div>
+</div>
+
+<div id="divAssignParameterToForm">
+    <h5 class="with-border m-t-0">Form : <span id="spnFormName"></span></h5>
+    <div class="row margin-bottom-15">
+        <div class="col-md-12 marginTop10" id="divCompetencyTypeEdit">
+            <div class="form-group full-width col-sm-6 col-md-4 col-lg-4">
+                <select style="width: 100%;" id="ddlCompentencyTypeEdit" class="form-control select2 select2-hidden-accessible validation-required" aria-hidden="true">
+                    <option value="0">Select</option>
+                </select>
+            </div>
+            <a id="btnAddNewEdit" data-toggle="modal" class="btn btn-primary pull-left"><i class="fa fa-plus"></i></a>
+            <a id="btnAddParameter" data-toggle="modal" class="btn btn-primary pull-right">Add Parameter</a>
+        </div>
+        <div id="divParameterCombinationsEdit">
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="modal-footer">
+            <button id="btnUpdateForm" type="button" class="btn btn-success"><i class="fa fa-save"></i>&nbsp;Save As Draft</button>
+            <button id="btnUpdateFinalizeForm" type="button" class="btn btn-gemini"><i class="fa fa-thumbs-up"></i>&nbsp;Finalize</button>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    var competencyList;
+    $(function () {
+        $("#ddlCountryEdit").select2();
+        $("#ddlVerticalEdit").select2();
+        $("#ddlDivisionEdit").select2();
+        $("#ddlDepartmentEdit").select2();
+        $("#ddlDesignationEdit").select2();
+        $("#ddlCompentencyTypeEdit").select2();
+        GetCompetencyForLocal();
+        $("#ddlVerticalEdit").change(function () {
+            fetchDivisionEdit($("#ddlVerticalEdit").val(), "#ddlDivisionEdit", 0);
+        });
+        $("#ddlDivisionEdit").change(function () {
+            fetchDepartmentEdit($("#ddlDivisionEdit").val(), "#ddlDepartmentEdit", 0);
+        });
+        $("#ddlDepartmentEdit").change(function () {
+            populateDesignationEdit($("#ddlDepartmentEdit").val(), "#ddlDesignationEdit", 0);
+        });
+    });
+
+    function fetchCompanyLocationEdit(controlId, selectedId) {
+        $(controlId).empty();
+        calltoAjax(misApiUrl.getCompanyLocation, "POST", '',
+            function (result) {
+                if (result != null && result.length > 0) {
+                    $(controlId).append("<option value = 0>Select</option>");
+                    for (var x = 0; x < result.length; x++) {
+                        $(controlId).append("<option value = '" + result[x].Value + "'>" + result[x].Text + "</option>");
+                    }
+                    if (selectedId > 0) {
+                        $(controlId).val(selectedId);
+                    }
+                }
+            });
+    }
+
+    function fetchVerticalEdit(controlId, selectedId) {
+        $(controlId).empty();
+        calltoAjax(misApiUrl.getVertical, "POST", '',
+            function (result) {
+                if (result != null && result.length > 0) {
+                    $(controlId).append("<option value = 0>Select</option>");
+                    for (var x = 0; x < result.length; x++) {
+                        $(controlId).append("<option value = '" + result[x].Value + "'>" + result[x].Text + "</option>");
+                    }
+                    if (selectedId > 0) {
+                        $(controlId).val(selectedId);
+                    }
+                }
+            });
+    }
+
+    function fetchDivisionEdit(verticalId, controlId, selectedId) {
+        $(controlId).empty();
+        var jsonObject = { 'verticalId': verticalId || 0 }
+        calltoAjax(misApiUrl.getDivisionByVertical, "POST", jsonObject,
+            function (result) {
+                if (result != null && result.length > 0) {
+                    $(controlId).append("<option value = 0>Select</option>");
+                    for (var x = 0; x < result.length; x++) {
+                        $(controlId).append("<option value = '" + result[x].Value + "'>" + result[x].Text + "</option>");
+                    }
+                    if (selectedId > 0) {
+                        $(controlId).val(selectedId);
+                    }
+                }
+            });
+    }
+
+    function fetchDepartmentEdit(divisionId, controlId, selectedId) {
+        $(controlId).empty();
+        var jsonObject = { 'divisionIds': divisionId || 0 }
+        calltoAjax(misApiUrl.getDepartmentByDivision, "POST", jsonObject,
+            function (result) {
+                if (result != null && result.length > 0) {
+                    $(controlId).append("<option value = 0>Select</option>");
+                    for (var x = 0; x < result.length; x++) {
+                        $(controlId).append("<option value = '" + result[x].Value + "'>" + result[x].Text + "</option>");
+                    }
+                    if (selectedId > 0) {
+                        $(controlId).val(selectedId);
+                    }
+                }
+            });
+    }
+
+    function populateDesignationEdit(departmentId, controlId, selectedId) {
+        $(controlId).empty();
+        var jsonObject = { departments: departmentId || 0 }
+        calltoAjax(misApiUrl.getDesignationsByDepartments, "POST", jsonObject,
+            function (result) {
+                if (result != null && result.length > 0) {
+                    $(controlId).append("<option value = 0>Select</option>");
+                    for (var x = 0; x < result.length; x++) {
+                        $(controlId).append("<option value = '" + result[x].Value + "'>" + result[x].Text + "</option>");
+                    }
+                    if (selectedId > 0) {
+                        $(controlId).val(selectedId);
+                    }
+                }
+            });
+    }
+
+    $("#btnAddParameter").click(function () {
+        loadModal("popupAddParameter", "modalAddParameter", misAppUrl.addAppraisalParameter, true);
+    });
+
+    $("#btnAddNewEdit").click(function () {
+        if (!validateControls('divCompetencyTypeEdit')) {
+            return false;
+        }
+        generateControlsEdit('divParameterCombinationsEdit');
+    });
+
+    function generateControlsForEdit(containerId, maxNoOfTextBoxes, minNoOfMandatoryTxtBoxes, competencyTypeId, parameterId,evaluationCriteria) {
+        maxNoOfTextBoxes = maxNoOfTextBoxes || 40;
+        if (containerId) {
+            var txtCount = 0;
+            var itemrow = $("#" + containerId + " .itemRow");
+            if (itemrow && itemrow.length > 0) {
+                var controlName = itemrow.last();
+                txtCount = parseInt(controlName.closest('div').first().find('select')[0].id.replace("ddlCompetencyTypeEdit", "")) + 1;
+            }
+            if (txtCount < maxNoOfTextBoxes) {
+                $("#" + containerId).append(getDynamicControls(txtCount, minNoOfMandatoryTxtBoxes || 1, ''));
+            }
+            else {
+                misAlert("You can't add more than " + maxNoOfTextBoxes + " options!", 'Sorry', 'warning');
+            }
+            bindCompetencywithJason('#ddlCompetencyTypeEdit' + txtCount + '', competencyTypeId);
+            GetParameterEdit('#ddlParameterEdit' + txtCount + '', competencyTypeId, parameterId)
+            $('#txtEvaluationCriteriaEdit' + txtCount + '').val(evaluationCriteria);
+        }
+    }
+
+    function generateControlsEdit(containerId, maxNoOfTextBoxes, minNoOfMandatoryTxtBoxes) {
+        maxNoOfTextBoxes = maxNoOfTextBoxes || 40;
+        if (containerId) {
+            var txtCount = 0;
+            var itemrow = $("#" + containerId + " .itemRow");
+            if (itemrow && itemrow.length > 0) {
+                var controlName = itemrow.last();
+                txtCount = parseInt(controlName.closest('div').first().find('select')[0].id.replace("ddlCompetencyTypeEdit", "")) + 1;
+            }
+            if (txtCount < maxNoOfTextBoxes) {
+                $("#" + containerId).append(getDynamicControls(txtCount, minNoOfMandatoryTxtBoxes || 1, ''));
+            }
+            else {
+                misAlert("You can't add more than " + maxNoOfTextBoxes + " options!", 'Sorry', 'warning');
+            }
+            bindCompetencywithJason('#ddlCompetencyTypeEdit' + txtCount + '', $("#ddlCompentencyTypeEdit").val() || 0);
+            GetParameterEdit('#ddlParameterEdit' + txtCount + '', $("#ddlCompentencyTypeEdit").val() || 0, 0)
+        }
+    }
+
+    function getDynamicControls(idx, minNoOfMandatoryTxtBoxes, value) {
+        return '<div class="col-md-12 itemRow">' +
+               '<div class="row">' +
+               '<div class="col-md-3"><div class="form-group"><label class="control-label">Competency Type<span class="spnError">*</span></label><div class="inputGroupContainer"><div class="input-group"><select class="form-control select-validate validation-required" id="ddlCompetencyTypeEdit' + idx + '" onchange="bindParameterEdit(' + idx + ')"></select></div></div></div></div>' +
+               '<div class="col-md-3"><div class="form-group"><label class="control-label">Parameter<span class="spnError">*</span></label><div class="inputGroupContainer"><div class="input-group"><select class="form-control select-validate validation-required" id="ddlParameterEdit' + idx + '"></select></div></div></div></div>' +
+               '<div class="col-md-4"><div class="form-group"><label class="control-label">Evaluation Criteria</label><div class="inputGroupContainer"><div class="input-group"><textarea type="text" class="form-control" id="txtEvaluationCriteriaEdit' + idx + '"> </textarea></div></div></div></div>' +
+               '<div class="col-md-2" style="padding-top: 22px;"><span class="input-group-btn"><button class="btn btn-danger" style="background-color: #d2322d;" value="X" onclick="removeControlsEdit(this)">X</button></span></div>' +
+               '</div></div>';
+    }
+
+    function removeControlsEdit(item) {
+        $(item).closest('.itemRow').remove()
+    }
+
+    function GetCompetencyForLocal() {
+        calltoAjax(misApiUrl.getCompetency, "POST", '',
+                function (result) {
+                    if (result != null && result.length > 0) {
+                        competencyList = result;
+                        bindCompetencywithJason("#ddlCompentencyTypeEdit", 0);
+                        setDataOnEditCall();
+                    }
+                });
+    }
+
+    function setDataOnEditCall() {
+        if ($("#hdnCompetencyFormId").val() > 0) {
+            var jsonObject = {
+                'competencyFormId': $("#hdnCompetencyFormId").val()
+            };
+            calltoAjax(misApiUrl.getCompetencyFormDataForEdit, "POST", jsonObject,
+                function (result) {
+                    if (result.CompetencyFormData != null) {
+                        $("#txtFormNameEdit").val(result.CompetencyFormData.SpecializedFormName);
+                        fetchCompanyLocationEdit("#ddlCountryEdit", result.CompetencyFormData.LocationId);
+                        fetchVerticalEdit("#ddlVerticalEdit", result.CompetencyFormData.VerticalId);
+                        fetchDivisionEdit(result.CompetencyFormData.VerticalId, "#ddlDivisionEdit", result.CompetencyFormData.DivisionId);
+                        fetchDepartmentEdit(result.CompetencyFormData.DivisionId, "#ddlDepartmentEdit", result.CompetencyFormData.DepartmentId);
+                        populateDesignationEdit(result.CompetencyFormData.DepartmentId, "#ddlDesignationEdit", result.CompetencyFormData.DesignationId);
+                    }
+                    if (result.CompetencyAndParameterListBO.length > 0) {
+                        var data = result.CompetencyAndParameterListBO;
+                        for (var i = 0; i < data.length; i++) {
+                            generateControlsForEdit('divParameterCombinationsEdit', 0, 0, data[i].CompetencyTypeId, data[i].ParameterId, data[i].EvaluationCriteria)
+                        }
+                    }
+                });
+        }
+    }
+
+    function bindCompetencywithJason(controlId, selectedId) {
+        $(controlId).empty();
+        if (competencyList != null) {
+            if (competencyList != null && competencyList.length > 0) {
+                $(controlId).append("<option value = 0>Select</option>");
+                for (var x = 0; x < competencyList.length; x++) {
+                    $(controlId).append("<option value = '" + competencyList[x].Value + "'>" + competencyList[x].Text + "</option>");
+                }
+                if (selectedId > 0) {
+                    $(controlId).val(selectedId);
+                }
+            }
+        }
+    }
+
+    function GetParameterEdit(controlId, competencyId, selectedId) {
+        $(controlId).empty();
+        var jsonObject =
+            {
+                'competencyId': competencyId,
+            }
+
+        calltoAjax(misApiUrl.getParameter, "POST", jsonObject,
+                function (result) {
+                    if (result != null && result.length > 0) {
+                        $(controlId).append("<option value = 0>Select</option>");
+                        for (var x = 0; x < result.length; x++) {
+                            $(controlId).append("<option value = '" + result[x].Value + "'>" + result[x].Text + "</option>");
+                        }
+                        if (selectedId > 0) {
+                            $(controlId).val(selectedId);
+                        }
+                    }
+                });
+    }
+
+    $("#btnUpdateForm").click(function () {
+        if (!validateControls('divParameterCombinationsEdit')) {
+            return false;
+        }
+        var jsonObject = {
+            CompetencyFormId: $("#hdnCompetencyFormId").val(),
+            LocationId: $("#ddlCountryEdit").val(),
+            VerticalId: $("#ddlVerticalEdit").val(),
+            DivisionId: $("#ddlDivisionEdit").val(),
+            DepartmentId: $("#ddlDepartmentEdit").val(),
+            DesignationId: $("#ddlDesignationEdit").val(),
+            FormName: $("#txtFormNameEdit").val(),
+            ParameterList: getFormDataEdit(),
+            IsFinalize: false
+        };
+        calltoAjax(misApiUrl.addUpdateCompetencyForm, "POST", jsonObject,
+            function (result) {
+                if (result.Status == 1) {
+                    $("#EditCompetencyForm").modal("hide");
+                    GetCompetencyFormsList();
+                    misAlert("Form has been updated successfully.", "Success", "success");
+                }
+                if (result.Status == 2){
+                    misAlert("Form has been already created for designation <span color='red'>" + result.Result + "</span>", "Warning", "warning");
+                }
+                if (result.Status == 3) {
+                    misAlert("Competency and parameter combinations duplicate", "Warning", "warning");
+                }
+            });
+
+    });
+
+    $("#btnUpdateFinalizeForm").click(function () {
+        if (!validateControls('divParameterCombinationsEdit')) {
+            return false;
+        }
+        var reply = misConfirm("Are you sure you want to Finalize the form.", "Confirm", function (reply) {
+            if (reply) {
+                var jsonObject = {
+                    CompetencyFormId: $("#hdnCompetencyFormId").val(),
+                    LocationId: $("#ddlCountryEdit").val(),
+                    VerticalId: $("#ddlVerticalEdit").val(),
+                    DivisionId: $("#ddlDivisionEdit").val(),
+                    DepartmentId: $("#ddlDepartmentEdit").val(),
+                    DesignationId: $("#ddlDesignationEdit").val(),
+                    FormName: $("#txtFormNameEdit").val(),
+                    ParameterList: getFormDataEdit(),
+                    IsFinalize: true
+                };
+                calltoAjax(misApiUrl.addUpdateCompetencyForm, "POST", jsonObject,
+                    function (result) {
+                        if (result.Status == 1) {
+                            $("#EditCompetencyForm").modal("hide");
+                            GetCompetencyFormsList();
+                            misAlert("Form has been created and finalized successfully.", "Success", "success");
+                        }
+                        if (result.Status == 2) {
+                            misAlert("Form has been already created for designation <span color='red'>" + result.Result + "</span>", "Warning", "warning");
+                        }
+                        if (result.Status == 3) {
+                            misAlert("Competency and parameter combinations duplicate", "Warning", "warning");
+                        }
+                    });
+            }
+        });
+
+    });
+
+    function bindParameterEdit(idx) {
+        var controlId = "#ddlParameterEdit" + idx;
+        var competencyId = $("#ddlCompetencyTypeEdit" + idx).val();
+        $(controlId).empty();
+        var jsonObject =
+            {
+                'competencyId': competencyId,
+            }
+        calltoAjax(misApiUrl.getParameter, "POST", jsonObject,
+                function (result) {
+                    if (result != null && result.length > 0) {
+                        $(controlId).append("<option value = 0>Select</option>");
+                        for (var x = 0; x < result.length; x++) {
+                            $(controlId).append("<option value = '" + result[x].Value + "'>" + result[x].Text + "</option>");
+                        }
+                    }
+                });
+    }
+
+    function getFormDataEdit() {
+        var i = 0;
+        var collection = new Array();
+        var items;
+        $('#divParameterCombinationsEdit .itemRow').each(function (i, obj) {
+            var id = parseInt($(obj).find('select')[0].id.replace("ddlCompetencyTypeEdit", ""));
+            items = new Object();
+            items.CompetencyTypeId = $("#ddlCompetencyTypeEdit" + id).val();
+            items.ParameterId = $("#ddlParameterEdit" + id).val();
+            items.EvaluationCriteria = $("#txtEvaluationCriteriaEdit" + id).val();
+            items.SequenceNo = i;
+            items.CompetencyFormDetailId = 0;// change on edit call
+            collection.push(items);
+        });
+        return collection
+    }
+
+</script>

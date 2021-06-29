@@ -1,0 +1,75 @@
+﻿<div class="container-fluid">
+    <section class="card">
+        <div class="card-block">
+            <h5 class="with-border m-t-0">Manage user pending requests</h5>
+            <div class="tabs-section-nav tabs-section-nav-left">
+                <ul class="nav" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#tabProfileVerificationPartialContainer" role="tab" data-toggle="tab">
+                            <span class="nav-link-in">Profile Verification</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-content no-styled profile-tabs" id="profileVerification" style="margin-top:10px">
+                <div role="tabpanel" class="tab-pane active" id="tabProfileVerificationPartialContainer">
+                    <section class="box-typical box-typical-padding">
+                        <div class="form-body">
+                            @*<input type="hidden" id="appid" />
+                            <input type="hidden" id="forwardedid" value="0" />*@
+                            <div id="divInCompleteReviewFormsGridHeader" class="gridViewHeader">
+                                <div class="profile-statistic tbl redcustomheader">
+                                    <div class="tbl-row">
+                                        <div class="tbl-cell">
+                                            Pending
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id='divCompleteReviewFormsGridView' class='gridViewBody gridViewContainerBorder'>
+                                <table id="tblProfileVerification" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+                                <div class="text-center" id="divBulkProfileApprove">
+                                    <button type='button' class='btn btn-primary' onclick="showPopupOnBulkApprove()"><i class='fa fa-check'></i>&nbsp;Bulk Approve </button>
+                                </div>
+                            </div>
+                            <br />
+                            <div id="divCompleteReviewFormsGridHeader" class="gridViewHeader">
+                                <div class="profile-statistic tbl greencustomheader">
+                                    <div class="tbl-row">
+                                        <div class="tbl-cell">
+                                            Approved/Rejected
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id='divInCompleteReviewFormsGridView' class='gridViewBody gridViewContainerBorder'>
+                                <table id="tblVerifiedProfileVerification" class="table table-bordered table-hover display table-striped" role="grid" aria-describedby="example1-info"></table>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div id="mypopupReviewProfile" class="modal fade" role="dialog" aria-labelledby="mypopupReviewProfile" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Remarks</h4>
+            </div>
+            <div class="container margin-top-10" id="">
+                <div class="form-group col-md-12">
+                    <textarea rows="6" cols="2000" id="reviewProfile" maxlength="500" placeholder="Please enter reason here" class="form-control validation-required"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="rejectRequest" type="button" class="btn btn-success"><i class="fa fa-"></i>&nbsp;Reject</button>
+                <button id="btnClose" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Close </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/app/HRPortal/pendingRequests.js"></script>

@@ -1,0 +1,392 @@
+.file-details, .edit-file-details {
+width: 100%;
+border-collapse: collapse;
+border: 1px solid #d8e2e7;
+}
+
+.file-details thead th, .edit-file-details thead th {
+background: #f6f8fa;
+color: #fff;
+text-align: left;
+color: #6c7a86;
+font-size: 1rem;
+white-space: nowrap;
+}
+
+.file-details thead th.text-right, .edit-file-details thead th.text-right {
+    text-align: right;
+}
+
+.file-details td, .file-details th, .edit-file-details td, .edit-file-details th {
+padding: 10px 15px;
+border-bottom: 1px solid #d8e2e7;
+}
+
+.file-details tfoot th, .edit-file-details tfoot th {
+min-height: 42px;
+}
+
+#file {
+outline: none !important;
+opacity: 0;
+position: absolute;
+z-index: 1;
+left: 15px;
+width: 153px;
+height: 38px;
+top: 0;
+}
+
+.browse-label {
+padding: 8px 50px;
+background: rgb(30, 113, 207);
+color: #fff;
+border-radius: 0;
+cursor: pointer;
+display: inline-block;
+}
+
+.file-details {
+display: none;
+}
+
+#browseBtn {
+display: inline-block;
+}
+
+.reimbursement-options {
+width: 300px;
+max-width: 300px;
+}
+
+.file-details .select2, .edit-file-details .select2 {
+width: 275px !important;
+}
+
+/*---for select validate class*/
+.file-details .select-validate, .edit-file-details .select-validate {
+    width: 330px !important;
+}
+
+
+.tile .file-input img {
+min-height: 120px !important;
+max-height: 120px !important;
+width: 96% !important;
+max-width: 96% !important;
+margin: 2%;
+}
+
+.tile .file-input .krajee-default.file-preview-frame .file-thumbnail-footer {
+height: 25px;
+}
+
+.tile .file-input .krajee-default .file-footer-caption, .tile .kv-file-remove, .tile .file-input .file-caption-main, .tile .file-sortable .file-drag-handle {
+display: none;
+}
+
+.tile .file-preview {
+border: none !important;
+padding: 0 !important;
+}
+
+.tile .kv-file-download {
+float: left;
+margin: 4px 0px 0 4px;
+}
+
+.tile .kv-file-zoom {
+margin: 4px 4px 0 0;
+float: right;
+}
+
+.tile .krajee-default.file-preview-frame {
+margin: 0 !important;
+border: none !important;
+box-shadow: none !important;
+float: none !important;
+}
+
+.tile .krajee-default.file-preview-frame:not(.file-preview-error):hover {
+box-shadow: none !important;
+}
+
+.tile {
+width: calc(100% / 4);
+float: left;
+}
+
+.tile .tile-section {
+margin: 10px 10px 10px 0;
+border: 1px solid #ddd;
+border-radius: 5px;
+text-align: center;
+position: relative;
+}
+
+.tile p {
+padding: 0 15px;
+margin: 0;
+}
+
+.tile .btn-danger {
+width: 100%;
+border-radius: 0 0 5px 5px !important;
+margin-top: 10px;
+}
+
+.tile label {
+display: inline-block;
+width: 80px;
+float: left;
+}
+
+.tile .bill-details {
+white-space: nowrap;
+width: 90%;
+overflow: hidden;
+text-overflow: ellipsis;
+display: inline-block;
+}
+
+.tile .krajee-default .file-footer-buttons {
+float: none !important;
+}
+
+span.bill-amount {
+float: right;
+}
+
+/*p.bill-date {
+position: absolute;
+top: 176px;
+left: 60px;
+}*/
+.tile-header {
+padding: 10px;
+background: #d5d2d2;
+text-align: left;
+border-radius: 5px 5px 0 0;
+}
+
+.invalid-strip {
+position: absolute;
+transform: rotate(-45deg);
+background: url(../../Images/invalid-bill.jpg) no-repeat;
+background-size: 100px;
+height: 100px;
+width: 100px;
+z-index: 1;
+opacity: 0.6;
+top: 56px;
+right: 62px;
+border-radius: 64px 64px 64px 64px;
+}
+
+/*.deleted-strip {
+position: absolute;
+transform: rotate(-45deg);
+background: url(../../Images/deleted-bill.jpg) no-repeat;
+background-size: 100px;
+height: 100px;
+width: 100px;
+z-index: 1;
+opacity: 0.6;
+top: 56px;
+right: 62px;
+border-radius: 64px 64px 64px 64px;
+}*/
+.invalid-tile .tile-header {
+background: #e4e1e1;
+}
+
+.tblReimbursementPendingList tfoot th, .tblReimbursementApprovedList tfoot th {
+border: none !important;
+border-top: 1px solid #d8e2e7 !important;
+}
+
+.boldText {
+font-weight: bold;
+}
+
+.bill-total {
+width: 100%;
+text-align: right;
+padding: 10px;
+}
+
+.bill-total h6 {
+display: inline-block;
+margin-right: 5px;
+margin-bottom: 0;
+}
+
+@media(min-width: 320px) and (max-width: 480px) {
+.tile {
+width: calc(100% / 1) !important;
+}
+}
+
+@media(max-width: 767px) {
+.tile {
+width: calc(100% / 2);
+}
+
+.bill-total {
+width: 100%;
+text-align: left;
+padding: 0 20px;
+}
+
+.bill-total h6 {
+display: block;
+margin-right: 5px;
+margin-bottom: 10px;
+}
+.edit-file-details .select2-container .select2-selection--single .select2-selection__rendered {
+white-space: normal;
+}
+.file-details, .edit-file-details, .edit-file-details tbody tr td {
+border: none !important;
+}
+
+.file-details-header, .file-details-footer tr th:last-child {
+display: none;
+}
+
+.file-details .select2, .edit-file-details .select2 {
+width: 100% !important;
+display: block;
+}
+
+.edit-file-details tbody tr td, .file-details-footer tr th {
+display: block;
+}
+
+.file-details-footer tr th {
+padding: 0 !important;
+border: none !important;
+}
+
+.edit-file-details tbody tr {
+margin-top: 10px;
+display: block;
+border: 1px solid #dddddd;
+}
+
+.edit-file-details tbody tr td:before {
+content: attr(data-attr-title); 
+}
+
+.edit-file-details tbody tr td.status:before {
+margin-right: 10px;
+}
+
+.edit-file-details tbody tr td.image, .edit-file-details tbody tr td:last-child {
+display: block;
+padding: 0 !important
+}
+
+.edit-file-details {
+counter-reset: section;
+}
+
+.edit-file-details tbody tr td.image:before {
+counter-increment: section;
+content: "BillNo " counter(section);
+width: 100%;
+padding: 10px;
+background: #c5ccc1;
+display: block;
+margin-bottom: 10px;
+}
+
+.edit-file-details tbody tr td .btn.btn-danger {
+width: 100%;
+}
+
+.edit-file-details tbody tr td.status {
+padding: 10px 15px !important;
+}
+
+.edit-file-details tbody tr td.status {
+margin-right: 10px ;
+}
+}
+
+@media(min-width: 768px) and (max-width: 1024px) {
+.tile {
+width: calc(100% / 3);
+}
+.file-details td, .file-details th, .edit-file-details td, .edit-file-details th {
+    padding: 10px 5px; 
+}
+
+.file-details .select2, .edit-file-details .select2 {
+    width: 170px !important;
+}
+/*.file-details, .edit-file-details, .edit-file-details tbody tr td {
+border: none !important;
+}
+
+.file-details-header, .file-details-footer tr th:last-child {
+display: none;
+}
+
+.file-details .select2, .edit-file-details .select2 {
+width: 100% !important;
+display: block;
+}
+
+.edit-file-details tbody tr td, .file-details-footer tr th {
+display: block;
+}
+
+.file-details-footer tr th {
+padding: 0 !important;
+border: none !important;
+}
+
+.edit-file-details tbody tr {
+margin: 10px 2% 0 0;
+display: block;
+border: 1px solid #dddddd;
+width: 48% !important;
+float: left;
+}
+
+.edit-file-details tbody tr td:before {
+content: attr(data-attr-title)
+}
+
+.edit-file-details tbody tr td.status:before {
+margin-right: 10px;
+}
+
+.edit-file-details tbody tr td.image, .edit-file-details tbody tr td:last-child {
+display: block;
+padding: 0 !important
+}
+
+.edit-file-details {
+counter-reset: section;
+}
+
+.edit-file-details tbody tr td.image:before {
+counter-increment: section;
+content: "BillNo " counter(section);
+width: 100%;
+padding: 10px;
+background: #c5ccc1;
+display: block;
+margin-bottom: 10px;
+}
+
+.edit-file-details tbody tr td .btn.btn-danger {
+width: 100%;
+}
+
+.edit-file-details tbody tr td.status {
+padding: 10px 15px !important;
+}*/
+}
